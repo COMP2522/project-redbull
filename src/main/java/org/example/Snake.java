@@ -1,55 +1,49 @@
 package org.example;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * The Snake class. For snake things :)
  * Using the linkedlist library, makes the snake a singleton linked list
  */
-public class Snake {
+public class Snake extends Sprite{
 
+  private int xSpeed;
 
-  private LinkedList<Scale> snakeTail;
+  private int Yspeed;
+
+  private int direction;
+
+  private ArrayList<Sprite> body;
   private static Snake instance;
 
-  private Snake() {
-    snakeTail = new LinkedList<>();
+  private Snake(int xPos, int yPos, int size, Image picture, Window window) {
+    super(xPos, yPos, size, picture, window);
+    body = new ArrayList<>();
   }
 
-  public static Snake getInstance() {
+  // This makes the snake a singleton, but we could probably take this out with the way things are going
+  public static Snake getInstance(int xPos, int yPos, int size, Image picture, Window window) {
     if (instance == null) {
-      instance = new Snake();
+      instance = new Snake(xPos, yPos, size, picture, window);
     }
     return instance;
   }
 
-  /*
-  The scale class of the snake
-   */
-  protected class Scale {
-    private int x;
-    private int y;
-
-    public Scale(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
-
-    public int getX() {
-      return x;
-    }
-
-    public void setX(int x) {
-      this.x = x;
-    }
-
-    public int getY() {
-      return y;
-    }
-
-    public void setY(int y) {
-      this.y = y;
-    }
-
+  public int getxSpeed() {
+    return xSpeed;
   }
 
+  public void setxSpeed(int xSpeed) {
+    this.xSpeed = xSpeed;
+  }
+
+  public int getYspeed() {
+    return Yspeed;
+  }
+
+  public void setYspeed(int yspeed) {
+    Yspeed = yspeed;
+  }
+
+  public void move(int xSpeed, int ySpeed){}
 }
