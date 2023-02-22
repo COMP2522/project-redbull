@@ -1,39 +1,55 @@
 package org.example;
+import java.util.LinkedList;
 
 /**
- * The Snake class.
+ * The Snake class. For snake things :)
+ * Using the linkedlist library, makes the snake a singleton linked list
  */
 public class Snake {
 
 
-  private class scale{
-    public int x;
-    public int y;
-    public scale next;
+  private LinkedList<Scale> snakeTail;
+  private static Snake instance;
+
+  private Snake() {
+    snakeTail = new LinkedList<>();
   }
 
-  public scale eatFood(scale head){
-    scale curr = head;
-    while(curr != null){
-      curr = curr.next;
+  public static Snake getInstance() {
+    if (instance == null) {
+      instance = new Snake();
     }
-    scale tail = curr.next;
-    /*
-    use the timer to set the tail to appear as the snake moves to the tile after it has eaten food
-    the end of the tail appears one tick after the snake has eaten food to grow the snake
-     */
-    tail.x = curr.x;
-    tail.y = curr.y;
-    return head;
+    return instance;
   }
 
   /*
-  the initial scale values for the x and y position of the snake
-  I am imagining are made upon the setup, but I'm happy to write more of it
+  The scale class of the snake
    */
-  private scale head = new scale();
-  private scale scale2 = new scale();
-  private scale scale3 = new scale();
+  protected class Scale {
+    private int x;
+    private int y;
 
+    public Scale(int x, int y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    public int getX() {
+      return x;
+    }
+
+    public void setX(int x) {
+      this.x = x;
+    }
+
+    public int getY() {
+      return y;
+    }
+
+    public void setY(int y) {
+      this.y = y;
+    }
+
+  }
 
 }
