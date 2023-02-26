@@ -1,11 +1,18 @@
 package org.example;
+
+
 import java.util.ArrayList;
+
+
+//import processing.event.KeyEvent;
+//
+//import java.awt.*;
 
 /**
  * The Snake class. For snake things :)
  * Using the linkedlist library, makes the snake a singleton linked list
  */
-public class Snake extends Sprite{
+public class Snake extends Sprite {
 
   private int xSpeed;
 
@@ -45,5 +52,41 @@ public class Snake extends Sprite{
     Yspeed = yspeed;
   }
 
-  public void move(int xSpeed, int ySpeed){}
+  public void move(int xSpeed, int ySpeed) {
+  }
+
+  public int getDirection() {
+    return direction;
+  }
+
+  public void setDirection(int direction) {
+    this.direction = direction;
+  }
+//
+//  @Override
+//  public void keyPressed(KeyEvent event) {
+//    int keyCode = event.getKeyCode();
+//    switch( keyCode ) {
+//      case LEFT:
+//        // handle left
+//        Snake.setDirection(player.getDirection().rotate(-Window.PI / 16));
+//        break;
+//      case RIGHT:
+//        // handle right
+//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
+//        break;
+//
+//      case UP:
+//        // handle up
+//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
+//        break;
+//
+//      case DOWN:
+//        // handle down
+//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
+//        break;
+//
+//    }
+
+
 }
