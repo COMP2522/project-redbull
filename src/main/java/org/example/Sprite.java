@@ -1,5 +1,7 @@
 package org.example;
 
+import java.awt.*;
+
 public class Sprite {
   private int xPos;
   private int yPos;
