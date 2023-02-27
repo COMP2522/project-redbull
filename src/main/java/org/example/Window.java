@@ -22,7 +22,8 @@ public class Window extends PApplet {
 
     @Override
     public void settings() {
-        size(screenWidth, screenHeight);
+//        size(screenWidth, screenHeight);
+        fullScreen();
     }
     @Override
     public void setup(){
