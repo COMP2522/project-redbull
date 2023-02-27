@@ -35,7 +35,7 @@ public class Sprite {
 
 
   public void setxPos(int xPos) {
-    this.xPos = xPos;
+    this.xPos = xPos+window.offset;
   }
 
   public void setyPos(int yPos) {
@@ -50,7 +50,11 @@ public class Sprite {
     this.picture = picture;
   }
 
-  public void draw(int x, int y, int size, Image picture){
-
+  public void draw(){
+    window.stroke(0,0,0);
+    window.pushStyle();
+    window.fill(50, 50, 50);
+    window.ellipse(this.xPos, this.yPos, size, size);
+    window.popStyle();
   }
 }
