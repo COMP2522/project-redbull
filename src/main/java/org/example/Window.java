@@ -9,20 +9,22 @@ public class Window extends PApplet {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     ArrayList<Sprite> sprites = new ArrayList<>();
     SpriteManager spriteManager = new SpriteManager(this);
-    int screenWidth = (int) screenSize.getWidth();
-    int screenHeight = (int) screenSize.getHeight();
-    int width = min(screenWidth,screenHeight);
+
+    int width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
     int height = width;
+    int offset = (int) ((screenSize.getWidth()-width)/(2));
+
+    //THESE ARE THE GRID VARIABLES
     int cellSizeX = 10;
     int cellSizeY = 10;
     int rows = height/cellSizeY -1;//-1 to stay square with cols
     int cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
-    int offset = (screenWidth-width)/(2);
+    //////////////////////////////////////////////////////
+
 
 
     @Override
     public void settings() {
-//        size(screenWidth, screenHeight);
         fullScreen();
     }
     @Override
@@ -43,6 +45,7 @@ this.init();
 //        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
+            System.out.println(sprite.getxPos());
             sprite.draw();
         }
     }
@@ -51,7 +54,7 @@ this.init();
             for (int j = 1; j < cols; j++) {
                 stroke(255);
                 fill(50,50,50);
-                rect((i+offset/cellSizeX) * cellSizeX, j * cellSizeY, cellSizeX, cellSizeY);
+                rect((i+(offset/cellSizeX)) * cellSizeX, j * cellSizeY, cellSizeX, cellSizeY);
             }
 
         }
@@ -59,7 +62,6 @@ this.init();
     public static void main(String[] args) {
         String[] appletArgs = new String[]{"MazeSnake"};
         Window MazeSnake = new Window();
-        System.out.println(MazeSnake.displayHeight);
         PApplet.runSketch(appletArgs, MazeSnake);
     }
 }

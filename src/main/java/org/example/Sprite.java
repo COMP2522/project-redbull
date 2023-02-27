@@ -7,14 +7,17 @@ public class Sprite {
   private int yPos;
   private int size;
   private Image picture;
-  private Window window;
+  private static Window window;
 
-  public Sprite(int xPos, int yPos, int size, Image picture, Window window) {
+  public Sprite(int xPos, int yPos, int size, Image picture) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.size = size;
     this.picture = picture;
-    this.window = window;
+  }
+
+  public static void setWindow(Window window) {
+    Sprite.window = window;
   }
 
   public int getxPos() {
@@ -35,7 +38,7 @@ public class Sprite {
 
 
   public void setxPos(int xPos) {
-    this.xPos = xPos+window.offset;
+    this.xPos = xPos;
   }
 
   public void setyPos(int yPos) {
@@ -53,8 +56,8 @@ public class Sprite {
   public void draw(){
     window.stroke(0,0,0);
     window.pushStyle();
-    window.fill(50, 50, 50);
-    window.ellipse(this.xPos, this.yPos, size, size);
+    window.fill(0, 204, 0);
+    window.rect(this.xPos+window.offset, this.yPos, size, size);
     window.popStyle();
   }
 }

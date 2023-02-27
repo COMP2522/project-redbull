@@ -24,15 +24,15 @@ public class Snake extends Sprite {
   private ArrayList<Sprite> body;
   private static Snake instance;
 
-  private Snake(int xPos, int yPos, int size, Image picture, Window window) {
-    super(xPos, yPos, size, picture, window);
+  private Snake(int xPos, int yPos, int size, Image picture) {
+    super(xPos, yPos, size, picture);
     body = new ArrayList<>();
   }
 
   // This makes the snake a singleton, but we could probably take this out with the way things are going
-  public static Snake getInstance(int xPos, int yPos, int size, Image picture, Window window) {
+  public static Snake getInstance(int xPos, int yPos, int size, Image picture) {
     if (instance == null) {
-      instance = new Snake(xPos, yPos, size, picture, window);
+      instance = new Snake(xPos, yPos, size, picture);
     }
     return instance;
   }
