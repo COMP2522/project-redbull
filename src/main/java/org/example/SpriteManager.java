@@ -21,8 +21,8 @@ public class SpriteManager {
     private Window window;
 
     public SpriteManager(Window window) {
-        createMaze();
         this.window = window;
+        createMaze();
         Sprite.setWindow(window);
         sprites = new ArrayList<>();
         player = Snake.getInstance(0, 100, 10, null);
