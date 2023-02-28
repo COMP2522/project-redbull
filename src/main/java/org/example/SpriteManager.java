@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class SpriteManager {
     private ArrayList<Sprite> sprites;
     private Snake player;
-    private ArrayList<Tile> tiles;
+    private Tile[] tiles;
     private Window window;
     public SpriteManager(Window window) {
         createMaze();
@@ -29,7 +29,7 @@ public class SpriteManager {
     private void createMaze() {
         //create the maze
 
-        this.tiles = new ArrayList<>();
+        this.tiles = new Tile[];
         tiles.add(new Tile(100, 200, 10, null, true));
     }
 }
