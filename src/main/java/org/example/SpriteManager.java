@@ -28,6 +28,7 @@ public class SpriteManager {
     }
     private void createMaze() {
         //create the maze
+
         this.tiles = new ArrayList<>();
         tiles.add(new Tile(100, 200, 10, null, true));
     }

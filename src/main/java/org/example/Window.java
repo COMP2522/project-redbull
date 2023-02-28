@@ -10,13 +10,13 @@ public class Window extends PApplet {
     ArrayList<Sprite> sprites = new ArrayList<>();
     SpriteManager spriteManager = new SpriteManager(this);
 
-    int width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
-    int height = width;
-    int offset = (int) ((screenSize.getWidth()-width)/(2));
+    private int width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
+    private int height = width;
+    private int offset = (int) ((screenSize.getWidth()-width)/(2));
 
     //THESE ARE THE GRID VARIABLES
-    int cellSizeX = 10;
-    int cellSizeY = 10;
+    int cellSizeX = 50;
+    int cellSizeY = 50;
     int rows = height/cellSizeY -1;//-1 to stay square with cols
     int cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
     //////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ this.init();
         background(0);
         //this is the play space
         rect(offset,cellSizeY,width-cellSizeY,height-2*cellSizeY);
-//        drawGrid();
+        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
             System.out.println(sprite.getxPos());
@@ -63,5 +63,17 @@ this.init();
         String[] appletArgs = new String[]{"MazeSnake"};
         Window MazeSnake = new Window();
         PApplet.runSketch(appletArgs, MazeSnake);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getOffset() {
+        return offset;
     }
 }
