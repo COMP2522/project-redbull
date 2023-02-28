@@ -5,8 +5,21 @@ import java.util.ArrayList;
 public class SpriteManager {
     private ArrayList<Sprite> sprites;
     private Snake player;
-    private Tile[] tiles;
+    private int tileWidth;
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    private int rows;
+    private int cols;
+    private Tile[][] tiles;
     private Window window;
+
     public SpriteManager(Window window) {
         createMaze();
         this.window = window;
@@ -29,7 +42,13 @@ public class SpriteManager {
     private void createMaze() {
         //create the maze
 
-        this.tiles = new Tile[];
-        tiles.add(new Tile(100, 200, 10, null, true));
+        // changed to be getting from a file later
+        int mazeWidth = 50;
+
+        // todo calculate tile width
+        this.tileWidth = 20;
+
+        this.tiles = new Tile[rows][cols];
+//        tiles.add(new Tile(100, 200, 10, null, true));
     }
 }
