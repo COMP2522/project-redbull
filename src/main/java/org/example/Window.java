@@ -13,6 +13,17 @@ public class Window extends PApplet {
     private int width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
     private int height = width;
     private int offset = (int) ((screenSize.getWidth()-width)/(2));
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
 
     //THESE ARE THE GRID VARIABLES
     int cellSizeX = 50;
@@ -65,15 +76,5 @@ this.init();
         PApplet.runSketch(appletArgs, MazeSnake);
     }
 
-    public int getWidth() {
-        return width;
-    }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
 }
