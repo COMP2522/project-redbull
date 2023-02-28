@@ -1,11 +1,14 @@
 package org.example;
 
 import processing.core.PApplet;
+import processing.event.KeyEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Window extends PApplet {
+
+    Snake snake;
 
     Clock clock = new Clock();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,6 +48,9 @@ public class Window extends PApplet {
 this.init();
     }
     public void init(){
+
+
+
         background(0);
         frameRate(60);
         fill(255);
@@ -75,6 +81,31 @@ this.init();
 
         }
     }
+//    public void keyPressed(KeyEvent event) {
+//        int keyCode = event.getKeyCode();
+//        switch (keyCode) {
+//            case 37:
+//                // handle left
+//                snake.setxPos(snake.getxPos().);
+//                break;
+//            case 39:
+//                // handle right
+//                snake.setDirection(snake.getDirection().rotate(Window.PI / 16));
+//                break;
+//
+//            case 38:
+//                // handle up
+//                snake.setDirection(snake.getDirection().rotate(Window.PI / -16));
+//                break;
+//
+//            case 40:
+//                // handle down
+//                snake.setDirection(snake.getDirection().rotate(-Window.PI / -16));
+//                break;
+//
+//        }
+//    }
+
     public static void main(String[] args) {
         String[] appletArgs = new String[]{"MazeSnake"};
         Window MazeSnake = new Window();

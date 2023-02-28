@@ -68,30 +68,7 @@ public class Snake extends Sprite {
 
 
 
-//  public void keyPressed(KeyEvent event) {
-//    int keyCode = event.getKeyCode();
-//    switch (keyCode) {
-//      case 37:
-//        // handle left
-//        Snake.setDirection(Snake.getDirection().rotate(-Window.PI / 16));
-//        break;
-//      case 39:
-//        // handle right
-//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
-//        break;
-//
-//      case 38:
-//        // handle up
-//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / -16));
-//        break;
-//
-//      case 40:
-//        // handle down
-//        Snake.setDirection(Snake.getDirection().rotate(-Window.PI / -16));
-//        break;
-//
-//    }
-//}
+
 
 
   }
