@@ -27,8 +27,11 @@ public class SpriteManager {
         sprites = new ArrayList<>();
         player = Snake.getInstance(0, 100, 10, null);
         sprites.add(player);
-        for (Tile tile : tiles) {
-            sprites.add(tile);
+        //todo make this not O(n^2)
+        for (Tile[] tile : tiles) {
+            for (Tile tile1 : tile) {
+                sprites.add(tile1);
+            }
         }
     }
     public ArrayList<Sprite> update() {
@@ -43,10 +46,10 @@ public class SpriteManager {
         //create the maze
 
         // changed to be getting from a file later
-        int mazeWidth = 50;
+        this.cols = 50;
 
         // todo calculate tile width
-        this.tileWidth = 20;
+        this.tileWidth = window.getWidth() / cols;
 
         this.tiles = new Tile[rows][cols];
 //        tiles.add(new Tile(100, 200, 10, null, true));
