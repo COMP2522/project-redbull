@@ -3,11 +3,13 @@ package org.example;
 
 import java.awt.*;
 import java.util.ArrayList;
+import processing.core.PApplet;
+import processing.core.PVector;
+import processing.event.KeyEvent;
 
 
-//import processing.event.KeyEvent;
-//
-//import java.awt.*;
+import processing.event.KeyEvent;
+
 
 /**
  * The Snake class. For snake things :)
@@ -63,31 +65,33 @@ public class Snake extends Sprite {
   public void setDirection(int direction) {
     this.direction = direction;
   }
-//
-//  @Override
+
+
+
 //  public void keyPressed(KeyEvent event) {
 //    int keyCode = event.getKeyCode();
-//    switch( keyCode ) {
-//      case LEFT:
+//    switch (keyCode) {
+//      case 37:
 //        // handle left
-//        Snake.setDirection(player.getDirection().rotate(-Window.PI / 16));
+//        Snake.setDirection(Snake.getDirection().rotate(-Window.PI / 16));
 //        break;
-//      case RIGHT:
+//      case 39:
 //        // handle right
 //        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
 //        break;
 //
-//      case UP:
+//      case 38:
 //        // handle up
-//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
+//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / -16));
 //        break;
 //
-//      case DOWN:
+//      case 40:
 //        // handle down
-//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
+//        Snake.setDirection(Snake.getDirection().rotate(-Window.PI / -16));
 //        break;
 //
 //    }
+//}
 
 
-}
+  }
