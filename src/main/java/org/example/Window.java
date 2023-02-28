@@ -6,6 +6,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Window extends PApplet {
+
+    Clock clock = new Clock();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     ArrayList<Sprite> sprites = new ArrayList<>();
     SpriteManager spriteManager = new SpriteManager(this);
@@ -26,8 +28,8 @@ public class Window extends PApplet {
     }
 
     //THESE ARE THE GRID VARIABLES
-    int cellSizeX = 50;
-    int cellSizeY = 50;
+    int cellSizeX = 10;
+    int cellSizeY = 10;
     int rows = height/cellSizeY -1;//-1 to stay square with cols
     int cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
     //////////////////////////////////////////////////////
@@ -48,7 +50,10 @@ this.init();
         fill(255);
     }
     public void draw() {
-        sprites = spriteManager.update();
+        if (clock.tick()){
+            sprites = spriteManager.update();
+        }
+
         //color whole screen black
         background(0);
         //this is the play space
@@ -75,6 +80,4 @@ this.init();
         Window MazeSnake = new Window();
         PApplet.runSketch(appletArgs, MazeSnake);
     }
-
-
 }
