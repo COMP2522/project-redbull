@@ -31,12 +31,13 @@ public class Snake extends Sprite {
   private ArrayList<Sprite> body;
   private static Snake instance;
 
+  //Private static constructor to make class singleTon
   private Snake(int xPos, int yPos, int size, Image picture) {
     super(xPos, yPos, size, picture);
     body = new ArrayList<>();
   }
 
-  // This makes the snake a singleton, but we could probably take this out with the way things are going
+  // Get instance method to instantiate the Snake so only one instance occurs - Singleton
   public static Snake getInstance(int xPos, int yPos, int size, Image picture) {
     if (instance == null) {
       instance = new Snake(xPos, yPos, size, picture);
@@ -63,10 +64,12 @@ public class Snake extends Sprite {
   public void move(int xSpeed, int ySpeed) {
   }
 
+//Returns current direction
   public int getDirection() {
     return direction;
   }
 
+  //Sets direction
   public void setDirection(int direction) {
     this.direction = direction;
   }
