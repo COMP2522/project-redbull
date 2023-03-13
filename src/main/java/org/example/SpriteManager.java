@@ -20,12 +20,12 @@ public class SpriteManager {
     private Tile[][] tiles;
     private Window window;
 
-    public SpriteManager(Window window) {
+    public SpriteManager(Window window, int cellsize) {
         this.window = window;
         createMaze();
         Sprite.setWindow(window);
         sprites = new ArrayList<>();
-        player = Snake.getInstance(0, 100, 10, null);
+        player = Snake.getInstance(0, 100, cellsize, null);
         sprites.add(player);
         //todo make this not O(n^2)
         for (Tile[] tile : tiles) {

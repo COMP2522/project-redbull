@@ -71,9 +71,4 @@ public class Snake extends Sprite {
     this.direction = direction;
   }
 
-
-
-
-
-
   }

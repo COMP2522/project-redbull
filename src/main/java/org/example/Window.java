@@ -9,14 +9,14 @@ import java.util.ArrayList;
 public class Window extends PApplet {
 
     Snake snake;
-    Clock clock = new Clock();
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    ArrayList<Sprite> sprites = new ArrayList<>();
-    SpriteManager spriteManager = new SpriteManager(this);
+    Clock clock;
+    Dimension screenSize;
+    ArrayList<Sprite> sprites;
+    SpriteManager spriteManager;
 
-    private int width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
-    private int height = width;
-    private int offset = (int) ((screenSize.getWidth()-width)/(2));
+    private int width ;
+    private int height;
+    private int offset;
     public int getWidth() {
         return width;
     }
@@ -30,13 +30,33 @@ public class Window extends PApplet {
     }
 
     //THESE ARE THE GRID VARIABLES
-    int cellSizeX = 10;
-    int cellSizeY = 10;
-    int rows = height/cellSizeY -1;//-1 to stay square with cols
-    int cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
+    int cellSizeX;
+    int cellSizeY;
+    int rows;
+    int cols;
     //////////////////////////////////////////////////////
 
+    
+    // create contructor for the window class
+    public Window() {
+        super();
+        // copy all the initiations above to the constructor
+        Clock clock = new Clock();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        ArrayList<Sprite> sprites = new ArrayList<>();
+        SpriteManager spriteManager = new SpriteManager(this, cellSizeX);
 
+        width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
+        height = width;
+        offset = (int) ((screenSize.getWidth()-width)/(2));
+
+        //THESE ARE THE GRID VARIABLES
+        cellSizeX = 40;
+        cellSizeY = 40;
+        rows = height/cellSizeY -1;//-1 to stay square with cols
+        cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
+
+    }
 
     @Override
     public void settings() {
@@ -47,9 +67,6 @@ public class Window extends PApplet {
 this.init();
     }
     public void init(){
-
-
-
         background(0);
         frameRate(60);
         fill(255);
@@ -62,11 +79,10 @@ this.init();
         //color whole screen black
         background(0);
         //this is the play space
-        rect(offset,cellSizeY,width-cellSizeY,height-2*cellSizeY);
+//        rect(offset,cellSizeY,width-cellSizeY,height-2*cellSizeY);
         drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
-            System.out.println(sprite.getxPos());
             sprite.draw();
         }
     }
