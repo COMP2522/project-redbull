@@ -89,22 +89,23 @@ this.init();
         int keyCode = event.getKeyCode();
         switch (keyCode) {
             case 37:
-                // handle left
-                snake.setxPos();
+                // go left
+                 snake.setDirection(2);
                 break;
             case 39:
                 // handle right
-                snake.setDirection(snake.getDirection().rotate(Window.PI / 2));
+                snake.setDirection(0);
+
                 break;
 
             case 38:
                 // handle up
-                snake.setDirection(snake.getDirection().rotate(Window.PI / -2));
+                snake.setDirection(3);
                 break;
 
             case 40:
                 // handle down
-                snake.setDirection(snake.getDirection().rotate(-Window.PI / -2));
+                snake.setDirection(1);
                 break;
 
         }
