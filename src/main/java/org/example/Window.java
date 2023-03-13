@@ -30,8 +30,9 @@ public class Window extends PApplet {
     }
 
     //THESE ARE THE GRID VARIABLES
-    int cellSizeX = 10;
-    int cellSizeY = 10;
+    // these are place holders?
+    int cellSizeX = 40;
+    int cellSizeY = cellSizeX;
     int rows = height/cellSizeY -1;//-1 to stay square with cols
     int cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
     //////////////////////////////////////////////////////
