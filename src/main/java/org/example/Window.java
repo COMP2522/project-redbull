@@ -6,6 +6,7 @@ import processing.event.KeyEvent;
 import java.awt.*;
 import java.util.ArrayList;
 
+//Window class which functions as the display
 public class Window extends PApplet {
 
     Snake snake;
@@ -80,6 +81,7 @@ this.init();
 
         }
     }
+    //Movement method for the snake
     public void keyPressed(KeyEvent event) {
         // 0 - right
         // 1 - down

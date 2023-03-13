@@ -4,6 +4,7 @@ import java.time.Instant;
 
 import static java.lang.Math.abs;
 
+//Clock class which is meant to track passing time
 public class Clock {
 
     Instant prev;
@@ -12,11 +13,12 @@ public class Clock {
 
     double tickTime;
 
+    //Public clock constructor
     public Clock() {
       prev = Instant.now();
       tickTime = 500;
     }
-
+//Tick which sets current to the current instance of time
   public boolean tick() {
 
     current = Instant.now();

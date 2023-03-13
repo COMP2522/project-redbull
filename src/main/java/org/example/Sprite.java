@@ -2,6 +2,7 @@ package org.example;
 
 import java.awt.*;
 
+//Sprite class which instantiates basic attributes for on screen components
 public class Sprite {
   private int xPos;
   private int yPos;
@@ -9,6 +10,7 @@ public class Sprite {
   private Image picture;
   private static Window window;
 
+  //Public sprite constructor taking in x, y , size, and picture
   public Sprite(int xPos, int yPos, int size, Image picture) {
     this.xPos = xPos;
     this.yPos = yPos;
@@ -53,6 +55,7 @@ public class Sprite {
     this.picture = picture;
   }
 
+  //Draw method to instantiate the window with elements.
   public void draw(){
     window.stroke(0,0,0);
     window.pushStyle();
