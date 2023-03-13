@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 
+//Sprite manager method to manage all on screen sprites
 public class SpriteManager {
     private ArrayList<Sprite> sprites;
     private Snake player;
