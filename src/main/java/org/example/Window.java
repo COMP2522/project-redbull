@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Window extends PApplet {
 
     Snake snake;
-
     Clock clock = new Clock();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     ArrayList<Sprite> sprites = new ArrayList<>();
@@ -81,30 +80,35 @@ this.init();
 
         }
     }
-//    public void keyPressed(KeyEvent event) {
-//        int keyCode = event.getKeyCode();
-//        switch (keyCode) {
-//            case 37:
-//                // handle left
-//                snake.setxPos(snake.getxPos().);
-//                break;
-//            case 39:
-//                // handle right
-//                snake.setDirection(snake.getDirection().rotate(Window.PI / 16));
-//                break;
-//
-//            case 38:
-//                // handle up
-//                snake.setDirection(snake.getDirection().rotate(Window.PI / -16));
-//                break;
-//
-//            case 40:
-//                // handle down
-//                snake.setDirection(snake.getDirection().rotate(-Window.PI / -16));
-//                break;
-//
-//        }
-//    }
+    public void keyPressed(KeyEvent event) {
+        // 0 - right
+        // 1 - down
+        // 2 - left
+        // 3 - up
+
+        int keyCode = event.getKeyCode();
+        switch (keyCode) {
+            case 37:
+                // handle left
+                snake.setxPos();
+                break;
+            case 39:
+                // handle right
+                snake.setDirection(snake.getDirection().rotate(Window.PI / 2));
+                break;
+
+            case 38:
+                // handle up
+                snake.setDirection(snake.getDirection().rotate(Window.PI / -2));
+                break;
+
+            case 40:
+                // handle down
+                snake.setDirection(snake.getDirection().rotate(-Window.PI / -2));
+                break;
+
+        }
+    }
 
     public static void main(String[] args) {
         String[] appletArgs = new String[]{"MazeSnake"};

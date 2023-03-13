@@ -23,6 +23,11 @@ public class Snake extends Sprite {
 
   private int direction;
 
+  // 0 - right
+  // 1 - down
+  // 2 - left
+  // 3 - up
+
   private ArrayList<Sprite> body;
   private static Snake instance;
 
