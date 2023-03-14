@@ -26,6 +26,7 @@ public class Window extends PApplet {
     int cols;
 
     int lastKeyPressed;
+    private int topOffSet;
     //////////////////////////////////////////////////////
 
     public Window(){
@@ -37,15 +38,16 @@ public class Window extends PApplet {
         this.rows = 36;
         this.cols = 36;
         this.cellSize = width/cols;
-        System.out.println("cellsize: " + cellSize);
-        System.out.println("rows: " + rows + " cols: " + cols);
+        topOffSet = 2*cellSize;
+//        System.out.println("cellsize: " + cellSize);
+//        System.out.println("rows: " + rows + " cols: " + cols);
         // ////////////////////////////////////////////////////
 
         this.clock = new Clock();
         this.sprites = new ArrayList<>();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
-        sprites = spriteManager.update(39);
-        sprites = spriteManager.animate(20);
+//        sprites = spriteManager.update(39);
+//        sprites = spriteManager.animate(60);
 
 
     }
@@ -71,13 +73,12 @@ public class Window extends PApplet {
     }
     public void init(){
         background(0);
-        frameRate(60);
+        frameRate(6000000);
         fill(255);
     }
     public void draw() {
         if (clock.tick()){
             framesPerClock = clock.getFramesPerClock();
-            System.out.println("frames per clock: " + framesPerClock);
             sprites = spriteManager.update(lastKeyPressed);
 
         }
@@ -86,8 +87,8 @@ public class Window extends PApplet {
         //color whole screen black
         background(0);
         //this is the play space
-        rect(offset,cellSize,width-cellSize,height-2*cellSize);
-        drawGrid();
+        rect(offset,cellSize,width-cellSize,height-topOffSet);
+//        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
             //System.out.println(sprite.getxPos());
@@ -119,5 +120,14 @@ public class Window extends PApplet {
         String[] appletArgs = new String[]{"MazeSnake"};
         Window MazeSnake = new Window();
         PApplet.runSketch(appletArgs, MazeSnake);
+    }
+
+    public void reset(){
+        lastKeyPressed = 0;
+        spriteManager.reset();
+    }
+
+    public float getTopOffset() {
+        return topOffSet;
     }
 }

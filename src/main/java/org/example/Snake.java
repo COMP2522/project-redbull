@@ -38,6 +38,14 @@ public class Snake extends Sprite {
     return instance;
   }
 
+  public static Snake getInstance() throws Kale_Doesnt_know_how_to_Code_Exception {
+    if (instance == null) {
+      throw new Kale_Doesnt_know_how_to_Code_Exception("Snake has not been instantiated yet");
+      // via cam
+    }
+    return instance;
+  }
+
   public int getSpeed() {
     return speed;
   }
@@ -102,6 +110,23 @@ public class Snake extends Sprite {
   public int getDirectionY() {
     return directionY;
   }
+
+  public void reset() {
+    body.clear();
+    setxPos(0);
+    setyPos(1*this.getSize());
+
+  }
+
+//  public void grow() {
+//    // add a new tile to the end of the snake
+//    // get the last tile in the snake
+//    Sprite lastTile = body.get(body.size() - 1);
+//    // create a new tile at the same position as the last tile
+//    Sprite newTile = new Sprite(lastTile.getxPos(), lastTile.getyPos(), lastTile.getSize(), lastTile.getPicture());
+//    // add the new tile to the snake
+//    body.add(newTile);
+//  }
 
 
   }

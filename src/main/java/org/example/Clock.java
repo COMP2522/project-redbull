@@ -19,7 +19,7 @@ public class Clock {
     //Public clock constructor
     public Clock() {
       prev = Instant.now();
-      tickTime = 50;
+      tickTime = 100;
     }
 //Tick which sets current to the current instance of time
   public boolean tick() {

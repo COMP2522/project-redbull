@@ -5,6 +5,8 @@ import static java.lang.Math.round;
 //Sprite manager method to manage all on screen sprites
 public class SpriteManager {
     private ArrayList<Sprite> sprites;
+
+
     private Snake player;
     private int tileWidth;
     private boolean collided = false;
@@ -50,10 +52,8 @@ public class SpriteManager {
 
         return sprites;
     }
-    public ArrayList<Sprite> update(int lastKeyPressed) {
-//        if (player.getxPos() < 0 || player.getxPos() > this.cols * this.tileWidth || player.getyPos() < 0 || player.getyPos() > this.rows * this.tileWidth) {
-//            this.collided = true;
-//        }
+    public ArrayList<Sprite> update(int lastKeyPressed){
+        //update the sprites to the next frame
         int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
         int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
 
@@ -61,18 +61,40 @@ public class SpriteManager {
         player.setyPos(trueY);
 
         //MOVE PLAYER BASED TO KEY PRESS
-        if (this.collided){
-            player.setDirectionX(0);
-            player.setDirectionY(0);
-        }else
-        if (lastKeyPressed >= 37 && lastKeyPressed <= 40) {
-            player.move(lastKeyPressed);
-        }
 
         //update the sprites to the next frame
-//        this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
+        this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
+        if (lastKeyPressed >= 37 && lastKeyPressed <= 40 && !this.collided) {
+            player.move(lastKeyPressed);
+        } else {
+            player.setDirectionX(0);
+            player.setDirectionY(0);
+            window.reset();
+        }
         return sprites;
     }
+
+    private void collide() {
+         // print the player coordinates
+         if (player.getxPos()+player.getDirectionX()*this.tileWidth < 0) {
+             this.collided = true;
+         }
+//         if (player.getxPos() + player.getDirectionX()*this.tileWidth*2 > this.cols * this.tileWidth) {
+        if (player.getxPos() > this.cols * this.tileWidth - (this.tileWidth/2) * 5) {
+            this.collided = true;
+         }
+         if (player.getyPos() < window.getTopOffset()/2) {
+             this.collided = true;
+         }
+//         if (player.getyPos() + player.getDirectionX()*tileWidth > this.rows * this.tileWidth) {
+         if (player.getyPos() > this.rows * this.tileWidth - (this.tileWidth/2) * 5) {
+             this.collided = true;
+         }
+//        System.out.println("Player X: " + player.getxPos() + " Player Y: " + player.getyPos());
+//        System.out.println("top offset: " + window.getTopOffset());
+
+    }
+
     private void createMaze() {
         //create the maze
 
@@ -84,4 +106,8 @@ public class SpriteManager {
     }
 
 
+    public void reset() {
+        this.collided = false;
+        player.reset();
+    }
 }
