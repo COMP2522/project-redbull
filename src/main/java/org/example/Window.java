@@ -24,6 +24,8 @@ public class Window extends PApplet {
     int cellSizeY;
     int rows;
     int cols;
+
+    int lastKeyPressed;
     //////////////////////////////////////////////////////
 
     public Window(){
@@ -74,7 +76,7 @@ public class Window extends PApplet {
     }
     public void draw() {
         if (clock.tick()){
-            sprites = spriteManager.update();
+            sprites = spriteManager.update(lastKeyPressed);
         }
 
         //color whole screen black
@@ -104,29 +106,29 @@ public class Window extends PApplet {
         // 2 - left
         // 3 - up
 
-        int keyCode = event.getKeyCode();
-        switch (keyCode) {
-            case 37:
-                // go left
-                snake.setDirection(2);
-                break;
-            case 39:
-                // handle right
-                snake.setDirection(0);
-
-                break;
-
-            case 38:
-                // handle up
-                snake.setDirection(3);
-                break;
-
-            case 40:
-                // handle down
-                snake.setDirection(1);
-                break;
-
-        }
+        this.lastKeyPressed = event.getKeyCode();
+//        switch (keyCode) {
+//            case 37:
+//                // go left
+//                snake.setDirection(2);
+//                break;
+//            case 39:
+//                // handle right
+//                snake.setDirection(0);
+//
+//                break;
+//
+//            case 38:
+//                // handle up
+//                snake.setDirection(3);
+//                break;
+//
+//            case 40:
+//                // handle down
+//                snake.setDirection(1);
+//                break;
+//
+//        }
     }
 
     public static void main(String[] args) {
