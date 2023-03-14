@@ -70,6 +70,7 @@ public class Window extends PApplet {
     @Override
     public void setup(){
         this.init();
+
     }
     public void init(){
         background(0);
@@ -78,12 +79,10 @@ public class Window extends PApplet {
     }
     public void draw() {
         if (clock.tick()){
-            framesPerClock = clock.getFramesPerClock();
             sprites = spriteManager.update(lastKeyPressed);
-
         }
 
-        sprites = spriteManager.animate(framesPerClock);
+        sprites = spriteManager.animate();
         //color whole screen black
         background(0);
         //this is the play space
@@ -96,6 +95,9 @@ public class Window extends PApplet {
                 sprite.draw();
             }
         }
+        textAlign(RIGHT, TOP);
+        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
+        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
     }
     public void drawGrid() {
         for (int i = 0; i < rows; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid

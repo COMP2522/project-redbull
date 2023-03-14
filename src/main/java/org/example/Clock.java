@@ -7,6 +7,7 @@ import java.time.Instant;
 public class Clock {
 
   private int frames;
+  private static float framesPerClockTick;
 
   private int lastFrames;
 
@@ -15,33 +16,39 @@ public class Clock {
     Instant current;
 
     double tickTime;
+  private static float frameRate;
 
-    //Public clock constructor
+  //Public clock constructor
     public Clock() {
       prev = Instant.now();
-      tickTime = 50;
+      tickTime = 100;
     }
-//Tick which sets current to the current instance of time
+
+  public static float getFramesPerSecond() {
+    return frameRate;
+  }
+
+  //Tick which sets current to the current instance of time
   public boolean tick() {
     frames++;
     current = Instant.now();
     Duration timeElapsed = Duration.between(prev, current);
+    framesPerClockTick = (float) (frames/(timeElapsed.toMillis()/tickTime));
+    frameRate = (float) (framesPerClockTick * 1000 / tickTime);
     //System.out.println(abs(timeElapsed.toMillis()));
     if (timeElapsed.toMillis() > tickTime) {
       prev = Instant.now();
+      resetFrames();
       return true;
     }
     return false;
   }
-
-  public int getFramesPerClock() {
-    resetFrames();
-    return lastFrames; //return frames
+  public static float getFramesPerClock() {
+    return framesPerClockTick;
   }
 
   private void resetFrames() {
-      lastFrames = frames;
-      frames = 0; //reset frames
+      frames = 0;
   }
 
   public void reset() {

@@ -41,11 +41,11 @@ public class SpriteManager {
             }
         }
     }
-    public ArrayList<Sprite> animate(int framesPerClockTick) {
+    public ArrayList<Sprite> animate() {
 
         //calculate the next position of the player
-        float nextX = player.getxPos() + (player.getDirectionX()*(float) (this.tileWidth) / framesPerClockTick);
-        float nextY = player.getyPos() + (player.getDirectionY()*(float) (this.tileWidth) / framesPerClockTick);
+        float nextX = player.getxPos() + (player.getDirectionX()*(this.tileWidth) / Clock.getFramesPerClock());
+        float nextY = player.getyPos() + (player.getDirectionY()* (this.tileWidth) / Clock.getFramesPerClock());
 
         player.setxPos(nextX);
         player.setyPos(nextY);
@@ -66,6 +66,9 @@ public class SpriteManager {
         //update the sprites to the next frame
        //before updating the sprites , check for collisions and update the sprites accordingly
         if (lastKeyPressed >= 37 && lastKeyPressed <= 40) {
+            player.move(lastKeyPressed);
+        }
+        if(lastKeyPressed == 87 || lastKeyPressed == 83 || lastKeyPressed == 65 || lastKeyPressed == 68){
             player.move(lastKeyPressed);
         }
         this.collide();
