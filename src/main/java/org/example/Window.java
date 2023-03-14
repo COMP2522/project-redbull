@@ -107,28 +107,7 @@ public class Window extends PApplet {
         // 3 - up
 
         this.lastKeyPressed = event.getKeyCode();
-//        switch (keyCode) {
-//            case 37:
-//                // go left
-//                snake.setDirection(2);
-//                break;
-//            case 39:
-//                // handle right
-//                snake.setDirection(0);
-//
-//                break;
-//
-//            case 38:
-//                // handle up
-//                snake.setDirection(3);
-//                break;
-//
-//            case 40:
-//                // handle down
-//                snake.setDirection(1);
-//                break;
-//
-//        }
+
     }
 
     public static void main(String[] args) {

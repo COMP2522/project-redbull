@@ -39,6 +39,7 @@ public class SpriteManager {
     public ArrayList<Sprite> update(int lastKeyPressed) {
         //MOVE PLAYER BASED TO KEY PRESS
         player.move(lastKeyPressed);
+
         //update the sprites to the next frame
         this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
         return sprites;
