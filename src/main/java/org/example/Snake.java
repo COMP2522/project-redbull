@@ -45,7 +45,29 @@ public class Snake extends Sprite {
     this.speed = speed;
   }
 
-  public void move(int xSpeed, int ySpeed) {
+  public void move(int lastKeyPressed) {
+            switch (lastKeyPressed) {
+            case 37:
+                // go left
+                setDirection(2);
+                break;
+            case 39:
+                // handle right
+                setDirection(0);
+
+                break;
+
+            case 38:
+                // handle up
+                setDirection(3);
+                break;
+
+            case 40:
+                // handle down
+                setDirection(1);
+                break;
+
+        }
     // change the position based on the direction of the snake
     // 0 - right
     // 1 - down
@@ -53,13 +75,13 @@ public class Snake extends Sprite {
     // 3 - up
 
     if (direction == 0) {
-      setxPos(getxPos() + xSpeed);
+      setxPos(getxPos() + speed);
     } else if (direction == 1) {
-      setyPos(getyPos() + ySpeed);
+      setyPos(getyPos() + speed);
     } else if (direction == 2) {
-      setxPos(getxPos() - xSpeed);
+      setxPos(getxPos() - speed);
     } else if (direction == 3) {
-      setyPos(getyPos() - ySpeed);
+      setyPos(getyPos() - speed);
     }
   }
 
