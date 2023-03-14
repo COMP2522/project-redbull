@@ -62,7 +62,9 @@ public class Snake extends Sprite {
     switch (lastKeyPressed) {
       case 37, 65:
         //check that the snake is not going right
-        if(this.directionX == 1){break;}
+        if (this.directionX == 1) {
+          break;
+        }
 
         // go left
         setDirectionX(-1);
@@ -70,7 +72,9 @@ public class Snake extends Sprite {
         super.setPicture(getWindow().loadImage("src/main/images/snakeLeft.png"));
         break;
       case 39, 68:
-        if(this.directionX == -1){break;}
+        if (this.directionX == -1) {
+          break;
+        }
         // handle right
         setDirectionX(1);
         setDirectionY(0);
@@ -78,7 +82,9 @@ public class Snake extends Sprite {
         break;
 
       case 38, 87:
-        if(this.directionY == 1){break;}
+        if (this.directionY == 1) {
+          break;
+        }
         // handle up
         setDirectionY(-1);
         setDirectionX(0);
@@ -86,7 +92,9 @@ public class Snake extends Sprite {
         break;
 
       case 40, 83:
-        if(this.directionY == -1){break;}
+        if (this.directionY == -1) {
+          break;
+        }
         // handle down
         setDirectionY(1);
         setDirectionX(0);
@@ -100,7 +108,8 @@ public class Snake extends Sprite {
   public void setRotation(int i) {
     this.rotation = i;
   }
-  public int getRotation(){
+
+  public int getRotation() {
     return this.rotation;
   }
 
@@ -108,6 +117,7 @@ public class Snake extends Sprite {
     // set direction x to i
     directionX = i;
   }
+
   public void setDirectionY(int i) {
     // set direction x to i
     directionY = i;
@@ -121,6 +131,7 @@ public class Snake extends Sprite {
   public int getDirectionX() {
     return directionX;
   }
+
   public int getDirectionY() {
     return directionY;
   }
@@ -129,13 +140,14 @@ public class Snake extends Sprite {
     body.clear();
     setDirectionX(0);
     setDirectionY(0);
-    setxPos(0);
-    setyPos(1*this.getSize());
+    setxPos(5 * this.getSize());
+    setyPos(5 * this.getSize());
+    super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
 
   }
 
-  public void draw(){
-    super.getWindow().stroke(0,0,0);
+  public void draw() {
+    super.getWindow().stroke(0, 0, 0);
     super.getWindow().pushStyle();
     super.getWindow().fill(0, 204, 0);
 //    super.getWindow().rect(
@@ -144,14 +156,15 @@ public class Snake extends Sprite {
 //            super.getSize(),
 //            super.getSize());
     super.getWindow().image(super.getPicture(),
-            super.getxPos()+super.getWindow().getOffset(),
-            super.getyPos(),
-            super.getSize(),
-            super.getSize());
+        super.getxPos() + super.getWindow().getOffset(),
+        super.getyPos(),
+        super.getSize(),
+        super.getSize());
     super.getWindow().popStyle();
   }
 
-//  public void grow() {
+  public void grow() {
+
 //    // add a new tile to the end of the snake
 //    // get the last tile in the snake
 //    Sprite lastTile = body.get(body.size() - 1);
@@ -163,3 +176,4 @@ public class Snake extends Sprite {
 
 
   }
+}
