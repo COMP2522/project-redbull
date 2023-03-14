@@ -17,6 +17,7 @@ public class Window extends PApplet {
     private int width;
     private int height;
     private int offset;
+    int framesPerClock;
 
     //THESE ARE THE GRID VARIABLES
     // these are place holders?
@@ -44,6 +45,7 @@ public class Window extends PApplet {
         this.sprites = new ArrayList<>();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
         sprites = spriteManager.update(39);
+        sprites = spriteManager.animate(20);
 
 
     }
@@ -74,14 +76,18 @@ public class Window extends PApplet {
     }
     public void draw() {
         if (clock.tick()){
+            framesPerClock = clock.getFramesPerClock();
+            System.out.println("frames per clock: " + framesPerClock);
             sprites = spriteManager.update(lastKeyPressed);
+
         }
 
+        sprites = spriteManager.animate(framesPerClock);
         //color whole screen black
         background(0);
         //this is the play space
         rect(offset,cellSize,width-cellSize,height-2*cellSize);
-//        drawGrid();
+        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
             //System.out.println(sprite.getxPos());
@@ -97,7 +103,6 @@ public class Window extends PApplet {
                 fill(50,50,50);
                 rect((i+(offset/cellSize)) * cellSize, j * cellSize, cellSize, cellSize);
             }
-
         }
     }
     public void keyPressed(KeyEvent event) {

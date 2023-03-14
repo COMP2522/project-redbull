@@ -6,7 +6,11 @@ import java.time.Instant;
 //Clock class which is meant to track passing time
 public class Clock {
 
-    Instant prev;
+  private int frames;
+
+  private int lastFrames;
+
+  Instant prev;
 
     Instant current;
 
@@ -15,10 +19,11 @@ public class Clock {
     //Public clock constructor
     public Clock() {
       prev = Instant.now();
-      tickTime = 500;
+      tickTime = 50;
     }
 //Tick which sets current to the current instance of time
   public boolean tick() {
+      frames++;
 
     current = Instant.now();
 
@@ -30,5 +35,15 @@ public class Clock {
       return true;
     }
     return false;
+  }
+
+  public int getFramesPerClock() {
+    resetFrames();
+    return lastFrames; //return frames
+  }
+
+  private void resetFrames() {
+      lastFrames = frames;
+      frames = 0; //reset frames
   }
 }

@@ -4,8 +4,8 @@ import java.awt.*;
 
 //Sprite class which instantiates basic attributes for on screen components
 public class Sprite {
-  private int xPos;
-  private int yPos;
+  private float xPos;
+  private float yPos;
   private int size;
   private Image picture;
   private static Window window;
@@ -22,11 +22,11 @@ public class Sprite {
     Sprite.window = window;
   }
 
-  public int getxPos() {
+  public float getxPos() {
     return xPos;
   }
 
-  public int getyPos() {
+  public float getyPos() {
     return yPos;
   }
 
@@ -39,11 +39,11 @@ public class Sprite {
   }
 
 
-  public void setxPos(int xPos) {
+  public void setxPos(float xPos) {
     this.xPos = xPos;
   }
 
-  public void setyPos(int yPos) {
+  public void setyPos(float yPos) {
     this.yPos = yPos;
   }
 
