@@ -29,7 +29,7 @@ public class SpriteManager {
         createMaze();
         Sprite.setWindow(window);
         sprites = new ArrayList<>();
-        player = Snake.getInstance(10, 10* tileWidth, tileWidth, null);
+        player = Snake.getInstance(0, 1*tileWidth, tileWidth, null);
         sprites.add(player);
         //todo make this not O(n^2)
         for (Tile[] tile : tiles) {

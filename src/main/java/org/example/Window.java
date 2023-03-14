@@ -36,6 +36,8 @@ public class Window extends PApplet {
         this.rows = 36;
         this.cols = 36;
         this.cellSize = width/cols;
+        System.out.println("cellsize: " + cellSize);
+        System.out.println("rows: " + rows + " cols: " + cols);
         // ////////////////////////////////////////////////////
 
         this.clock = new Clock();
