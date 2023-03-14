@@ -1,8 +1,7 @@
 package org.example;
+
 import java.time.Duration;
 import java.time.Instant;
-
-import static java.lang.Math.abs;
 
 //Clock class which is meant to track passing time
 public class Clock {
@@ -24,7 +23,7 @@ public class Clock {
     current = Instant.now();
 
     Duration timeElapsed = Duration.between(prev, current);
-    System.out.println(abs(timeElapsed.toMillis()));
+    //System.out.println(abs(timeElapsed.toMillis()));
 
     if (timeElapsed.toMillis() > tickTime) {
       prev = Instant.now();

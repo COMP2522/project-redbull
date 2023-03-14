@@ -21,13 +21,15 @@ public class SpriteManager {
     private Tile[][] tiles;
     private final Window window;
 
-    public SpriteManager(Window window, int cellsize) {
+    public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
+        this.rows = rows;
+        this.cols = cols;
         this.tileWidth = cellsize;
         createMaze();
         Sprite.setWindow(window);
         sprites = new ArrayList<>();
-        player = Snake.getInstance(0, 10* tileWidth, tileWidth, null);
+        player = Snake.getInstance(10, 10* tileWidth, tileWidth, null);
         sprites.add(player);
         //todo make this not O(n^2)
         for (Tile[] tile : tiles) {

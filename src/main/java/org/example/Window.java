@@ -20,8 +20,7 @@ public class Window extends PApplet {
 
     //THESE ARE THE GRID VARIABLES
     // these are place holders?
-    int cellSizeX;
-    int cellSizeY;
+    int cellSize;
     int rows;
     int cols;
 
@@ -30,21 +29,21 @@ public class Window extends PApplet {
 
     public Window(){
         //THESE ARE THE GRID VARIABLES
-        // these are place holders?
-        this.cellSizeX = 40;
-        this.cellSizeY = cellSizeX;
-        this.rows = height/cellSizeY -1;//-1 to stay square with cols
-        this.cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
-        //////////////////////////////////////////////////////
-
-        this.clock = new Clock();
         this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.sprites = new ArrayList<>();
-        this.spriteManager = new SpriteManager(this, this.cellSizeX);
-
         this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
         this.height = width;
         this.offset = (int) ((screenSize.getWidth()-width)/(2));
+        this.rows = 36;
+        this.cols = 36;
+        this.cellSize = width/cols;
+        // ////////////////////////////////////////////////////
+
+        this.clock = new Clock();
+        this.sprites = new ArrayList<>();
+        this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
+        sprites = spriteManager.update(39);
+
+
     }
     public int getWidth() {
         return width;
@@ -79,12 +78,14 @@ public class Window extends PApplet {
         //color whole screen black
         background(0);
         //this is the play space
-        rect(offset,cellSizeY,width-cellSizeY,height-2*cellSizeY);
+        rect(offset,cellSize,width-cellSize,height-2*cellSize);
 //        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
-            System.out.println(sprite.getxPos());
-            sprite.draw();
+            //System.out.println(sprite.getxPos());
+            if (sprite != null){
+                sprite.draw();
+            }
         }
     }
     public void drawGrid() {
@@ -92,7 +93,7 @@ public class Window extends PApplet {
             for (int j = 1; j < cols; j++) {
                 stroke(255);
                 fill(50,50,50);
-                rect((i+(offset/cellSizeX)) * cellSizeX, j * cellSizeY, cellSizeX, cellSizeY);
+                rect((i+(offset/cellSize)) * cellSize, j * cellSize, cellSize, cellSize);
             }
 
         }
