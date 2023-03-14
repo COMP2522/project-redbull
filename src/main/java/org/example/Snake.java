@@ -49,11 +49,15 @@ public class Snake extends Sprite {
   public void move(int lastKeyPressed) {
     switch (lastKeyPressed) {
       case 37:
+        //check that the snake is not going right
+        if(this.directionX == 1){break;}
+
         // go left
         setDirectionX(-1);
         setDirectionY(0);
         break;
       case 39:
+        if(this.directionX == -1){break;}
         // handle right
         setDirectionX(1);
         setDirectionY(0);
@@ -61,12 +65,14 @@ public class Snake extends Sprite {
         break;
 
       case 38:
+        if(this.directionY == 1){break;}
         // handle up
         setDirectionY(-1);
         setDirectionX(0);
         break;
 
       case 40:
+        if(this.directionY == -1){break;}
         // handle down
         setDirectionY(1);
         setDirectionX(0);
