@@ -19,14 +19,15 @@ public class SpriteManager {
     private int rows;
     private int cols;
     private Tile[][] tiles;
-    private Window window;
+    private final Window window;
 
     public SpriteManager(Window window, int cellsize) {
         this.window = window;
+        this.tileWidth = cellsize;
         createMaze();
         Sprite.setWindow(window);
         sprites = new ArrayList<>();
-        player = Snake.getInstance(0, 100, cellsize, null);
+        player = Snake.getInstance(0, 10* tileWidth, tileWidth, null);
         sprites.add(player);
         //todo make this not O(n^2)
         for (Tile[] tile : tiles) {
@@ -35,7 +36,9 @@ public class SpriteManager {
             }
         }
     }
-    public ArrayList<Sprite> update() {
+    public ArrayList<Sprite> update(int lastKeyPressed) {
+        //MOVE PLAYER BASED TO KEY PRESS
+        player.move(lastKeyPressed);
         //update the sprites to the next frame
         this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
         return sprites;
@@ -47,10 +50,7 @@ public class SpriteManager {
         //create the maze
 
         // changed to be getting from a file later
-        this.cols = 50;
-
-        // todo calculate tile width
-        this.tileWidth = window.getWidth() / cols;
+//        this.cols = 50;
 
         this.tiles = new Tile[rows][cols];
 //        tiles.add(new Tile(100, 200, 10, null, true));

@@ -9,14 +9,43 @@ import java.util.ArrayList;
 public class Window extends PApplet {
 
     Snake snake;
-    Clock clock = new Clock();
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    ArrayList<Sprite> sprites = new ArrayList<>();
-    SpriteManager spriteManager = new SpriteManager(this, this.cellSizeX);
+    Clock clock;
+    Dimension screenSize;
+    ArrayList<Sprite> sprites;
+    SpriteManager spriteManager;
 
-    private int width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
-    private int height = width;
-    private int offset = (int) ((screenSize.getWidth()-width)/(2));
+    private int width;
+    private int height;
+    private int offset;
+
+    //THESE ARE THE GRID VARIABLES
+    // these are place holders?
+    int cellSizeX;
+    int cellSizeY;
+    int rows;
+    int cols;
+
+    int lastKeyPressed;
+    //////////////////////////////////////////////////////
+
+    public Window(){
+        //THESE ARE THE GRID VARIABLES
+        // these are place holders?
+        this.cellSizeX = 40;
+        this.cellSizeY = cellSizeX;
+        this.rows = height/cellSizeY -1;//-1 to stay square with cols
+        this.cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
+        //////////////////////////////////////////////////////
+
+        this.clock = new Clock();
+        this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.sprites = new ArrayList<>();
+        this.spriteManager = new SpriteManager(this, this.cellSizeX);
+
+        this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
+        this.height = width;
+        this.offset = (int) ((screenSize.getWidth()-width)/(2));
+    }
     public int getWidth() {
         return width;
     }
@@ -28,15 +57,6 @@ public class Window extends PApplet {
     public int getOffset() {
         return offset;
     }
-
-    //THESE ARE THE GRID VARIABLES
-    int cellSizeX = 10;
-    int cellSizeY = 10;
-    int rows = height/cellSizeY -1;//-1 to stay square with cols
-    int cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
-    //////////////////////////////////////////////////////
-
-
 
     @Override
     public void settings() {
@@ -56,14 +76,14 @@ public class Window extends PApplet {
     }
     public void draw() {
         if (clock.tick()){
-            sprites = spriteManager.update();
+            sprites = spriteManager.update(lastKeyPressed);
         }
 
         //color whole screen black
         background(0);
         //this is the play space
         rect(offset,cellSizeY,width-cellSizeY,height-2*cellSizeY);
-        drawGrid();
+//        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
             System.out.println(sprite.getxPos());
@@ -86,29 +106,29 @@ public class Window extends PApplet {
         // 2 - left
         // 3 - up
 
-        int keyCode = event.getKeyCode();
-        switch (keyCode) {
-            case 37:
-                // go left
-                snake.setDirection(2);
-                break;
-            case 39:
-                // handle right
-                snake.setDirection(0);
-
-                break;
-
-            case 38:
-                // handle up
-                snake.setDirection(3);
-                break;
-
-            case 40:
-                // handle down
-                snake.setDirection(1);
-                break;
-
-        }
+        this.lastKeyPressed = event.getKeyCode();
+//        switch (keyCode) {
+//            case 37:
+//                // go left
+//                snake.setDirection(2);
+//                break;
+//            case 39:
+//                // handle right
+//                snake.setDirection(0);
+//
+//                break;
+//
+//            case 38:
+//                // handle up
+//                snake.setDirection(3);
+//                break;
+//
+//            case 40:
+//                // handle down
+//                snake.setDirection(1);
+//                break;
+//
+//        }
     }
 
     public static void main(String[] args) {
