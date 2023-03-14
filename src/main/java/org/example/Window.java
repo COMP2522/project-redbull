@@ -35,8 +35,8 @@ public class Window extends PApplet {
         this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
         this.height = width;
         this.offset = (int) ((screenSize.getWidth()-width)/(2));
-        this.rows = 36;
-        this.cols = 36;
+        this.rows = 50;
+        this.cols = 50;
         this.cellSize = width/cols;
         topOffSet = cellSize;
 //        System.out.println("cellsize: " + cellSize);
@@ -85,7 +85,7 @@ public class Window extends PApplet {
         //color whole screen black
         background(0);
         //this is the play space
-        rect(offset,cellSize,width,height);
+        rect(offset,cellSize,cols*cellSize,rows*cellSize);
 //        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {

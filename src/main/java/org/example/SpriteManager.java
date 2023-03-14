@@ -77,19 +77,19 @@ public class SpriteManager {
 
     private void collide() {
         //check if the player is colliding with a wall
-        //LEFT
-        if (player.getxPos()+player.getDirectionX()*this.tileWidth < 0) {window.reset();}
-        //RIGHT
-        if (player.getxPos() + player.getDirectionX()*this.tileWidth > window.getWidth()-this.tileWidth) {window.reset();}
-        //TOP
-        if (player.getyPos() + player.getDirectionY()*this.tileWidth < window.getTopOffset()) {window.reset();}
-        //BOTTOM
-        if (player.getyPos()+player.getDirectionY()*this.tileWidth > window.getHeight() - window.getTopOffset() - this.tileWidth) {window.reset();}
-        //check if the player is colliding with a tile
         int x = (int) (player.getxPos() / this.tileWidth);
         int y = (int) (player.getyPos() / this.tileWidth);
-        if (tiles[x+player.getDirectionX()][y+player.getDirectionY()] != null) {
-            if (tiles[x+player.getDirectionX()][y+player.getDirectionY()].isWall()){window.reset();}
+        //LEFT
+        if (x + player.getDirectionX() < 0) {window.reset();}
+        //RIGHT
+        if (x + player.getDirectionX() >= cols) {window.reset();}
+        //TOP
+        if (y + player.getDirectionY() <= 0) {window.reset();}
+        //BOTTOM
+        if (y + player.getDirectionY() > rows) {window.reset();}
+        //check if the player is colliding with a tile
+        if (tiles[x+player.getDirectionX()][y+player.getDirectionY()-1] != null) {
+            if (tiles[x+player.getDirectionX()][y+player.getDirectionY()-1].isWall()){window.reset();}
             //if (tiles[y+player.getDirectionX()][x+player.getDirectionX()].isFood()){player.grow();}
         }
     }
@@ -100,11 +100,11 @@ public class SpriteManager {
         //generate 20 random walls
         for (int i = 0; i < 20; i++) {
             int x = (int) (Math.random() * cols);
-            int y = (int) (Math.random() * rows-1)+1;
-            tiles[x][y] = new Tile(x*tileWidth, (y-1)*tileWidth, tileWidth, null, true);
+            int y = (int) (Math.random() * rows)+1;
+            tiles[x][y] = new Tile(x*tileWidth, y*tileWidth, tileWidth, null, true);
         }
 
-        tiles[30][1] = new Tile(30*tileWidth, 0*tileWidth, tileWidth, null, true);
+        tiles[30][0] = new Tile(30*tileWidth, 0*tileWidth, tileWidth, null, true);
     }
     private void createMaze(File file) {
 
