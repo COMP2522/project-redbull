@@ -7,6 +7,7 @@ public class SpriteManager {
     private ArrayList<Sprite> sprites;
     private Snake player;
     private int tileWidth;
+    private boolean collided = false;
 
     public int getRows() {
         return rows;
@@ -40,6 +41,10 @@ public class SpriteManager {
     }
     public ArrayList<Sprite> update(int lastKeyPressed) {
         //MOVE PLAYER BASED TO KEY PRESS
+        if (this.collided){
+            player.setDirectionX(0);
+            player.setDirectionY(0);
+        }else
         if (lastKeyPressed >= 37 && lastKeyPressed <= 40) {
             player.move(lastKeyPressed);
         }
@@ -48,11 +53,13 @@ public class SpriteManager {
 
 
         //update the sprites to the next frame
-        this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
+//        this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
         return sprites;
     }
     public void collide() {
-        //calculate collisions
+        if (player.getxPos() < 0 || player.getxPos() > this.cols * this.tileWidth || player.getyPos() < 0 || player.getyPos() > this.rows * this.tileWidth) {
+            this.collided = true;
+        }
     }
     private void createMaze() {
         //create the maze

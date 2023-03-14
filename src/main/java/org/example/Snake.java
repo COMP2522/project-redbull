@@ -82,11 +82,11 @@ public class Snake extends Sprite {
 
   }
 
-  private void setDirectionX(int i) {
+  public void setDirectionX(int i) {
     // set direction x to i
     directionX = i;
   }
-  private void setDirectionY(int i) {
+  public void setDirectionY(int i) {
     // set direction x to i
     directionY = i;
   }
