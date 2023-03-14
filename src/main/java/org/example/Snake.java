@@ -3,12 +3,6 @@ package org.example;
 
 import java.awt.*;
 import java.util.ArrayList;
-import processing.core.PApplet;
-import processing.core.PVector;
-import processing.event.KeyEvent;
-
-
-import processing.event.KeyEvent;
 
 
 /**
@@ -17,9 +11,7 @@ import processing.event.KeyEvent;
  */
 public class Snake extends Sprite {
 
-  private int xSpeed;
-
-  private int Yspeed;
+  private int speed;
 
   private int direction;
 
@@ -45,23 +37,30 @@ public class Snake extends Sprite {
     return instance;
   }
 
-  public int getxSpeed() {
-    return xSpeed;
+  public int getSpeed() {
+    return speed;
   }
 
-  public void setxSpeed(int xSpeed) {
-    this.xSpeed = xSpeed;
-  }
-
-  public int getYspeed() {
-    return Yspeed;
-  }
-
-  public void setYspeed(int yspeed) {
-    Yspeed = yspeed;
+  public void setSpeed(int speed) {
+    this.speed = speed;
   }
 
   public void move(int xSpeed, int ySpeed) {
+    // change the position based on the direction of the snake
+    // 0 - right
+    // 1 - down
+    // 2 - left
+    // 3 - up
+
+    if (direction == 0) {
+      setxPos(getxPos() + xSpeed);
+    } else if (direction == 1) {
+      setyPos(getyPos() + ySpeed);
+    } else if (direction == 2) {
+      setxPos(getxPos() - xSpeed);
+    } else if (direction == 3) {
+      setyPos(getyPos() - ySpeed);
+    }
   }
 
 //Returns current direction
