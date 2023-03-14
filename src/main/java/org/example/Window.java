@@ -9,14 +9,41 @@ import java.util.ArrayList;
 public class Window extends PApplet {
 
     Snake snake;
-    Clock clock = new Clock();
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    ArrayList<Sprite> sprites = new ArrayList<>();
-    SpriteManager spriteManager = new SpriteManager(this, this.cellSizeX);
+    Clock clock;
+    Dimension screenSize;
+    ArrayList<Sprite> sprites;
+    SpriteManager spriteManager;
 
-    private int width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
-    private int height = width;
-    private int offset = (int) ((screenSize.getWidth()-width)/(2));
+    private int width;
+    private int height;
+    private int offset;
+
+    //THESE ARE THE GRID VARIABLES
+    // these are place holders?
+    int cellSizeX;
+    int cellSizeY;
+    int rows;
+    int cols;
+    //////////////////////////////////////////////////////
+
+    public Window(){
+        //THESE ARE THE GRID VARIABLES
+        // these are place holders?
+        this.cellSizeX = 40;
+        this.cellSizeY = cellSizeX;
+        this.rows = height/cellSizeY -1;//-1 to stay square with cols
+        this.cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
+        //////////////////////////////////////////////////////
+
+        this.clock = new Clock();
+        this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.sprites = new ArrayList<>();
+        this.spriteManager = new SpriteManager(this, this.cellSizeX);
+
+        this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
+        this.height = width;
+        this.offset = (int) ((screenSize.getWidth()-width)/(2));
+    }
     public int getWidth() {
         return width;
     }
@@ -28,16 +55,6 @@ public class Window extends PApplet {
     public int getOffset() {
         return offset;
     }
-
-    //THESE ARE THE GRID VARIABLES
-    // these are place holders?
-    int cellSizeX = 40;
-    int cellSizeY = cellSizeX;
-    int rows = height/cellSizeY -1;//-1 to stay square with cols
-    int cols = width/cellSizeX -1;//-1 to avoid drawing the below the screen
-    //////////////////////////////////////////////////////
-
-
 
     @Override
     public void settings() {
@@ -64,7 +81,7 @@ public class Window extends PApplet {
         background(0);
         //this is the play space
         rect(offset,cellSizeY,width-cellSizeY,height-2*cellSizeY);
-        drawGrid();
+//        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
             System.out.println(sprite.getxPos());
