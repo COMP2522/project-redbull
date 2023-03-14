@@ -67,9 +67,6 @@ public class Window extends PApplet {
         this.init();
     }
     public void init(){
-
-
-
         background(0);
         frameRate(60);
         fill(255);

@@ -38,7 +38,12 @@ public class SpriteManager {
     }
     public ArrayList<Sprite> update(int lastKeyPressed) {
         //MOVE PLAYER BASED TO KEY PRESS
-        player.move(lastKeyPressed);
+        if (lastKeyPressed >= 37 && lastKeyPressed <= 40) {
+            player.move(lastKeyPressed);
+        }
+        player.setxPos(player.getxPos() + player.getDirectionX()*this.tileWidth);
+        player.setyPos(player.getyPos() + player.getDirectionY()*this.tileWidth);
+
 
         //update the sprites to the next frame
         this.collide();//before updating the sprites , check for collisions and update the sprites accordingly

@@ -13,7 +13,8 @@ public class Snake extends Sprite {
 
   private int speed;
 
-  private int direction;
+  private int directionX;
+  private int directionY;
 
   // 0 - right
   // 1 - down
@@ -46,53 +47,61 @@ public class Snake extends Sprite {
   }
 
   public void move(int lastKeyPressed) {
-            switch (lastKeyPressed) {
-            case 37:
-                // go left
-                setDirection(2);
-                break;
-            case 39:
-                // handle right
-                setDirection(0);
+    switch (lastKeyPressed) {
+      case 37:
+        //check that the snake is not going right
+        if(this.directionX == 1){break;}
 
-                break;
+        // go left
+        setDirectionX(-1);
+        setDirectionY(0);
+        break;
+      case 39:
+        if(this.directionX == -1){break;}
+        // handle right
+        setDirectionX(1);
+        setDirectionY(0);
 
-            case 38:
-                // handle up
-                setDirection(3);
-                break;
+        break;
 
-            case 40:
-                // handle down
-                setDirection(1);
-                break;
+      case 38:
+        if(this.directionY == 1){break;}
+        // handle up
+        setDirectionY(-1);
+        setDirectionX(0);
+        break;
 
-        }
-    // change the position based on the direction of the snake
-    // 0 - right
-    // 1 - down
-    // 2 - left
-    // 3 - up
+      case 40:
+        if(this.directionY == -1){break;}
+        // handle down
+        setDirectionY(1);
+        setDirectionX(0);
+        break;
 
-    if (direction == 0) {
-      setxPos(getxPos() + speed);
-    } else if (direction == 1) {
-      setyPos(getyPos() + speed);
-    } else if (direction == 2) {
-      setxPos(getxPos() - speed);
-    } else if (direction == 3) {
-      setyPos(getyPos() - speed);
     }
+
+  }
+
+  private void setDirectionX(int i) {
+    // set direction x to i
+    directionX = i;
+  }
+  private void setDirectionY(int i) {
+    // set direction x to i
+    directionY = i;
   }
 
 //Returns current direction
-  public int getDirection() {
-    return direction;
+//  public int getDirection() {
+//    return direction;
+//  }
+
+  public int getDirectionX() {
+    return directionX;
+  }
+  public int getDirectionY() {
+    return directionY;
   }
 
-  //Sets direction
-  public void setDirection(int direction) {
-    this.direction = direction;
-  }
 
   }
