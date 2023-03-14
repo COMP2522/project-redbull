@@ -23,16 +23,17 @@ public class SpriteManager {
     private int cols;
     private Tile[][] tiles;
     private final Window window;
-
+    private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
+    private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeRight.png";
     public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
         this.rows = rows;
         this.cols = cols;
         this.tileWidth = cellsize;
-        createMaze();
         Sprite.setWindow(window);
+        createMaze();
         sprites = new ArrayList<>();
-        player = Snake.getInstance(0*tileWidth, (int) (0*tileWidth+ window.getTopOffset()), tileWidth, null);
+        player = Snake.getInstance(0*tileWidth, (int) (0*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
         sprites.add(player);
         //todo make this not O(n^2)
         for (Tile[] tile : tiles) {
@@ -100,11 +101,11 @@ public class SpriteManager {
         //generate 20 random walls
         for (int i = 0; i < 20; i++) {
             int x = (int) (Math.random() * cols);
-            int y = (int) (Math.random() * rows)+1;
-            tiles[x][y] = new Tile(x*tileWidth, y*tileWidth, tileWidth, null, true);
+            int y = (int) (Math.random() * rows-1)+1;
+            tiles[x][y] = new Tile(x*tileWidth, y*tileWidth, tileWidth, wallImage, true);
         }
 
-        tiles[30][0] = new Tile(30*tileWidth, 0*tileWidth, tileWidth, null, true);
+        tiles[30][0] = new Tile(30*tileWidth, 0*tileWidth, tileWidth, wallImage, true);
     }
     private void createMaze(File file) {
 

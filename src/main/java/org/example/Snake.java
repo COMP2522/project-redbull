@@ -4,6 +4,8 @@ package org.example;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static processing.core.PApplet.radians;
+
 
 /**
  * The Snake class. For snake things :)
@@ -16,6 +18,8 @@ public class Snake extends Sprite {
   private int directionX;
   private int directionY;
 
+  private int rotation;
+
   // 0 - right
   // 1 - down
   // 2 - left
@@ -25,13 +29,13 @@ public class Snake extends Sprite {
   private static Snake instance;
 
   //Private static constructor to make class singleTon
-  private Snake(int xPos, int yPos, int size, Image picture) {
+  private Snake(int xPos, int yPos, int size, String picture) {
     super(xPos, yPos, size, picture);
     body = new ArrayList<>();
   }
 
   // Get instance method to instantiate the Snake so only one instance occurs - Singleton
-  public static Snake getInstance(int xPos, int yPos, int size, Image picture) {
+  public static Snake getInstance(int xPos, int yPos, int size, String picture) {
     if (instance == null) {
       instance = new Snake(xPos, yPos, size, picture);
     }
@@ -63,13 +67,14 @@ public class Snake extends Sprite {
         // go left
         setDirectionX(-1);
         setDirectionY(0);
+        super.setPicture(getWindow().loadImage("src/main/images/snakeLeft.png"));
         break;
       case 39, 68:
         if(this.directionX == -1){break;}
         // handle right
         setDirectionX(1);
         setDirectionY(0);
-
+        super.setPicture(getWindow().loadImage("src/main/images/snakeRight.png"));
         break;
 
       case 38, 87:
@@ -77,6 +82,7 @@ public class Snake extends Sprite {
         // handle up
         setDirectionY(-1);
         setDirectionX(0);
+        super.setPicture(getWindow().loadImage("src/main/images/snakeUp.png"));
         break;
 
       case 40, 83:
@@ -84,10 +90,18 @@ public class Snake extends Sprite {
         // handle down
         setDirectionY(1);
         setDirectionX(0);
+        super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
         break;
 
     }
 
+  }
+
+  public void setRotation(int i) {
+    this.rotation = i;
+  }
+  public int getRotation(){
+    return this.rotation;
   }
 
   public void setDirectionX(int i) {
@@ -118,6 +132,23 @@ public class Snake extends Sprite {
     setxPos(0);
     setyPos(1*this.getSize());
 
+  }
+
+  public void draw(){
+    super.getWindow().stroke(0,0,0);
+    super.getWindow().pushStyle();
+    super.getWindow().fill(0, 204, 0);
+//    super.getWindow().rect(
+//            super.getxPos()+super.getWindow().getOffset(),
+//            super.getyPos(),
+//            super.getSize(),
+//            super.getSize());
+    super.getWindow().image(super.getPicture(),
+            super.getxPos()+super.getWindow().getOffset(),
+            super.getyPos(),
+            super.getSize(),
+            super.getSize());
+    super.getWindow().popStyle();
   }
 
 //  public void grow() {

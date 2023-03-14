@@ -35,17 +35,13 @@ public class Window extends PApplet {
         this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
         this.height = width;
         this.offset = (int) ((screenSize.getWidth()-width)/(2));
-        this.rows = 50;
-        this.cols = 50;
+        this.rows = 36;
+        this.cols = 36;
         this.cellSize = width/cols;
         topOffSet = cellSize;
 //        System.out.println("cellsize: " + cellSize);
 //        System.out.println("rows: " + rows + " cols: " + cols);
         // ////////////////////////////////////////////////////
-
-        this.clock = new Clock();
-        this.sprites = new ArrayList<>();
-        this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
 //        sprites = spriteManager.update(39);
 //        sprites = spriteManager.animate(60);
 
@@ -70,6 +66,10 @@ public class Window extends PApplet {
     @Override
     public void setup(){
         this.init();
+        this.clock = new Clock();
+        this.sprites = new ArrayList<>();
+        this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
+
 
     }
     public void init(){
@@ -99,8 +99,8 @@ public class Window extends PApplet {
         text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
     }
     public void drawGrid() {
-        for (int i = 0; i < rows; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
-            for (int j = 1; j < cols; j++) {
+        for (int i = 0; i < rows-1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
+            for (int j = 1; j < cols-1; j++) {
                 stroke(255);
                 fill(50,50,50);
                 rect((i+(offset/cellSize)) * cellSize, j * cellSize, cellSize, cellSize);
