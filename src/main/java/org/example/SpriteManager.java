@@ -121,7 +121,7 @@ public class SpriteManager {
 
 
     public void reset() {
-        System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
+        //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
         player.reset();
 
     }

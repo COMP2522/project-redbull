@@ -81,7 +81,6 @@ public class Window extends PApplet {
         if (clock.tick()){
             sprites = spriteManager.update(lastKeyPressed);
         }
-
         sprites = spriteManager.animate();
         //color whole screen black
         background(0);
