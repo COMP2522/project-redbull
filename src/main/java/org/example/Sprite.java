@@ -22,6 +22,8 @@ public class Sprite {
     Sprite.window = window;
   }
 
+  public static Window getWindow(){return Sprite.window;}
+
   public float getxPos() {
     return xPos;
   }

@@ -1,7 +1,9 @@
 package org.example;
 
+import java.io.File;
 import java.util.ArrayList;
 import static java.lang.Math.round;
+
 //Sprite manager method to manage all on screen sprites
 public class SpriteManager {
     private ArrayList<Sprite> sprites;
@@ -9,8 +11,6 @@ public class SpriteManager {
 
     private Snake player;
     private int tileWidth;
-    private boolean collided = false;
-
     public int getRows() {
         return rows;
     }
@@ -32,7 +32,7 @@ public class SpriteManager {
         createMaze();
         Sprite.setWindow(window);
         sprites = new ArrayList<>();
-        player = Snake.getInstance(0*tileWidth, 1*tileWidth, tileWidth, null);
+        player = Snake.getInstance(0*tileWidth, (int) (0*tileWidth+ window.getTopOffset()), tileWidth, null);
         sprites.add(player);
         //todo make this not O(n^2)
         for (Tile[] tile : tiles) {
@@ -50,6 +50,7 @@ public class SpriteManager {
         player.setxPos(nextX);
         player.setyPos(nextY);
 
+
         return sprites;
     }
     public ArrayList<Sprite> update(int lastKeyPressed){
@@ -63,51 +64,62 @@ public class SpriteManager {
         //MOVE PLAYER BASED TO KEY PRESS
 
         //update the sprites to the next frame
-        this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
-        if (lastKeyPressed >= 37 && lastKeyPressed <= 40 && !this.collided) {
+       //before updating the sprites , check for collisions and update the sprites accordingly
+        if (lastKeyPressed >= 37 && lastKeyPressed <= 40) {
             player.move(lastKeyPressed);
-        } else {
-            player.setDirectionX(0);
-            player.setDirectionY(0);
-            window.reset();
         }
+        this.collide();
         return sprites;
     }
 
     private void collide() {
-         // print the player coordinates
-         if (player.getxPos()+player.getDirectionX()*this.tileWidth < 0) {
-             this.collided = true;
-         }
-//         if (player.getxPos() + player.getDirectionX()*this.tileWidth*2 > this.cols * this.tileWidth) {
-        if (player.getxPos() > this.cols * this.tileWidth - (this.tileWidth/2) * 5) {
-            this.collided = true;
-         }
-         if (player.getyPos() < window.getTopOffset()/2) {
-             this.collided = true;
-         }
-//         if (player.getyPos() + player.getDirectionX()*tileWidth > this.rows * this.tileWidth) {
-         if (player.getyPos() > this.rows * this.tileWidth - (this.tileWidth/2) * 5) {
-             this.collided = true;
-         }
-//        System.out.println("Player X: " + player.getxPos() + " Player Y: " + player.getyPos());
-//        System.out.println("top offset: " + window.getTopOffset());
-
+        //check if the player is colliding with a wall
+        //LEFT
+        if (player.getxPos()+player.getDirectionX()*this.tileWidth < 0) {window.reset();}
+        //RIGHT
+        if (player.getxPos() + player.getDirectionX()*this.tileWidth > window.getWidth()-this.tileWidth) {window.reset();}
+        //TOP
+        if (player.getyPos() + player.getDirectionY()*this.tileWidth < window.getTopOffset()) {window.reset();}
+        //BOTTOM
+        if (player.getyPos()+player.getDirectionY()*this.tileWidth > window.getHeight() - window.getTopOffset() - this.tileWidth) {window.reset();}
+        //check if the player is colliding with a tile
+        int x = (int) (player.getxPos() / this.tileWidth);
+        int y = (int) (player.getyPos() / this.tileWidth);
+        if (tiles[x+player.getDirectionX()][y+player.getDirectionY()] != null) {
+            if (tiles[x+player.getDirectionX()][y+player.getDirectionY()].isWall()){window.reset();}
+            //if (tiles[y+player.getDirectionX()][x+player.getDirectionX()].isFood()){player.grow();}
+        }
     }
 
     private void createMaze() {
-        //create the maze
+        //Generate a maze
+        this.tiles = new Tile[rows][cols];
+        //generate 20 random walls
+        for (int i = 0; i < 20; i++) {
+            int x = (int) (Math.random() * cols);
+            int y = (int) (Math.random() * rows-1)+1;
+            tiles[x][y] = new Tile(x*tileWidth, (y-1)*tileWidth, tileWidth, null, true);
+        }
 
-        // changed to be getting from a file later
-//        this.cols = 50;
+        tiles[30][1] = new Tile(30*tileWidth, 0*tileWidth, tileWidth, null, true);
+    }
+    private void createMaze(File file) {
 
         this.tiles = new Tile[rows][cols];
-//        tiles.add(new Tile(100, 200, 10, null, true));
+        //instantiating the tiles
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                tiles[i][j] = new Tile(j*tileWidth, i*tileWidth, tileWidth, null, false);
+            }
+        }
+        //retrieve the maze from the file
+        //todo >>>>>>>>>>>>>>>>>>>>>>>>>>>>@CAMERON<<<<<<<<<<<<<<<<<<<<<<<<<
     }
 
 
     public void reset() {
-        this.collided = false;
+        System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
         player.reset();
+
     }
 }

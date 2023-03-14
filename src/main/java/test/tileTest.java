@@ -48,7 +48,7 @@ public class tileTest {
     assertEquals(0, tile.getyPos());
     assertEquals(10, tile.getSize());
     assertEquals(image, tile.getPicture());
-    assertTrue(tile.isWall);
+    assertTrue(tile.isWall());
   }
 
   @Test
@@ -80,10 +80,10 @@ public class tileTest {
       }
     };
     Tile tile1 = new Tile(0, 0, 10, image, true);
-    assertTrue(tile1.isWall);
+    assertTrue(tile1.isWall());
 
     Tile tile2 = new Tile(0, 0, 10, image, false);
-    assertFalse(tile2.isWall);
+    assertFalse(tile2.isWall());
   }
 
 }

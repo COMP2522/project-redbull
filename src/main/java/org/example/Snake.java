@@ -113,6 +113,8 @@ public class Snake extends Sprite {
 
   public void reset() {
     body.clear();
+    setDirectionX(0);
+    setDirectionY(0);
     setxPos(0);
     setyPos(1*this.getSize());
 

@@ -19,17 +19,14 @@ public class Clock {
     //Public clock constructor
     public Clock() {
       prev = Instant.now();
-      tickTime = 100;
+      tickTime = 50;
     }
 //Tick which sets current to the current instance of time
   public boolean tick() {
-      frames++;
-
+    frames++;
     current = Instant.now();
-
     Duration timeElapsed = Duration.between(prev, current);
     //System.out.println(abs(timeElapsed.toMillis()));
-
     if (timeElapsed.toMillis() > tickTime) {
       prev = Instant.now();
       return true;
@@ -45,5 +42,10 @@ public class Clock {
   private void resetFrames() {
       lastFrames = frames;
       frames = 0; //reset frames
+  }
+
+  public void reset() {
+      prev = Instant.now();
+      this.resetFrames();
   }
 }

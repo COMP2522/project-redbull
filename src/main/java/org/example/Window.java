@@ -38,7 +38,7 @@ public class Window extends PApplet {
         this.rows = 36;
         this.cols = 36;
         this.cellSize = width/cols;
-        topOffSet = 2*cellSize;
+        topOffSet = cellSize;
 //        System.out.println("cellsize: " + cellSize);
 //        System.out.println("rows: " + rows + " cols: " + cols);
         // ////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ public class Window extends PApplet {
     }
     public void init(){
         background(0);
-        frameRate(6000000);
+        frameRate(60);
         fill(255);
     }
     public void draw() {
@@ -87,7 +87,7 @@ public class Window extends PApplet {
         //color whole screen black
         background(0);
         //this is the play space
-        rect(offset,cellSize,width-cellSize,height-topOffSet);
+        rect(offset,cellSize,width,height);
 //        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
@@ -125,6 +125,7 @@ public class Window extends PApplet {
     public void reset(){
         lastKeyPressed = 0;
         spriteManager.reset();
+        clock.reset();
     }
 
     public float getTopOffset() {
