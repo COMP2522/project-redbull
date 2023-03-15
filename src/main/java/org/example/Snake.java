@@ -4,10 +4,8 @@ package org.example;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static processing.core.PApplet.radians;
 
-//import processing.event.KeyEvent;
-//
-//import java.awt.*;
 
 /**
  * The Snake class. For snake things :)
@@ -15,79 +13,167 @@ import java.util.ArrayList;
  */
 public class Snake extends Sprite {
 
-  private int xSpeed;
+  private int speed;
 
-  private int Yspeed;
+  private int directionX;
+  private int directionY;
 
-  private int direction;
+  private int rotation;
+
+  // 0 - right
+  // 1 - down
+  // 2 - left
+  // 3 - up
 
   private ArrayList<Sprite> body;
   private static Snake instance;
 
-  private Snake(int xPos, int yPos, int size, Image picture) {
+  //Private static constructor to make class singleTon
+  private Snake(int xPos, int yPos, int size, String picture) {
     super(xPos, yPos, size, picture);
     body = new ArrayList<>();
   }
 
-  // This makes the snake a singleton, but we could probably take this out with the way things are going
-  public static Snake getInstance(int xPos, int yPos, int size, Image picture) {
+  // Get instance method to instantiate the Snake so only one instance occurs - Singleton
+  public static Snake getInstance(int xPos, int yPos, int size, String picture) {
     if (instance == null) {
       instance = new Snake(xPos, yPos, size, picture);
     }
     return instance;
   }
 
-  public int getxSpeed() {
-    return xSpeed;
+  public static Snake getInstance() throws Kale_Doesnt_know_how_to_Code_Exception {
+    if (instance == null) {
+      throw new Kale_Doesnt_know_how_to_Code_Exception("Snake has not been instantiated yet");
+      // via cam
+    }
+    return instance;
   }
 
-  public void setxSpeed(int xSpeed) {
-    this.xSpeed = xSpeed;
+  public int getSpeed() {
+    return speed;
   }
 
-  public int getYspeed() {
-    return Yspeed;
+  public void setSpeed(int speed) {
+    this.speed = speed;
   }
 
-  public void setYspeed(int yspeed) {
-    Yspeed = yspeed;
+  public void move(int lastKeyPressed) {
+    switch (lastKeyPressed) {
+      case 37, 65:
+        //check that the snake is not going right
+        if (this.directionX == 1) {
+          break;
+        }
+
+        // go left
+        setDirectionX(-1);
+        setDirectionY(0);
+        super.setPicture(getWindow().loadImage("src/main/images/snakeLeft.png"));
+        break;
+      case 39, 68:
+        if (this.directionX == -1) {
+          break;
+        }
+        // handle right
+        setDirectionX(1);
+        setDirectionY(0);
+        super.setPicture(getWindow().loadImage("src/main/images/snakeRight.png"));
+        break;
+
+      case 38, 87:
+        if (this.directionY == 1) {
+          break;
+        }
+        // handle up
+        setDirectionY(-1);
+        setDirectionX(0);
+        super.setPicture(getWindow().loadImage("src/main/images/snakeUp.png"));
+        break;
+
+      case 40, 83:
+        if (this.directionY == -1) {
+          break;
+        }
+        // handle down
+        setDirectionY(1);
+        setDirectionX(0);
+        super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
+        break;
+
+    }
+
   }
 
-  public void move(int xSpeed, int ySpeed) {
+  public void setRotation(int i) {
+    this.rotation = i;
   }
 
-  public int getDirection() {
-    return direction;
+  public int getRotation() {
+    return this.rotation;
   }
 
-  public void setDirection(int direction) {
-    this.direction = direction;
+  public void setDirectionX(int i) {
+    // set direction x to i
+    directionX = i;
   }
-//
-//  @Override
-//  public void keyPressed(KeyEvent event) {
-//    int keyCode = event.getKeyCode();
-//    switch( keyCode ) {
-//      case LEFT:
-//        // handle left
-//        Snake.setDirection(player.getDirection().rotate(-Window.PI / 16));
-//        break;
-//      case RIGHT:
-//        // handle right
-//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
-//        break;
-//
-//      case UP:
-//        // handle up
-//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
-//        break;
-//
-//      case DOWN:
-//        // handle down
-//        Snake.setDirection(Snake.getDirection().rotate(Window.PI / 16));
-//        break;
-//
-//    }
+
+  public void setDirectionY(int i) {
+    // set direction x to i
+    directionY = i;
+  }
+
+//Returns current direction
+//  public int getDirection() {
+//    return direction;
+//  }
+
+  public int getDirectionX() {
+    return directionX;
+  }
+
+  public int getDirectionY() {
+    return directionY;
+  }
+
+  public void reset() {
+    body.clear();
+    setDirectionX(0);
+    setDirectionY(0);
+    setxPos(5 * this.getSize());
+    setyPos(5 * this.getSize());
+    super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
+
+  }
+
+  public void draw() {
+    super.getWindow().stroke(0, 0, 0);
+    super.getWindow().pushStyle();
+    super.getWindow().fill(0, 204, 0);
+//    super.getWindow().rect(
+//            super.getxPos()+super.getWindow().getOffset(),
+//            super.getyPos(),
+//            super.getSize(),
+//            super.getSize());
+    super.getWindow().image(super.getPicture(),
+        super.getxPos() + super.getWindow().getOffset(),
+        super.getyPos(),
+        super.getSize(),
+        super.getSize());
+    super.getWindow().popStyle();
+  }
+
+  public void grow() {
+
+//    // add a new tile to the end of the snake
+//    // get the last tile in the snake
+//    Sprite lastTile = body.get(body.size() - 1);
+//    // create a new tile at the same position as the last tile
+//    Sprite newTile = new Sprite(lastTile.getxPos(), lastTile.getyPos(), lastTile.getSize(), lastTile.getPicture());
+//    // add the new tile to the snake
+//    body.add(newTile);
+//  }
 
 
+  }
 }

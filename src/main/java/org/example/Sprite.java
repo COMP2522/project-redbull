@@ -1,30 +1,38 @@
 package org.example;
 
+import processing.core.PImage;
+
 import java.awt.*;
 
+import static processing.awt.ShimAWT.loadImage;
+
+//Sprite class which instantiates basic attributes for on screen components
 public class Sprite {
-  private int xPos;
-  private int yPos;
+  private float xPos;
+  private float yPos;
   private int size;
-  private Image picture;
+  private PImage picture;
   private static Window window;
 
-  public Sprite(int xPos, int yPos, int size, Image picture) {
+  //Public sprite constructor taking in x, y , size, and picture
+  public Sprite(int xPos, int yPos, int size, String picture) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.size = size;
-    this.picture = picture;
+    this.picture = window.loadImage(picture);
   }
 
   public static void setWindow(Window window) {
     Sprite.window = window;
   }
 
-  public int getxPos() {
+  public static Window getWindow(){return Sprite.window;}
+
+  public float getxPos() {
     return xPos;
   }
 
-  public int getyPos() {
+  public float getyPos() {
     return yPos;
   }
 
@@ -32,16 +40,16 @@ public class Sprite {
     return size;
   }
 
-  public Image getPicture() {
+  public PImage getPicture() {
     return picture;
   }
 
 
-  public void setxPos(int xPos) {
+  public void setxPos(float xPos) {
     this.xPos = xPos;
   }
 
-  public void setyPos(int yPos) {
+  public void setyPos(float yPos) {
     this.yPos = yPos;
   }
 
@@ -49,15 +57,16 @@ public class Sprite {
     this.size = size;
   }
 
-  public void setPicture(Image picture) {
+  public void setPicture(PImage picture) {
     this.picture = picture;
   }
 
+  //Draw method to instantiate the window with elements.
   public void draw(){
     window.stroke(0,0,0);
     window.pushStyle();
     window.fill(0, 204, 0);
-    window.rect(this.xPos+window.offset, this.yPos, size, size);
+    window.rect(this.xPos+window.getOffset(), this.yPos, size, size);
     window.popStyle();
   }
 }

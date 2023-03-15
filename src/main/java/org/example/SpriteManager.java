@@ -1,34 +1,129 @@
 package org.example;
 
+import java.io.File;
 import java.util.ArrayList;
+import static java.lang.Math.round;
 
+//Sprite manager method to manage all on screen sprites
 public class SpriteManager {
     private ArrayList<Sprite> sprites;
+
+
     private Snake player;
-    private ArrayList<Tile> tiles;
-    private Window window;
-    public SpriteManager(Window window) {
-        createMaze();
+    private int tileWidth;
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    private int rows;
+    private int cols;
+    private Tile[][] tiles;
+    private final Window window;
+    private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
+    private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeRight.png";
+    public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
+        this.rows = rows;
+        this.cols = cols;
+        this.tileWidth = cellsize;
         Sprite.setWindow(window);
+        createMaze();
         sprites = new ArrayList<>();
-        player = Snake.getInstance(0, 100, 10, null);
+        player = Snake.getInstance(5*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
         sprites.add(player);
-        for (Tile tile : tiles) {
-            sprites.add(tile);
+        //todo make this not O(n^2)
+        for (Tile[] tile : tiles) {
+            for (Tile tile1 : tile) {
+                sprites.add(tile1);
+            }
         }
     }
-    public ArrayList<Sprite> update() {
-        //update the sprites to the next frame
-        this.collide();//before updating the sprites , check for collisions and update the sprites accordingly
+    public ArrayList<Sprite> animate() {
+
+        //calculate the next position of the player
+        float nextX = player.getxPos() + (player.getDirectionX()*(this.tileWidth) / Clock.getFramesPerClock());
+        float nextY = player.getyPos() + (player.getDirectionY()* (this.tileWidth) / Clock.getFramesPerClock());
+
+        player.setxPos(nextX);
+        player.setyPos(nextY);
+
+
         return sprites;
     }
-    public void collide() {
-        //calculate collisions
+    public ArrayList<Sprite> update(int lastKeyPressed){
+        //update the sprites to the next frame
+        int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
+        int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
+
+        player.setxPos(trueX);
+        player.setyPos(trueY);
+
+        //MOVE PLAYER BASED TO KEY PRESS
+
+        //update the sprites to the next frame
+       //before updating the sprites , check for collisions and update the sprites accordingly
+        if (lastKeyPressed >= 37 && lastKeyPressed <= 40) {
+            player.move(lastKeyPressed);
+        }
+        if(lastKeyPressed == 87 || lastKeyPressed == 83 || lastKeyPressed == 65 || lastKeyPressed == 68){
+            player.move(lastKeyPressed);
+        }
+        this.collide();
+        return sprites;
     }
+
+    private void collide() {
+        //check if the player is colliding with a wall
+        int x = (int) (player.getxPos() / this.tileWidth);
+        int y = (int) (player.getyPos() / this.tileWidth);
+        //LEFT
+        if (x + player.getDirectionX() < 0) {window.reset();}
+        //RIGHT
+        if (x + player.getDirectionX() >= cols) {window.reset();}
+        //TOP
+        if (y + player.getDirectionY() <= 0) {window.reset();}
+        //BOTTOM
+        if (y + player.getDirectionY() > rows) {window.reset();}
+        //check if the player is colliding with a tile
+        if (tiles[x+player.getDirectionX()][y+player.getDirectionY()-1] != null) {
+            if (tiles[x+player.getDirectionX()][y+player.getDirectionY()-1].isWall()){window.reset();}
+            //if (tiles[y+player.getDirectionX()][x+player.getDirectionX()].isFood()){player.grow();}
+        }
+    }
+
     private void createMaze() {
-        //create the maze
-        this.tiles = new ArrayList<>();
-        tiles.add(new Tile(100, 200, 10, null, true));
+        //Generate a maze
+        this.tiles = new Tile[rows][cols];
+        //generate 20 random walls
+        for (int i = 0; i < 20; i++) {
+            int x = (int) (Math.random() * cols);
+            int y = (int) (Math.random() * rows-1)+1;
+            tiles[x][y] = new Tile(x*tileWidth, y*tileWidth, tileWidth, wallImage, true);
+        }
+
+        tiles[30][0] = new Tile(30*tileWidth, 0*tileWidth, tileWidth, wallImage, true);
+    }
+    private void createMaze(File file) {
+
+        this.tiles = new Tile[rows][cols];
+        //instantiating the tiles
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                tiles[i][j] = new Tile(j*tileWidth, i*tileWidth, tileWidth, null, false);
+            }
+        }
+        //retrieve the maze from the file
+        //todo >>>>>>>>>>>>>>>>>>>>>>>>>>>>@CAMERON<<<<<<<<<<<<<<<<<<<<<<<<<
+    }
+
+
+    public void reset() {
+        //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
+        player.reset();
+
     }
 }
