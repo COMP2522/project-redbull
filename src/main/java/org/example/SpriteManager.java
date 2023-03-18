@@ -25,6 +25,8 @@ public class SpriteManager {
     private final Window window;
     private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
     private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeRight.png";
+
+
     public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
         this.rows = rows;
