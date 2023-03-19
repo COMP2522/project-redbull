@@ -1,10 +1,9 @@
 package org.example;
 
 
-import java.awt.*;
-import java.util.ArrayList;
+import processing.core.PImage;
 
-import static processing.core.PApplet.radians;
+import java.util.ArrayList;
 
 
 /**
@@ -15,17 +14,19 @@ public class Snake extends Sprite {
 
   private int speed;
 
-  private int directionX;
-  private int directionY;
+  private int directionX = 0;
+  private int directionY = 0;
 
   private int rotation;
+
+  private final int  INITIALSIZE = 3;
+  private ArrayList <SnakeBody> body;
 
   // 0 - right
   // 1 - down
   // 2 - left
   // 3 - up
 
-  private ArrayList<Sprite> body;
   private static Snake instance;
 
   //Private static constructor to make class singleTon
@@ -70,6 +71,7 @@ public class Snake extends Sprite {
         setDirectionX(-1);
         setDirectionY(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeLeft.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
       case 39, 68:
         if (this.directionX == -1) {
@@ -79,16 +81,20 @@ public class Snake extends Sprite {
         setDirectionX(1);
         setDirectionY(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeRight.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
 
       case 38, 87:
+
         if (this.directionY == 1) {
           break;
         }
+
         // handle up
         setDirectionY(-1);
         setDirectionX(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeUp.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
         break;
 
       case 40, 83:
@@ -99,6 +105,7 @@ public class Snake extends Sprite {
         setDirectionY(1);
         setDirectionX(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
         break;
 
     }
@@ -136,25 +143,36 @@ public class Snake extends Sprite {
     return directionY;
   }
 
-  public void reset() {
+  public void reset(SnakeBody body1, SnakeBody body2, SnakeBody tail) {
+
+
+
     body.clear();
+    body.add(body1);
+    body1.setxPos(5 * this.getSize());
+    body1.setyPos(4 * this.getSize());
+    body1.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
+
+    body.add(body2);
+    body2.setxPos(5 * this.getSize());
+    body2.setyPos(3 * this.getSize());
+    body2.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
+
+    body.add(tail);
+    tail.setxPos(5 * this.getSize());
+    tail.setyPos(2 * this.getSize());
+
     setDirectionX(0);
     setDirectionY(0);
     setxPos(5 * this.getSize());
     setyPos(5 * this.getSize());
     super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
-
   }
 
   public void draw() {
     super.getWindow().stroke(0, 0, 0);
     super.getWindow().pushStyle();
     super.getWindow().fill(0, 204, 0);
-//    super.getWindow().rect(
-//            super.getxPos()+super.getWindow().getOffset(),
-//            super.getyPos(),
-//            super.getSize(),
-//            super.getSize());
     super.getWindow().image(super.getPicture(),
         super.getxPos() + super.getWindow().getOffset(),
         super.getyPos(),
@@ -163,16 +181,37 @@ public class Snake extends Sprite {
     super.getWindow().popStyle();
   }
 
-  public void grow() {
+  public void grow(SnakeBody body) {
+    this.body.add(body);
+  }
 
-//    // add a new tile to the end of the snake
-//    // get the last tile in the snake
-//    Sprite lastTile = body.get(body.size() - 1);
-//    // create a new tile at the same position as the last tile
-//    Sprite newTile = new Sprite(lastTile.getxPos(), lastTile.getyPos(), lastTile.getSize(), lastTile.getPicture());
-//    // add the new tile to the snake
-//    body.add(newTile);
-//  }
+  public void slither(float nextX, float nextY){
+    Sprite firstTile = body.get(0);
+  }
+
+
+  public void moveBody(float prevX, float prevY) {
+    // move the snake
+    // get the first tile in the snake
+
+    float currX = prevX;
+    float currY = prevY;
+    PImage currPic = body.get(0).getPicture();
+    System.out.println("currPic: " + currPic);
+    // move the first tile
+    for (SnakeBody bodyPart : body) {
+      float tempX = bodyPart.getxPos();
+      float tempY = bodyPart.getyPos();
+      PImage tempPic = bodyPart.getPicture();
+      bodyPart.setxPos(currX);
+      bodyPart.setyPos(currY);
+      if (bodyPart != body.get(body.size()-1))bodyPart.setPicture(currPic);
+      currX = tempX;
+      currY = tempY;
+      currPic = tempPic;
+    }
+
+
 
 
   }
