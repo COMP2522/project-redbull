@@ -82,15 +82,9 @@ public class Snake extends Sprite {
 
       case 38, 87:
 
-//        if (this.directionY == 1 || (this.directionY == 0 && this.directionX == 0)) {
-//          reset(body.get(0), body.get(1), body.get(2));
-//          break;
-//        }
         if (this.directionY == 1) {
           break;
         }
-
-
 
         // handle up
         setDirectionY(-1);

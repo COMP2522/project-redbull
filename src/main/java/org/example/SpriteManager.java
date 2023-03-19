@@ -93,6 +93,11 @@ public class SpriteManager {
     }
     public ArrayList<Sprite> update(int lastKeyPressed){
 
+        //if the player direction is 0, then the snake is pointing down, and should not be able to move up
+        if (player.getDirectionX() == 0 && player.getDirectionY() == 0 && (lastKeyPressed == 38 || lastKeyPressed == 87)) {
+            return sprites;
+        }
+
 
         //update the sprites to the next frame
         int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
@@ -114,7 +119,6 @@ public class SpriteManager {
         if(lastKeyPressed == 87 || lastKeyPressed == 83 || lastKeyPressed == 65 || lastKeyPressed == 68){
             player.move(lastKeyPressed);
         }
-        //the gameStart boolean is used to prevent the snake from moving backwards on the first key press
         if (lastKeyPressed !=0 ) {
             player.moveBody(prevX, prevY);
         }
