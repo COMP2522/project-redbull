@@ -12,8 +12,8 @@ public class Snake extends Sprite {
 
   private int speed;
 
-  private int directionX;
-  private int directionY;
+  private int directionX = 0;
+  private int directionY = 0;
 
   private int rotation;
 
@@ -81,9 +81,17 @@ public class Snake extends Sprite {
         break;
 
       case 38, 87:
+
+//        if (this.directionY == 1 || (this.directionY == 0 && this.directionX == 0)) {
+//          reset(body.get(0), body.get(1), body.get(2));
+//          break;
+//        }
         if (this.directionY == 1) {
           break;
         }
+
+
+
         // handle up
         setDirectionY(-1);
         setDirectionX(0);
@@ -136,25 +144,27 @@ public class Snake extends Sprite {
   }
 
   public void reset(SnakeBody body1, SnakeBody body2, SnakeBody tail) {
+
+
+
     body.clear();
-    grow(body1);
+    body.add(body1);
     body1.setxPos(5 * this.getSize());
-    body1.setyPos(5 * this.getSize());
+    body1.setyPos(4 * this.getSize());
 
-    grow(body2);
+    body.add(body2);
     body2.setxPos(5 * this.getSize());
-    body2.setyPos(4 * this.getSize());
+    body2.setyPos(3 * this.getSize());
 
-    grow(tail);
+    body.add(tail);
     tail.setxPos(5 * this.getSize());
-    tail.setyPos(3 * this.getSize());
+    tail.setyPos(2 * this.getSize());
 
     setDirectionX(0);
     setDirectionY(0);
     setxPos(5 * this.getSize());
-    setyPos(6 * this.getSize());
+    setyPos(5 * this.getSize());
     super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
-
   }
 
   public void draw() {
