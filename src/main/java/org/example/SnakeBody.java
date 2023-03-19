@@ -19,13 +19,9 @@ public class SnakeBody extends Sprite {
         super.getSize(),
         super.getSize());
     super.getWindow().popStyle();
+    System.out.println("SnakeBody.draw() called. (xPos, yPos) = (" + super.getxPos() + ", " + super.getyPos() + ")");
   }
 
-  //method for moving the snake body
-  public void move(int x, int y) {
-    super.setxPos(x);
-    super.setyPos(y);
-  }
 
   //method for rotating the snake body
   public void rotate(int rotation) {

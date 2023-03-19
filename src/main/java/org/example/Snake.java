@@ -135,16 +135,24 @@ public class Snake extends Sprite {
     return directionY;
   }
 
-  public void reset() {
-//    body.clear();
-//    for (int i = 0; i < INITIALSIZE-1; i++) {
-////      grow();
-//    }
+  public void reset(SnakeBody body1, SnakeBody body2, SnakeBody tail) {
+    body.clear();
+    grow(body1);
+    body1.setxPos(5 * this.getSize());
+    body1.setyPos(5 * this.getSize());
+
+    grow(body2);
+    body2.setxPos(5 * this.getSize());
+    body2.setyPos(4 * this.getSize());
+
+    grow(tail);
+    tail.setxPos(5 * this.getSize());
+    tail.setyPos(3 * this.getSize());
 
     setDirectionX(0);
     setDirectionY(0);
     setxPos(5 * this.getSize());
-    setyPos(5 * this.getSize());
+    setyPos(6 * this.getSize());
     super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
 
   }
@@ -165,21 +173,8 @@ public class Snake extends Sprite {
     this.body.add(body);
   }
 
-//    // add a new tile to the end of the snake
-//    // get the last tile in the snake
-//    Sprite lastTile = body.get(body.size() - 1);
-//    // create a new tile at the same position as the last tile
-//    Sprite newTile = new Sprite(lastTile.getxPos(), lastTile.getyPos(), lastTile.getSize(), lastTile.getPicture());
-//    // add the new tile to the snake
-//    body.add(newTile);
-//  }
-
   public void slither(float nextX, float nextY){
-    // move the snake
-    // get the first tile in the snake
     Sprite firstTile = body.get(0);
-    // move the first tile
-
   }
 
 
@@ -198,7 +193,5 @@ public class Snake extends Sprite {
       currX = tempX;
       currY = tempY;
     }
-    // move the rest of the snake by iterating hrough the SnakeBody arrayList and updatoing
-
   }
 }

@@ -10,6 +10,9 @@ public class SpriteManager {
 
 
     private Snake player;
+    private SnakeBody body1;
+    private SnakeBody body2;
+    private SnakeBody tail;
     private int tileWidth;
     public int getRows() {
         return rows;
@@ -36,10 +39,11 @@ public class SpriteManager {
         Sprite.setWindow(window);
         createMaze();
         sprites = new ArrayList<>();
+
         player = Snake.getInstance(5*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
-        SnakeBody body1 =  new SnakeBody(5*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        SnakeBody body2 =  new SnakeBody(5*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        SnakeBody tail = new SnakeBody(5*tileWidth, (int) (2*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
+        body1 =  new SnakeBody(5*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body2 =  new SnakeBody(5*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        tail =  new SnakeBody(5*tileWidth, (int) (2*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
         sprites.add(player);
         sprites.add(body1);
         sprites.add(body2);
@@ -79,7 +83,10 @@ public class SpriteManager {
 
         player.setxPos(trueX);
         player.setyPos(trueY);
-        player.moveBody(prevX, prevY);
+        if (lastKeyPressed !=0) {
+            player.moveBody(prevX, prevY);
+        }
+
 
 
         //MOVE PLAYER BASED TO KEY PRESS
@@ -143,7 +150,6 @@ public class SpriteManager {
 
     public void reset() {
         //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
-        player.reset();
-
+        player.reset(body1, body2, tail);
     }
 }
