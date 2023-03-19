@@ -24,7 +24,10 @@ public class SpriteManager {
     private Tile[][] tiles;
     private final Window window;
     private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
-    private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeRight.png";
+    private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeDown.png";
+    private String bodyImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "bodyNS.png";
+    private String tailImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "tailUp.png";
+
     public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
         this.rows = rows;
@@ -34,7 +37,18 @@ public class SpriteManager {
         createMaze();
         sprites = new ArrayList<>();
         player = Snake.getInstance(5*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
+        SnakeBody body1 =  new SnakeBody(5*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        SnakeBody body2 =  new SnakeBody(5*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        SnakeBody tail = new SnakeBody(5*tileWidth, (int) (2*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
         sprites.add(player);
+        sprites.add(body1);
+        sprites.add(body2);
+        sprites.add(tail);
+
+        player.grow(body1);
+        player.grow(body2);
+        player.grow(tail);
+
         //todo make this not O(n^2)
         for (Tile[] tile : tiles) {
             for (Tile tile1 : tile) {
@@ -47,10 +61,12 @@ public class SpriteManager {
         //calculate the next position of the player
         float nextX = player.getxPos() + (player.getDirectionX()*(this.tileWidth) / Clock.getFramesPerClock());
         float nextY = player.getyPos() + (player.getDirectionY()* (this.tileWidth) / Clock.getFramesPerClock());
+        float prevX = player.getxPos();
+        float prevY = player.getyPos();
 
         player.setxPos(nextX);
         player.setyPos(nextY);
-
+//        player.slither(prevX, prevY);
 
         return sprites;
     }
@@ -58,9 +74,13 @@ public class SpriteManager {
         //update the sprites to the next frame
         int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
         int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
+        float prevX = player.getxPos();
+        float prevY = player.getyPos();
 
         player.setxPos(trueX);
         player.setyPos(trueY);
+        player.moveBody(prevX, prevY);
+
 
         //MOVE PLAYER BASED TO KEY PRESS
 

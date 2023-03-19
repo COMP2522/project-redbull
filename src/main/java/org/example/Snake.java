@@ -1,10 +1,7 @@
 package org.example;
 
 
-import java.awt.*;
 import java.util.ArrayList;
-
-import static processing.core.PApplet.radians;
 
 
 /**
@@ -20,12 +17,14 @@ public class Snake extends Sprite {
 
   private int rotation;
 
+  private final int  INITIALSIZE = 3;
+  private ArrayList <SnakeBody> body;
+
   // 0 - right
   // 1 - down
   // 2 - left
   // 3 - up
 
-  private ArrayList<Sprite> body;
   private static Snake instance;
 
   //Private static constructor to make class singleTon
@@ -137,7 +136,11 @@ public class Snake extends Sprite {
   }
 
   public void reset() {
-    body.clear();
+//    body.clear();
+//    for (int i = 0; i < INITIALSIZE-1; i++) {
+////      grow();
+//    }
+
     setDirectionX(0);
     setDirectionY(0);
     setxPos(5 * this.getSize());
@@ -150,11 +153,6 @@ public class Snake extends Sprite {
     super.getWindow().stroke(0, 0, 0);
     super.getWindow().pushStyle();
     super.getWindow().fill(0, 204, 0);
-//    super.getWindow().rect(
-//            super.getxPos()+super.getWindow().getOffset(),
-//            super.getyPos(),
-//            super.getSize(),
-//            super.getSize());
     super.getWindow().image(super.getPicture(),
         super.getxPos() + super.getWindow().getOffset(),
         super.getyPos(),
@@ -163,7 +161,9 @@ public class Snake extends Sprite {
     super.getWindow().popStyle();
   }
 
-  public void grow() {
+  public void grow(SnakeBody body) {
+    this.body.add(body);
+  }
 
 //    // add a new tile to the end of the snake
 //    // get the last tile in the snake
@@ -174,6 +174,31 @@ public class Snake extends Sprite {
 //    body.add(newTile);
 //  }
 
+  public void slither(float nextX, float nextY){
+    // move the snake
+    // get the first tile in the snake
+    Sprite firstTile = body.get(0);
+    // move the first tile
+
+  }
+
+
+  public void moveBody(float prevX, float prevY) {
+    // move the snake
+    // get the first tile in the snake
+
+    float currX = prevX;
+    float currY = prevY;
+    // move the first tile
+    for (SnakeBody bodyPart : body) {
+      float tempX = bodyPart.getxPos();
+      float tempY = bodyPart.getyPos();
+      bodyPart.setxPos(currX);
+      bodyPart.setyPos(currY);
+      currX = tempX;
+      currY = tempY;
+    }
+    // move the rest of the snake by iterating hrough the SnakeBody arrayList and updatoing
 
   }
 }
