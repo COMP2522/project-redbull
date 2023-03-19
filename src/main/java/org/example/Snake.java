@@ -1,6 +1,8 @@
 package org.example;
 
 
+import processing.core.PImage;
+
 import java.util.ArrayList;
 
 
@@ -69,6 +71,7 @@ public class Snake extends Sprite {
         setDirectionX(-1);
         setDirectionY(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeLeft.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
       case 39, 68:
         if (this.directionX == -1) {
@@ -78,6 +81,7 @@ public class Snake extends Sprite {
         setDirectionX(1);
         setDirectionY(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeRight.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
 
       case 38, 87:
@@ -90,6 +94,7 @@ public class Snake extends Sprite {
         setDirectionY(-1);
         setDirectionX(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeUp.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
         break;
 
       case 40, 83:
@@ -100,6 +105,7 @@ public class Snake extends Sprite {
         setDirectionY(1);
         setDirectionX(0);
         super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
+        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
         break;
 
     }
@@ -145,10 +151,12 @@ public class Snake extends Sprite {
     body.add(body1);
     body1.setxPos(5 * this.getSize());
     body1.setyPos(4 * this.getSize());
+    body1.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
 
     body.add(body2);
     body2.setxPos(5 * this.getSize());
     body2.setyPos(3 * this.getSize());
+    body2.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
 
     body.add(tail);
     tail.setxPos(5 * this.getSize());
@@ -188,14 +196,23 @@ public class Snake extends Sprite {
 
     float currX = prevX;
     float currY = prevY;
+    PImage currPic = body.get(0).getPicture();
+    System.out.println("currPic: " + currPic);
     // move the first tile
     for (SnakeBody bodyPart : body) {
       float tempX = bodyPart.getxPos();
       float tempY = bodyPart.getyPos();
+      PImage tempPic = bodyPart.getPicture();
       bodyPart.setxPos(currX);
       bodyPart.setyPos(currY);
+      if (bodyPart != body.get(body.size()-1))bodyPart.setPicture(currPic);
       currX = tempX;
       currY = tempY;
+      currPic = tempPic;
     }
+
+
+
+
   }
 }

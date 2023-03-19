@@ -1,5 +1,7 @@
 package org.example;
 
+import processing.core.PImage;
+
 public class SnakeBody extends Sprite {
 
   private int rotation;
@@ -19,7 +21,7 @@ public class SnakeBody extends Sprite {
         super.getSize(),
         super.getSize());
     super.getWindow().popStyle();
-    System.out.println("SnakeBody.draw() called. (xPos, yPos) = (" + super.getxPos() + ", " + super.getyPos() + ")");
+//    System.out.println("SnakeBody.draw() called. (xPos, yPos) = (" + super.getxPos() + ", " + super.getyPos() + ")");
   }
 
 
@@ -37,5 +39,15 @@ public class SnakeBody extends Sprite {
 
   public void setRotation(int rotation) {
     this.rotation = rotation;
+  }
+
+
+  public PImage getPicture(){
+    return super.getPicture();
+  }
+
+  @Override
+  public void setPicture(PImage picture) {
+    super.setPicture(picture);
   }
 }
