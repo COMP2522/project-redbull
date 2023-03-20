@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The purpose of the clockTest class is to test the functionality of the Clock class.
  */
-class clockTest {
+public class ClockTest {
 
     // Creating a private clock for the clockTest class.
     private Clock clock;

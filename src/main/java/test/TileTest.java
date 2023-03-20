@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The purpose of the tileTest class is to test the Tile constructor and ensure the boolean isWall are working
  * correctly.
  */
-public class tileTest {
+public class TileTest {
 
   @Test
   public void testConstructor() {
