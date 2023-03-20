@@ -17,6 +17,7 @@ public class Window extends PApplet {
     private int width;
     private int height;
     private int offset;
+    int framesPerClock;
 
     //THESE ARE THE GRID VARIABLES
     // these are place holders?
@@ -25,6 +26,7 @@ public class Window extends PApplet {
     int cols;
 
     int lastKeyPressed;
+    private int topOffSet;
     //////////////////////////////////////////////////////
 
     public Window(){
@@ -36,14 +38,12 @@ public class Window extends PApplet {
         this.rows = 36;
         this.cols = 36;
         this.cellSize = width/cols;
-        System.out.println("cellsize: " + cellSize);
-        System.out.println("rows: " + rows + " cols: " + cols);
+        topOffSet = cellSize;
+//        System.out.println("cellsize: " + cellSize);
+//        System.out.println("rows: " + rows + " cols: " + cols);
         // ////////////////////////////////////////////////////
-
-        this.clock = new Clock();
-        this.sprites = new ArrayList<>();
-        this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
-        sprites = spriteManager.update(39);
+//        sprites = spriteManager.update(39);
+//        sprites = spriteManager.animate(60);
 
 
     }
@@ -66,6 +66,11 @@ public class Window extends PApplet {
     @Override
     public void setup(){
         this.init();
+        this.clock = new Clock();
+        this.sprites = new ArrayList<>();
+        this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
+
+
     }
     public void init(){
         background(0);
@@ -76,11 +81,11 @@ public class Window extends PApplet {
         if (clock.tick()){
             sprites = spriteManager.update(lastKeyPressed);
         }
-
+        sprites = spriteManager.animate();
         //color whole screen black
         background(0);
         //this is the play space
-        rect(offset,cellSize,width-cellSize,height-2*cellSize);
+        rect(offset,cellSize,cols*cellSize,rows*cellSize);
 //        drawGrid();
         //draw all sprites
         for (Sprite sprite : sprites) {
@@ -89,15 +94,17 @@ public class Window extends PApplet {
                 sprite.draw();
             }
         }
+        textAlign(RIGHT, TOP);
+        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
+        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
     }
     public void drawGrid() {
-        for (int i = 0; i < rows; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
-            for (int j = 1; j < cols; j++) {
+        for (int i = 0; i < rows-1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
+            for (int j = 1; j < cols-1; j++) {
                 stroke(255);
                 fill(50,50,50);
                 rect((i+(offset/cellSize)) * cellSize, j * cellSize, cellSize, cellSize);
             }
-
         }
     }
     public void keyPressed(KeyEvent event) {
@@ -114,5 +121,15 @@ public class Window extends PApplet {
         String[] appletArgs = new String[]{"MazeSnake"};
         Window MazeSnake = new Window();
         PApplet.runSketch(appletArgs, MazeSnake);
+    }
+
+    public void reset(){
+        lastKeyPressed = 0;
+        spriteManager.reset();
+        clock.reset();
+    }
+
+    public float getTopOffset() {
+        return topOffSet;
     }
 }
