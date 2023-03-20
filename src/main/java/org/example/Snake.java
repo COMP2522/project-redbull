@@ -144,9 +144,6 @@ public class Snake extends Sprite {
   }
 
   public void reset(SnakeBody body1, SnakeBody body2, SnakeBody tail) {
-
-
-
     body.clear();
     body.add(body1);
     body1.setxPos(5 * this.getSize());
@@ -161,6 +158,7 @@ public class Snake extends Sprite {
     body.add(tail);
     tail.setxPos(5 * this.getSize());
     tail.setyPos(2 * this.getSize());
+    tail.setPicture(getWindow().loadImage("src/main/images/snakeTailUp.png"));
 
     setDirectionX(0);
     setDirectionY(0);
@@ -197,7 +195,6 @@ public class Snake extends Sprite {
     float currX = prevX;
     float currY = prevY;
     PImage currPic = body.get(0).getPicture();
-    System.out.println("currPic: " + currPic);
     // move the first tile
     for (SnakeBody bodyPart : body) {
       float tempX = bodyPart.getxPos();
@@ -210,9 +207,17 @@ public class Snake extends Sprite {
       currY = tempY;
       currPic = tempPic;
     }
-
-
-
+    System.out.println("X diff: " + (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos())
+      + "   Y diff: " + (body.get(body.size()-1).getyPos() - body.get(body.size()-2).getyPos()));
+    if (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos() < -10) {
+      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailLeft.png"));
+    }  else if (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos() > 10){
+      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailRight.png"));
+    } else if (body.get(body.size()-1).getyPos() - body.get(body.size()-2).getyPos() < -10){
+      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailUp.png"));
+    } else if (body.get(body.size()-1).getyPos() - body.get(body.size()-2).getyPos() > 10){
+      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailDown.png"));
+    }
 
   }
 }
