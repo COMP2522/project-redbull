@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import static java.lang.Math.round;
 
@@ -41,7 +42,7 @@ public class SpriteManager {
         this.cols = cols;
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
-        createMaze();
+        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 0);
         sprites = new ArrayList<>();
 
         player = Snake.getInstance(5*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
@@ -145,7 +146,7 @@ public class SpriteManager {
         }
     }
 
-    private void createMaze() {
+    private void createMaze(){
         //Generate a maze
         this.tiles = new Tile[rows][cols];
         //generate 20 random walls
@@ -156,20 +157,8 @@ public class SpriteManager {
         }
 
         tiles[30][0] = new Tile(30*tileWidth, 0*tileWidth, tileWidth, wallImage, true);
-    }
-    private void createMaze(File file) {
 
-        this.tiles = new Tile[rows][cols];
-        //instantiating the tiles
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                tiles[i][j] = new Tile(j*tileWidth, i*tileWidth, tileWidth, null, false);
-            }
-        }
-        //retrieve the maze from the file
-        //todo >>>>>>>>>>>>>>>>>>>>>>>>>>>>@CAMERON<<<<<<<<<<<<<<<<<<<<<<<<<
     }
-
 
     public void reset() {
         //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
