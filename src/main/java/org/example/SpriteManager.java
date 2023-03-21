@@ -36,7 +36,6 @@ public class SpriteManager {
     private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeDown.png";
     private String bodyImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "bodyNS.png";
     private String tailImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "tailUp.png";
-    private String enemyImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "enemy.png";
     public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
         this.rows = rows;
@@ -56,10 +55,6 @@ public class SpriteManager {
         body5 =  new SnakeBody(5*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
         body6 =  new SnakeBody(5*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
         tail =  new SnakeBody(5*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
-
-        enemy = new Enemy(10*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, enemyImage);
-
-        sprites.add(enemy);
 
         sprites.add(player);
 
