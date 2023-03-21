@@ -1,11 +1,11 @@
 package org.example;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class MazeMaker {
 
@@ -32,6 +32,7 @@ public class MazeMaker {
         //create maze
         JSONObject obj = new JSONObject(buffer.toString());
         JSONArray maze = obj.getJSONArray("maze");
+
         for (int j = 0; j < maze.length(); j++) {
             JSONObject row = maze.getJSONObject(j);
             int x = row.getInt("y");

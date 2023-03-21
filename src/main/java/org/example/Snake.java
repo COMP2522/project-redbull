@@ -168,9 +168,9 @@ public class Snake extends Sprite {
   }
 
   public void draw() {
-    super.getWindow().stroke(0, 0, 0);
+//    super.getWindow().stroke(0, 0, 0);
     super.getWindow().pushStyle();
-    super.getWindow().fill(0, 204, 0);
+//    super.getWindow().fill(0, 204, 0);
     super.getWindow().image(super.getPicture(),
         super.getxPos() + super.getWindow().getOffset(),
         super.getyPos(),
@@ -207,8 +207,8 @@ public class Snake extends Sprite {
       currY = tempY;
       currPic = tempPic;
     }
-    System.out.println("X diff: " + (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos())
-      + "   Y diff: " + (body.get(body.size()-1).getyPos() - body.get(body.size()-2).getyPos()));
+    //System.out.println("X diff: " + (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos())
+      //+ "   Y diff: " + (body.get(body.size()-1).getyPos() - body.get(body.size()-2).getyPos()));
     if (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos() < -10) {
       body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailLeft.png"));
     }  else if (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos() > 10){

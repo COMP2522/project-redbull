@@ -12,9 +12,9 @@ public class SnakeBody extends Sprite {
   }
 
   public void draw() {
-    super.getWindow().stroke(0, 0, 0);
+//    super.getWindow().stroke(0, 0, 0);
     super.getWindow().pushStyle();
-    super.getWindow().fill(0, 204, 0);
+//    super.getWindow().fill(0, 204, 0);
     super.getWindow().image(super.getPicture(),
         super.getxPos() + super.getWindow().getOffset(),
         super.getyPos(),
