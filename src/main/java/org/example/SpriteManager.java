@@ -104,14 +104,13 @@ public class SpriteManager {
 
 
         //update the sprites to the next frame
-//        int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
-//        int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
+        int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
+        int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
         float prevX = player.getxPos();
         float prevY = player.getyPos();
-//
-//        player.setxPos(trueX);
-//        player.setyPos(trueY);
-        player.updatePos(tileWidth);
+
+        player.setxPos(trueX);
+        player.setyPos(trueY);
 
         //MOVE PLAYER BASED TO KEY PRESS
 
