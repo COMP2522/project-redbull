@@ -127,8 +127,6 @@ public class SpriteManager {
             player.moveBody(prevX, prevY);
         }
 
-        enemy.move();
-
         this.collide();
         return sprites;
     }
