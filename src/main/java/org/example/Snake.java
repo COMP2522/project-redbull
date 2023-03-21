@@ -59,6 +59,17 @@ public class Snake extends Sprite {
     this.speed = speed;
   }
 
+  public void updatePos(int tileWidth) {
+    //calculate the next position of the player
+    float nextX = this.getxPos() + (this.getDirectionX()*(tileWidth) / Clock.getFramesPerClock());
+    float nextY = this.getyPos() + (this.getDirectionY()* (tileWidth) / Clock.getFramesPerClock());
+    float prevX = this.getxPos();
+    float prevY = this.getyPos();
+
+    this.setxPos(nextX);
+    this.setyPos(nextY);
+  }
+
   public void move(int lastKeyPressed) {
     switch (lastKeyPressed) {
       case 37, 65:

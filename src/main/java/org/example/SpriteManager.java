@@ -18,6 +18,7 @@ public class SpriteManager {
     private SnakeBody body5;
     private SnakeBody body6;
     private SnakeBody tail;
+    private Enemy enemy;
     private int tileWidth;
     public int getRows() {
         return rows;
@@ -56,7 +57,7 @@ public class SpriteManager {
         body6 =  new SnakeBody(5*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
         tail =  new SnakeBody(5*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
 
-        Enemy enemy = new Enemy(10*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, enemyImage);
+        enemy = new Enemy(10*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, enemyImage);
 
         sprites.add(enemy);
 
@@ -95,7 +96,7 @@ public class SpriteManager {
 
         player.setxPos(nextX);
         player.setyPos(nextY);
-//        player.slither(prevX, prevY);
+//        player.slither(prevX, prevY);ne
 
         return sprites;
     }
@@ -108,14 +109,14 @@ public class SpriteManager {
 
 
         //update the sprites to the next frame
-        int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
-        int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
+//        int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
+//        int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
         float prevX = player.getxPos();
         float prevY = player.getyPos();
-
-        player.setxPos(trueX);
-        player.setyPos(trueY);
-
+//
+//        player.setxPos(trueX);
+//        player.setyPos(trueY);
+        player.updatePos(tileWidth);
 
         //MOVE PLAYER BASED TO KEY PRESS
 
@@ -130,6 +131,9 @@ public class SpriteManager {
         if (lastKeyPressed !=0 ) {
             player.moveBody(prevX, prevY);
         }
+
+        enemy.move();
+
         this.collide();
         return sprites;
     }
