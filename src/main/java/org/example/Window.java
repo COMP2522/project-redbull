@@ -36,14 +36,14 @@ public class Window extends PApplet {
         this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
         this.height = width;
         this.offset = (int) ((screenSize.getWidth()-width)/(2));
-        this.rows = 36;
-        this.cols = 36;
+        this.rows = 37;
+        this.cols = 37;
         this.cellSize = width/cols;
         topOffSet = cellSize;
 //        System.out.println("cellsize: " + cellSize);
 //        System.out.println("rows: " + rows + " cols: " + cols);
         // ////////////////////////////////////////////////////
-//        sprites = spriteManager.update(39);
+//        sprites = spriteManager.update(lastKeyPressed);
 //        sprites = spriteManager.animate(60);
 
 
@@ -84,9 +84,9 @@ public class Window extends PApplet {
         //color whole screen black
         background(0);
         //this is the play space, color it white
-        fill(255,255,255);
-        rect(offset,cellSize,cols*cellSize,rows*cellSize);
-//        drawGrid();
+        //fill(255,255,255);
+        //rect(offset,cellSize,cols*cellSize,rows*cellSize);
+        drawGrid();
         //draw all sprites
 //        for (Sprite sprite : sprites) {
 //            //System.out.println(sprite.getxPos());
@@ -95,6 +95,7 @@ public class Window extends PApplet {
 //            }
 //        }
         //threaded sprite draw
+        pushStyle();
         int numThreads = 4; // The number of threads to use
         int chunkSize = (int) Math.ceil((double) sprites.size() / numThreads); // The size of each chunk
 
@@ -126,6 +127,7 @@ public class Window extends PApplet {
                 e.printStackTrace();
             }
         }
+        popStyle();
 
 //        textAlign(RIGHT, TOP);
 //        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
@@ -133,10 +135,14 @@ public class Window extends PApplet {
     }
     public void drawGrid() {
         for (int i = 0; i < rows-1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
-            for (int j = 1; j < cols-1; j++) {
-                stroke(255);
-                fill(50,50,50);
-                rect((i+(offset/cellSize)) * cellSize, j * cellSize, cellSize, cellSize);
+            for (int j = 1; j < cols; j++) {
+                stroke(100,100,100);
+                fill(100,100,100);
+                if((i%2==0 || j%2==0) && !(i%2==0 && j%2==0)){
+                    //stroke(115,115,115);
+                    fill(115,115,115);
+                }
+                rect((i * cellSize + offset), j * cellSize , cellSize, cellSize);
             }
         }
     }

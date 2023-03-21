@@ -63,10 +63,10 @@ public class Sprite {
 
   //Draw method to instantiate the window with elements.
   public void draw(){
-    window.stroke(0,0,0);
-    window.pushStyle();
-    window.fill(0, 204, 0);
-    window.rect(this.xPos+window.getOffset(), this.yPos, size, size);
-    window.popStyle();
+//    window.stroke(0,0,0);
+//    window.pushStyle();
+//    window.fill(0, 204, 0);
+//    window.rect(this.xPos+window.getOffset(), this.yPos, size, size);
+//    window.popStyle();
   }
 }
