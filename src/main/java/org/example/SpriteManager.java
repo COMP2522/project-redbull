@@ -42,7 +42,7 @@ public class SpriteManager {
         this.cols = cols;
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
-        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 0);
+        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
         sprites = new ArrayList<>();
 
         player = Snake.getInstance(5*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
