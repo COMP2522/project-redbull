@@ -18,6 +18,7 @@ public class SpriteManager {
     private SnakeBody body5;
     private SnakeBody body6;
     private SnakeBody tail;
+    private Enemy enemy;
     private int tileWidth;
     public int getRows() {
         return rows;
@@ -35,24 +36,26 @@ public class SpriteManager {
     private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeDown.png";
     private String bodyImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "bodyNS.png";
     private String tailImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "tailUp.png";
-
     public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
         this.rows = rows;
         this.cols = cols;
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
-        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
+//        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
+        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 2);
         sprites = new ArrayList<>();
 
-        player = Snake.getInstance(5*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
-        body1 =  new SnakeBody(5*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body2 =  new SnakeBody(5*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body3 =  new SnakeBody(5*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body4 =  new SnakeBody(5*tileWidth, (int) (6*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body5 =  new SnakeBody(5*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body6 =  new SnakeBody(5*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        tail =  new SnakeBody(5*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
+
+        player = Snake.getInstance(3*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
+        body1 =  new SnakeBody(3*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body2 =  new SnakeBody(3*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body3 =  new SnakeBody(3*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body4 =  new SnakeBody(3*tileWidth, (int) (6*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body5 =  new SnakeBody(3*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body6 =  new SnakeBody(3*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        tail =  new SnakeBody(3*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
+
         sprites.add(player);
 
         sprites.add(body1);
@@ -88,7 +91,7 @@ public class SpriteManager {
 
         player.setxPos(nextX);
         player.setyPos(nextY);
-//        player.slither(prevX, prevY);
+//        player.slither(prevX, prevY);ne
 
         return sprites;
     }
@@ -109,7 +112,6 @@ public class SpriteManager {
         player.setxPos(trueX);
         player.setyPos(trueY);
 
-
         //MOVE PLAYER BASED TO KEY PRESS
 
         //update the sprites to the next frame
@@ -123,6 +125,7 @@ public class SpriteManager {
         if (lastKeyPressed !=0 ) {
             player.moveBody(prevX, prevY);
         }
+
         this.collide();
         return sprites;
     }

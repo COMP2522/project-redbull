@@ -59,6 +59,11 @@ public class Snake extends Sprite {
     this.speed = speed;
   }
 
+  public void updatePos(int tileWidth) {
+    //calculate the next position of the player
+
+  }
+
   public void move(int lastKeyPressed) {
     switch (lastKeyPressed) {
       case 37, 65:
@@ -146,23 +151,23 @@ public class Snake extends Sprite {
   public void reset(SnakeBody body1, SnakeBody body2, SnakeBody tail) {
     body.clear();
     body.add(body1);
-    body1.setxPos(5 * this.getSize());
+    body1.setxPos(3 * this.getSize());
     body1.setyPos(4 * this.getSize());
     body1.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
 
     body.add(body2);
-    body2.setxPos(5 * this.getSize());
+    body2.setxPos(3 * this.getSize());
     body2.setyPos(3 * this.getSize());
     body2.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
 
     body.add(tail);
-    tail.setxPos(5 * this.getSize());
+    tail.setxPos(3 * this.getSize());
     tail.setyPos(2 * this.getSize());
     tail.setPicture(getWindow().loadImage("src/main/images/snakeTailUp.png"));
 
     setDirectionX(0);
     setDirectionY(0);
-    setxPos(5 * this.getSize());
+    setxPos(3 * this.getSize());
     setyPos(5 * this.getSize());
     super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
   }
