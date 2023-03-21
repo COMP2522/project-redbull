@@ -15,7 +15,7 @@ public class Tile extends Sprite{
 
     public void draw(){
 //        super.getWindow().stroke(0,0,0);
-        super.getWindow().pushStyle();
+//        super.getWindow().pushStyle();
 //        super.getWindow().fill(0, 204, 204);
 //        super.getWindow().rect(super.getxPos()+super.getWindow().getOffset(),
 //                super.getyPos()+super.getWindow().getTopOffset(),
@@ -27,6 +27,6 @@ public class Tile extends Sprite{
                 super.getSize(),
                 super.getSize());
 
-        super.getWindow().popStyle();
+//        super.getWindow().popStyle();
     }
 }
