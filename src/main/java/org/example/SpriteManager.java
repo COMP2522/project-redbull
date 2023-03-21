@@ -48,14 +48,14 @@ public class SpriteManager {
         sprites = new ArrayList<>();
 
 
-        player = Snake.getInstance(5*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
-        body1 =  new SnakeBody(5*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body2 =  new SnakeBody(5*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body3 =  new SnakeBody(5*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body4 =  new SnakeBody(5*tileWidth, (int) (6*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body5 =  new SnakeBody(5*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body6 =  new SnakeBody(5*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        tail =  new SnakeBody(5*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
+        player = Snake.getInstance(3*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
+        body1 =  new SnakeBody(3*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body2 =  new SnakeBody(3*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body3 =  new SnakeBody(3*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body4 =  new SnakeBody(3*tileWidth, (int) (6*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body5 =  new SnakeBody(3*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        body6 =  new SnakeBody(3*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+        tail =  new SnakeBody(3*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
 
         enemy = new Enemy(10*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, enemyImage);
 
