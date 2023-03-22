@@ -11,11 +11,12 @@ class LevelSelector extends UIComponent {
     levelButtons = new LevelButton[9];
     float buttonWidth = width / 3;
     float buttonHeight = height / 3;
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 8; i++) {
       float buttonX = x + buttonWidth * (i % 3);
       float buttonY = y + buttonHeight * PApplet.floor(i / 3);
       levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, "Level " + (i + 1));
     }
+    levelButtons[8] = new LevelButton(parent, x + buttonWidth, y + buttonHeight * 2, buttonWidth, buttonHeight, "Random");
   }
 
   @Override

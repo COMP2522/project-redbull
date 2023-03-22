@@ -156,7 +156,7 @@ public class Window extends PApplet {
             background(0);
             ui.draw();
             if (ui.getSelectedLevel() != -1) {
-                spriteManager.setLevel(ui.getLevel());
+                spriteManager.setLevel(ui.getSelectedLevel());
                 gameActive = true;
                 reset();
             }

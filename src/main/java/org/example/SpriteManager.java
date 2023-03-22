@@ -27,7 +27,7 @@ public class SpriteManager {
     public int getCols() {
         return cols;
     }
-    private String level;
+    private int level;
     private int rows;
     private int cols;
     private Tile[][] tiles;
@@ -46,7 +46,7 @@ public class SpriteManager {
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
 //        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
-        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 0);
+        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, this.level);
         sprites = new ArrayList<>();
 
 
@@ -195,7 +195,7 @@ public class SpriteManager {
         sprites.remove(body6);
     }
 
-    public void setLevel(String level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 }
