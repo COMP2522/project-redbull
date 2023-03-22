@@ -135,6 +135,7 @@ public class Window extends PApplet {
         }
         popStyle();
 
+
 //        textAlign(RIGHT, TOP);
 //        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
 //        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
