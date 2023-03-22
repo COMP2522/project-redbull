@@ -21,7 +21,7 @@ public class Clock {
   //Public clock constructor
     public Clock() {
       prev = Instant.now();
-      tickTime = 150;
+      tickTime = 100;
     }
 
   public static float getFramesPerSecond() {

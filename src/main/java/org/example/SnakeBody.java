@@ -31,7 +31,7 @@ public class SnakeBody extends Sprite {
   //down to right == 2
   //up to left == 1
   //down to left == -1
-  public void draw(float directionX, float directionY, boolean isTail){
+  public void draw(float directionX, float directionY, boolean isTail, boolean isFront){
     PImage image = super.getPicture();
 //    System.out.println("directionX: " + directionX + " directionY: " + directionY);
 //    System.out.println("isTail: " + isTail);

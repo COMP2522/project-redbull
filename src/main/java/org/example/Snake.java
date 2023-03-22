@@ -217,42 +217,44 @@ public class Snake extends Sprite {
     super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
   }
 
-  public void animateBody(float framesPerClock, int i) {
-    float dx = 0;
-    float dy = 0;
-    if (i+1 == body.size()) {
-      dx = this.getxPos() - body.get(i).getxPos();
-      dy = this.getyPos() - body.get(i).getyPos();
-
-    }else {
-      dx = body.get(i+1).getxPos() - body.get(i).getxPos();
-      dy = body.get(i+1).getyPos() - body.get(i).getyPos();
-    }
-    if(Math.abs(dx) > Math.abs(dy)) {
-      dy = 0;
-    } else {
-      dx = 0;
-    }
-    if (dx > 1) dx = 1;
-    if (dx < -1) dx = -1;
-    if (dy > 1) dy = 1;
-    else if (dy < -1) dy = -1;
-
-    if (this.directionX == 0 && this.directionY == 0) {
-      dx = 0;
-      dy = 0;
-    }
-    float moveX = dx * this.getSize()/framesPerClock;
-    float moveY = dy * this.getSize()/framesPerClock;
+//  public void animateBody(float framesPerClock, int i) {
+//    float dx = 0;
+//    float dy = 0;
+//    if (i+1 == body.size()) {
+//      dx = this.getxPos() - body.get(i).getxPos();
+//      dy = this.getyPos() - body.get(i).getyPos();
+//
+//    }else {
+//      dx = body.get(i+1).getxPos() - body.get(i).getxPos();
+//      dy = body.get(i+1).getyPos() - body.get(i).getyPos();
+//    }
+//    if(Math.abs(dx) > Math.abs(dy)) {
+//      dy = 0;
+//    } else {
+//      dx = 0;
+//    }
+//    if (dx > 1) dx = 1;
+//    if (dx < -1) dx = -1;
+//    if (dy > 1) dy = 1;
+//    else if (dy < -1) dy = -1;
+//
+//    if (this.directionX == 0 && this.directionY == 0) {
+//      dx = 0;
+//      dy = 0;
+//    }
+//    float moveX = dx * this.getSize()/framesPerClock;
+//    float moveY = dy * this.getSize()/framesPerClock;
 //    body.get(i).setyPos((float) (body.get(i).getyPos() + 0.2*dy));
 //    body.get(i).setxPos((float) (body.get(i).getxPos() + 0.2*dx));
-    body.get(i).setSizeX((body.get(i).getSizeX() *2));
-    body.get(i).setSizeY((body.get(i).getSizeY() *2));
-//    super.getWindow().popStyle();
-  }
+//    body.get(i).setSizeX((int) (body.get(i).getSizeX() *10));
+//    body.get(i).setSizeY((int) (body.get(i).getSizeY() *10));
+//    body.get(i).draw(dx, dy, false,true);
+//
+//  }
   public void draw() {
     for (int i = 0; i < body.size(); i++) {
       boolean isTail = false;
+      boolean isFront = false;
       int nextX = 0;
       int nextY = 0;
       if(i == 0 ){
@@ -261,6 +263,7 @@ public class Snake extends Sprite {
       if(i == body.size() - 1) {
         nextX = (int)this.getxPos();
         nextY = (int)this.getyPos();
+        isFront = true;
       }
       else{
         nextX = (int)body.get(i+1).getxPos();
@@ -274,7 +277,7 @@ public class Snake extends Sprite {
       else if (dy <= -1) dy = -1;
       body.get(i).setxPos(body.get(i).getxPos());
       body.get(i).setyPos(body.get(i).getyPos());
-      body.get(i).draw(dx, dy, isTail);
+      body.get(i).draw(dx, dy, isTail, isFront);
     }
     super.getWindow().image(super.getPicture(),
             super.getxPos() + super.getWindow().getOffset(),

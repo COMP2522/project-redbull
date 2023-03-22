@@ -21,12 +21,15 @@ public class Tile extends Sprite{
 //                super.getyPos()+super.getWindow().getTopOffset(),
 //                super.getSize(),
 //                super.getSize());
-        super.getWindow().image(super.getPicture(),
-                super.getxPos()+super.getWindow().getOffset(),
-                super.getyPos()+super.getWindow().getTopOffset(),
-                super.getSize(),
-                super.getSize());
-
+        try {
+            super.getWindow().image(super.getPicture(),
+                    super.getxPos()+super.getWindow().getOffset(),
+                    super.getyPos()+super.getWindow().getTopOffset(),
+                    super.getSize(),
+                    super.getSize());
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
 //        super.getWindow().popStyle();
     }
 }

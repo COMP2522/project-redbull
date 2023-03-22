@@ -131,6 +131,7 @@ public class SpriteManager {
         float moveY = player.getDirectionY() * (this.tileWidth) / Clock.getFramesPerClock();
         float nextX = player.getxPos() + moveX;
         float nextY = player.getyPos() + moveY;
+//        player.animateBody(Clock.getFramesPerClock(), player.getBody().size()-2);
 //        System.out.println("moveX: " + moveX + " moveY: " + moveY);
 //        float prevX = player.getxPos();
 //        float prevY = player.getyPos();
@@ -198,12 +199,14 @@ public class SpriteManager {
             player.grow();
             if (this.level.equals("classic")){
                 Random rand = new Random();
-                int newX = rand.nextInt(rows)+1;
-                int newY = rand.nextInt(cols)+1;
+                int newX = rand.nextInt(rows-3)+1;
+                int newY = rand.nextInt(cols-3)+1;
 //                food[x+player.getDirectionX()][y+player.getDirectionY()-1].setxPos(newX);
 //                food[x+player.getDirectionX()][y+player.getDirectionY()-1].setyPos(newY);
                 food[x+player.getDirectionX()][y+player.getDirectionY()-1].eat();
                 food[newX][newY] = new Food(newX*tileWidth, newY*tileWidth, tileWidth, foodImage);
+                sprites.remove(food[x+player.getDirectionX()][y+player.getDirectionY()-1]);
+                food[x+player.getDirectionX()][y+player.getDirectionY()-1] = null;
                 sprites.add(food[newX][newY]);
             }else {
 //                food[x + player.getDirectionX()][y + player.getDirectionY() - 1].eat();
