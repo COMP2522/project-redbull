@@ -16,7 +16,12 @@ public class LevelButton extends UIComponent {
   @Override
   public void draw() {
     getParent().rectMode(PApplet.CORNER);
-    getParent().fill(selected ? 200 : 255);
+    if (contains(getParent().mouseX, getParent().mouseY)) {
+      // if the mouse is hovering over the button, use a slightly darker fill color
+      getParent().fill(selected ? 180 : 230);
+    } else {
+      getParent().fill(selected ? 200 : 255);
+    }
     getParent().stroke(0);
     getParent().rect(x, y, width, height, 5);
     getParent().fill(0);
