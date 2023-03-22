@@ -2,7 +2,7 @@ package org.example;
 
 import processing.core.PApplet;
 
-public class UIComponent {
+public abstract class UIComponent {
 
   private PApplet parent;
   private float x;
@@ -18,14 +18,7 @@ public class UIComponent {
     this.height = height;
   }
 
-  public void draw() {
-    parent.rectMode(PApplet.CORNER);
-    parent.fill(255, 255, 255);
-    parent.rect(x, y, width, height);
-    parent.fill(0, 0, 0);
-    parent.textAlign(PApplet.CENTER, PApplet.CENTER);
-    parent.text("UI Component", x + width / 2, y + height / 2);
-  }
+  public abstract void draw();
 
   public boolean contains(float mx, float my) {
     return mx >= x && mx <= x + width && my >= y && my <= y + height;
