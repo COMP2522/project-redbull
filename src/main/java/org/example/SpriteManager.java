@@ -1,8 +1,8 @@
 package org.example;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
 import static java.lang.Math.round;
 
 //Sprite manager method to manage all on screen sprites
@@ -31,8 +31,11 @@ public class SpriteManager {
     private int rows;
     private int cols;
     private Tile[][] tiles;
+    private Food[][] food;
     private final Window window;
+    private int spawnPoint[] = {10,10};
     private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
+    private String foodImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "apple.png";
     private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeDown.png";
     private String bodyImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "bodyNS.png";
     private String tailImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "tailUp.png";
@@ -58,6 +61,7 @@ public class SpriteManager {
 
         sprites.add(player);
 
+        //TODO this can be looped once a data structure is used
         sprites.add(body1);
         sprites.add(body2);
         sprites.add(body3);
@@ -79,6 +83,16 @@ public class SpriteManager {
             for (Tile tile1 : tile) {
                 sprites.add(tile1);
             }
+        }
+        try {
+            for (Food[] food1 : food) {
+                for (Food food2 : food1) {
+                    sprites.add(food2);
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println("No food");
         }
     }
     public ArrayList<Sprite> animate() {
@@ -104,12 +118,10 @@ public class SpriteManager {
 
 
         //update the sprites to the next frame
-
         int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
         int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
         float prevX = player.getxPos();
         float prevY = player.getyPos();
-
 
         player.setxPos(trueX);
         player.setyPos(trueY);
@@ -175,7 +187,8 @@ public class SpriteManager {
 
     public void reset() {
         //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
-        player.reset(body1, body2,tail);
+        player.reset(body1, body2, tail);
+        //TODO this can be looped once a data structure is used
         sprites.remove(body3);
         sprites.remove(body4);
         sprites.remove(body5);

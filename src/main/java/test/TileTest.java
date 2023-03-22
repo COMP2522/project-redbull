@@ -3,10 +3,6 @@ package test;
 import org.example.Tile;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

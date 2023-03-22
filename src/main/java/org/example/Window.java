@@ -26,6 +26,8 @@ public class Window extends PApplet {
     int rows;
     int cols;
 
+
+
     int lastKeyPressed;
     private int topOffSet;
     //////////////////////////////////////////////////////
@@ -33,7 +35,7 @@ public class Window extends PApplet {
     public Window(){
         //THESE ARE THE GRID VARIABLES
         this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
+        this.width = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
         this.height = width;
         this.offset = (int) ((screenSize.getWidth()-width)/(2));
         this.rows = 37;
@@ -47,6 +49,10 @@ public class Window extends PApplet {
 //        sprites = spriteManager.animate(60);
 
 
+    }
+
+    public int getLastKeyPressed() {
+        return lastKeyPressed;
     }
     public int getWidth() {
         return width;
