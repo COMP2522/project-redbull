@@ -15,7 +15,7 @@ public class MazeMaker {
         //read json file
         FileReader reader = null;
         try {
-            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "ultraHard" + level + ".json");
+            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "level" + level + ".json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

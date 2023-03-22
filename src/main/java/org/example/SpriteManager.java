@@ -43,7 +43,7 @@ public class SpriteManager {
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
 //        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
-        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 2);
+        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 0);
         sprites = new ArrayList<>();
 
 
@@ -104,10 +104,12 @@ public class SpriteManager {
 
 
         //update the sprites to the next frame
+
         int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
         int trueY = round(player.getyPos() / this.tileWidth) * this.tileWidth;
         float prevX = player.getxPos();
         float prevY = player.getyPos();
+
 
         player.setxPos(trueX);
         player.setyPos(trueY);
@@ -123,7 +125,7 @@ public class SpriteManager {
             player.move(lastKeyPressed);
         }
         if (lastKeyPressed !=0 ) {
-            player.moveBody(prevX, prevY);
+            player.moveBody(trueX, trueY);
         }
 
         this.collide();
@@ -147,6 +149,14 @@ public class SpriteManager {
             if (tiles[x+player.getDirectionX()][y+player.getDirectionY()-1].isWall()){window.reset();}
             //if (tiles[y+player.getDirectionX()][x+player.getDirectionX()].isFood()){player.grow();}
         }
+        //check if the player is colliding with the body
+        for (int i = 1; i < player.getBody().size(); i++) {
+            if ((player.getBody().get(i).getxPos() == player.getxPos()) && (player.getBody().get(i).getyPos() == player.getyPos())) {
+                window.reset();
+            }
+        }
+
+
     }
 
     private void createMaze(){
@@ -165,7 +175,7 @@ public class SpriteManager {
 
     public void reset() {
         //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
-        player.reset(body1, body2, tail);
+        player.reset(body1, body2,tail);
         sprites.remove(body3);
         sprites.remove(body4);
         sprites.remove(body5);
