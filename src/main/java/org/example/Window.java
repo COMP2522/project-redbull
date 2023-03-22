@@ -26,6 +26,8 @@ public class Window extends PApplet {
     int rows;
     int cols;
 
+
+
     int lastKeyPressed;
     private int topOffSet;
     //////////////////////////////////////////////////////
@@ -47,6 +49,10 @@ public class Window extends PApplet {
 //        sprites = spriteManager.animate(60);
 
 
+    }
+
+    public int getLastKeyPressed() {
+        return lastKeyPressed;
     }
     public int getWidth() {
         return width;
