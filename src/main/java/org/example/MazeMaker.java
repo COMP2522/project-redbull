@@ -15,7 +15,7 @@ public class MazeMaker {
         //read json file
         FileReader reader = null;
         try {
-            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "ultraHard" + level + ".json");
+            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "level" + level + ".json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -37,10 +37,74 @@ public class MazeMaker {
             JSONObject row = maze.getJSONObject(j);
             int x = row.getInt("y");
             int y = row.getInt("x");
-            tiles[x][y] = new Tile(x*cellSize, y*cellSize, cellSize, wallImage, true);
+            tiles[x][y] = new Tile(x*cellSize, y*cellSize, cellSize,wallImage, false);
+        }
+        return tiles;
+    }
+    public static int[] loadSpawn(int level) {
+        int[] spawn = new int[2];
+        //read json file
+        FileReader reader = null;
+        try {
+            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "level" + level + ".json");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        StringBuffer buffer = new StringBuffer();
+        int i;
+        try {
+            while ((i = reader.read()) != -1) {
+                buffer.append((char) i);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+        //create maze
+        JSONObject obj = new JSONObject(buffer.toString());
+        JSONArray spawnArray = obj.getJSONArray("spawn");
 
-        return tiles;
+        try {
+            spawn[0] = spawnArray.getJSONObject(0).getInt("x");
+            spawn[1] = spawnArray.getJSONObject(0).getInt("y");
+        } catch (Exception e) {
+            spawn[0] = 10;
+            spawn[1] = 10;
+            System.out.println("No spawn point found, using default");
+        }
+        return spawn;
+    }
+
+    public static Food[][] loadFood(String foodImage, int rows, int cols, int cellSize, int level) {
+        Food[][] foodTiles = new Food[rows][cols];
+
+        //read json file
+        FileReader reader = null;
+        try {
+            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "level" + level + ".json");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        StringBuffer buffer = new StringBuffer();
+        int i;
+        try {
+            while ((i = reader.read()) != -1) {
+                buffer.append((char) i);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //create maze
+        JSONObject obj = new JSONObject(buffer.toString());
+        JSONArray foodArray = obj.getJSONArray("food");
+
+        for (int j = 0; j < foodArray.length(); j++) {
+            JSONObject row = foodArray.getJSONObject(j);
+            int x = row.getInt("y");
+            int y = row.getInt("x");
+            foodTiles[x][y] = new Food(x*cellSize, y*cellSize, cellSize,foodImage);
+        }
+        return foodTiles;
     }
 }

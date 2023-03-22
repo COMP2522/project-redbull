@@ -1,8 +1,8 @@
 package org.example;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
 import static java.lang.Math.round;
 
 //Sprite manager method to manage all on screen sprites
@@ -31,8 +31,11 @@ public class SpriteManager {
     private int rows;
     private int cols;
     private Tile[][] tiles;
+    private Food[][] food;
     private final Window window;
+    private int spawnPoint[] = {10,10};
     private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
+    private String foodImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "apple.png";
     private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeDown.png";
     private String bodyImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "bodyNS.png";
     private String tailImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "tailUp.png";
@@ -43,11 +46,14 @@ public class SpriteManager {
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
 //        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
-        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 2);
+        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 0);
+        this.spawnPoint = MazeMaker.loadSpawn(0);
+        this.food = MazeMaker.loadFood(foodImage, rows, cols, cellsize, 0);
         sprites = new ArrayList<>();
 
 
-        player = Snake.getInstance(3*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
+        player = Snake.getInstance(spawnPoint[0]*tileWidth, (int) (spawnPoint[1]*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
+        //TODO make this an array or linked list
         body1 =  new SnakeBody(3*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
         body2 =  new SnakeBody(3*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
         body3 =  new SnakeBody(3*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
@@ -58,6 +64,7 @@ public class SpriteManager {
 
         sprites.add(player);
 
+        //TODO this can be looped once a data structure is used
         sprites.add(body1);
         sprites.add(body2);
         sprites.add(body3);
@@ -78,6 +85,11 @@ public class SpriteManager {
         for (Tile[] tile : tiles) {
             for (Tile tile1 : tile) {
                 sprites.add(tile1);
+            }
+        }
+        for (Food[] food1 : food) {
+            for (Food food2 : food1) {
+                sprites.add(food2);
             }
         }
     }
@@ -166,6 +178,7 @@ public class SpriteManager {
     public void reset() {
         //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
         player.reset(body1, body2, tail);
+        //TODO this can be looped once a data structure is used
         sprites.remove(body3);
         sprites.remove(body4);
         sprites.remove(body5);

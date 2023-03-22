@@ -33,7 +33,7 @@ public class Window extends PApplet {
     public Window(){
         //THESE ARE THE GRID VARIABLES
         this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.width = min((int) screenSize.getWidth(), (int) screenSize.getHeight());
+        this.width = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
         this.height = width;
         this.offset = (int) ((screenSize.getWidth()-width)/(2));
         this.rows = 37;
