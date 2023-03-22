@@ -87,10 +87,15 @@ public class SpriteManager {
                 sprites.add(tile1);
             }
         }
-        for (Food[] food1 : food) {
-            for (Food food2 : food1) {
-                sprites.add(food2);
+        try {
+            for (Food[] food1 : food) {
+                for (Food food2 : food1) {
+                    sprites.add(food2);
+                }
             }
+        }
+        catch (Exception e){
+            System.out.println("No food");
         }
     }
     public ArrayList<Sprite> animate() {

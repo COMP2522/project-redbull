@@ -37,7 +37,7 @@ public class MazeMaker {
             JSONObject row = maze.getJSONObject(j);
             int x = row.getInt("y");
             int y = row.getInt("x");
-            tiles[x][y] = new Tile(x*cellSize, y*cellSize, cellSize,wallImage, false);
+            tiles[x][y] = new Tile(x*cellSize, y*cellSize, cellSize,wallImage, true);
         }
         return tiles;
     }
