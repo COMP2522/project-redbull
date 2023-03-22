@@ -47,7 +47,7 @@ public class Window extends PApplet {
         // ////////////////////////////////////////////////////
 //        sprites = spriteManager.update(lastKeyPressed);
 //        sprites = spriteManager.animate(60);
-        ui = new UIComponent(this, 100, 100, 100, 100);
+        ui = new levelSelector(this, 100, 100, 100, 100);
 
 
     }
@@ -166,6 +166,10 @@ public class Window extends PApplet {
 
         this.lastKeyPressed = event.getKeyCode();
 
+    }
+
+    public void mousePressed() {
+        ui.mouseClicked(this.mouseX, this.mouseY);
     }
 
     public static void main(String[] args) {

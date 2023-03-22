@@ -4,11 +4,11 @@ import processing.core.PApplet;
 
 public abstract class UIComponent {
 
-  private PApplet parent;
-  private float x;
-  private float y;
-  private float width;
-  private float height;
+  protected PApplet parent;
+  protected float x;
+  protected float y;
+  protected float width;
+  protected float height;
 
   public UIComponent(PApplet parent, float x, float y, float width, float height) {
     this.parent = parent;
@@ -26,7 +26,11 @@ public abstract class UIComponent {
 
   public void mouseClicked(float mx, float my) {
     if (contains(mx, my)) {
-      // Do something when the component is clicked
+      System.out.println("Clicked on UIComponent");
     }
+  }
+
+  protected PApplet getParent() {
+    return parent;
   }
 }
