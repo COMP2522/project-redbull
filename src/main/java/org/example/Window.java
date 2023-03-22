@@ -6,6 +6,7 @@ import processing.event.KeyEvent;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Window extends PApplet {
 
@@ -155,8 +156,9 @@ public class Window extends PApplet {
         } else {
             background(0);
             ui.draw();
-            if (ui.getSelectedLevel() != -1) {
+            if (!Objects.equals(ui.getSelectedLevel(), "none")) {
                 spriteManager.setLevel(ui.getSelectedLevel());
+                spriteManager.makeTiles();
                 gameActive = true;
                 reset();
             }

@@ -9,13 +9,13 @@ import java.io.FileReader;
 
 public class MazeMaker {
 
-    public static Tile[][] loadMaze(String wallImage, int rows, int cols, int cellSize, int level) {
+    public static Tile[][] loadMaze(String wallImage, int rows, int cols, int cellSize, String level) {
         Tile[][] tiles = new Tile[rows][cols];
 
         //read json file
         FileReader reader = null;
         try {
-            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "level" + level + ".json");
+            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

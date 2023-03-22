@@ -6,17 +6,18 @@ class LevelSelector extends UIComponent {
 
   private LevelButton[] levelButtons;
 
+  private String levelNames[] = {"cave1", "classic", "level0", "level2", "ultraHard", "PacMan", "random", "placeholder", "placeholder2"};
+
   public LevelSelector(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
     levelButtons = new LevelButton[9];
     float buttonWidth = width / 3;
     float buttonHeight = height / 3;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 9; i++) {
       float buttonX = x + buttonWidth * (i % 3);
       float buttonY = y + buttonHeight * PApplet.floor(i / 3);
-      levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, "Level " + (i + 1));
+      levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, levelNames[i]);
     }
-    levelButtons[8] = new LevelButton(parent, x + buttonWidth, y + buttonHeight * 2, buttonWidth, buttonHeight, "Random");
   }
 
   @Override
@@ -41,13 +42,13 @@ class LevelSelector extends UIComponent {
     }
   }
 
-  public int getSelectedLevel() {
+  public String getSelectedLevel() {
     for (int i = 0; i < 9; i++) {
       if (levelButtons[i].isSelected()) {
-        return i + 1;
+        return levelButtons[i].getLabel();
       }
     }
-    return -1;
+    return "none";
   }
 
 }

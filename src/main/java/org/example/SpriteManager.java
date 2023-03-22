@@ -27,7 +27,7 @@ public class SpriteManager {
     public int getCols() {
         return cols;
     }
-    private int level;
+    private String level;
     private int rows;
     private int cols;
     private Tile[][] tiles;
@@ -46,7 +46,7 @@ public class SpriteManager {
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
 //        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
-        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, this.level);
+//        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, this.level);
         sprites = new ArrayList<>();
 
 
@@ -78,12 +78,12 @@ public class SpriteManager {
         player.grow(body6);
         player.grow(tail);
 
-        //todo make this not O(n^2)
-        for (Tile[] tile : tiles) {
-            for (Tile tile1 : tile) {
-                sprites.add(tile1);
-            }
-        }
+//        //todo make this not O(n^2)
+//        for (Tile[] tile : tiles) {
+//            for (Tile tile1 : tile) {
+//                sprites.add(tile1);
+//            }
+//        }
         try {
             for (Food[] food1 : food) {
                 for (Food food2 : food1) {
@@ -95,6 +95,17 @@ public class SpriteManager {
             System.out.println("No food");
         }
     }
+
+    public void makeTiles() {
+        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, tileWidth, this.level);
+
+        for (Tile[] tile : tiles) {
+            for (Tile tile1 : tile) {
+                sprites.add(tile1);
+            }
+        }
+    }
+
     public ArrayList<Sprite> animate() {
 
         //calculate the next position of the player
@@ -195,7 +206,7 @@ public class SpriteManager {
         sprites.remove(body6);
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 }

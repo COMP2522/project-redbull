@@ -39,4 +39,7 @@ public class LevelButton extends UIComponent {
     this.selected = selected;
   }
 
+  public String getLabel() {
+    return label;
+  }
 }
