@@ -3,6 +3,7 @@ package org.example;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 import static java.lang.Math.round;
 
@@ -12,13 +13,13 @@ public class SpriteManager {
 
 
     private Snake player;
-    private SnakeBody body1;
-    private SnakeBody body2;
-    private SnakeBody body3;
-    private SnakeBody body4;
-    private SnakeBody body5;
-    private SnakeBody body6;
-    private SnakeBody tail;
+//    private SnakeBody body1;
+//    private SnakeBody body2;
+//    private SnakeBody body3;
+//    private SnakeBody body4;
+//    private SnakeBody body5;
+//    private SnakeBody body6;
+//    private SnakeBody tail;
     private Enemy enemy;
     private int tileWidth;
     public int getRows() {
@@ -46,55 +47,47 @@ public class SpriteManager {
         this.cols = cols;
         this.tileWidth = cellsize;
         Sprite.setWindow(window);
-//        this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
-//        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, this.level);
+//      this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, cellsize, 0);
+        //this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, cellsize, 0);
+        //this.spawnPoint = MazeMaker.loadSpawn(0);
+        //this.food = MazeMaker.loadFood(foodImage, rows, cols, cellsize, 0);
         sprites = new ArrayList<>();
 
 
-        player = Snake.getInstance(3*tileWidth, (int) (10*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
-        body1 =  new SnakeBody(3*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body2 =  new SnakeBody(3*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body3 =  new SnakeBody(3*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body4 =  new SnakeBody(3*tileWidth, (int) (6*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body5 =  new SnakeBody(3*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        body6 =  new SnakeBody(3*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-        tail =  new SnakeBody(3*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
+        player = Snake.getInstance(spawnPoint[0]*tileWidth, (int) (spawnPoint[1]*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
+//        //TODO make this an array or linked list
+//        body1 =  new SnakeBody(3*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+//        body2 =  new SnakeBody(3*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+//        body3 =  new SnakeBody(3*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+//        body4 =  new SnakeBody(3*tileWidth, (int) (6*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+//        body5 =  new SnakeBody(3*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+//        body6 =  new SnakeBody(3*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
+//        tail =  new SnakeBody(3*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
 
         sprites.add(player);
 
-        //TODO this can be looped once a data structure is used
-        sprites.add(body1);
-        sprites.add(body2);
-        sprites.add(body3);
-        sprites.add(body4);
-        sprites.add(body5);
-        sprites.add(body6);
-        sprites.add(tail);
+//        //TODO this can be looped once a data structure is used
+//        sprites.add(body1);
+//        sprites.add(body2);
+//        sprites.add(body3);
+//        sprites.add(body4);
+//        sprites.add(body5);
+//        sprites.add(body6);
+//        sprites.add(tail);
+//
+//        player.grow(body1);
+//        player.grow(body2);
+//        player.grow(body3);
+//        player.grow(body4);
+//        player.grow(body5);
+//        player.grow(body6);
+//        player.grow(tail);
 
-        player.grow(body1);
-        player.grow(body2);
-        player.grow(body3);
-        player.grow(body4);
-        player.grow(body5);
-        player.grow(body6);
-        player.grow(tail);
-
-//        //todo make this not O(n^2)
-//        for (Tile[] tile : tiles) {
-//            for (Tile tile1 : tile) {
-//                sprites.add(tile1);
-//            }
-//        }
-        try {
-            for (Food[] food1 : food) {
-                for (Food food2 : food1) {
-                    sprites.add(food2);
-                }
-            }
-        }
-        catch (Exception e){
-            System.out.println("No food");
-        }
+        window.fill(0, 0, 0);
+        window.rect(0, 0, window.getWidth()*3, window.getWidth()*3);
+    }
+    public Tile[][] getTiles() {
+        return tiles;
     }
 
     public void makeTiles() {
@@ -102,6 +95,26 @@ public class SpriteManager {
             this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, tileWidth);
         } else {
             this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, tileWidth, this.level);
+            this.spawnPoint = MazeMaker.loadSpawn(this.level);
+            this.food = MazeMaker.loadFood(foodImage, rows, cols, tileWidth, this.level);
+            for (Tile[] tile : tiles) {
+                for (Tile tile1 : tile) {
+                    sprites.add(tile1);
+                    if (tile1 != null) {
+                        tile1.draw();
+                    }
+                }
+            }
+            try {
+                for (Food[] food1 : food) {
+                    for (Food food2 : food1) {
+                        sprites.add(food2);
+                    }
+                }
+            }
+            catch (Exception e){
+                //System.out.println("No food");
+            }
         }
 
         for (Tile[] tile : tiles) {
@@ -114,11 +127,13 @@ public class SpriteManager {
     public ArrayList<Sprite> animate() {
 
         //calculate the next position of the player
-        float nextX = player.getxPos() + (player.getDirectionX()*(this.tileWidth) / Clock.getFramesPerClock());
-        float nextY = player.getyPos() + (player.getDirectionY()* (this.tileWidth) / Clock.getFramesPerClock());
-        float prevX = player.getxPos();
-        float prevY = player.getyPos();
-
+        float moveX = player.getDirectionX() * (this.tileWidth) / Clock.getFramesPerClock();
+        float moveY = player.getDirectionY() * (this.tileWidth) / Clock.getFramesPerClock();
+        float nextX = player.getxPos() + moveX;
+        float nextY = player.getyPos() + moveY;
+//        System.out.println("moveX: " + moveX + " moveY: " + moveY);
+//        float prevX = player.getxPos();
+//        float prevY = player.getyPos();
         player.setxPos(nextX);
         player.setyPos(nextY);
 //        player.slither(prevX, prevY);ne
@@ -141,6 +156,8 @@ public class SpriteManager {
 
         player.setxPos(trueX);
         player.setyPos(trueY);
+        player.moveBody(player.getxPos(), player.getyPos());
+
 
         //MOVE PLAYER BASED TO KEY PRESS
 
@@ -152,9 +169,9 @@ public class SpriteManager {
         if(lastKeyPressed == 87 || lastKeyPressed == 83 || lastKeyPressed == 65 || lastKeyPressed == 68){
             player.move(lastKeyPressed);
         }
-        if (lastKeyPressed !=0 ) {
-            player.moveBody(trueX, trueY);
-        }
+//        if (lastKeyPressed !=0 ) {
+//            player.moveBody(prevX, prevY);
+//        }
 
         this.collide();
         return sprites;
@@ -177,9 +194,23 @@ public class SpriteManager {
             if (tiles[x+player.getDirectionX()][y+player.getDirectionY()-1].isWall()){window.reset();}
             //if (tiles[y+player.getDirectionX()][x+player.getDirectionX()].isFood()){player.grow();}
         }
-        //check if the player is colliding with the body
-        for (int i = 1; i < player.getBody().size(); i++) {
-            if ((player.getBody().get(i).getxPos() == player.getxPos()) && (player.getBody().get(i).getyPos() == player.getyPos())) {
+        if (food[x+player.getDirectionX()][y+player.getDirectionY()-1] != null && !food[x+player.getDirectionX()][y+player.getDirectionY()-1].isEaten()) {
+            player.grow();
+            if (this.level.equals("classic")){
+                Random rand = new Random();
+                int newX = rand.nextInt(rows)+1;
+                int newY = rand.nextInt(cols)+1;
+//                food[x+player.getDirectionX()][y+player.getDirectionY()-1].setxPos(newX);
+//                food[x+player.getDirectionX()][y+player.getDirectionY()-1].setyPos(newY);
+                food[x+player.getDirectionX()][y+player.getDirectionY()-1].eat();
+                food[newX][newY] = new Food(newX*tileWidth, newY*tileWidth, tileWidth, foodImage);
+                sprites.add(food[newX][newY]);
+            }else {
+//                food[x + player.getDirectionX()][y + player.getDirectionY() - 1].eat();
+            }
+        }
+        for (int i = 0; i < player.getBody().size()-1; i++) {
+            if (player.getBody().get(i).getxPos() == player.getxPos() && player.getBody().get(i).getyPos() == player.getyPos()) {
                 window.reset();
             }
         }
@@ -203,12 +234,23 @@ public class SpriteManager {
 
     public void reset() {
         //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
-        player.reset(body1, body2, tail);
-        //TODO this can be looped once a data structure is used
-        sprites.remove(body3);
-        sprites.remove(body4);
-        sprites.remove(body5);
-        sprites.remove(body6);
+        player.reset(spawnPoint[0], spawnPoint[1]);
+        for (Food[] food1 : food) {
+            for (Food food2 : food1) {
+                try{
+                    food2.reset();
+                }
+                catch (Exception e){
+//                    System.out.println("No food");
+                }
+            }
+        }
+
+//        //TODO this can be looped once a data structure is used
+//        sprites.remove(body3);
+//        sprites.remove(body4);
+//        sprites.remove(body5);
+//        sprites.remove(body6);
     }
 
     public void setLevel(String level) {

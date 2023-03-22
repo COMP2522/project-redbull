@@ -4,6 +4,7 @@ import processing.core.PApplet;
 import processing.event.KeyEvent;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,6 +21,7 @@ public class Window extends PApplet {
     private int height;
     private int offset;
     int framesPerClock;
+    private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
 
     //THESE ARE THE GRID VARIABLES
     // these are place holders?
@@ -86,8 +88,6 @@ public class Window extends PApplet {
         this.clock = new Clock();
         this.sprites = new ArrayList<>();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
-
-
     }
     public void init(){
         frameRate(60);
@@ -99,7 +99,7 @@ public class Window extends PApplet {
             }
             sprites = spriteManager.animate();
             //color whole screen black
-            background(0);
+            //background(0);
             //this is the play space, color it white
             //fill(255,255,255);
             //rect(offset,cellSize,cols*cellSize,rows*cellSize);
@@ -167,13 +167,15 @@ public class Window extends PApplet {
     public void drawGrid() {
         for (int i = 0; i < rows-1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
             for (int j = 1; j < cols; j++) {
-                stroke(100,100,100);
-                fill(100,100,100);
-                if((i%2==0 || j%2==0) && !(i%2==0 && j%2==0)){
-                    //stroke(115,115,115);
-                    fill(115,115,115);
+                if(spriteManager.getTiles()[i][j-1] == null) {
+                    stroke(100, 100, 100);
+                    fill(100, 100, 100);
+                    if ((i % 2 == 0 || j % 2 == 0) && !(i % 2 == 0 && j % 2 == 0)) {
+                        //stroke(115,115,115);
+                        fill(115, 115, 115);
+                    }
+                    rect((i * cellSize + offset), j * cellSize , cellSize, cellSize);
                 }
-                rect((i * cellSize + offset), j * cellSize , cellSize, cellSize);
             }
         }
     }

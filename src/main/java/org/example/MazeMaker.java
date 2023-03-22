@@ -41,12 +41,12 @@ public class MazeMaker {
         }
         return tiles;
     }
-    public static int[] loadSpawn(int level) {
+    public static int[] loadSpawn(String level) {
         int[] spawn = new int[2];
         //read json file
         FileReader reader = null;
         try {
-            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "level" + level + ".json");
+            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -70,18 +70,18 @@ public class MazeMaker {
         } catch (Exception e) {
             spawn[0] = 10;
             spawn[1] = 10;
-            System.out.println("No spawn point found, using default");
+//            System.out.println("No spawn point found, using default");
         }
         return spawn;
     }
 
-    public static Food[][] loadFood(String foodImage, int rows, int cols, int cellSize, int level) {
+    public static Food[][] loadFood(String foodImage, int rows, int cols, int cellSize, String level) {
         Food[][] foodTiles = new Food[rows][cols];
 
         //read json file
         FileReader reader = null;
         try {
-            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + "level" + level + ".json");
+            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

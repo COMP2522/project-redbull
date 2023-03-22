@@ -2,10 +2,6 @@ package org.example;
 
 import processing.core.PImage;
 
-import java.awt.*;
-
-import static processing.awt.ShimAWT.loadImage;
-
 //Sprite class which instantiates basic attributes for on screen components
 public class Sprite {
   private float xPos;
@@ -19,7 +15,12 @@ public class Sprite {
     this.xPos = xPos;
     this.yPos = yPos;
     this.size = size;
-    this.picture = window.loadImage(picture);
+    try{
+      this.picture = window.loadImage(picture);
+    }
+    catch (Exception e){
+      //System.out.println("Image not found");
+    }
   }
 
   public static void setWindow(Window window) {
