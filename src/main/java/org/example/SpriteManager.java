@@ -27,7 +27,7 @@ public class SpriteManager {
     public int getCols() {
         return cols;
     }
-
+    private String level;
     private int rows;
     private int cols;
     private Tile[][] tiles;
@@ -193,5 +193,9 @@ public class SpriteManager {
         sprites.remove(body4);
         sprites.remove(body5);
         sprites.remove(body6);
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

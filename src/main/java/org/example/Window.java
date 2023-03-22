@@ -26,7 +26,7 @@ public class Window extends PApplet {
     int rows;
     int cols;
 
-    UIComponent ui;
+    LevelSelector ui;
 
     int lastKeyPressed;
     private int topOffSet;
@@ -155,6 +155,11 @@ public class Window extends PApplet {
         } else {
             background(0);
             ui.draw();
+            if (ui.getSelectedLevel() != -1) {
+                spriteManager.setLevel(ui.getLevel());
+                gameActive = true;
+                reset();
+            }
         }
     }
     public void drawGrid() {
