@@ -1,7 +1,7 @@
 package org.example;
 
 public class MazeMaker3 {
-  public static Tile[][] generateMaze(String wallImage, int rows, int cols, int cellSize, int level) {
+  public static Tile[][] generateMaze(String wallImage, int rows, int cols, int cellSize) {
     Tile[][] tiles = new Tile[rows][cols];
 
     // create outer walls

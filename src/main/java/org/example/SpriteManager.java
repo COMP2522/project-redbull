@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static java.lang.Math.round;
 
@@ -97,7 +98,11 @@ public class SpriteManager {
     }
 
     public void makeTiles() {
-        this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, tileWidth, this.level);
+        if (Objects.equals(this.level, "random")) {
+            this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, tileWidth);
+        } else {
+            this.tiles = MazeMaker.loadMaze(wallImage, rows, cols, tileWidth, this.level);
+        }
 
         for (Tile[] tile : tiles) {
             for (Tile tile1 : tile) {
