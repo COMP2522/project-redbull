@@ -24,11 +24,7 @@ public abstract class UIComponent {
     return mx >= x && mx <= x + width && my >= y && my <= y + height;
   }
 
-  public void mouseClicked(float mx, float my) {
-    if (contains(mx, my)) {
-      System.out.println("Clicked on UIComponent");
-    }
-  }
+  public abstract void mouseClicked(float mx, float my);
 
   protected PApplet getParent() {
     return parent;
