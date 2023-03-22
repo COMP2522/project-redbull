@@ -96,7 +96,13 @@ public class Window extends PApplet {
         if (gameActive) {
             if (clock.tick()) {
                 sprites = spriteManager.update(lastKeyPressed);
-                sprites.remove(null);
+                System.out.println("sprites size: " + sprites.size());
+                for(int i = sprites.size()-1; i >= 0; i--){
+                    if(sprites.get(i) == null){
+                        sprites.remove(i);
+                    }
+                }
+                System.out.println("sprites size no nulls: " + sprites.size());
             }
             sprites = spriteManager.animate();
             //color whole screen black
