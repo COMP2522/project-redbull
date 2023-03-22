@@ -30,9 +30,12 @@ public class Window extends PApplet {
 
     int lastKeyPressed;
     private int topOffSet;
+
+    boolean gameActive;
     //////////////////////////////////////////////////////
 
     public Window(){
+        gameActive = false;
         //THESE ARE THE GRID VARIABLES
         this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.width = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
@@ -47,7 +50,12 @@ public class Window extends PApplet {
         // ////////////////////////////////////////////////////
 //        sprites = spriteManager.update(lastKeyPressed);
 //        sprites = spriteManager.animate(60);
-        ui = new levelSelector(this, 100, 100, 100, 100);
+
+        // place the ui in the center of the screen
+        int centerX = (int) (screenSize.getWidth()/2) - 350;
+        int centerY = (int) (screenSize.getHeight()/2) - 350;
+
+        ui = new LevelSelector(this, centerX, centerY, 700, 700);
 
 
     }
@@ -84,66 +92,70 @@ public class Window extends PApplet {
         frameRate(60);
     }
     public void draw() {
-        if (clock.tick()){
-            sprites = spriteManager.update(lastKeyPressed);
-        }
-        sprites = spriteManager.animate();
-        //color whole screen black
-        background(0);
-        //this is the play space, color it white
-        //fill(255,255,255);
-        //rect(offset,cellSize,cols*cellSize,rows*cellSize);
-        drawGrid();
-        //draw all sprites
+        if (gameActive) {
+            if (clock.tick()) {
+                sprites = spriteManager.update(lastKeyPressed);
+            }
+            sprites = spriteManager.animate();
+            //color whole screen black
+            background(0);
+            //this is the play space, color it white
+            //fill(255,255,255);
+            //rect(offset,cellSize,cols*cellSize,rows*cellSize);
+            drawGrid();
+            //draw all sprites
 //        for (Sprite sprite : sprites) {
 //            //System.out.println(sprite.getxPos());
 //            if (sprite != null){
 //                sprite.draw();
 //            }
 //        }
-        //threaded sprite draw
-        pushStyle();
-        int numThreads = 4; // The number of threads to use
-        int chunkSize = (int) Math.ceil((double) sprites.size() / numThreads); // The size of each chunk
+            //threaded sprite draw
+            pushStyle();
+            int numThreads = 4; // The number of threads to use
+            int chunkSize = (int) Math.ceil((double) sprites.size() / numThreads); // The size of each chunk
 
-        List<Thread> threads = new ArrayList<>(); // A list to hold the threads
+            List<Thread> threads = new ArrayList<>(); // A list to hold the threads
 
-        for (int i = 0; i < numThreads; i++) {
-            final int start = i * chunkSize;
-            final int end = Math.min(start + chunkSize, sprites.size());
+            for (int i = 0; i < numThreads; i++) {
+                final int start = i * chunkSize;
+                final int end = Math.min(start + chunkSize, sprites.size());
 
-            // Create a new thread to process the current chunk
-            Thread thread = new Thread(() -> {
-                for (int j = start; j < end; j++) {
-                    Sprite sprite = sprites.get(j);
-                    if (sprite != null) {
-                        sprite.draw();
+                // Create a new thread to process the current chunk
+                Thread thread = new Thread(() -> {
+                    for (int j = start; j < end; j++) {
+                        Sprite sprite = sprites.get(j);
+                        if (sprite != null) {
+                            sprite.draw();
+                        }
                     }
-                }
-            });
+                });
 
-            threads.add(thread);
-            thread.start();
-        }
-
-        // Wait for all threads to complete
-        for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                threads.add(thread);
+                thread.start();
             }
-        }
-        popStyle();
 
-        ui.draw();
-        // draw the UIComponent
+            // Wait for all threads to complete
+            for (Thread thread : threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            popStyle();
 
+
+            // draw the UIComponent
 
 
 //        textAlign(RIGHT, TOP);
 //        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
 //        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
+        } else {
+            background(0);
+            ui.draw();
+        }
     }
     public void drawGrid() {
         for (int i = 0; i < rows-1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
