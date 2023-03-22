@@ -26,7 +26,7 @@ public class Window extends PApplet {
     int rows;
     int cols;
 
-
+    UIComponent ui;
 
     int lastKeyPressed;
     private int topOffSet;
@@ -47,6 +47,7 @@ public class Window extends PApplet {
         // ////////////////////////////////////////////////////
 //        sprites = spriteManager.update(lastKeyPressed);
 //        sprites = spriteManager.animate(60);
+        ui = new UIComponent(this, 100, 100, 100, 100);
 
 
     }
@@ -134,6 +135,10 @@ public class Window extends PApplet {
             }
         }
         popStyle();
+
+        ui.draw();
+        // draw the UIComponent
+
 
 
 //        textAlign(RIGHT, TOP);
