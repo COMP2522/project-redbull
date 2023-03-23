@@ -2,8 +2,8 @@
 ##Set C
 
 # Project Members:
-- **Cam: Master Maze Maker**
-- **Kavin: Unsung Hero**
+- **Cam: Front End**
+- **Kavin: BackEnd, High-Level Design, Designer(Sprites & Levels)**
 - **Kale: The Game Creation God**
 - **Adam: The Test Giver**
 - **Harrison: Junior Code Monkey**
