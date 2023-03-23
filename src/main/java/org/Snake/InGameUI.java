@@ -24,9 +24,8 @@ public class InGameUI extends UIComponent {
       parent.pushStyle();
       parent.fill(0);
       parent.noStroke();
-      parent.rect(elem.getX() - elem.getX() / 2f, elem.getY() - elem.getY() / 2f, elem.width, elem.height);
+      parent.rect(elem.getX() - (elem.getX() / 2f + 10), elem.getY() - (elem.getY() / 2f + 10), elem.width + 20, elem.height + 10);
       parent.popStyle();
-
       elem.draw();
     }
   }
