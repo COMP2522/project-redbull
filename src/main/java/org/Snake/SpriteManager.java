@@ -1,4 +1,4 @@
-package org.example;
+package org.Snake;
 
 import java.io.File;
 import java.util.ArrayList;
