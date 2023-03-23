@@ -7,6 +7,8 @@ public abstract class UIComponent {
   protected PApplet parent;
   protected float x;
   protected float y;
+
+
   protected float width;
   protected float height;
 
@@ -28,5 +30,14 @@ public abstract class UIComponent {
 
   protected PApplet getParent() {
     return parent;
+  }
+
+
+
+  public int getX(){
+    return (int)x;
+  }
+  public int getY(){
+    return (int)y;
   }
 }

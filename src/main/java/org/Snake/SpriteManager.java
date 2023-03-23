@@ -197,8 +197,10 @@ public class SpriteManager {
             if (tiles[x+player.getDirectionX()][y+player.getDirectionY()-1].isWall()){window.reset();}
             //if (tiles[y+player.getDirectionX()][x+player.getDirectionX()].isFood()){player.grow();}
         }
+        // collision with food
         if (food[x+player.getDirectionX()][y+player.getDirectionY()-1] != null && !food[x+player.getDirectionX()][y+player.getDirectionY()-1].isEaten()) {
             player.grow();
+            window.incrementScore();
             if (this.level.equals("classic")){
                 Random rand = new Random();
                 int newX = rand.nextInt(rows-3)+1;

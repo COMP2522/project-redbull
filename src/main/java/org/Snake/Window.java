@@ -11,6 +11,7 @@ import java.util.Objects;
 
 public class Window extends PApplet {
 
+
     Snake snake;
     Clock clock;
     Dimension screenSize;
@@ -31,10 +32,14 @@ public class Window extends PApplet {
 
     LevelSelector ui;
 
+    InGameUI inGameUI;
+
     int lastKeyPressed;
     private int topOffSet;
 
     boolean gameActive;
+
+
     //////////////////////////////////////////////////////
 
     public Window(){
@@ -59,7 +64,7 @@ public class Window extends PApplet {
         int centerY = (int) (screenSize.getHeight()/2) - 350;
 
         ui = new LevelSelector(this, centerX, centerY, 700, 700);
-
+        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight());
 
     }
 
@@ -152,11 +157,13 @@ public class Window extends PApplet {
                     e.printStackTrace();
                 }
             }
+
             popStyle();
 
 
             // draw the UIComponent
 
+            inGameUI.draw();
 
 //        textAlign(RIGHT, TOP);
 //        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
@@ -211,9 +218,17 @@ public class Window extends PApplet {
         lastKeyPressed = 0;
         spriteManager.reset();
         clock.reset();
+        inGameUI.resetScore();
     }
 
     public float getTopOffset() {
         return topOffSet;
+    }
+
+    public void incrementScore() {
+        inGameUI.incrementScore();
+    }
+    public void resetScore() {
+        inGameUI.resetScore();
     }
 }
