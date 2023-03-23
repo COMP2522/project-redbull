@@ -22,7 +22,7 @@ public class Tile extends Sprite{
 //                super.getSize(),
 //                super.getSize());
         try {
-            super.getWindow().image(super.getPicture(),
+            super.getWindow().image(super.wall,
                     super.getxPos()+super.getWindow().getOffset(),
                     super.getyPos()+super.getWindow().getTopOffset(),
                     super.getSize(),

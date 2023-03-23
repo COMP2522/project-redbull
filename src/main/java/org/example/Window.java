@@ -88,6 +88,7 @@ public class Window extends PApplet {
         this.clock = new Clock();
         this.sprites = new ArrayList<>();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
+        Sprite.loadImages();
     }
     public void init(){
         frameRate(60);
@@ -96,13 +97,13 @@ public class Window extends PApplet {
         if (gameActive) {
             if (clock.tick()) {
                 sprites = spriteManager.update(lastKeyPressed);
-                System.out.println("sprites size: " + sprites.size());
+//                System.out.println("sprites size: " + sprites.size());
                 for(int i = sprites.size()-1; i >= 0; i--){
                     if(sprites.get(i) == null){
                         sprites.remove(i);
                     }
                 }
-                System.out.println("sprites size no nulls: " + sprites.size());
+//                System.out.println("sprites size no nulls: " + sprites.size());
             }
             sprites = spriteManager.animate();
             //color whole screen black
@@ -167,7 +168,7 @@ public class Window extends PApplet {
                 spriteManager.setLevel(ui.getSelectedLevel());
                 spriteManager.makeTiles();
                 gameActive = true;
-                reset();
+//                reset();
             }
         }
     }

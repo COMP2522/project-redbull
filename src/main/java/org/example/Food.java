@@ -14,7 +14,7 @@ public class Food extends Sprite {
     }
     public void draw() {
         if (!isEaten) {
-            super.getWindow().image(super.getPicture(),
+            super.getWindow().image(super.food,
                     super.getxPos() + super.getWindow().getOffset(),
                     super.getyPos() + super.getWindow().getTopOffset(),
                     super.getSize(),

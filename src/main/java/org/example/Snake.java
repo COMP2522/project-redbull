@@ -19,6 +19,7 @@ public class Snake extends Sprite {
 
   private final int  INITIALSIZE = 3;
 
+
   public ArrayList<SnakeBody> getBody() {
     return body;
   }
@@ -96,7 +97,7 @@ public class Snake extends Sprite {
         } else if (lastDY == -1) {
           body.get(body.size()-1).setCorner(-1);
         }
-        super.setPicture(getWindow().loadImage("src/main/images/snakeLeft.png"));
+        super.setPicture(super.headLeft);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
       case 39, 68:
@@ -113,7 +114,7 @@ public class Snake extends Sprite {
         } else if (lastDY == -1) {
           body.get(body.size()-1).setCorner(2);
         }
-        super.setPicture(getWindow().loadImage("src/main/images/snakeRight.png"));
+        super.setPicture(super.headRight);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
 
@@ -133,7 +134,7 @@ public class Snake extends Sprite {
         } else if (lastDX == -1) {
           body.get(body.size()-1).setCorner(2);
         }
-        super.setPicture(getWindow().loadImage("src/main/images/snakeUp.png"));
+        super.setPicture(super.headUp);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
         break;
 
@@ -151,7 +152,7 @@ public class Snake extends Sprite {
         } else if (lastDX == -1) {
           body.get(body.size()-1).setCorner(-2);
         }
-        super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
+        super.setPicture(super.headDown);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
         break;
 
@@ -214,7 +215,7 @@ public class Snake extends Sprite {
 //    tail.setPicture(getWindow().loadImage("src/main/images/snakeTailUp.png"));
 //
 
-    super.setPicture(getWindow().loadImage("src/main/images/snakeDown.png"));
+    super.setPicture(super.headDown);
   }
 
 //  public void animateBody(float framesPerClock, int i) {
@@ -310,7 +311,7 @@ public class Snake extends Sprite {
       image = "src/main/images/tailDown.png";
     }
 
-    this.body.add(0,new SnakeBody(body.get(0).getxPos(), body.get(0).getyPos(), this.getSize(), image));
+    this.body.add(0,new SnakeBody(body.get(0).getxPos(), body.get(0).getyPos(), this.getSize(), null));
 //    this.body.get(0).draw(body.get(0).getxPos(), body.get(0).getyPos(), true);
   }
 

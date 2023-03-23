@@ -7,11 +7,11 @@ public class SnakeBody extends Sprite {
   private int rotation;
   private int corner;
   private int sizeX;
-    private int sizeY;
+  private int sizeY;
 
   //constructor
   public SnakeBody(float xPos, float yPos, int size, String picture) {
-    super((int)xPos, (int)yPos, size, picture);
+    super((int)xPos, (int)yPos, size, null);
     sizeX = size;
     sizeY = size;
   }
@@ -38,35 +38,35 @@ public class SnakeBody extends Sprite {
 //    System.out.println("isCorner: " + this.isCorner());
     if (isTail) {
       if (directionX >= 1) {
-        image = super.getWindow().loadImage("src/main/images/tailLeft.png");
+        image = super.tailLeft;
       } else if (directionX <= -1) {
-        image = super.getWindow().loadImage("src/main/images/tailRight.png");
+        image = super.tailRight;
       } else if (directionY >= 1) {
-        image = super.getWindow().loadImage("src/main/images/tailUp.png");
+        image = super.tailUp;
       } else if (directionY <= -1) {
-        image = super.getWindow().loadImage("src/main/images/tailDown.png");
+        image = super.tailDown;
       }
     } else if (isCorner() != 0) {
       switch (isCorner()) {
         case 1:
-          image = super.getWindow().loadImage("src/main/images/cornerSW.png");
+          image = super.cornerRightDown;
           break;
         case 2:
-          image = super.getWindow().loadImage("src/main/images/cornerNE.png");
+          image = super.cornerLeftUp;
           break;
         case -1:
-          image = super.getWindow().loadImage("src/main/images/cornerNW.png");
+          image = super.cornerRightUp;
           break;
         case -2:
-          image = super.getWindow().loadImage("src/main/images/cornerSE.png");
+          image = super.cornerLeftDown;
           break;
       }
     } else {
 //      System.out.println("directionX: " + directionX + " directionY: " + directionY);
       if (directionX >= 0.1 || directionX <= -0.1) {
-        image = super.getWindow().loadImage("src/main/images/bodyEW.png");
+        image = super.bodyLeftRight;
       }else if (directionY <= -0.1 || directionY >= 0.1) {
-        image = super.getWindow().loadImage("src/main/images/bodyNS.png");
+        image = super.bodyUpDown;
       }
     }
     try {

@@ -9,6 +9,23 @@ public class Sprite {
   private int size;
   private PImage picture;
   private static Window window;
+  public static PImage tailLeft;
+    public static PImage tailRight;
+    public static PImage tailUp;
+    public static PImage tailDown;
+    public static PImage bodyLeftRight;
+    public static PImage bodyUpDown;
+    public static PImage cornerLeftUp;
+    public static PImage cornerLeftDown;
+    public static PImage cornerRightUp;
+    public static PImage cornerRightDown;
+    public static PImage headLeft;
+    public static PImage headRight;
+    public static PImage headUp;
+    public static PImage headDown;
+    public static PImage food;
+    public static PImage wall;
+
 
   //Public sprite constructor taking in x, y , size, and picture
   public Sprite(int xPos, int yPos, int size, String picture) {
@@ -25,6 +42,24 @@ public class Sprite {
 
   public static void setWindow(Window window) {
     Sprite.window = window;
+  }
+  public static void loadImages(){
+    tailLeft = window.loadImage("src/main/images/tailLeft.png");
+    tailRight = window.loadImage("src/main/images/tailRight.png");
+    tailUp = window.loadImage("src/main/images/tailUp.png");
+    tailDown = window.loadImage("src/main/images/tailDown.png");
+    bodyLeftRight = window.loadImage("src/main/images/bodyEW.png");
+    bodyUpDown = window.loadImage("src/main/images/bodyNS.png");
+    cornerLeftUp = window.loadImage("src/main/images/cornerNE.png");
+    cornerLeftDown = window.loadImage("src/main/images/cornerSE.png");
+    cornerRightUp = window.loadImage("src/main/images/cornerNW.png");
+    cornerRightDown = window.loadImage("src/main/images/cornerSW.png");
+    headLeft = window.loadImage("src/main/images/snakeLeft.png");
+    headRight = window.loadImage("src/main/images/snakeRight.png");
+    headUp = window.loadImage("src/main/images/snakeUp.png");
+    headDown = window.loadImage("src/main/images/snakeDown.png");
+    food = window.loadImage("src/main/images/apple.png");
+    wall = window.loadImage("src/main/images/wall.png");
   }
 
   public static Window getWindow(){return Sprite.window;}
@@ -44,7 +79,6 @@ public class Sprite {
   public PImage getPicture() {
     return picture;
   }
-
 
   public void setxPos(float xPos) {
     this.xPos = xPos;
