@@ -1,4 +1,4 @@
-package org.example;
+package org.Snake;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
