@@ -1,4 +1,4 @@
-package org.example;
+package org.Snake;
 
 import java.time.Duration;
 import java.time.Instant;

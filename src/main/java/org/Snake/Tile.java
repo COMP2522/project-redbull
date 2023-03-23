@@ -1,4 +1,4 @@
-package org.example;
+package org.Snake;
 
 //Tile class which represents the movable tiles and is a Sprite
 public class Tile extends Sprite{

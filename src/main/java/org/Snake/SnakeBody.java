@@ -1,4 +1,4 @@
-package org.example;
+package org.Snake;
 
 import processing.core.PImage;
 
