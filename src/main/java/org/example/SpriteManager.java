@@ -89,7 +89,9 @@ public class SpriteManager {
     public Tile[][] getTiles() {
         return tiles;
     }
-
+    //TODO: Make an intance of the mazemaker and call generate maze on it instead of calling the static method
+    //mazemaker parent class, mazemaker interface that mazemaker classes implement
+    //mazemaker interface that mazemaker classes implement
     public void makeTiles() {
         if (Objects.equals(this.level, "random")) {
             this.tiles = MazeMaker3.generateMaze(wallImage, rows, cols, tileWidth);
