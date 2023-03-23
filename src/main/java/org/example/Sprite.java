@@ -3,7 +3,7 @@ package org.example;
 import processing.core.PImage;
 
 //Sprite class which instantiates basic attributes for on screen components
-public class Sprite {
+public class Sprite implements Drawable{
   private float xPos;
   private float yPos;
   private int size;
