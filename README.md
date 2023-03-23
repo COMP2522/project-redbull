@@ -1,3 +1,63 @@
+#Comp 2522: Project Redbull
+##Set C
+
+# Project Members:
+- [ ] [Cam](Master Maze Maker)
+- [ ] [Kavin](Unsung Hero)
+- [ ] [Kale](The Game God)
+- [ ] [Adam](The test giver)
+- [ ] [Harrison](Junior Code Monkey)
+
+# Project Description
+This project is a more advanced version of the classic "snake" game.
+The projects has a more complex UI, multiple level, enemies and has nicer animations.
+
+
+#Member Contributions
+
+##Cam
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+##Kavin
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+##Kale
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+##Adam
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+##Harrison
+<ul>
+  <li>March 23, 2022
+        <ul>
+      <li>Made the drawable interface</li>
+      <li>Updated the READme</li>
+      <li>Item 3</li>
+    </ul>
+
+</li>
+</ul>
+
+
+
+
 # Project
 
 ## Technical Project Requirements
