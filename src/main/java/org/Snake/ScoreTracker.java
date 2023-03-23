@@ -15,9 +15,11 @@ public class ScoreTracker extends UIComponent{
 
   @Override
   public void draw() {
-    parent.textSize(24);
+    parent.pushStyle();
+    parent.textSize(30);
+    parent.fill(255,255,255);
     parent.text("Score: " + score, getX(), getY());
-
+    parent.popStyle();
   }
 
   @Override
