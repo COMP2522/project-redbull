@@ -2,12 +2,12 @@ package org.Snake;
 
 import processing.core.PApplet;
 
-public class ScoreTracker extends UIComponent{
+public class DisplayScore extends UIComponent{
   private int score;
 
   private PApplet parent;
 
-  public ScoreTracker(PApplet parent, float x, float y, float width, float height) {
+  public DisplayScore(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
     this.parent = parent;
     this.score = 0;

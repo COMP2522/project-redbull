@@ -2,16 +2,15 @@ package org.Snake;
 
 import processing.core.PApplet;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class InGameUI extends UIComponent {
 
   public ArrayList<UIComponent> components;
-  private ScoreTracker scoreTracker;
+  private DisplayScore scoreTracker;
   public InGameUI(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
-    scoreTracker = new ScoreTracker(getParent(), 100f,10f, 100f,100f);
+    scoreTracker = new DisplayScore(getParent(), 100f,10f, 100f,100f);
     components = new ArrayList<>();
     components.add(scoreTracker);
   }
