@@ -1,4 +1,4 @@
-package org.Snake;
+package org.example;
 
 import java.util.Random;
 

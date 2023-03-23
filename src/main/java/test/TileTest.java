@@ -1,6 +1,6 @@
 package test;
 
-import org.Snake.Tile;
+import org.example.Tile;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

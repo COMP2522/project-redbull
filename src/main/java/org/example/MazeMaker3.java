@@ -1,4 +1,4 @@
-package org.Snake;
+package org.example;
 
 public class MazeMaker3 {
   public static Tile[][] generateMaze(String wallImage, int rows, int cols, int cellSize) {

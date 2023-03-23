@@ -1,4 +1,4 @@
-package org.Snake;
+package org.example;
 
 public class Food extends Sprite {
     //Public tile constructor taking in x, y ,size, picture, and isWall

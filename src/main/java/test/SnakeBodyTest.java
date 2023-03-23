@@ -2,7 +2,7 @@ package test;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import org.Snake.SnakeBody;
+import org.example.SnakeBody;
 
 
 public class SnakeBodyTest {

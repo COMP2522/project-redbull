@@ -1,5 +1,5 @@
 package test;
-import org.Snake.Clock;
+import org.example.Clock;
 
 import static org.junit.jupiter.api.Assertions.*;
 

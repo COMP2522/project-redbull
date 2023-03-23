@@ -1,4 +1,4 @@
-package org.Snake;
+package org.example;
 
 /**
  * This is an interface that is applied to Sprites to ensure it draws objects.
