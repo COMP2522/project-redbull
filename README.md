@@ -17,16 +17,31 @@ The projects has a more complex UI, multiple level, enemies and has nicer animat
 
 ## Cam
 <ul>
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
+  <li>March 23, 2022
+        <ul>
+      <li>Made the frame method</li>
+      <li>Updated the READme</li>
+      <li>Pair Programmed Score</li>
+         <li> Created Highscore</li>
+          
+         
+    </ul>
+
+</li>
 </ul>
 
 ## Kavin
 <ul>
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
+  <li>March 23, 2022
+        <ul>
+      <li>Created Score</li>
+      <li>Updated the READme</li>
+      <li>Pair programmed Highscore</li>
+          <li> Refactored package</li>
+          
+    </ul>
+
+</li>
 </ul>
 
 ## Kale
