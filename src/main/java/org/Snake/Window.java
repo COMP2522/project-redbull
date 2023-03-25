@@ -111,20 +111,7 @@ public class Window extends PApplet {
 //                System.out.println("sprites size no nulls: " + sprites.size());
             }
             sprites = spriteManager.animate();
-            //color whole screen black
-            //background(0);
-            //this is the play space, color it white
-            //fill(255,255,255);
-            //rect(offset,cellSize,cols*cellSize,rows*cellSize);
             drawGrid();
-            //draw all sprites
-//        for (Sprite sprite : sprites) {
-//            //System.out.println(sprite.getxPos());
-//            if (sprite != null){
-//                sprite.draw();
-//            }
-//        }
-            //threaded sprite draw
             pushStyle();
             int numThreads = 4; // The number of threads to use
             int chunkSize = (int) Math.ceil((double) sprites.size() / numThreads); // The size of each chunk
