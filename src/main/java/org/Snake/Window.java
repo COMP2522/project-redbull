@@ -3,6 +3,7 @@ package org.Snake;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -170,7 +171,12 @@ public class Window extends PApplet {
 //        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
         } else {
             background(0);
+            getName();
             ui.draw();
+
+
+
+
             if (!Objects.equals(ui.getSelectedLevel(), "none")) {
                 spriteManager.setLevel(ui.getSelectedLevel());
                 spriteManager.makeTiles();
@@ -230,5 +236,10 @@ public class Window extends PApplet {
     }
     public void resetScore() {
         inGameUI.resetScore();
+    }
+
+    String getName() {
+        String name = JOptionPane.showInputDialog(null, "Please enter your name:");
+        return name;
     }
 }
