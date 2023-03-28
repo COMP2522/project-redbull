@@ -8,12 +8,15 @@ import java.util.ArrayList;
 public class InGameUI extends UIComponent {
 
   public ArrayList<UIComponent> components;
+  Frame testFrame;
   private ScoreTracker scoreTracker;
   public InGameUI(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
-    scoreTracker = new ScoreTracker(getParent(), 100f,10f, 100f,100f);
+    scoreTracker = new ScoreTracker(getParent(), 0f,0f, 100f,100f);
     components = new ArrayList<>();
-    components.add(scoreTracker);
+    testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
+    testFrame.add(scoreTracker);
+    components.add(testFrame);
   }
 
   @Override
