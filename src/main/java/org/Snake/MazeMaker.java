@@ -9,6 +9,9 @@ import java.io.FileReader;
 
 /**
  * MazeMaker class which loads the maze from a json file
+ *
+ * @author
+ * @version
  */
 public class MazeMaker {
 

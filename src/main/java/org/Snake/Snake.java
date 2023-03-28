@@ -15,8 +15,6 @@ public class Snake extends Sprite {
   private int directionX = 0;
   private int directionY = 0;
 
-  private int rotation;
-
   private final int  INITIALSIZE = 3;
 
 
@@ -38,6 +36,9 @@ public class Snake extends Sprite {
 
   /**
    * Getter for the body of the snake
+   *
+   * @author
+   * @version
    */
   public ArrayList<SnakeBody> getBody() {
     return body;
@@ -123,8 +124,6 @@ public class Snake extends Sprite {
    */
 
 
-
-
   public void move(int lastKeyPressed) {
     int lastDY = -directionY;
     int lastDX = directionX;
@@ -141,10 +140,10 @@ public class Snake extends Sprite {
         //up to left == 1
         //down to left == -1
         if (lastDY == 1) {
-          body.get(body.size()-1).setCorner(1);
+          body.get(body.size() - 1).setCorner(1);
 //          System.out.println("up to left");
         } else if (lastDY == -1) {
-          body.get(body.size()-1).setCorner(-1);
+          body.get(body.size() - 1).setCorner(-1);
         }
         super.setPicture(super.headLeft);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
@@ -158,10 +157,10 @@ public class Snake extends Sprite {
         setDirectionY(0);
         //up to right == -2
         //down to right == 2
-        if(lastDY == 1) {
-          body.get(body.size()-1).setCorner(-2);
+        if (lastDY == 1) {
+          body.get(body.size() - 1).setCorner(-2);
         } else if (lastDY == -1) {
-          body.get(body.size()-1).setCorner(2);
+          body.get(body.size() - 1).setCorner(2);
         }
         super.setPicture(super.headRight);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
@@ -179,9 +178,9 @@ public class Snake extends Sprite {
         //left to up == 2
         //right to up == -1
         if (lastDX == 1) {
-          body.get(body.size()-1).setCorner(-1);
+          body.get(body.size() - 1).setCorner(-1);
         } else if (lastDX == -1) {
-          body.get(body.size()-1).setCorner(2);
+          body.get(body.size() - 1).setCorner(2);
         }
         super.setPicture(super.headUp);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
@@ -197,9 +196,9 @@ public class Snake extends Sprite {
         //left to down == -2
         //right to down == 1
         if (lastDX == 1) {
-          body.get(body.size()-1).setCorner(1);
+          body.get(body.size() - 1).setCorner(1);
         } else if (lastDX == -1) {
-          body.get(body.size()-1).setCorner(-2);
+          body.get(body.size() - 1).setCorner(-2);
         }
         super.setPicture(super.headDown);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));

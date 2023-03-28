@@ -4,6 +4,9 @@ import processing.core.PImage;
 
 /**
  * SnakeBody class which represents a body part of the snake
+ *
+ * @author
+ * @version
  */
 public class SnakeBody extends Sprite {
 

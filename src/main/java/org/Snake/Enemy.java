@@ -5,6 +5,9 @@ import java.util.Random;
 /**
  * Enemy class which is meant to be the enemy of the snake
  * It is still in production, hence the lack of functionality
+ *
+ * @author
+ * @version
  */
 public class Enemy extends Sprite {
 
@@ -43,7 +46,7 @@ public class Enemy extends Sprite {
   }
 
   /**
-   * Getter for the speed of the enemy
+   * Move method with an arrayList of all keyPressed variables
    * @return int
    */
   public void move() {

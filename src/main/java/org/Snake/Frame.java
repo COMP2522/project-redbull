@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 /**
  * Frame class which is meant to be a container for UIComponents
+ *
+ * @author
+ * @version
  */
 public class Frame extends UIComponent {
 

@@ -10,6 +10,9 @@ import java.util.Random;
 
 /**
  * MazeMaker class which generates a maze for the level
+ *
+ * @author
+ * @version
  */
 public class MazeMaker4 {
   public static void divide(int x1, int y1, int x2, int y2, Tile[][] tiles, String wallImage, int cellSize) {
