@@ -2,7 +2,9 @@ package org.Snake;
 
 import processing.core.PImage;
 
-//Sprite class which instantiates basic attributes for on screen components
+/**
+ * Sprite class which instantiates basic attributes for on screen components
+ */
 public class Sprite implements Drawable{
   private float xPos;
   private float yPos;
@@ -27,7 +29,13 @@ public class Sprite implements Drawable{
     public static PImage wall;
 
 
-  //Public sprite constructor taking in x, y , size, and picture
+  /**
+   * Sprite constructor which sets the position and size of the Sprite
+   * @param xPos the x position of the Sprite
+   * @param yPos the y position of the Sprite
+   * @param size the size of the Sprite
+   * @param picture the picture of the Sprite
+   */
   public Sprite(int xPos, int yPos, int size, String picture) {
     this.xPos = xPos;
     this.yPos = yPos;
@@ -40,9 +48,17 @@ public class Sprite implements Drawable{
     }
   }
 
+  /**
+   * The setter of the window
+   * @param window
+   */
   public static void setWindow(Window window) {
     Sprite.window = window;
   }
+
+  /**
+   * The method that loads all the images
+   */
   public static void loadImages(){
     tailLeft = window.loadImage("src/main/images/tailLeft.png");
     tailRight = window.loadImage("src/main/images/tailRight.png");
@@ -62,6 +78,10 @@ public class Sprite implements Drawable{
     wall = window.loadImage("src/main/images/wall.png");
   }
 
+  /**
+   * The getter of the window
+   * @return
+   */
   public static Window getWindow(){return Sprite.window;}
 
   public float getxPos() {
