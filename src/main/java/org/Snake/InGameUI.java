@@ -59,16 +59,16 @@ public class InGameUI extends UIComponent {
   }
 
   /**
-   * Method to increade the score
+   * Method to increase the score
    */
   public void incrementScore() {
-    scoreTracker.incrementScore();
+    scoreTracker.score++;
   }
 
   /**
    * Method to reset the score
    */
   public void resetScore() {
-    scoreTracker.resetScore();
+    scoreTracker.score = 0;
   }
 }

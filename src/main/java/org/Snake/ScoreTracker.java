@@ -6,7 +6,7 @@ import processing.core.PApplet;
  * ScoreTracker class which is meant to be a UIComponent that tracks the score
  */
 public class ScoreTracker extends UIComponent{
-  private int score;
+  public int score;
 
   private PApplet parent;
 
@@ -43,17 +43,8 @@ public class ScoreTracker extends UIComponent{
   public void mouseClicked(float mx, float my) {
   }
 
-  /**
-   * Method to increment the score
-   */
-  public void incrementScore() {
-    score++;
-  }
 
-  /**
-   * Method to reset the score
-   */
-  public void resetScore() {
-    this.score = 0;
-  }
+
+
+
 }
