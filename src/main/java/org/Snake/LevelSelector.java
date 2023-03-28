@@ -6,7 +6,7 @@ class LevelSelector extends UIComponent {
 
   private LevelButton[] levelButtons;
 
-  private String levelNames[] = {"cave1", "classic", "Modern", "level2", "ultraHard", "PacMan", "random", "placeholder", "placeholder2"};
+  private String levelNames[] = {"cave1", "classic", "modern", "level2", "ultraHard", "PacMan", "random", "placeholder", "placeholder2"};
 
   public LevelSelector(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
