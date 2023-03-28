@@ -1,6 +1,18 @@
 package org.Snake;
 
+/**
+ * Class for loading and storing the maze tiles
+ */
 public class MazeMaker3 {
+
+  /**
+   * Method to generate a maze using the recursive division algorithm
+   * @param wallImage the image to use for the walls
+   * @param rows the number of rows in the maze
+   * @param cols the number of columns in the maze
+   * @param cellSize the size of each cell in the maze
+   * @return the maze
+   */
   public static Tile[][] generateMaze(String wallImage, int rows, int cols, int cellSize) {
     Tile[][] tiles = new Tile[rows][cols];
 
@@ -19,6 +31,16 @@ public class MazeMaker3 {
     return tiles;
   }
 
+  /**
+   * Recursive method to divide the maze into sub-rectangles
+   * @param x1 the x coordinate of the top left corner of the rectangle
+   * @param y1 the y coordinate of the top left corner of the rectangle
+   * @param x2 the x coordinate of the bottom right corner of the rectangle
+   * @param y2 the y coordinate of the bottom right corner of the rectangle
+   * @param tiles the maze
+   * @param wallImage the image to use for the walls
+   * @param cellSize the size of each cell in the maze
+   */
   public static void divide(int x1, int y1, int x2, int y2, Tile[][] tiles, String wallImage, int cellSize) {
     if (x2 <= x1 || y2 <= y1) {
       return;

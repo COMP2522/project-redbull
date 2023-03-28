@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * MazeMaker class which loads the maze from a json file, likely broken at the moment
+ */
 public class MazeMaker2 {
   public static Tile[][] loadMaze(String wallImage, int rows, int cols, int cellSize, int level) {
     Tile[][] tiles = new Tile[rows][cols];
@@ -48,6 +51,9 @@ public class MazeMaker2 {
     return tiles;
   }
 
+  /**
+   * Method to place the maze piece in the maze
+   */
   public static void placePiece(Tile[][] tiles, String wallImage, int cellSize, JSONObject piece, int startX, int startY
   , int rows, int cols) {
     JSONArray maze = piece.getJSONArray("maze");

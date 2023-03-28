@@ -20,6 +20,9 @@ public class Snake extends Sprite {
   private final int  INITIALSIZE = 3;
 
 
+  /**
+   * Getter for the body of the snake
+   */
   public ArrayList<SnakeBody> getBody() {
     return body;
   }
@@ -31,9 +34,16 @@ public class Snake extends Sprite {
   // 2 - left
   // 3 - up
 
+  //the instance of the snake
   private static Snake instance;
 
-  //Private static constructor to make class singleTon
+  /**
+   * Private constructor to make the class a singleton
+   * @param xPos the x position of the snake
+   * @param yPos the y position of the snake
+   * @param size the size of the snake
+   * @param picture the picture of the snake
+   */
   private Snake(int xPos, int yPos, int size, String picture) {
     super(xPos, yPos, size, picture);
     body = new ArrayList<>();
@@ -46,7 +56,14 @@ public class Snake extends Sprite {
     }
    }
 
-  // Get instance method to instantiate the Snake so only one instance occurs - Singleton
+  /**
+   * Method to get the instance of the snake
+   * @param xPos the x position of the snake
+   * @param yPos the y position of the snake
+   * @param size the size of the snake
+   * @param picture the picture of the snake
+   * @return the instance of the snake
+   */
   public static Snake getInstance(int xPos, int yPos, int size, String picture) {
     if (instance == null) {
       instance = new Snake(xPos, yPos, size, picture);
@@ -55,6 +72,10 @@ public class Snake extends Sprite {
     return instance;
   }
 
+  /**
+   * Method to get the instance of the snake
+   * @return the instance of the snake
+   */
   public static Snake getInstance() throws Kale_Doesnt_know_how_to_Code_Exception {
     if (instance == null) {
       throw new Kale_Doesnt_know_how_to_Code_Exception("Snake has not been instantiated yet");
@@ -63,6 +84,10 @@ public class Snake extends Sprite {
     return instance;
   }
 
+  /**
+   * Method to get the speed of the snake
+   * Current intention is to make use of this, but it is in production
+   */
   public int getSpeed() {
     return speed;
   }
@@ -76,6 +101,10 @@ public class Snake extends Sprite {
 
   }
 
+  /**
+   * Method to move the snake
+   * @param lastKeyPressed is the keyboard code of the last key pressed
+   */
   public void move(int lastKeyPressed) {
     int lastDY = -directionY;
     int lastDX = directionX;
@@ -159,33 +188,46 @@ public class Snake extends Sprite {
     }
   }
 
-  public void setRotation(int i) {
-    this.rotation = i;
-  }
-
-  public int getRotation() {
-    return this.rotation;
-  }
-
+  /**
+   * Method to set the X direction of the snake
+   * @param i
+   */
   public void setDirectionX(int i) {
     // set direction x to i
     directionX = i;
   }
 
+  /**
+   * Method to set the Y direction of the snake
+   * @param i
+   */
   public void setDirectionY(int i) {
     // set direction x to i
     directionY = i;
   }
 
 
+  /**
+   * Method to get the X direction of the snake
+   * @return the X direction of the snake
+   */
   public int getDirectionX() {
     return directionX;
   }
 
+  /**
+   * Method to get the Y direction of the snake
+   * @return the Y direction of the snake
+   */
   public int getDirectionY() {
     return directionY;
   }
 
+  /**
+   * Method to reset the snake should the game be restarted
+   * @param startX the X position of the snake
+   * @param startY the Y position of the snake
+   */
   public void reset(int startX, int startY) {
     setDirectionX(0);
     setDirectionY(0);
@@ -199,25 +241,13 @@ public class Snake extends Sprite {
         body.add(new SnakeBody(this.getxPos(), this.getyPos()-((INITIALSIZE-i)*this.getSize()), this.getSize(), null));
       }
     }
-//    body.add(body1);
-//    body1.setxPos(3 * this.getSize());
-//    body1.setyPos(4 * this.getSize());
-//    body1.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
-//
-//    body.add(body2);
-//    body2.setxPos(3 * this.getSize());
-//    body2.setyPos(3 * this.getSize());
-//    body2.setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
-//
-//    body.add(tail);
-//    tail.setxPos(3 * this.getSize());
-//    tail.setyPos(2 * this.getSize());
-//    tail.setPicture(getWindow().loadImage("src/main/images/snakeTailUp.png"));
-//
-
     super.setPicture(super.headDown);
   }
 
+  /**
+   * Method to animate the body of the snake, this is to make the snake look like it is moving
+   * Currently not in use
+   */
 //  public void animateBody(float framesPerClock, int i) {
 //    float dx = 0;
 //    float dy = 0;
@@ -252,6 +282,10 @@ public class Snake extends Sprite {
 //    body.get(i).draw(dx, dy, false,true);
 //
 //  }
+
+  /**
+   * Method to draw the snake
+   */
   public void draw() {
     for (int i = 0; i < body.size(); i++) {
       boolean isTail = false;
@@ -286,6 +320,10 @@ public class Snake extends Sprite {
             super.getSize(),
             super.getSize());
   }
+
+  /**
+   * Method to grow the snake
+   */
   public void grow() {
     int nextX = 0;
     int nextY = 0;
@@ -315,11 +353,10 @@ public class Snake extends Sprite {
 //    this.body.get(0).draw(body.get(0).getxPos(), body.get(0).getyPos(), true);
   }
 
-  public void slither(float nextX, float nextY){
-    Sprite firstTile = body.get(0);
-  }
 
-
+  /**
+   * Method to move the snake
+   */
   public void moveBody(float prevX, float prevY) {
     if (this.directionX == 0 && this.directionY == 0) {
       return;
@@ -342,35 +379,12 @@ public class Snake extends Sprite {
         }
       }
     }
-    // move the snake
-//    // get the first tile in the snake
-//
-//    float currX = prevX;
-//    float currY = prevY;
-//    PImage currPic = body.get(0).getPicture();
-//    // move the first tile
-//    for (SnakeBody bodyPart : body) {
-//      float tempX = bodyPart.getxPos();
-//      float tempY = bodyPart.getyPos();
-//      PImage tempPic = bodyPart.getPicture();
-//      bodyPart.setxPos(currX);
-//      bodyPart.setyPos(currY);
-//      if (bodyPart != body.get(body.size()-1))bodyPart.setPicture(currPic);
-//      currX = tempX;
-//      currY = tempY;
-//      currPic = tempPic;
-//    }
-//
-//    if (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos() < -10) {
-//      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailLeft.png"));
-//    }  else if (body.get(body.size()-1).getxPos() - body.get(body.size()-2).getxPos() > 10){
-//      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailRight.png"));
-//    } else if (body.get(body.size()-1).getyPos() - body.get(body.size()-2).getyPos() < -10){
-//      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailUp.png"));
-//    } else if (body.get(body.size()-1).getyPos() - body.get(body.size()-2).getyPos() > 10){
-//      body.get(body.size() - 1).setPicture(getWindow().loadImage("src/main/images/snakeTailDown.png"));
-//    }
   }
+
+  /**
+   * Method to return the body part of the snake
+   * @return the bodypart in question
+   */
   public SnakeBody getBody(int i) {
     return body.get(i);
   }

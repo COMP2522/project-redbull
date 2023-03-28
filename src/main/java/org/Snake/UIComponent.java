@@ -2,6 +2,9 @@ package org.Snake;
 
 import processing.core.PApplet;
 
+/**
+ * UIComponent class which is meant to be a superclass for all UIComponents
+ */
 public abstract class UIComponent {
 
   protected PApplet parent;

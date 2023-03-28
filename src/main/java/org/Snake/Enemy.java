@@ -2,6 +2,10 @@ package org.Snake;
 
 import java.util.Random;
 
+/**
+ * Enemy class which is meant to be the enemy of the snake
+ * It is still in production, hence the lack of functionality
+ */
 public class Enemy extends Sprite {
 
   private int speed;
@@ -11,11 +15,21 @@ public class Enemy extends Sprite {
 
   private int rotation;
 
+  /**
+   * Enemy constructor which sets the position and size of the enemy
+   * @param xPos
+   * @param yPos
+   * @param size
+   */
   public Enemy(int xPos, int yPos, int size, String picture) {
     super(xPos, yPos, size, picture);
     super.setPicture(getWindow().loadImage("src/main/images/enemy.png"));
   }
 
+  /**
+   * Getter for the speed of the enemy
+   * @return int
+   */
   public void move() {
 
     int choices[] = {37, 65, 39, 68,38, 87,40, 83};
@@ -70,15 +84,26 @@ public class Enemy extends Sprite {
     }
 
   }
+
+  /**
+   * Setter for the direction x of the enemy
+   */
   public void setDirectionX(int i) {
     // set direction x to i
     directionX = i;
   }
 
+  /**
+   * Setter for the direction y of the enemy
+   */
   public void setDirectionY(int i) {
     // set direction x to i
     directionY = i;
   }
+
+  /**
+   * Method which is meant to draw the enemy
+   */
   public void draw() {
 //    super.getWindow().stroke(0, 0, 0);
     //super.getWindow().pushStyle();

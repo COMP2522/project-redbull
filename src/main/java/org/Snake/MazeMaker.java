@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+/**
+ * MazeMaker class which loads the maze from a json file
+ */
 public class MazeMaker {
 
     public static Tile[][] loadMaze(String wallImage, int rows, int cols, int cellSize, String level) {
@@ -41,6 +44,12 @@ public class MazeMaker {
         }
         return tiles;
     }
+
+    /**
+     * Method to load the spawn point from a json file
+     * @param level the name of the level
+     * @return the spawn point
+     */
     public static int[] loadSpawn(String level) {
         int[] spawn = new int[2];
         //read json file
@@ -75,6 +84,15 @@ public class MazeMaker {
         return spawn;
     }
 
+    /**
+     * Method to load the food from a json file
+     * @param foodImage the image of the food
+     * @param rows the number of rows
+     * @param cols the number of columns
+     * @param cellSize the size of the cells
+     * @param level the name of the level
+     * @return the food tiles
+     */
     public static Food[][] loadFood(String foodImage, int rows, int cols, int cellSize, String level) {
         Food[][] foodTiles = new Food[rows][cols];
 

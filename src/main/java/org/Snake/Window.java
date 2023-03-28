@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Window class which is the main class for the Snake game
+ */
 public class Window extends PApplet {
 
 
@@ -43,6 +46,9 @@ public class Window extends PApplet {
 
     //////////////////////////////////////////////////////
 
+    /**
+     * TYhe constructor for the Window class
+     */
     public Window(){
         gameActive = false;
         //THESE ARE THE GRID VARIABLES
@@ -100,6 +106,10 @@ public class Window extends PApplet {
     public void init(){
         frameRate(60);
     }
+
+    /**
+     * The method that draws the grid
+     */
     public void draw() {
         if (gameActive) {
             if (clock.tick()) {
@@ -170,6 +180,10 @@ public class Window extends PApplet {
             }
         }
     }
+
+    /**
+     * The method that draws the grid
+     */
     public void drawGrid() {
         for (int i = 0; i < rows-1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
             for (int j = 1; j < cols; j++) {
@@ -185,6 +199,11 @@ public class Window extends PApplet {
             }
         }
     }
+
+    /**
+     * The method that handles key presses
+     * @param event the key event
+     */
     public void keyPressed(KeyEvent event) {
         // 0 - right
         // 1 - down
@@ -199,6 +218,10 @@ public class Window extends PApplet {
         levelSelector.mouseClicked(this.mouseX, this.mouseY);
     }
 
+    /**
+     * The main method that runs the program
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         String[] appletArgs = new String[]{"MazeSnake"};
         Window MazeSnake = new Window();

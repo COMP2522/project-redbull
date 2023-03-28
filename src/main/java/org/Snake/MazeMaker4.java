@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * MazeMaker class which generates a maze for the level
+ */
 public class MazeMaker4 {
   public static void divide(int x1, int y1, int x2, int y2, Tile[][] tiles, String wallImage, int cellSize) {
     if (x2 <= x1 || y2 <= y1) {
@@ -17,6 +20,9 @@ public class MazeMaker4 {
 
   static int zero = 0;
 
+  /**
+   * Method to create the maze and place the tiles
+   */
   public static Tile[][] createMaze(String wallImage, int rows, int cols, int cellSize, int level) {
     Tile[][] tiles = new Tile[rows][cols];
 
@@ -70,6 +76,7 @@ public class MazeMaker4 {
 
 
     }
+
 
     for (int row = 0; row < rows; row++) {
       tiles[row][0] = new Tile(row * cellSize, 0, cellSize, wallImage, true);
