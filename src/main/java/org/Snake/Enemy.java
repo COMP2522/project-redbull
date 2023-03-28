@@ -10,6 +10,22 @@ public class Enemy extends Sprite {
 
   private int speed;
 
+  //Key Pressed Keycodes for switch statements
+  final int left = 37;
+  final int keyBoardA =65;
+
+  final int right = 39;
+
+  final int keyBoardD = 68;
+
+  final int up = 38;
+  final int  keyBoardW = 87;
+
+
+  final int down = 40;
+
+  final int keyBoardS = 83;
+
   private int directionX = 0;
   private int directionY = 0;
 
@@ -32,13 +48,13 @@ public class Enemy extends Sprite {
    */
   public void move() {
 
-    int choices[] = {37, 65, 39, 68,38, 87,40, 83};
+    int choices[] = {left, keyBoardA, right, keyBoardD,up, keyBoardW,down, keyBoardS};
     Random random = new Random();
     int randomIndex = random.nextInt(choices.length);
     int direction = choices[randomIndex];
 
     switch (direction) {
-      case 37, 65:
+      case left, keyBoardA:
         //check that the snake is not going right
         if (this.directionX == 1) {
           break;
@@ -50,7 +66,7 @@ public class Enemy extends Sprite {
 
 
         break;
-      case 39, 68:
+      case right, keyBoardD:
         if (this.directionX == -1) {
           break;
         }
@@ -59,7 +75,7 @@ public class Enemy extends Sprite {
         setDirectionY(0);
         break;
 
-      case 38, 87:
+      case up, keyBoardW:
 
         if (this.directionY == 1) {
           break;
@@ -70,7 +86,7 @@ public class Enemy extends Sprite {
         setDirectionX(0);
         break;
 
-      case 40, 83:
+      case down, keyBoardS:
         if (this.directionY == -1) {
           break;
         }
