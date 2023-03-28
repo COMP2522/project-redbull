@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Snake extends Sprite {
 
+  public static Snake getInstance;
   private int speed;
 
   private int directionX = 0;
