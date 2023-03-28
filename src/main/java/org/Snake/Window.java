@@ -171,7 +171,6 @@ public class Window extends PApplet {
 //        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
         } else {
             background(0);
-            getName();
             ui.draw();
 
 
@@ -236,10 +235,5 @@ public class Window extends PApplet {
     }
     public void resetScore() {
         inGameUI.resetScore();
-    }
-
-    String getName() {
-        String name = JOptionPane.showInputDialog(null, "Please enter your name:");
-        return name;
     }
 }
