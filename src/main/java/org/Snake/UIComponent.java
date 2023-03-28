@@ -40,4 +40,12 @@ public abstract class UIComponent {
   public int getY(){
     return (int)y;
   }
+
+  protected void setY(float v) {
+    this.y = v;
+  }
+
+  protected void setX(float v) {
+    this.x = v;
+  }
 }

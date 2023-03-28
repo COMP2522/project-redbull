@@ -1,6 +1,7 @@
 package org.Snake;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.event.KeyEvent;
 
 import java.awt.*;
@@ -30,7 +31,7 @@ public class Window extends PApplet {
     int rows;
     int cols;
 
-    LevelSelector ui;
+    LevelSelector levelSelector;
 
     InGameUI inGameUI;
 
@@ -59,11 +60,11 @@ public class Window extends PApplet {
 //        sprites = spriteManager.update(lastKeyPressed);
 //        sprites = spriteManager.animate(60);
 
-        // place the ui in the center of the screen
+        // place the levelSelector in the center of the screen
         int centerX = (int) (screenSize.getWidth()/2) - 350;
         int centerY = (int) (screenSize.getHeight()/2) - 350;
 
-        ui = new LevelSelector(this, centerX, centerY, 700, 700);
+        levelSelector = new LevelSelector(this, centerX, centerY, 700, 700);
         inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight());
 
     }
@@ -94,6 +95,7 @@ public class Window extends PApplet {
         this.sprites = new ArrayList<>();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
         Sprite.loadImages();
+
     }
     public void init(){
         frameRate(60);
@@ -156,10 +158,12 @@ public class Window extends PApplet {
 //        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
 //        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
         } else {
-            background(0);
-            ui.draw();
-            if (!Objects.equals(ui.getSelectedLevel(), "none")) {
-                spriteManager.setLevel(ui.getSelectedLevel());
+            PImage background_image = loadImage("src/main/images/grassBackground.png");
+
+            image(background_image, 0, 0, (float)screenSize.getWidth(), (float)screenSize.getHeight());
+            levelSelector.draw();
+            if (!Objects.equals(levelSelector.getSelectedLevel(), "none")) {
+                spriteManager.setLevel(levelSelector.getSelectedLevel());
                 spriteManager.makeTiles();
                 gameActive = true;
 //                reset();
@@ -192,7 +196,7 @@ public class Window extends PApplet {
     }
 
     public void mousePressed() {
-        ui.mouseClicked(this.mouseX, this.mouseY);
+        levelSelector.mouseClicked(this.mouseX, this.mouseY);
     }
 
     public static void main(String[] args) {
