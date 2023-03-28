@@ -105,11 +105,29 @@ public class Snake extends Sprite {
    * Method to move the snake
    * @param lastKeyPressed is the keyboard code of the last key pressed
    */
+
+
+  //Key Pressed Keycodes for switch statements
+  final int left = 37;
+  final int keyBoardA =65;
+
+  final int right = 39;
+
+  final int keyBoardD = 68;
+
+  final int up = 38;
+  final int  keyBoardW = 87;
+
+
+  final int down = 40;
+
+  final int keyBoardS = 83;
+
   public void move(int lastKeyPressed) {
     int lastDY = -directionY;
     int lastDX = directionX;
     switch (lastKeyPressed) {
-      case 37, 65:
+      case left, keyBoardA:
         //check that the snake is not going right
         if (this.directionX == 1) {
           break;
@@ -129,7 +147,7 @@ public class Snake extends Sprite {
         super.setPicture(super.headLeft);
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
-      case 39, 68:
+      case right, keyBoardD:
         if (this.directionX == -1) {
           break;
         }
@@ -147,7 +165,7 @@ public class Snake extends Sprite {
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyLeftRight.png"));
         break;
 
-      case 38, 87:
+      case up, keyBoardW:
 
         if (this.directionY == 1) {
           break;
@@ -167,7 +185,7 @@ public class Snake extends Sprite {
 //        body.get(0).setPicture(getWindow().loadImage("src/main/images/snakeBodyUpDown.png"));
         break;
 
-      case 40, 83:
+      case down, keyBoardS:
         if (this.directionY == -1) {
           break;
         }
