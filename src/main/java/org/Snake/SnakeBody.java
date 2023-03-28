@@ -2,6 +2,9 @@ package org.Snake;
 
 import processing.core.PImage;
 
+/**
+ * SnakeBody class which represents a body part of the snake
+ */
 public class SnakeBody extends Sprite {
 
   private int rotation;
@@ -9,15 +12,31 @@ public class SnakeBody extends Sprite {
   private int sizeX;
   private int sizeY;
 
-  //constructor
+  /**
+   * SnakeBody constructor which sets the position and size of the SnakeBody
+   * @param xPos the x position of the SnakeBody
+   * @param yPos the y position of the SnakeBody
+   * @param size the size of the SnakeBody
+   * @param picture the picture of the SnakeBody
+   */
   public SnakeBody(float xPos, float yPos, int size, String picture) {
     super((int)xPos, (int)yPos, size, null);
     sizeX = size;
     sizeY = size;
   }
+
+  /**
+   * The method that determines if the SnakeBody is a corner
+   * @return
+   */
   public int isCorner() {
     return corner;
   }
+
+  /**
+   * The method that sets the corner of the SnakeBody
+   * @param corner
+   */
     public void setCorner(int corner) {
         this.corner = corner;
     }
@@ -85,35 +104,37 @@ public class SnakeBody extends Sprite {
 //    System.out.println("SnakeBody.draw() called. (xPos, yPos) = (" + super.getxPos() + ", " + super.getyPos() + ")");
   }
 
+  /**
+   * The method that sets the X size of the SnakeBody
+   * @param sizeX the x size of the SnakeBody
+   */
   public void setSizeX(int sizeX) {
     super.setSize(sizeX);
   }
+
+  /**
+   * The method that sets the Y size of the SnakeBody
+   * @param sizeY the y size of the SnakeBody
+   */
   public void setSizeY(int sizeY) {
     super.setSize(sizeY);
   }
+
+  /**
+   * The method that gets the X size of the SnakeBody
+   * @return
+   */
     public int getSizeX() {
         return sizeX;
     }
+
+    /**
+     * The method that gets the Y size of the SnakeBody
+     * @return
+     */
     public int getSizeY() {
         return sizeY;
     }
-
-  //method for rotating the snake body
-  public void rotate(int rotation) {
-    this.rotation = rotation;
-  }
-
-  //method for
-
-
-  public int getRotation() {
-    return rotation;
-  }
-
-  public void setRotation(int rotation) {
-    this.rotation = rotation;
-  }
-
 
   public PImage getPicture(){
     return super.getPicture();

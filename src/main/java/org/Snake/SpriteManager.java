@@ -7,19 +7,21 @@ import java.util.Random;
 
 import static java.lang.Math.round;
 
-//Sprite manager method to manage all on screen sprites
+/**
+ * SpriteManager class which manages all the sprites on the screen
+ */
 public class SpriteManager {
     private ArrayList<Sprite> sprites;
 
 
+    /**
+     * The player's snake
+     */
     private Snake player;
-//    private SnakeBody body1;
-//    private SnakeBody body2;
-//    private SnakeBody body3;
-//    private SnakeBody body4;
-//    private SnakeBody body5;
-//    private SnakeBody body6;
-//    private SnakeBody tail;
+
+    /**
+     * The enemies
+     */
     private Enemy enemy;
     private int tileWidth;
     public int getRows() {
@@ -56,36 +58,18 @@ public class SpriteManager {
 
         player = Snake.getInstance(spawnPoint[0]*tileWidth, (int) (spawnPoint[1]*tileWidth+ window.getTopOffset()), tileWidth, snakeImage);
 //        //TODO make this an array or linked list
-//        body1 =  new SnakeBody(3*tileWidth, (int) (9*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-//        body2 =  new SnakeBody(3*tileWidth, (int) (8*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-//        body3 =  new SnakeBody(3*tileWidth, (int) (7*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-//        body4 =  new SnakeBody(3*tileWidth, (int) (6*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-//        body5 =  new SnakeBody(3*tileWidth, (int) (5*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-//        body6 =  new SnakeBody(3*tileWidth, (int) (4*tileWidth+ window.getTopOffset()), tileWidth, bodyImage);
-//        tail =  new SnakeBody(3*tileWidth, (int) (3*tileWidth+ window.getTopOffset()), tileWidth, tailImage);
 
         sprites.add(player);
 
 //        //TODO this can be looped once a data structure is used
-//        sprites.add(body1);
-//        sprites.add(body2);
-//        sprites.add(body3);
-//        sprites.add(body4);
-//        sprites.add(body5);
-//        sprites.add(body6);
-//        sprites.add(tail);
-//
-//        player.grow(body1);
-//        player.grow(body2);
-//        player.grow(body3);
-//        player.grow(body4);
-//        player.grow(body5);
-//        player.grow(body6);
-//        player.grow(tail);
+
 
         window.fill(0, 0, 0);
         window.rect(0, 0, window.getWidth()*3, window.getWidth()*3);
     }
+    /**
+     * Method to update all the sprites
+     */
     public Tile[][] getTiles() {
         return tiles;
     }
@@ -126,6 +110,9 @@ public class SpriteManager {
         }
     }
 
+    /**
+     * Method to animate the player
+     */
     public ArrayList<Sprite> animate() {
 
         //calculate the next position of the player
@@ -143,6 +130,10 @@ public class SpriteManager {
 
         return sprites;
     }
+
+    /**
+     * Method to update all the sprites
+     */
     public ArrayList<Sprite> update(int lastKeyPressed){
 
         //if the player direction is 0, then the snake is pointing down, and should not be able to move up
@@ -180,6 +171,9 @@ public class SpriteManager {
         return sprites;
     }
 
+    /**
+     * Method to check if the player is colliding with a wall or a tile
+     */
     private void collide() {
         //check if the player is colliding with a wall
         int x = (int) (player.getxPos() / this.tileWidth);
@@ -261,6 +255,9 @@ public class SpriteManager {
 
     }
 
+    /**
+     * Method to reset the game when the player dies
+     */
     public void reset() {
         //System.out.println("x: " + player.getxPos() + " y: " + player.getyPos());
         sprites.clear();
@@ -277,14 +274,11 @@ public class SpriteManager {
                 }
             }
         }
-
-//        //TODO this can be looped once a data structure is used
-//        sprites.remove(body3);
-//        sprites.remove(body4);
-//        sprites.remove(body5);
-//        sprites.remove(body6);
     }
 
+    /**
+     * Method to set the level of the game
+     */
     public void setLevel(String level) {
         this.level = level;
     }
