@@ -1,6 +1,7 @@
 package org.Snake;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.event.KeyEvent;
 
 import java.awt.*;
@@ -94,6 +95,7 @@ public class Window extends PApplet {
         this.sprites = new ArrayList<>();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
         Sprite.loadImages();
+
     }
     public void init(){
         frameRate(60);
@@ -156,7 +158,9 @@ public class Window extends PApplet {
 //        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
 //        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
         } else {
-            background(0);
+            PImage background_image = loadImage("src/main/images/grassBackground.png");
+
+            image(background_image, 0, 0, (float)screenSize.getWidth(), (float)screenSize.getHeight());
             ui.draw();
             if (!Objects.equals(ui.getSelectedLevel(), "none")) {
                 spriteManager.setLevel(ui.getSelectedLevel());
