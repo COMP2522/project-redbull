@@ -1,6 +1,7 @@
 package org.Snake;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * UIComponent class which is meant to be the base class for buttons
@@ -40,8 +41,8 @@ public class LevelButton extends UIComponent {
     } else {
       getParent().fill(selected ? 200 : 255);
     }
-    getParent().stroke(0);
-    getParent().rect(x, y, width, height, 5);
+    getParent().stroke(100);
+    getParent().rect(x, y, width, height, 3);
     getParent().fill(0);
     getParent().textAlign(PApplet.CENTER, PApplet.CENTER);
     getParent().text(label, x + width / 2, y + height / 2);

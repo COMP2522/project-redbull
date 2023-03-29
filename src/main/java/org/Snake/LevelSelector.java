@@ -2,6 +2,9 @@ package org.Snake;
 
 import processing.core.PApplet;
 
+
+
+
 /**
  * LevelSelector class which is the main level selector
  *
@@ -10,10 +13,14 @@ import processing.core.PApplet;
  */
 class LevelSelector extends UIComponent {
 
+
+
+
+
   private LevelButton[] levelButtons;
 
   //the names of the levels
-  private String levelNames[] = {"cave1", "classic", "modern", "level2", "ultraHard", "PacMan", "random", "placeholder", "placeholder2"};
+  private String levelNames[] = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "placeholder", "placeholder2"};
 
   private int numOfLevels = 9;
   /**
@@ -26,13 +33,18 @@ class LevelSelector extends UIComponent {
    */
   public LevelSelector(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
+
     levelButtons = new LevelButton[numOfLevels];
     float buttonWidth = width / 3;
     float buttonHeight = height / 3;
     for (int i = 0; i < numOfLevels; i++) {
       float buttonX = x + buttonWidth * (i % 3);
       float buttonY = y + buttonHeight * PApplet.floor(i / 3);
+
+
       levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, levelNames[i]);
+
+
     }
   }
 
