@@ -5,6 +5,8 @@ import java.time.Instant;
 
 /**
  * Clock class which is meant to track passing time
+ * @author
+ * @version
  */
 public class Clock {
 
@@ -15,9 +17,9 @@ public class Clock {
 
   Instant prev;
 
-    Instant current;
+  Instant current;
 
-    double tickTime;
+  double tickTime;
   private static float frameRate;
 
 
@@ -25,14 +27,14 @@ public class Clock {
   /**
    * Clock constructor which sets the time to the current time
    */
-    public Clock() {
-      prev = Instant.now();
-      tickTime = 100;
-    }
+  public Clock() {
+    prev = Instant.now();
+    tickTime = 100;
+  }
 
-    /**
-     * Getter for the frames per second
-     */
+  /**
+   * Getter for the frames per second
+   */
   public static float getFramesPerSecond() {
     return frameRate;
   }
@@ -63,14 +65,14 @@ public class Clock {
    * Resets the frames
    */
   private void resetFrames() {
-      frames = 0;
+    frames = 0;
   }
 
   /**
    * Resets the clock
    */
   public void reset() {
-      prev = Instant.now();
-      this.resetFrames();
+    prev = Instant.now();
+    this.resetFrames();
   }
 }

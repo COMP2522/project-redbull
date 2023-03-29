@@ -4,6 +4,9 @@ import processing.core.PApplet;
 
 /**
  * LevelSelector class which is the main level selector
+ *
+ * @author
+ * @version
  */
 class LevelSelector extends UIComponent {
 

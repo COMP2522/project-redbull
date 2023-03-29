@@ -9,6 +9,9 @@ import static java.lang.Math.round;
 
 /**
  * SpriteManager class which manages all the sprites on the screen
+ *
+ * @author
+ * @version
  */
 public class SpriteManager {
     private ArrayList<Sprite> sprites;

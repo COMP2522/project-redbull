@@ -4,6 +4,9 @@ import processing.core.PApplet;
 
 /**
  * ScoreTracker class which is meant to be a UIComponent that tracks the score
+ *
+ * @author
+ * @version
  */
 public class ScoreTracker extends UIComponent{
   public int score;

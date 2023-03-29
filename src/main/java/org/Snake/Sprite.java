@@ -4,6 +4,9 @@ import processing.core.PImage;
 
 /**
  * Sprite class which instantiates basic attributes for on screen components
+ *
+ * @author
+ * @version
  */
 public class Sprite implements Drawable{
   private float xPos;

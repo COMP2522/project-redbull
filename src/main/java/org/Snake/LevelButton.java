@@ -4,6 +4,9 @@ import processing.core.PApplet;
 
 /**
  * UIComponent class which is meant to be the base class for buttons
+ *
+ * @author
+ * @version
  */
 public class LevelButton extends UIComponent {
 

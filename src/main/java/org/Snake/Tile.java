@@ -2,6 +2,9 @@ package org.Snake;
 
 /**
  * Tile class which represents the movable tiles and is a Sprite
+ *
+ * @author
+ * @version
  */
 public class Tile extends Sprite{
     private boolean wall;

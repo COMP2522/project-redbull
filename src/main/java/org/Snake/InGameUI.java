@@ -52,6 +52,9 @@ public class InGameUI extends UIComponent {
 
   /**
    * Method for event handling
+   *
+   * @author
+   * @version
    */
   @Override
   public void mouseClicked(float mx, float my) {
