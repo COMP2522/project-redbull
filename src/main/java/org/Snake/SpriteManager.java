@@ -1,6 +1,5 @@
 package org.Snake;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -71,7 +70,7 @@ public class SpriteManager {
 
 
         window.fill(0, 0, 0);
-        window.rect(0, 0, window.getWidth()*3, window.getWidth()*3);
+        window.rect(0, 0, window.getWIDTH()*3, window.getWIDTH()*3);
     }
     /**
      * Method to update all the sprites

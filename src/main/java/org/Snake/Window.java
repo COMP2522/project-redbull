@@ -25,9 +25,9 @@ public class Window extends PApplet {
     ArrayList<Sprite> sprites;
     SpriteManager spriteManager;
 
-    private int width;
-    private int height;
-    private int offset;
+    private final int WIDTH;
+    private final int HEIGHT;
+    private final int OFFSET;
     int framesPerClock;
     private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
 
@@ -56,12 +56,12 @@ public class Window extends PApplet {
         gameActive = false;
         //THESE ARE THE GRID VARIABLES
         this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.width = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
-        this.height = width;
-        this.offset = (int) ((screenSize.getWidth()-width)/(2));
+        this.WIDTH = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
+        this.HEIGHT = WIDTH;
+        this.OFFSET = (int) ((screenSize.getWidth()- WIDTH)/(2));
         this.rows = 37;
         this.cols = 37;
-        this.cellSize = width/cols;
+        this.cellSize = WIDTH /cols;
         topOffSet = cellSize;
 //        System.out.println("cellsize: " + cellSize);
 //        System.out.println("rows: " + rows + " cols: " + cols);
@@ -81,16 +81,16 @@ public class Window extends PApplet {
     public int getLastKeyPressed() {
         return lastKeyPressed;
     }
-    public int getWidth() {
-        return width;
+    public int getWIDTH() {
+        return WIDTH;
     }
 
-    public int getHeight() {
-        return height;
+    public int getHEIGHT() {
+        return HEIGHT;
     }
 
-    public int getOffset() {
-        return offset;
+    public int getOFFSET() {
+        return OFFSET;
     }
 
     @Override
@@ -197,7 +197,7 @@ public class Window extends PApplet {
                         //stroke(115,115,115);
                         fill(115, 115, 115);
                     }
-                    rect((i * cellSize + offset), j * cellSize , cellSize, cellSize);
+                    rect((i * cellSize + OFFSET), j * cellSize , cellSize, cellSize);
                 }
             }
         }

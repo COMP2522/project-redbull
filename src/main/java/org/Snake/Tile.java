@@ -35,7 +35,7 @@ public class Tile extends Sprite{
 //                super.getSize());
         try {
             super.getWindow().image(super.wall,
-                    super.getxPos()+super.getWindow().getOffset(),
+                    super.getxPos()+super.getWindow().getOFFSET(),
                     super.getyPos()+super.getWindow().getTopOffset(),
                     super.getSize(),
                     super.getSize());

@@ -17,7 +17,7 @@ The projects has a more complex UI, multiple level, enemies and has nicer animat
 
 ## Cam
 <ul>
-  <li>March 23, 2022
+  <li>March 23, 2022</li>
         <ul>
       <li>Made the frame method</li>
       <li>Updated the READme</li>
@@ -25,9 +25,9 @@ The projects has a more complex UI, multiple level, enemies and has nicer animat
          <li> Created Highscore</li>
           
          
-    </ul>
 
-</li>
+
+
 </ul>
 
 ## Kavin
