@@ -38,11 +38,14 @@ public class SpriteManager {
     private Food[][] food;
     private final Window window;
     private int spawnPoint[] = {10,10};
-    private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
-    private String foodImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "apple.png";
-    private String snakeImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "snakeDown.png";
-    private String bodyImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "bodyNS.png";
-    private String tailImage = "src" + File.separator + "main" + File.separator + "images"  + File.separator + "tailUp.png";
+
+
+    private String wallImage = "src/main/images/wall.png";
+    private String foodImage = "src/main/images/apple.png";
+    private String snakeImage = "src/main/images/snakeDown.png";
+    private String bodyImage = "src/main/images/bodyNS.png";
+    private String tailImage = "src/main/images/tailUp.png";
+
     public SpriteManager(Window window, int cellsize, int rows, int cols) {
         this.window = window;
         this.rows = rows;

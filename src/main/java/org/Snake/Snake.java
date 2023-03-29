@@ -20,6 +20,22 @@ public class Snake extends Sprite {
   private final int  INITIALSIZE = 3;
 
 
+  //Key Pressed Keycodes for switch statements
+  final int left = 37;
+  final int keyBoardA =65;
+
+  final int right = 39;
+
+  final int keyBoardD = 68;
+
+  final int up = 38;
+  final int  keyBoardW = 87;
+
+
+  final int down = 40;
+
+  final int keyBoardS = 83;
+
   /**
    * Getter for the body of the snake
    */
@@ -107,21 +123,7 @@ public class Snake extends Sprite {
    */
 
 
-  //Key Pressed Keycodes for switch statements
-  final int left = 37;
-  final int keyBoardA =65;
 
-  final int right = 39;
-
-  final int keyBoardD = 68;
-
-  final int up = 38;
-  final int  keyBoardW = 87;
-
-
-  final int down = 40;
-
-  final int keyBoardS = 83;
 
   public void move(int lastKeyPressed) {
     int lastDY = -directionY;
