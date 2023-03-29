@@ -66,9 +66,17 @@ public class Snake extends Sprite {
     body = new ArrayList<>();
     for (int i = 0; i < INITIALSIZE; i++) {
       if (i == 0) {
-        body.add(new SnakeBody(this.getxPos()+i*10, this.getyPos()-(INITIALSIZE)*this.getSize(), this.getSize(), null));
-      } else {
-        body.add(new SnakeBody(this.getxPos(), this.getyPos()-((INITIALSIZE-i)*this.getSize()), this.getSize(), null));
+        body.add(new SnakeBody
+                (this.getxPos()+i*10,
+                        this.getyPos()-(INITIALSIZE)*this.getSize(),
+                        this.getSize(),
+                        null));
+      }
+      else {
+        body.add(new SnakeBody(this.getxPos(),
+                this.getyPos() - ((INITIALSIZE - i) * this.getSize()),
+                this.getSize(),
+                null));
       }
     }
    }
@@ -255,13 +263,22 @@ public class Snake extends Sprite {
     body.clear();
     for (int i = 0; i < INITIALSIZE; i++) {
       if (i == 0) {
-        body.add(new SnakeBody(this.getxPos()+i*10, this.getyPos()-(INITIALSIZE)*this.getSize(), this.getSize(), null));
+        body.add(new SnakeBody(
+                this.getxPos()+i*10,
+                this.getyPos()-(INITIALSIZE)*this.getSize(),
+                this.getSize(),
+                null));
       } else {
-        body.add(new SnakeBody(this.getxPos(), this.getyPos()-((INITIALSIZE-i)*this.getSize()), this.getSize(), null));
+        body.add(new SnakeBody(
+                this.getxPos(),
+                this.getyPos()-((INITIALSIZE-i)*this.getSize()),
+                this.getSize(),
+                null));
       }
     }
     super.setPicture(super.headDown);
   }
+
 
   /**
    * Method to animate the body of the snake, this is to make the snake look like it is moving
@@ -334,7 +351,7 @@ public class Snake extends Sprite {
       body.get(i).draw(dx, dy, isTail, isFront);
     }
     super.getWindow().image(super.getPicture(),
-            super.getxPos() + super.getWindow().getOffset(),
+            super.getxPos() + super.getWindow().getOFFSET(),
             super.getyPos(),
             super.getSize(),
             super.getSize());
@@ -368,7 +385,11 @@ public class Snake extends Sprite {
       image = "src/main/images/tailDown.png";
     }
 
-    this.body.add(0,new SnakeBody(body.get(0).getxPos(), body.get(0).getyPos(), this.getSize(), null));
+    this.body.add(0,new SnakeBody(
+            body.get(0).getxPos(),
+            body.get(0).getyPos(),
+            this.getSize(),
+            null));
 //    this.body.get(0).draw(body.get(0).getxPos(), body.get(0).getyPos(), true);
   }
 

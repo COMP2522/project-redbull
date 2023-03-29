@@ -95,7 +95,7 @@ public class SnakeBody extends Sprite {
 
     if (image != null) {
       super.getWindow().image(image,
-              super.getxPos() + super.getWindow().getOffset(),
+              super.getxPos() + super.getWindow().getOFFSET(),
               super.getyPos(),
               this.getSizeX(),
               this.getSizeY());

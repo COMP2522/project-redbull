@@ -128,7 +128,7 @@ public class Enemy extends Sprite {
     //super.getWindow().pushStyle();
 //    super.getWindow().fill(0, 204, 0);
     super.getWindow().image(super.getPicture(),
-            super.getxPos() + super.getWindow().getOffset(),
+            super.getxPos() + super.getWindow().getOFFSET(),
             super.getyPos(),
             super.getSize(),
             super.getSize());
