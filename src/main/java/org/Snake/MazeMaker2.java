@@ -15,8 +15,8 @@ import java.util.Random;
  * @version
  */
 public class MazeMaker2 {
-  public static Tile[][] loadMaze(String wallImage, int rows, int cols, int cellSize, int level) {
-    Tile[][] tiles = new Tile[rows][cols];
+  public static Wall[][] loadMaze(String wallImage, int rows, int cols, int cellSize, int level) {
+    Wall[][] walls = new Wall[rows][cols];
 
     final int numPieces = 6;
 
@@ -48,16 +48,16 @@ public class MazeMaker2 {
     for (int i = 0 ; i < 4; i++) {
       int x = rand.nextInt(cols / 4);
       int y = rand.nextInt(cols / 4);
-      placePiece(tiles, wallImage, cellSize, piece, x, y, rows, cols);
+      placePiece(walls, wallImage, cellSize, piece, x, y, rows, cols);
     }
 
-    return tiles;
+    return walls;
   }
 
   /**
    * Method to place the maze piece in the maze
    */
-  public static void placePiece(Tile[][] tiles, String wallImage, int cellSize, JSONObject piece, int startX, int startY
+  public static void placePiece(Wall[][] walls, String wallImage, int cellSize, JSONObject piece, int startX, int startY
   , int rows, int cols) {
     JSONArray maze = piece.getJSONArray("maze");
     int offSet = 3;
@@ -66,14 +66,14 @@ public class MazeMaker2 {
       JSONObject cell = maze.getJSONObject(j);
       int x = cell.getInt("x");
       int y = cell.getInt("y");
-      tiles[startX + x][startY + y] = new Tile((startX + x) * cellSize, (startY + y) * cellSize, cellSize, wallImage, true);
+      walls[startX + x][startY + y] = new Wall((startX + x) * cellSize, (startY + y) * cellSize, cellSize, wallImage, true);
     }
     // top right
     for (int j = 0; j < maze.length(); j++) {
       JSONObject cell = maze.getJSONObject(j);
       int x = cell.getInt("x");
       int y = cell.getInt("y");
-      tiles[cols - x - offSet][startY + y] = new Tile((cols - x - offSet) * cellSize, (startY + y) * cellSize, cellSize, wallImage, true);
+      walls[cols - x - offSet][startY + y] = new Wall((cols - x - offSet) * cellSize, (startY + y) * cellSize, cellSize, wallImage, true);
     }
 
     // bottom left
@@ -81,14 +81,14 @@ public class MazeMaker2 {
       JSONObject cell = maze.getJSONObject(j);
       int x = cell.getInt("x");
       int y = cell.getInt("y");
-      tiles[startX + x][rows - y - offSet] = new Tile((startX + x) * cellSize, (rows - y - offSet) * cellSize, cellSize, wallImage, true);
+      walls[startX + x][rows - y - offSet] = new Wall((startX + x) * cellSize, (rows - y - offSet) * cellSize, cellSize, wallImage, true);
     }
     // bottom right
     for (int j = 0; j < maze.length(); j++) {
       JSONObject cell = maze.getJSONObject(j);
       int x = cell.getInt("x");
       int y = cell.getInt("y");
-      tiles[cols - x - 1][rows - y - offSet] = new Tile((cols - x - 1) * cellSize, (rows - y - offSet) * cellSize, cellSize, wallImage, true);
+      walls[cols - x - 1][rows - y - offSet] = new Wall((cols - x - 1) * cellSize, (rows - y - offSet) * cellSize, cellSize, wallImage, true);
     }
   }
 

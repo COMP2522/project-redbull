@@ -2,53 +2,22 @@ package org.Snake;
 
 import processing.core.PImage;
 
-/**
- * Sprite class which instantiates basic attributes for on screen components
- *
- * @author
- * @version
- */
+import java.util.HashMap;
+import java.util.Map;
+
+//Sprite class which instantiates basic attributes for on screen components
 public class Sprite implements Drawable{
   private float xPos;
   private float yPos;
   private int size;
   private PImage picture;
+  static Map<String, PImage> images = new HashMap<>();
   private static Window window;
-  public static PImage tailLeft;
-    public static PImage tailRight;
-    public static PImage tailUp;
-    public static PImage tailDown;
-    public static PImage bodyLeftRight;
-    public static PImage bodyUpDown;
-    public static PImage cornerLeftUp;
-    public static PImage cornerLeftDown;
-    public static PImage cornerRightUp;
-    public static PImage cornerRightDown;
-    public static PImage headLeft;
-    public static PImage headRight;
-    public static PImage headUp;
-    public static PImage headDown;
-    public static PImage food;
-    public static PImage wall;
-
-
-  /**
-   * Sprite constructor which sets the position and size of the Sprite
-   * @param xPos the x position of the Sprite
-   * @param yPos the y position of the Sprite
-   * @param size the size of the Sprite
-   * @param picture the picture of the Sprite
-   */
-  public Sprite(int xPos, int yPos, int size, String picture) {
+  //Public sprite constructor taking in x, y , size, and picture
+  public Sprite(int xPos, int yPos, int size) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.size = size;
-    try{
-      this.picture = window.loadImage(picture);
-    }
-    catch (Exception e){
-      //System.out.println("Image not found");
-    }
   }
 
   /**
@@ -63,23 +32,26 @@ public class Sprite implements Drawable{
    * The method that loads all the images
    */
   public static void loadImages(){
-    tailLeft = window.loadImage("src/main/images/tailLeft.png");
-    tailRight = window.loadImage("src/main/images/tailRight.png");
-    tailUp = window.loadImage("src/main/images/tailUp.png");
-    tailDown = window.loadImage("src/main/images/tailDown.png");
-    bodyLeftRight = window.loadImage("src/main/images/bodyEW.png");
-    bodyUpDown = window.loadImage("src/main/images/bodyNS.png");
-    cornerLeftUp = window.loadImage("src/main/images/cornerNE.png");
-    cornerLeftDown = window.loadImage("src/main/images/cornerSE.png");
-    cornerRightUp = window.loadImage("src/main/images/cornerNW.png");
-    cornerRightDown = window.loadImage("src/main/images/cornerSW.png");
-    headLeft = window.loadImage("src/main/images/snakeLeft.png");
-    headRight = window.loadImage("src/main/images/snakeRight.png");
-    headUp = window.loadImage("src/main/images/snakeUp.png");
-    headDown = window.loadImage("src/main/images/snakeDown.png");
-    food = window.loadImage("src/main/images/apple.png");
-    wall = window.loadImage("src/main/images/wall.png");
+    images.put("tailLeft",window.loadImage("src/main/images/tailLeft.png"));
+    images.put("tailRight",window.loadImage("src/main/images/tailRight.png"));
+    images.put("tailUp",window.loadImage("src/main/images/tailUp.png"));
+    images.put("tailDown",window.loadImage("src/main/images/tailDown.png"));
+    images.put("bodyLeftRight",window.loadImage("src/main/images/bodyEW.png"));
+    images.put("bodyUpDown",window.loadImage("src/main/images/bodyNS.png"));
+    images.put("cornerLeftUp",window.loadImage("src/main/images/cornerNE.png"));
+    images.put("cornerLeftDown",window.loadImage("src/main/images/cornerSE.png"));
+    images.put("cornerRightUp",window.loadImage("src/main/images/cornerNW.png"));
+    images.put("cornerRightDown",window.loadImage("src/main/images/cornerSW.png"));
+    images.put("headLeft",window.loadImage("src/main/images/snakeLeft.png"));
+    images.put("headRight",window.loadImage("src/main/images/snakeRight.png"));
+    images.put("headUp",window.loadImage("src/main/images/snakeUp.png"));
+    images.put("headDown",window.loadImage("src/main/images/snakeDown.png"));
+    images.put("food",window.loadImage("src/main/images/apple.png"));
+    images.put("wall",window.loadImage("src/main/images/wall.png"));
   }
+    public static PImage getImage(String name){
+        return images.get(name);
+    }
 
   /**
    * The getter of the window
@@ -121,10 +93,5 @@ public class Sprite implements Drawable{
 
   //Draw method to instantiate the window with elements.
   public void draw(){
-//    window.stroke(0,0,0);
-//    window.pushStyle();
-//    window.fill(0, 204, 0);
-//    window.rect(this.xPos+window.getOffset(), this.yPos, size, size);
-//    window.popStyle();
   }
 }

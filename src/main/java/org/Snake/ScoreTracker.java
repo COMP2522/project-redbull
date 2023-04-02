@@ -11,7 +11,7 @@ import processing.core.PApplet;
 public class ScoreTracker extends UIComponent{
   public int score;
 
-  private PApplet parent;
+  private final PApplet parent;
 
   /**
    * ScoreTracker constructor which sets the position and size of the ScoreTracker

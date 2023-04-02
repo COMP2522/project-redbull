@@ -15,7 +15,7 @@ import java.util.Random;
  * @version
  */
 public class MazeMaker4 {
-  public static void divide(int x1, int y1, int x2, int y2, Tile[][] tiles, String wallImage, int cellSize) {
+  public static void divide(int x1, int y1, int x2, int y2, Wall[][] walls, String wallImage, int cellSize) {
     if (x2 <= x1 || y2 <= y1) {
       return;
     }
@@ -26,8 +26,8 @@ public class MazeMaker4 {
   /**
    * Method to create the maze and place the tiles
    */
-  public static Tile[][] createMaze(String wallImage, int rows, int cols, int cellSize, int level) {
-    Tile[][] tiles = new Tile[rows][cols];
+  public static Wall[][] createMaze(String wallImage, int rows, int cols, int cellSize, int level) {
+    Wall[][] walls = new Wall[rows][cols];
 
     final int numPieces = 6;
 
@@ -64,7 +64,7 @@ public class MazeMaker4 {
     {
       int x = rand.nextInt(cols / 4);
       int y = rand.nextInt(cols / 4);
-      placePiece(tiles, wallImage, cellSize, piece, x, y, rows, cols);
+      placePiece(walls, wallImage, cellSize, piece, x, y, rows, cols);
     }
 
 
@@ -82,41 +82,41 @@ public class MazeMaker4 {
 
 
     for (int row = 0; row < rows; row++) {
-      tiles[row][0] = new Tile(row * cellSize, 0, cellSize, wallImage, true);
-      tiles[row][cols - 1] = new Tile(row * cellSize, (cols - 1) * cellSize, cellSize, wallImage, true);
+      walls[row][0] = new Wall(row * cellSize, 0, cellSize, wallImage, true);
+      walls[row][cols - 1] = new Wall(row * cellSize, (cols - 1) * cellSize, cellSize, wallImage, true);
 
 
-      tiles[5][5] = new Tile(5 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[6][6] = new Tile(6 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[7][7] = new Tile(7 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[8][8] = new Tile(8 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[9][9] = new Tile(9 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[10][10] = new Tile(10 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[11][11] = new Tile(11 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[12][12] = new Tile(12 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[13][13] = new Tile(13 *cellSize, 5 *cellSize, cellSize, wallImage, true);
-      tiles[14][14] = new Tile(14 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[5][5] = new Wall(5 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[6][6] = new Wall(6 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[7][7] = new Wall(7 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[8][8] = new Wall(8 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[9][9] = new Wall(9 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[10][10] = new Wall(10 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[11][11] = new Wall(11 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[12][12] = new Wall(12 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[13][13] = new Wall(13 *cellSize, 5 *cellSize, cellSize, wallImage, true);
+      walls[14][14] = new Wall(14 *cellSize, 5 *cellSize, cellSize, wallImage, true);
 
 
 
 
     }
     for (int col = 0; col < cols; col++) {
-      tiles[0][col] = new Tile(0, col * cellSize, cellSize, wallImage, true);
-      tiles[rows - 1][col] = new Tile((rows - 1) * cellSize, col * cellSize, cellSize, wallImage, true);
+      walls[0][col] = new Wall(0, col * cellSize, cellSize, wallImage, true);
+      walls[rows - 1][col] = new Wall((rows - 1) * cellSize, col * cellSize, cellSize, wallImage, true);
     }
 
-    divide(1, 1, rows - 2, cols - 2, tiles, wallImage, cellSize);
+    divide(1, 1, rows - 2, cols - 2, walls, wallImage, cellSize);
 
 
-    return tiles;
+    return walls;
   }
 
 
   // Choose a random piece
 
 
-  public static void placePiece(Tile[][] tiles, String wallImage, int cellSize, JSONObject piece, int startX, int startY
+  public static void placePiece(Wall[][] walls, String wallImage, int cellSize, JSONObject piece, int startX, int startY
           , int rows, int cols) {
 
 

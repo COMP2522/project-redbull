@@ -18,8 +18,7 @@ class SpriteTest {
     int xPos = 10;
     int yPos = 20;
     int size = 3;
-    String picture = "test.png";
-    Sprite sprite = new Sprite(xPos, yPos, size, picture);
+    Sprite sprite = new Sprite(xPos, yPos, size);
     Assertions.assertEquals(xPos, sprite.getxPos(), 1e-15);
     Assertions.assertEquals(yPos, sprite.getyPos(), 1e-15);
     Assertions.assertEquals(size, sprite.getSize());
@@ -29,7 +28,7 @@ class SpriteTest {
   // The setter test ensures that we can set the values for sprite.
   @Test
   void testSetters() {
-    Sprite sprite = new Sprite(0, 0, 0, "");
+    Sprite sprite = new Sprite(0, 0, 0);
     int xPos = 10;
     int yPos = 20;
     int size = 30;

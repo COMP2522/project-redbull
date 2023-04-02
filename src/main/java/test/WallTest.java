@@ -1,6 +1,6 @@
 package test;
 
-import org.Snake.Tile;
+import org.Snake.Wall;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The purpose of the tileTest class is to test the Tile constructor and ensure the boolean isWall are working
  * correctly.
  */
-public class TileTest {
+public class WallTest {
 
   @Test
   public void testConstructor() {
@@ -40,12 +40,12 @@ public class TileTest {
 //        return null;
 //      }
 //    };
-    Tile tile = new Tile(0, 0, 10, image, true);
-    assertEquals(0, tile.getxPos());
-    assertEquals(0, tile.getyPos());
-    assertEquals(10, tile.getSize());
-    assertEquals(image, tile.getPicture());
-    assertTrue(tile.isWall());
+    Wall wall = new Wall(0, 0, 10, image, true);
+    assertEquals(0, wall.getxPos());
+    assertEquals(0, wall.getyPos());
+    assertEquals(10, wall.getSize());
+    assertEquals(image, wall.getPicture());
+    assertTrue(wall.isWall());
   }
 
   @Test
@@ -77,11 +77,11 @@ public class TileTest {
 //        return null;
 //      }
 //    };
-    Tile tile1 = new Tile(0, 0, 10, image, true);
-    assertTrue(tile1.isWall());
+    Wall wall1 = new Wall(0, 0, 10, image, true);
+    assertTrue(wall1.isWall());
 
-    Tile tile2 = new Tile(0, 0, 10, image, false);
-    assertFalse(tile2.isWall());
+    Wall wall2 = new Wall(0, 0, 10, image, false);
+    assertFalse(wall2.isWall());
   }
 
 }

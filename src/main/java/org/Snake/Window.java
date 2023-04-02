@@ -1,13 +1,9 @@
 package org.Snake;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.event.KeyEvent;
 
 import java.awt.*;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,20 +15,13 @@ import java.util.Objects;
 public class Window extends PApplet {
 
 
-    Snake snake;
     Clock clock;
     Dimension screenSize;
-    ArrayList<Sprite> sprites;
     SpriteManager spriteManager;
 
-    private final int WIDTH;
-    private final int HEIGHT;
-    private final int OFFSET;
     int framesPerClock;
-    private String wallImage = "src" + File.separator + "main" + File.separator + "images" + File.separator + "wall.png";
-
-    //THESE ARE THE GRID VARIABLES
-    // these are place holders?
+    private final int width;
+    private final int offset;
     int cellSize;
     int rows;
     int cols;
@@ -42,7 +31,7 @@ public class Window extends PApplet {
     InGameUI inGameUI;
 
     int lastKeyPressed;
-    private int topOffSet;
+    private final int topOffSet;
 
     boolean gameActive;
 
@@ -56,18 +45,12 @@ public class Window extends PApplet {
         gameActive = false;
         //THESE ARE THE GRID VARIABLES
         this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.WIDTH = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
-        this.HEIGHT = WIDTH;
-        this.OFFSET = (int) ((screenSize.getWidth()- WIDTH)/(2));
+        this.width = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
+        this.offset = (int) ((screenSize.getWidth()-width)/(2));
         this.rows = 37;
         this.cols = 37;
-        this.cellSize = WIDTH /cols;
+        this.cellSize = width/cols;
         topOffSet = cellSize;
-//        System.out.println("cellsize: " + cellSize);
-//        System.out.println("rows: " + rows + " cols: " + cols);
-        // ////////////////////////////////////////////////////
-//        sprites = spriteManager.update(lastKeyPressed);
-//        sprites = spriteManager.animate(60);
 
         // place the levelSelector in the center of the screen
         int centerX = (int) (screenSize.getWidth()/2) - 350;
@@ -78,19 +61,12 @@ public class Window extends PApplet {
 
     }
 
-    public int getLastKeyPressed() {
-        return lastKeyPressed;
-    }
-    public int getWIDTH() {
-        return WIDTH;
+    public int getWidth() {
+        return width;
     }
 
-    public int getHEIGHT() {
-        return HEIGHT;
-    }
-
-    public int getOFFSET() {
-        return OFFSET;
+    public int getOffset() {
+        return offset;
     }
 
     @Override
@@ -101,10 +77,8 @@ public class Window extends PApplet {
     public void setup(){
         this.init();
         this.clock = new Clock();
-        this.sprites = new ArrayList<>();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
         Sprite.loadImages();
-
     }
     public void init(){
         frameRate(60);
@@ -116,64 +90,15 @@ public class Window extends PApplet {
     public void draw() {
         if (gameActive) {
             if (clock.tick()) {
-                sprites = spriteManager.update(lastKeyPressed);
-//                System.out.println("sprites size: " + sprites.size());
-                for(int i = sprites.size()-1; i >= 0; i--){
-                    if(sprites.get(i) == null){
-                        sprites.remove(i);
-                    }
-                }
+                spriteManager.update(lastKeyPressed);
 //                System.out.println("sprites size no nulls: " + sprites.size());
             }
-            sprites = spriteManager.animate();
             drawGrid();
-            pushStyle();
-            int numThreads = 4; // The number of threads to use
-            int chunkSize = (int) Math.ceil((double) sprites.size() / numThreads); // The size of each chunk
-
-            List<Thread> threads = new ArrayList<>(); // A list to hold the threads
-
-            for (int i = 0; i < numThreads; i++) {
-                final int start = i * chunkSize;
-                final int end = Math.min(start + chunkSize, sprites.size());
-
-                // Create a new thread to process the current chunk
-                Thread thread = new Thread(() -> {
-                    for (int j = start; j < end; j++) {
-                        Sprite sprite = sprites.get(j);
-                        if (sprite != null) {
-                            sprite.draw();
-                        }
-                    }
-                });
-
-                threads.add(thread);
-                thread.start();
-            }
-
-            // Wait for all threads to complete
-            for (Thread thread : threads) {
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            popStyle();
-
-
-            // draw the UIComponent
-
+            spriteManager.animate();
+            spriteManager.draw();
             inGameUI.draw();
-
-//        textAlign(RIGHT, TOP);
-//        text(String.format("FPC: %.0f", Clock.getFramesPerClock()), width, 0);
-//        text(String.format("FPS: %.0f", Clock.getFramesPerSecond()), width, +10);
         } else {
-            PImage background_image = loadImage("src/main/images/grassBackground.png");
-
-            image(background_image, 0, 0, (float)screenSize.getWidth(), (float)screenSize.getHeight());
+            background(0);
             levelSelector.draw();
             if (!Objects.equals(levelSelector.getSelectedLevel(), "none")) {
                 spriteManager.setLevel(levelSelector.getSelectedLevel());
@@ -197,7 +122,7 @@ public class Window extends PApplet {
                         //stroke(115,115,115);
                         fill(115, 115, 115);
                     }
-                    rect((i * cellSize + OFFSET), j * cellSize , cellSize, cellSize);
+                    rect((i * cellSize + offset), j * cellSize , cellSize, cellSize);
                 }
             }
         }
@@ -244,8 +169,5 @@ public class Window extends PApplet {
 
     public void incrementScore() {
         inGameUI.incrementScore();
-    }
-    public void resetScore() {
-        inGameUI.resetScore();
     }
 }

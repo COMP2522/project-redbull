@@ -41,7 +41,7 @@ public class Enemy extends Sprite {
    * @param size
    */
   public Enemy(int xPos, int yPos, int size, String picture) {
-    super(xPos, yPos, size, picture);
+    super(xPos, yPos, size);
     super.setPicture(getWindow().loadImage("src/main/images/enemy.png"));
   }
 
@@ -128,7 +128,7 @@ public class Enemy extends Sprite {
     //super.getWindow().pushStyle();
 //    super.getWindow().fill(0, 204, 0);
     super.getWindow().image(super.getPicture(),
-            super.getxPos() + super.getWindow().getOFFSET(),
+            super.getxPos() + super.getWindow().getOffset(),
             super.getyPos(),
             super.getSize(),
             super.getSize());

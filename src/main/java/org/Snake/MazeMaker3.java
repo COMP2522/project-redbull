@@ -16,22 +16,22 @@ public class MazeMaker3 {
    * @param cellSize the size of each cell in the maze
    * @return the maze
    */
-  public static Tile[][] generateMaze(String wallImage, int rows, int cols, int cellSize) {
-    Tile[][] tiles = new Tile[rows][cols];
+  public static Wall[][] generateMaze(String wallImage, int rows, int cols, int cellSize) {
+    Wall[][] walls = new Wall[rows][cols];
 
     // create outer walls
     for (int row = 0; row < rows; row++) {
-      tiles[row][0] = new Tile(row*cellSize, 0, cellSize, wallImage, true);
-      tiles[row][cols-1] = new Tile(row*cellSize, (cols-1)*cellSize, cellSize, wallImage, true);
+      walls[row][0] = new Wall(row*cellSize, 0, cellSize, wallImage, true);
+      walls[row][cols-1] = new Wall(row*cellSize, (cols-1)*cellSize, cellSize, wallImage, true);
     }
     for (int col = 0; col < cols; col++) {
-      tiles[0][col] = new Tile(0, col*cellSize, cellSize, wallImage, true);
-      tiles[rows-1][col] = new Tile((rows-1)*cellSize, col*cellSize, cellSize, wallImage, true);
+      walls[0][col] = new Wall(0, col*cellSize, cellSize, wallImage, true);
+      walls[rows-1][col] = new Wall((rows-1)*cellSize, col*cellSize, cellSize, wallImage, true);
     }
 
-    divide(1, 1, rows-2, cols-2, tiles, wallImage, cellSize);
+    divide(1, 1, rows-2, cols-2, walls, wallImage, cellSize);
 
-    return tiles;
+    return walls;
   }
 
   /**
@@ -40,11 +40,11 @@ public class MazeMaker3 {
    * @param y1 the y coordinate of the top left corner of the rectangle
    * @param x2 the x coordinate of the bottom right corner of the rectangle
    * @param y2 the y coordinate of the bottom right corner of the rectangle
-   * @param tiles the maze
+   * @param walls the maze
    * @param wallImage the image to use for the walls
    * @param cellSize the size of each cell in the maze
    */
-  public static void divide(int x1, int y1, int x2, int y2, Tile[][] tiles, String wallImage, int cellSize) {
+  public static void divide(int x1, int y1, int x2, int y2, Wall[][] walls, String wallImage, int cellSize) {
     if (x2 <= x1 || y2 <= y1) {
       return;
     }
@@ -62,17 +62,17 @@ public class MazeMaker3 {
 
     // create wall and passage
     for (int i = Math.min(wallX, passageX); i <= Math.max(wallX, passageX); i++) {
-      tiles[i][wallY] = new Tile(i*cellSize, wallY*cellSize, cellSize, wallImage, true);
+      walls[i][wallY] = new Wall(i*cellSize, wallY*cellSize, cellSize, wallImage, true);
     }
     for (int j = Math.min(wallY, passageY); j <= Math.max(wallY, passageY); j++) {
-      tiles[passageX][j] = new Tile(passageX*cellSize, j*cellSize, cellSize, wallImage, true);
+      walls[passageX][j] = new Wall(passageX*cellSize, j*cellSize, cellSize, wallImage, true);
     }
 
     // recursively divide the sub-rectangles
-    divide(x1, y1, wallX-1, wallY-1, tiles, wallImage, cellSize);
-    divide(wallX+1, wallY+1, x2, y2, tiles, wallImage, cellSize);
-    divide(x1, wallY+1, wallX-1, y2, tiles, wallImage, cellSize);
-    divide(wallX+1, y1, x2, wallY-1, tiles, wallImage, cellSize);
+    divide(x1, y1, wallX-1, wallY-1, walls, wallImage, cellSize);
+    divide(wallX+1, wallY+1, x2, y2, walls, wallImage, cellSize);
+    divide(x1, wallY+1, wallX-1, y2, walls, wallImage, cellSize);
+    divide(wallX+1, y1, x2, wallY-1, walls, wallImage, cellSize);
   }
 
 }

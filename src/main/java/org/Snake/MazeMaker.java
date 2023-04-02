@@ -15,8 +15,8 @@ import java.io.FileReader;
  */
 public class MazeMaker {
 
-    public static Tile[][] loadMaze(String wallImage, int rows, int cols, int cellSize, String level) {
-        Tile[][] tiles = new Tile[rows][cols];
+    public static Wall[][] loadMaze(String wallImage, int rows, int cols, int cellSize, String level) {
+        Wall[][] walls = new Wall[rows][cols];
 
         //read json file
         FileReader reader = null;
@@ -43,9 +43,9 @@ public class MazeMaker {
             JSONObject row = maze.getJSONObject(j);
             int x = row.getInt("y");
             int y = row.getInt("x");
-            tiles[x][y] = new Tile(x*cellSize, y*cellSize, cellSize,wallImage, true);
+            walls[x][y] = new Wall(x*cellSize, y*cellSize, cellSize,"wall", true);
         }
-        return tiles;
+        return walls;
     }
 
     /**
@@ -56,7 +56,7 @@ public class MazeMaker {
     public static int[] loadSpawn(String level) {
         int[] spawn = new int[2];
         //read json file
-        FileReader reader = null;
+        FileReader reader;
         try {
             reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
         } catch (FileNotFoundException e) {
@@ -89,14 +89,13 @@ public class MazeMaker {
 
     /**
      * Method to load the food from a json file
-     * @param foodImage the image of the food
      * @param rows the number of rows
      * @param cols the number of columns
      * @param cellSize the size of the cells
      * @param level the name of the level
      * @return the food tiles
      */
-    public static Food[][] loadFood(String foodImage, int rows, int cols, int cellSize, String level) {
+    public static Food[][] loadFood(int rows, int cols, int cellSize, String level) {
         Food[][] foodTiles = new Food[rows][cols];
 
         //read json file
@@ -124,7 +123,7 @@ public class MazeMaker {
             JSONObject row = foodArray.getJSONObject(j);
             int x = row.getInt("y");
             int y = row.getInt("x");
-            foodTiles[x][y] = new Food(x*cellSize, y*cellSize, cellSize,foodImage);
+            foodTiles[x][y] = new Food(x*cellSize, y*cellSize, cellSize,"food");
         }
         return foodTiles;
     }

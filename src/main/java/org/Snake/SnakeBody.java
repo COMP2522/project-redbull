@@ -9,23 +9,18 @@ import processing.core.PImage;
  * @version
  */
 public class SnakeBody extends Sprite {
-
-  private int rotation;
   private int corner;
-  private int sizeX;
-  private int sizeY;
+  private final int sizeX;
+  private final int sizeY;
 
-  /**
-   * SnakeBody constructor which sets the position and size of the SnakeBody
-   * @param xPos the x position of the SnakeBody
-   * @param yPos the y position of the SnakeBody
-   * @param size the size of the SnakeBody
-   * @param picture the picture of the SnakeBody
-   */
+  private String image;
+
+  //constructor
   public SnakeBody(float xPos, float yPos, int size, String picture) {
-    super((int)xPos, (int)yPos, size, null);
+    super((int)xPos, (int)yPos, size);
     sizeX = size;
     sizeY = size;
+    image = picture;
   }
 
   /**
@@ -44,58 +39,37 @@ public class SnakeBody extends Sprite {
         this.corner = corner;
     }
 
-  //left to down == -2
-  //right to down == 1
-  //left to up == 2
-  //right to up == -1
-
-  //up to right == -2
-  //down to right == 2
-  //up to left == 1
-  //down to left == -1
-  public void draw(float directionX, float directionY, boolean isTail, boolean isFront){
-    PImage image = super.getPicture();
-//    System.out.println("directionX: " + directionX + " directionY: " + directionY);
-//    System.out.println("isTail: " + isTail);
-//    System.out.println("isCorner: " + this.isCorner());
+  public void draw(float directionX, float directionY, boolean isTail){
     if (isTail) {
       if (directionX >= 1) {
-        image = super.tailLeft;
+        image = "tailLeft";
       } else if (directionX <= -1) {
-        image = super.tailRight;
+        image = "tailRight";
       } else if (directionY >= 1) {
-        image = super.tailUp;
+        image = "tailUp";
       } else if (directionY <= -1) {
-        image = super.tailDown;
+        image = "tailDown";
       }
     } else if (isCorner() != 0) {
       switch (isCorner()) {
-        case 1:
-          image = super.cornerRightDown;
-          break;
-        case 2:
-          image = super.cornerLeftUp;
-          break;
-        case -1:
-          image = super.cornerRightUp;
-          break;
-        case -2:
-          image = super.cornerLeftDown;
-          break;
+        case 1 -> image = "cornerRightDown";
+        case 2 -> image = "cornerLeftUp";
+        case -1 -> image = "cornerRightUp";
+        case -2 -> image = "cornerLeftDown";
       }
     } else {
 //      System.out.println("directionX: " + directionX + " directionY: " + directionY);
       if (directionX >= 0.1 || directionX <= -0.1) {
-        image = super.bodyLeftRight;
+        image = "bodyLeftRight";
       }else if (directionY <= -0.1 || directionY >= 0.1) {
-        image = super.bodyUpDown;
+        image = "bodyUpDown";
       }
     }
     try {
 
     if (image != null) {
-      super.getWindow().image(image,
-              super.getxPos() + super.getWindow().getOFFSET(),
+      getWindow().image(getImage(image),
+              super.getxPos() + getWindow().getOffset(),
               super.getyPos(),
               this.getSizeX(),
               this.getSizeY());
@@ -103,8 +77,6 @@ public class SnakeBody extends Sprite {
     } catch (Exception e) {
       //System.out.println("image is null");
     }
-    //super.getWindow().popStyle();
-//    System.out.println("SnakeBody.draw() called. (xPos, yPos) = (" + super.getxPos() + ", " + super.getyPos() + ")");
   }
 
   /**
