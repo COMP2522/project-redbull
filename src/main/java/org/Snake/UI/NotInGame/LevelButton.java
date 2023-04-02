@@ -1,7 +1,7 @@
-package org.Snake;
+package org.Snake.UI.NotInGame;
 
+import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
-import processing.core.PImage;
 
 /**
  * UIComponent class which is meant to be the base class for buttons

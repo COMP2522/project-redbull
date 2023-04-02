@@ -1,8 +1,7 @@
-package org.Snake;
+package org.Snake.UI;
 
 import processing.core.PApplet;
 
-import javax.swing.table.TableRowSorter;
 import java.util.ArrayList;
 
 /**
