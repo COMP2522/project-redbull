@@ -1,5 +1,6 @@
-package org.Snake;
+package org.Snake.UI.InGame;
 
+import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
 
 /**
@@ -8,7 +9,7 @@ import processing.core.PApplet;
  * @author
  * @version
  */
-public class ScoreTracker extends UIComponent{
+public class ScoreTracker extends UIComponent {
   public int score;
 
   private final PApplet parent;

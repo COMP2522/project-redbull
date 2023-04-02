@@ -1,4 +1,4 @@
-package org.Snake;
+package org.Snake.UI;
 
 import processing.core.PApplet;
 
@@ -17,7 +17,16 @@ public abstract class UIComponent {
   protected float y;
 
 
+  public float getWidth() {
+    return width;
+  }
+
   protected float width;
+
+  public float getHeight() {
+    return height;
+  }
+
   protected float height;
 
   /**

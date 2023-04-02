@@ -1,8 +1,9 @@
-package org.Snake;
+package org.Snake.UI.InGame;
 
+import org.Snake.UI.Frame;
+import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -43,9 +44,8 @@ public class InGameUI extends UIComponent {
       parent.pushStyle();
       parent.fill(0);
       parent.noStroke();
-      parent.rect(elem.getX() - elem.getX() / 2f, elem.getY() - elem.getY() / 2f, elem.width, elem.height);
+      parent.rect(elem.getX() - elem.getX() / 2f, elem.getY() - elem.getY() / 2f, elem.getWidth(), elem.getHeight());
       parent.popStyle();
-
       elem.draw();
     }
   }

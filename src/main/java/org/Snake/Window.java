@@ -1,5 +1,7 @@
 package org.Snake;
 
+import org.Snake.UI.InGame.InGameUI;
+import org.Snake.UI.NotInGame.NotInGameUiManager;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 
@@ -18,6 +20,7 @@ public class Window extends PApplet {
     Clock clock;
     Dimension screenSize;
     SpriteManager spriteManager;
+    NotInGameUiManager notInGameUiManager;
 
     int framesPerClock;
     private final int width;
@@ -25,8 +28,6 @@ public class Window extends PApplet {
     int cellSize;
     int rows;
     int cols;
-
-    LevelSelector levelSelector;
 
     InGameUI inGameUI;
 
@@ -53,10 +54,10 @@ public class Window extends PApplet {
         topOffSet = cellSize;
 
         // place the levelSelector in the center of the screen
-        int centerX = (int) (screenSize.getWidth()/2) - 350;
-        int centerY = (int) (screenSize.getHeight()/2) - 350;
+//        int centerX = (int) (screenSize.getWidth()/2) - 350;
+//        int centerY = (int) (screenSize.getHeight()/2) - 350;
 
-        levelSelector = new LevelSelector(this, centerX, centerY, 700, 700);
+//        levelSelector = new LevelSelector(this, centerX, centerY, 700, 700);
         inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight());
 
     }
@@ -78,6 +79,7 @@ public class Window extends PApplet {
         this.init();
         this.clock = new Clock();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
+        this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight());
         Sprite.loadImages();
     }
     public void init(){
@@ -99,12 +101,10 @@ public class Window extends PApplet {
             inGameUI.draw();
         } else {
             background(0);
-            levelSelector.draw();
-            if (!Objects.equals(levelSelector.getSelectedLevel(), "none")) {
-                spriteManager.setLevel(levelSelector.getSelectedLevel());
-                spriteManager.makeTiles();
-                gameActive = true;
-//                reset();
+            this.notInGameUiManager.draw();
+            if (this.levelSelected()) {
+                this.startGame();
+                background(0);
             }
         }
     }
@@ -143,7 +143,9 @@ public class Window extends PApplet {
     }
 
     public void mousePressed() {
-        levelSelector.mouseClicked(this.mouseX, this.mouseY);
+        if (!gameActive) {
+            notInGameUiManager.mouseClicked(this.mouseX, this.mouseY);
+        }
     }
 
     /**
@@ -162,6 +164,17 @@ public class Window extends PApplet {
         clock.reset();
         inGameUI.resetScore();
     }
+
+    private void startGame() {
+        spriteManager.setLevel(notInGameUiManager.getSelectedLevel());
+        spriteManager.makeTiles();
+        gameActive = true;
+    }
+
+    private boolean levelSelected() {
+        return !Objects.equals(notInGameUiManager.getSelectedLevel(), "none");
+    }
+
 
     public float getTopOffset() {
         return topOffSet;

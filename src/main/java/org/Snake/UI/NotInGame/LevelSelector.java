@@ -1,5 +1,6 @@
-package org.Snake;
+package org.Snake.UI.NotInGame;
 
+import org.Snake.UI.Frame;
 import processing.core.PApplet;
 
 
@@ -11,7 +12,7 @@ import processing.core.PApplet;
  * @author
  * @version
  */
-class LevelSelector extends UIComponent {
+public class LevelSelector extends Frame {
 
 
 
@@ -32,7 +33,7 @@ class LevelSelector extends UIComponent {
    * @param height the height of the level selector
    */
   public LevelSelector(PApplet parent, float x, float y, float width, float height) {
-    super(parent, x, y, width, height);
+    super(parent, x, y, width, height, 0,"");
 
     levelButtons = new LevelButton[numOfLevels];
     float buttonWidth = width / 3;
@@ -65,6 +66,7 @@ class LevelSelector extends UIComponent {
    */
   @Override
   public void mouseClicked(float mx, float my) {
+    System.out.print("mouse clicked");
     for (int i = 0; i < numOfLevels; i++) {
       if (levelButtons[i].contains(mx, my)) {
         levelButtons[i].setSelected(true);
