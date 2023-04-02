@@ -1,5 +1,6 @@
 package org.Snake;
 
+import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
 
 public class Button extends UIComponent {
