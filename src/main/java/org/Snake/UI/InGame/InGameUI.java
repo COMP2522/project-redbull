@@ -65,13 +65,17 @@ public class InGameUI extends UIComponent {
    * Method to increase the score
    */
   public void incrementScore() {
-    scoreTracker.score++;
+    scoreTracker.setScore(scoreTracker.getScore() + 1);
   }
 
   /**
    * Method to reset the score
    */
   public void resetScore() {
-    scoreTracker.score = 0;
+    scoreTracker.setScore(0);
+  }
+
+  public int getScore() {
+    return scoreTracker.getScore();
   }
 }

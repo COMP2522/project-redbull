@@ -5,9 +5,11 @@ import org.Snake.UI.NotInGame.NotInGameUiManager;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 
+import org.Snake.Database.MongoDb;
+
 import java.awt.*;
 import java.util.Objects;
-
+import javax.swing.JOptionPane;
 /**
  * Window class which is the main class for the Snake game
  *
@@ -36,6 +38,10 @@ public class Window extends PApplet {
 
     boolean gameActive;
 
+    MongoDb mongoDb;
+
+
+
 
     //////////////////////////////////////////////////////
 
@@ -59,7 +65,7 @@ public class Window extends PApplet {
 
 //        levelSelector = new LevelSelector(this, centerX, centerY, 700, 700);
         inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight());
-
+        mongoDb = new MongoDb();
     }
 
     public int getWidth() {
@@ -79,7 +85,7 @@ public class Window extends PApplet {
         this.init();
         this.clock = new Clock();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
-        this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight());
+        this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight(), mongoDb, this);
         Sprite.loadImages();
     }
     public void init(){
@@ -102,7 +108,7 @@ public class Window extends PApplet {
         } else {
             background(0);
             this.notInGameUiManager.draw();
-            if (this.levelSelected()) {
+            if (this.levelSelected() && notInGameUiManager.getStart()) {
                 this.startGame();
                 background(0);
             }
@@ -162,6 +168,20 @@ public class Window extends PApplet {
         lastKeyPressed = 0;
         spriteManager.reset();
         clock.reset();
+
+        int score = inGameUI.getScore();
+        if (mongoDb.isHighScore(score, notInGameUiManager.getSelectedLevel())) {
+            String name = JOptionPane.showInputDialog("You got a High Score! Enter your name:");
+            if (name != null && !name.isEmpty()) {
+                // do something with the user's name
+                mongoDb.put(name, score, notInGameUiManager.getSelectedLevel());
+            } else {
+                // user canceled the input or didn't enter a name
+                mongoDb.put("Anonymous", score, notInGameUiManager.getSelectedLevel());
+            }
+        }
+
+
         inGameUI.resetScore();
     }
 
@@ -182,5 +202,13 @@ public class Window extends PApplet {
 
     public void incrementScore() {
         inGameUI.incrementScore();
+    }
+
+    public MongoDb getDB() {
+        return mongoDb;
+    }
+
+    public void setGameActive(boolean gameActive) {
+        this.gameActive = gameActive;
     }
 }

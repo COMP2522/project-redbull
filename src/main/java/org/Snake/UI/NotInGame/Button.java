@@ -24,7 +24,7 @@ public class Button extends UIComponent {
     }
     parent.rect(x, y, width, height);
     parent.fill(0);
-    parent.text(label, x + width/2, y + height/2);
+    parent.text(label, x + width/3, y + height/2);
   }
 
   @Override

@@ -10,7 +10,7 @@ import processing.core.PApplet;
  * @version
  */
 public class ScoreTracker extends UIComponent {
-  public int score;
+  private int score;
 
   private final PApplet parent;
 
@@ -25,7 +25,7 @@ public class ScoreTracker extends UIComponent {
   public ScoreTracker(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
     this.parent = parent;
-    this.score = 0;
+    this.setScore(0);
   }
 
   /**
@@ -36,7 +36,7 @@ public class ScoreTracker extends UIComponent {
     parent.pushStyle();
     parent.textSize(30);
     parent.fill(255,255,255);
-    parent.text("Score: " + score, getX(), getY());
+    parent.text("Score: " + getScore(), getX(), getY());
     parent.popStyle();
   }
 
@@ -48,7 +48,11 @@ public class ScoreTracker extends UIComponent {
   }
 
 
+  public int getScore() {
+    return score;
+  }
 
-
-
+  public void setScore(int score) {
+    this.score = score;
+  }
 }
