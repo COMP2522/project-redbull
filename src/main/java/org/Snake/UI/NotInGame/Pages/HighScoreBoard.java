@@ -18,17 +18,20 @@ public class HighScoreBoard extends Frame {
 
   private ArrayList<KVPair> scores;
 
+  private MongoDb db;
+
   private Text[] scoreTexts;
 
-  public HighScoreBoard(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager) {
+  public HighScoreBoard(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager, MongoDb db) {
     super(parent, x, y, width, height, 0, "");
     this.uiManager = uiManager;
     scores = new ArrayList<>();
+
+    this.db = db;
   }
 
   public void getScores() {
     System.out.println("Getting scores called");
-    MongoDb db = new MongoDb();
     scores = db.get(uiManager.getSelectedLevel());
     for (KVPair score : scores) {
       System.out.println(score.getKey() + " - " + score.getValue());

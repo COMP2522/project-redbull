@@ -44,9 +44,7 @@ public class MongoDb {
         database.getCollection(level).insertOne(doc);
         database.getCollection(level).deleteOne(eq("name", scores.get(9).key));
       }
-    } else if (false) {
-
-  } else {
+    } else {
       Document doc = new Document();
       doc.append("name", name);
       doc.append("score", playerScore);
@@ -67,10 +65,19 @@ public class MongoDb {
     return scores;
   }
 
+  public boolean isHighScore(int score, String level) {
+    ArrayList<KVPair> scores = get(level);
+    if (scores.size() < 10) {
+      return true;
+    } else {
+      return scores.get(9).getValue() < score;
+    }
+  }
+
   public static void main(String[] args) {
     MongoDb db = new MongoDb();
 
-    ArrayList scores = db.get("classic");
+    ArrayList<KVPair> scores = db.get("classic");
     for (Object score : scores) {
       System.out.println(score);
     }

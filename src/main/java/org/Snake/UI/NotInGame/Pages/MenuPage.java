@@ -23,10 +23,13 @@ public class MenuPage extends Frame {
     title.setTextSize(50);
 
     // create the play button
-    playButton = new Button(parent, x + width/2, y + height/2, 200, 75, "PLAY");
+    int playButtonWidth = 500;
 
+    playButton = new Button(parent, x + width/2 - playButtonWidth / 2, y + height/2, playButtonWidth, 75, "PLAY");
+
+    int highScoreButtonWidth = 500;
     // create the high score button
-    highScoreButton = new Button(parent, x + width/2, y + height/2 + 100, 200, 75, "HIGH SCORES");
+    highScoreButton = new Button(parent, x + width/2 - highScoreButtonWidth / 2, y + height/2 + 100, highScoreButtonWidth, 75, "HIGH SCORES");
 
     // create wings animation
     String[] left = new String[4];

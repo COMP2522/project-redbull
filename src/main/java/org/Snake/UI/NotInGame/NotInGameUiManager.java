@@ -1,4 +1,5 @@
 package org.Snake.UI.NotInGame;
+import org.Snake.Database.MongoDb;
 import org.Snake.UI.NotInGame.Pages.HighScoreBoard;
 import org.Snake.UI.NotInGame.Pages.LevelSelector;
 import org.Snake.UI.NotInGame.Pages.MenuPage;
@@ -17,15 +18,15 @@ public class NotInGameUiManager extends UIComponent {
   // The currently active page
   private int activePageIndex;
 
-  public NotInGameUiManager(PApplet parent, float x, float y, float width, float height) {
+  public NotInGameUiManager(PApplet parent, float x, float y, float width, float height, MongoDb db) {
     super(parent, x, y, width, height);
     start = false;
     String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "placeholder", "placeholder2"};
     this.pages = new UIComponent[] {
-            new MenuPage(parent, x, y, width, height, 0, "", this),
-            new LevelSelector(parent, x, y, width, height, levelNames, this),
+            new MenuPage(parent, x , y , width , height , 0, "", this),
+            new LevelSelector(parent, x+ 100, y, width- 100, height, levelNames, this),
             new HighScoreLevels(parent, x, y, width, height, levelNames, this),
-            new HighScoreBoard(parent, x, y, width, height, this)
+            new HighScoreBoard(parent, x, y, width, height, this, db)
     };
     this.activePageIndex = 0; // Start with the first page active
 

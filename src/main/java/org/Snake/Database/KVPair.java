@@ -27,7 +27,7 @@ public class KVPair implements Comparable{
     return key;
   }
 
-  public String getValue() {
-    return Integer.toString(value);
+  public int getValue() {
+    return value;
   }
 }
