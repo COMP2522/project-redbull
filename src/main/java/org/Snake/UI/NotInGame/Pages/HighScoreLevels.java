@@ -1,4 +1,5 @@
 package org.Snake.UI.NotInGame.Pages;
+import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Frame;
 import org.Snake.UI.NotInGame.LevelButton;
@@ -9,6 +10,7 @@ public class HighScoreLevels extends Frame {
   private final LevelButton[] levelButtons;
   private final int numOfLevels;
   private final NotInGameUiManager uiManager;
+  private  HomeButton homeButton;
 
 
   /**
@@ -32,9 +34,10 @@ public class HighScoreLevels extends Frame {
     for (int i = 0; i < numOfLevels; i++) {
       float buttonX = x + buttonWidth * (i % 3);
       float buttonY = y + buttonHeight * PApplet.floor(i / 3);
-
       levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, levelNames[i]);
     }
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
+
   }
 
   @Override
@@ -42,6 +45,7 @@ public class HighScoreLevels extends Frame {
     for (int i = 0; i < numOfLevels; i++) {
       levelButtons[i].draw();
     }
+    homeButton.draw();
   }
 
   @Override
@@ -62,6 +66,7 @@ public class HighScoreLevels extends Frame {
         break;
       }
     }
+    homeButton.mouseClicked(mx, my);
   }
 
   /**

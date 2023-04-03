@@ -3,6 +3,8 @@ package org.Snake.UI.InGame;
 import org.Snake.UI.Frame;
 import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
+import org.Snake.UI.HomeButton;
+import org.Snake.UI.NotInGame.NotInGameUiManager;
 
 import java.util.ArrayList;
 
@@ -15,22 +17,29 @@ public class InGameUI extends UIComponent {
   public ArrayList<UIComponent> components;
   Frame testFrame;
   private ScoreTracker scoreTracker;
+  private HomeButton homeButton;
+  private NotInGameUiManager uiManager;
 
   /**
    * InGameUI constructor which sets the position and size of the UI
-   * @param parent the parent PApplet
-   * @param x the x position of the UI
-   * @param y the y position of the UI
-   * @param width the width of the UI
-   * @param height the height of the UI
+   *
+   * @param parent    the parent PApplet
+   * @param x         the x position of the UI
+   * @param y         the y position of the UI
+   * @param width     the width of the UI
+   * @param height    the height of the UI
+   * @param uiManager
    */
-  public InGameUI(PApplet parent, float x, float y, float width, float height) {
+  public InGameUI(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager) {
     super(parent, x, y, width, height);
+    this.uiManager = uiManager;
     scoreTracker = new ScoreTracker(getParent(), 0f,0f, 100f,100f);
     components = new ArrayList<>();
     testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
     testFrame.add(scoreTracker);
     components.add(testFrame);
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", this.uiManager);
+    components.add(homeButton);
   }
 
   /**
@@ -58,7 +67,9 @@ public class InGameUI extends UIComponent {
    */
   @Override
   public void mouseClicked(float mx, float my) {
-
+    for (UIComponent elem : components) {
+      elem.mouseClicked(mx, my);
+    }
   }
 
   /**
