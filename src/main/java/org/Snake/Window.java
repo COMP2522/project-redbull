@@ -64,7 +64,6 @@ public class Window extends PApplet {
 //        int centerY = (int) (screenSize.getHeight()/2) - 350;
 
 //        levelSelector = new LevelSelector(this, centerX, centerY, 700, 700);
-        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), notInGameUiManager);
         mongoDb = new MongoDb();
     }
 
@@ -87,6 +86,8 @@ public class Window extends PApplet {
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
         this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight(), mongoDb, this);
         Sprite.loadImages();
+        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), notInGameUiManager);
+
     }
     public void init(){
         frameRate(60);
