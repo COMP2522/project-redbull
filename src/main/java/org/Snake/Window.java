@@ -64,7 +64,7 @@ public class Window extends PApplet {
 //        int centerY = (int) (screenSize.getHeight()/2) - 350;
 
 //        levelSelector = new LevelSelector(this, centerX, centerY, 700, 700);
-        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight());
+        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), notInGameUiManager);
         mongoDb = new MongoDb();
     }
 

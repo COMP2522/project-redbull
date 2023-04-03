@@ -1,4 +1,5 @@
 package org.Snake.UI.NotInGame.Pages;
+import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Frame;
 import org.Snake.UI.NotInGame.LevelButton;
@@ -22,10 +23,13 @@ public class HighScoreBoard extends Frame {
 
   private Text[] scoreTexts;
 
+  private HomeButton homeButton;
+
   public HighScoreBoard(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager, MongoDb db) {
     super(parent, x, y, width, height, 0, "");
     this.uiManager = uiManager;
     scores = new ArrayList<>();
+    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
 
     this.db = db;
   }
@@ -67,11 +71,15 @@ public class HighScoreBoard extends Frame {
       scoreItem.draw();
       scoreY += 30;
     }
+
+    //draw the home button
+    homeButton.draw();
   }
 
 
   @Override
   public void mouseClicked(float mx, float my) {
+    homeButton.mouseClicked(mx, my);
     System.out.print("mouse clicked in highscoreboard");
   }
 }
