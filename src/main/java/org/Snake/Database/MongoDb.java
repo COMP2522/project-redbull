@@ -44,7 +44,9 @@ public class MongoDb {
         database.getCollection(level).insertOne(doc);
         database.getCollection(level).deleteOne(eq("name", scores.get(9).key));
       }
-    } else {
+    } else if (false) {
+
+  } else {
       Document doc = new Document();
       doc.append("name", name);
       doc.append("score", playerScore);
@@ -63,5 +65,14 @@ public class MongoDb {
 
     Collections.sort(scores);
     return scores;
+  }
+
+  public static void main(String[] args) {
+    MongoDb db = new MongoDb();
+
+    ArrayList scores = db.get("classic");
+    for (Object score : scores) {
+      System.out.println(score);
+    }
   }
 }
