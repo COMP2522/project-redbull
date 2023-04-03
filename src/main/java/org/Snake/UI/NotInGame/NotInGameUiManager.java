@@ -61,6 +61,8 @@ public class NotInGameUiManager extends UIComponent {
     } else if (game.equals("highScoreBoard")) {
       activePageIndex = 3;
       ((HighScoreBoard) pages[activePageIndex]).getScores();
+    } else if (game.equals("menu")){ // home
+      activePageIndex = 0;
     }
   }
 

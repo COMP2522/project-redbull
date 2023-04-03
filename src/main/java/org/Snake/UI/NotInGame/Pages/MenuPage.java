@@ -34,7 +34,7 @@ public class MenuPage extends Frame {
     // create the high score button
     highScoreButton = new Button(parent, x + width/2 - highScoreButtonWidth / 2, y + height/2 + 100, highScoreButtonWidth, 75, "HIGH SCORES");
 
-    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
+    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", notInGameUiManager);
 
     // create wings animation
     String[] left = new String[4];

@@ -52,7 +52,7 @@ public class LevelSelector extends Frame {
 
     }
 
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
 
   }
 
@@ -87,10 +87,8 @@ public class LevelSelector extends Frame {
         break;
       }
     }
-    if (homeButton.contains(mx, my)) {
-      uiManager.setStart(false);
-      uiManager.setPage("home");
-    }
+
+      homeButton.mouseClicked(mx, my);
   }
 
   /**
