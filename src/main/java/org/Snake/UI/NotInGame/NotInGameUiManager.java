@@ -1,13 +1,12 @@
 package org.Snake.UI.NotInGame;
 import org.Snake.Database.MongoDb;
-import org.Snake.UI.HomeButton;
-import org.Snake.UI.NotInGame.Pages.HighScoreBoard;
-import org.Snake.UI.NotInGame.Pages.LevelSelector;
-import org.Snake.UI.NotInGame.Pages.MenuPage;
+import org.Snake.UI.Pages.HighScoreBoard;
+import org.Snake.UI.Pages.LevelSelector;
+import org.Snake.UI.Pages.MenuPage;
 import org.Snake.UI.UIComponent;
 import org.Snake.Window;
 import processing.core.PApplet;
-import org.Snake.UI.NotInGame.Pages.HighScoreLevels;
+import org.Snake.UI.Pages.HighScoreLevels;
 
 
 

@@ -1,8 +1,7 @@
-package org.Snake.UI.NotInGame.Pages;
+package org.Snake.UI.Pages;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Frame;
-import org.Snake.UI.NotInGame.LevelButton;
 import processing.core.PApplet;
 import org.Snake.Database.KVPair;
 
@@ -11,7 +10,6 @@ import org.Snake.UI.Text;
 import org.Snake.Database.MongoDb;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class HighScoreBoard extends Frame {
 

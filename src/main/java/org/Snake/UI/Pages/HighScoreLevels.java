@@ -1,4 +1,4 @@
-package org.Snake.UI.NotInGame.Pages;
+package org.Snake.UI.Pages;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Frame;
