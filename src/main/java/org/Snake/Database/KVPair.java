@@ -22,4 +22,12 @@ public class KVPair implements Comparable{
   public String toString() {
     return key + " " + value;
   }
+
+  public String getKey() {
+    return key;
+  }
+
+  public String getValue() {
+    return Integer.toString(value);
+  }
 }

@@ -1,25 +1,35 @@
 package org.Snake.UI.NotInGame;
+import org.Snake.UI.NotInGame.Pages.HighScoreBoard;
 import org.Snake.UI.NotInGame.Pages.LevelSelector;
 import org.Snake.UI.NotInGame.Pages.MenuPage;
 import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
-
+import org.Snake.UI.NotInGame.Pages.HighScoreLevels;
 public class NotInGameUiManager extends UIComponent {
 
   // An array of pages that can be displayed by the Menu
   private UIComponent[] pages;
+
+  private String selectedLevel;
+
+  boolean start;
 
   // The currently active page
   private int activePageIndex;
 
   public NotInGameUiManager(PApplet parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
+    start = false;
+    String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "placeholder", "placeholder2"};
     this.pages = new UIComponent[] {
             new MenuPage(parent, x, y, width, height, 0, "", this),
-            new LevelSelector(parent, x, y, width, height),
-//            new ContactPage(parent, x, y, width, height)
+            new LevelSelector(parent, x, y, width, height, levelNames, this),
+            new HighScoreLevels(parent, x, y, width, height, levelNames, this),
+            new HighScoreBoard(parent, x, y, width, height, this)
     };
     this.activePageIndex = 0; // Start with the first page active
+
+    selectedLevel = "none";
   }
 
   @Override
@@ -65,10 +75,27 @@ public class NotInGameUiManager extends UIComponent {
   public void setPage(String game) {
     if (game.equals("game")) {
       activePageIndex = 1;
+    } else if (game.equals("highscore")) {
+      activePageIndex = 2;
+    } else if (game.equals("highScoreBoard")) {
+      activePageIndex = 3;
+      ((HighScoreBoard) pages[activePageIndex]).getScores();
     }
   }
 
   public String getSelectedLevel() {
-    return ((LevelSelector) pages[1]).getSelectedLevel();
+    return selectedLevel;
+  }
+
+  public void setSelectedLevel(String label) {
+    this.selectedLevel = label;
+  }
+
+  public void setStart(boolean start) {
+    this.start = start;
+  }
+
+  public boolean getStart() {
+    return start;
   }
 }

@@ -102,7 +102,7 @@ public class Window extends PApplet {
         } else {
             background(0);
             this.notInGameUiManager.draw();
-            if (this.levelSelected()) {
+            if (this.levelSelected() && notInGameUiManager.getStart()) {
                 this.startGame();
                 background(0);
             }

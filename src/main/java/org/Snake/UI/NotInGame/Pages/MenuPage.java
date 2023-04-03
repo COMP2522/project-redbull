@@ -58,11 +58,10 @@ public class MenuPage extends Frame {
 
   @Override
   public void mouseClicked(float mx, float my) {
-    System.out.println("Mouse clicked at " + mx + ", " + my);
     if (playButton.contains(mx, my)) {
       notInGameUiManager.setPage("game");
     } else if (highScoreButton.contains(mx, my)) {
-      System.out.println("High score button clicked");
+      notInGameUiManager.setPage("highscore");
     }
   }
 }

@@ -1,41 +1,31 @@
 package org.Snake.UI.NotInGame.Pages;
-
+import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Frame;
 import org.Snake.UI.NotInGame.LevelButton;
-import org.Snake.UI.NotInGame.NotInGameUiManager;
 import processing.core.PApplet;
 
+public class HighScoreLevels extends Frame {
 
+  private final LevelButton[] levelButtons;
+  private final int numOfLevels;
+  private final NotInGameUiManager uiManager;
 
-
-/**
- * LevelSelector class which is the main level selector
- *
- * @author
- * @version
- */
-public class LevelSelector extends Frame {
-
-  private LevelButton[] levelButtons;
-
-  //the names of the levels
-  private String levelNames[];
-
-  private int numOfLevels = 9;
-  private NotInGameUiManager uiManager;
 
   /**
-   * LevelSelector constructor which sets the position and size of the level selector
-   * @param parent the parent PApplet
-   * @param x the x position of the level selector
-   * @param y the y position of the level selector
-   * @param width the width of the level selector
-   * @param height the height of the level selector
+   * Frame constructor which sets the position and size of the frame
+   *
+   * @param parent    the parent PApplet
+   * @param x         the x position of the frame
+   * @param y         the y position of the frame
+   * @param width     the width of the frame
+   * @param height    the height of the frame
+   * @param uiManager
    */
-  public LevelSelector(PApplet parent, float x, float y, float width, float height, String[] levelNames, NotInGameUiManager uiManager) {
+  public HighScoreLevels(PApplet parent, float x, float y, float width, float height, String[] levelNames, NotInGameUiManager uiManager) {
     super(parent, x, y, width, height, 0,"");
+
+    numOfLevels = levelNames.length;
     this.uiManager = uiManager;
-    this.levelNames = levelNames;
     levelButtons = new LevelButton[numOfLevels];
     float buttonWidth = width / 3;
     float buttonHeight = height / 3;
@@ -43,16 +33,10 @@ public class LevelSelector extends Frame {
       float buttonX = x + buttonWidth * (i % 3);
       float buttonY = y + buttonHeight * PApplet.floor(i / 3);
 
-
       levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, levelNames[i]);
-
-
     }
   }
 
-  /**
-   * Method to draw the level selector
-   */
   @Override
   public void draw() {
     for (int i = 0; i < numOfLevels; i++) {
@@ -60,11 +44,6 @@ public class LevelSelector extends Frame {
     }
   }
 
-  /**
-   * Method for event handling
-   * @param mx the x position of the mouse
-   * @param my the y position of the mouse
-   */
   @Override
   public void mouseClicked(float mx, float my) {
     System.out.print("mouse clicked");
@@ -76,8 +55,10 @@ public class LevelSelector extends Frame {
             levelButtons[j].setSelected(false);
           }
         }
-        uiManager.setStart(true);
+        uiManager.setStart(false);
         uiManager.setSelectedLevel(levelButtons[i].getLabel());
+        uiManager.setPage("highScoreBoard");
+
         break;
       }
     }
@@ -97,4 +78,3 @@ public class LevelSelector extends Frame {
   }
 
 }
-
