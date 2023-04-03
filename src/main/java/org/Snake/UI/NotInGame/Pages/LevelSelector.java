@@ -1,6 +1,7 @@
 package org.Snake.UI.NotInGame.Pages;
 
 import org.Snake.UI.Frame;
+import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.LevelButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 import processing.core.PApplet;
@@ -20,6 +21,8 @@ public class LevelSelector extends Frame {
 
   //the names of the levels
   private String levelNames[];
+
+  private HomeButton homeButton;
 
   private int numOfLevels = 9;
   private NotInGameUiManager uiManager;
@@ -48,6 +51,9 @@ public class LevelSelector extends Frame {
 
 
     }
+
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
+
   }
 
   /**
@@ -58,6 +64,7 @@ public class LevelSelector extends Frame {
     for (int i = 0; i < numOfLevels; i++) {
       levelButtons[i].draw();
     }
+    homeButton.draw();
   }
 
   /**
@@ -67,7 +74,6 @@ public class LevelSelector extends Frame {
    */
   @Override
   public void mouseClicked(float mx, float my) {
-    System.out.print("mouse clicked");
     for (int i = 0; i < numOfLevels; i++) {
       if (levelButtons[i].contains(mx, my)) {
         levelButtons[i].setSelected(true);
@@ -80,6 +86,10 @@ public class LevelSelector extends Frame {
         uiManager.setSelectedLevel(levelButtons[i].getLabel());
         break;
       }
+    }
+    if (homeButton.contains(mx, my)) {
+      uiManager.setStart(false);
+      uiManager.setPage("home");
     }
   }
 

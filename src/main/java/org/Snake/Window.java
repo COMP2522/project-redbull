@@ -85,7 +85,7 @@ public class Window extends PApplet {
         this.init();
         this.clock = new Clock();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
-        this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight(), mongoDb);
+        this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight(), mongoDb, this);
         Sprite.loadImages();
     }
     public void init(){
@@ -206,5 +206,9 @@ public class Window extends PApplet {
 
     public MongoDb getDB() {
         return mongoDb;
+    }
+
+    public void setGameActive(boolean gameActive) {
+        this.gameActive = gameActive;
     }
 }

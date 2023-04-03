@@ -6,6 +6,8 @@ import org.Snake.UI.NotInGame.ImageAnimation;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Text;
 import processing.core.PApplet;
+import org.Snake.UI.HomeButton;
+
 
 public class MenuPage extends Frame {
 
@@ -13,6 +15,7 @@ public class MenuPage extends Frame {
 
   private Button playButton;
   private Button highScoreButton;
+  private HomeButton homeButton;
   private Text title;
 
   public MenuPage(PApplet parent, float x, float y, float width, float height, int padding, String direction, NotInGameUiManager notInGameUiManager) {
@@ -31,6 +34,8 @@ public class MenuPage extends Frame {
     // create the high score button
     highScoreButton = new Button(parent, x + width/2 - highScoreButtonWidth / 2, y + height/2 + 100, highScoreButtonWidth, 75, "HIGH SCORES");
 
+    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
+
     // create wings animation
     String[] left = new String[4];
     for (int i = 0 ; i < 4; i++) {
@@ -48,6 +53,7 @@ public class MenuPage extends Frame {
     add(title);
     add(playButton);
     add(highScoreButton);
+    add(homeButton);
     add(wingsAnimationLeft);
     add(wingsAnimationRight);
 
