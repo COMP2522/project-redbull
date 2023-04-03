@@ -38,8 +38,6 @@ public class InGameUI extends UIComponent {
     testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
     testFrame.add(scoreTracker);
     components.add(testFrame);
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", this.uiManager);
-    components.add(homeButton);
   }
 
   /**
@@ -67,9 +65,7 @@ public class InGameUI extends UIComponent {
    */
   @Override
   public void mouseClicked(float mx, float my) {
-    for (UIComponent elem : components) {
-      elem.mouseClicked(mx, my);
-    }
+
   }
 
   /**
