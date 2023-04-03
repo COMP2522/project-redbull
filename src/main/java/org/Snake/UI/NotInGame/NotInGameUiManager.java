@@ -1,4 +1,6 @@
 package org.Snake.UI.NotInGame;
+import org.Snake.UI.NotInGame.Pages.LevelSelector;
+import org.Snake.UI.NotInGame.Pages.MenuPage;
 import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
 

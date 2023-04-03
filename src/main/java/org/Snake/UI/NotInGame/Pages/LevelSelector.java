@@ -1,6 +1,7 @@
-package org.Snake.UI.NotInGame;
+package org.Snake.UI.NotInGame.Pages;
 
 import org.Snake.UI.Frame;
+import org.Snake.UI.NotInGame.LevelButton;
 import processing.core.PApplet;
 
 

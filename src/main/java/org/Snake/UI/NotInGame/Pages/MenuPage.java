@@ -1,6 +1,9 @@
-package org.Snake.UI.NotInGame;
+package org.Snake.UI.NotInGame.Pages;
 
 import org.Snake.UI.Frame;
+import org.Snake.UI.NotInGame.Button;
+import org.Snake.UI.NotInGame.ImageAnimation;
+import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Text;
 import processing.core.PApplet;
 
