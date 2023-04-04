@@ -1,6 +1,7 @@
 package org.Snake;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -117,13 +118,16 @@ public class MazeMaker {
 
         //create maze
         JSONObject obj = new JSONObject(buffer.toString());
-        JSONArray foodArray = obj.getJSONArray("food");
-
-        for (int j = 0; j < foodArray.length(); j++) {
-            JSONObject row = foodArray.getJSONObject(j);
-            int x = row.getInt("y");
-            int y = row.getInt("x");
-            foodTiles[x][y] = new Food(x*cellSize, y*cellSize, cellSize,"food");
+        try {
+            JSONArray foodArray = obj.getJSONArray("food");
+            for (int j = 0; j < foodArray.length(); j++) {
+                JSONObject row = foodArray.getJSONObject(j);
+                int x = row.getInt("y");
+                int y = row.getInt("x");
+                foodTiles[x][y] = new Food(x*cellSize, y*cellSize, cellSize,"food");
+            }
+        } catch (JSONException e) {
+            // no "food" section in JSON file
         }
         return foodTiles;
     }
