@@ -15,7 +15,13 @@ public class SnakeBody extends Sprite {
 
   private String image;
 
-  //constructor
+  /**
+   *
+   * @param xPos
+   * @param yPos
+   * @param size
+   * @param picture
+   */
   public SnakeBody(float xPos, float yPos, int size, String picture) {
     super((int)xPos, (int)yPos, size);
     sizeX = size;
