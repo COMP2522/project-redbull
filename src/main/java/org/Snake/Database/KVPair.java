@@ -1,6 +1,6 @@
 package org.Snake.Database;
 
-public class KVPair implements Comparable{
+public class KVPair implements Comparable {
   String key;
   int value;
 

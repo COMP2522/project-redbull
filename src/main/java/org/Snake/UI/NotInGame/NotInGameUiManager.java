@@ -1,4 +1,5 @@
 package org.Snake.UI.NotInGame;
+import org.Snake.Database.KVPair;
 import org.Snake.Database.MongoDb;
 import org.Snake.UI.Buttons.HighScoreButton;
 import org.Snake.UI.Buttons.HomeButton;
@@ -9,6 +10,9 @@ import org.Snake.UI.UIComponent;
 import org.Snake.Window;
 import org.Snake.UI.Buttons.Button;
 import org.Snake.UI.Buttons.PlayButton;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public class NotInGameUiManager extends UIComponent {
 
@@ -40,6 +44,44 @@ public class NotInGameUiManager extends UIComponent {
     makeHighScore();
   }
 
+  private void makeHighScore() {
+    ArrayList<KVPair> scores;
+
+    MongoDb db = new MongoDb();
+
+    Text[] scoreTexts = new Text[10];
+
+    pages[0] = new Page(parent, x , y , width , height);
+    Page highScores = pages[0];
+
+    Button homeButton = new HomeButton(parent, (int) getParent().getScreenSizeWidth()-100, 200, 200, 50, "Home");
+    highScores.add(homeButton);
+
+    // need to get the level
+    String level = "Classic";
+    // Get the high scores from the database
+    scores = db.get(level);
+
+    // Create a text object to display the title "High Scores"
+    Text titleText = new Text(parent, (int) getParent().getScreenSizeWidth() / 2, (int) getParent().getScreenSizeHeight() / 4, "High Scores");
+    titleText.setFontSize(50);
+    titleText.setFillColor(Color.BLACK);
+    highScores.add(titleText);
+
+    // Create a text object for each high score and add it to the page
+    int y = (int) getParent().getScreenSizeHeight() / 2;
+    int lineHeight = 50;
+    for (int i = 0; i < scores.size(); i++) {
+      KVPair score = scores.get(i);
+      String scoreString = score.getKey() + ": " + score.getValue();
+      scoreTexts[i] = new Text(parent, (int) getParent().getScreenSizeWidth() / 2, y + i * lineHeight, scoreString);
+      scoreTexts[i].setFontSize(30);
+      scoreTexts[i].setFillColor(Color.WHITE);
+      highScores.add(scoreTexts[i]);
+    }
+  }
+
+
   private void makeSelectLevel(String[] levelNames) {
     pages[0] = new Page(parent, x , y , width , height);
     Page selectLevel = pages[0];
@@ -62,7 +104,8 @@ public class NotInGameUiManager extends UIComponent {
       }
     }
 
-
+    Button homeButton = new HomeButton(parent, (int) getParent().getScreenSizeWidth() - 100, 200, 200, 50, "Home");
+    selectLevel.add(homeButton);
 
   }
 

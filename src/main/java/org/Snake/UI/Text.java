@@ -3,6 +3,8 @@ package org.Snake.UI;
 import org.Snake.Window;
 import processing.core.PApplet;
 
+import java.awt.*;
+
 public class Text extends UIComponent {
 
 
@@ -79,5 +81,13 @@ public class Text extends UIComponent {
   }
   public String getContent() {
     return content;
+  }
+
+  public void setFontSize(int i) {
+    this.textSize = i;
+  }
+
+  public void setFillColor(Color black) {
+    this.textColor = parent.color(0);
   }
 }
