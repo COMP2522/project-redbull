@@ -31,8 +31,6 @@ public class Window extends PApplet {
     int rows;
     int cols;
 
-    InGameUI inGameUI;
-
     int lastKeyPressed;
     private final int topOffSet;
 
@@ -64,12 +62,19 @@ public class Window extends PApplet {
 //        int centerY = (int) (screenSize.getHeight()/2) - 350;
 
 //        levelSelector = new LevelSelector(this, centerX, centerY, 700, 700);
-        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), notInGameUiManager);
         mongoDb = new MongoDb();
     }
 
     public int getWidth() {
         return width;
+    }
+
+    public double getScreenSizeWidth() {
+        return screenSize.getWidth();
+    }
+
+    public double getScreenSizeHeight() {
+        return screenSize.getHeight();
     }
 
     public int getOffset() {
@@ -104,7 +109,6 @@ public class Window extends PApplet {
             drawGrid();
             spriteManager.animate();
             spriteManager.draw();
-            inGameUI.draw();
         } else {
             background(0);
             this.notInGameUiManager.draw();
@@ -168,21 +172,6 @@ public class Window extends PApplet {
         lastKeyPressed = 0;
         spriteManager.reset();
         clock.reset();
-
-        int score = inGameUI.getScore();
-        if (mongoDb.isHighScore(score, notInGameUiManager.getSelectedLevel())) {
-            String name = JOptionPane.showInputDialog("You got a High Score! Enter your name:");
-            if (name != null && !name.isEmpty()) {
-                // do something with the user's name
-                mongoDb.put(name, score, notInGameUiManager.getSelectedLevel());
-            } else {
-                // user canceled the input or didn't enter a name
-                mongoDb.put("Anonymous", score, notInGameUiManager.getSelectedLevel());
-            }
-        }
-
-
-        inGameUI.resetScore();
     }
 
     private void startGame() {
@@ -198,10 +187,6 @@ public class Window extends PApplet {
 
     public float getTopOffset() {
         return topOffSet;
-    }
-
-    public void incrementScore() {
-        inGameUI.incrementScore();
     }
 
     public MongoDb getDB() {

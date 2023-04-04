@@ -1,9 +1,8 @@
 package org.Snake.UI.InGame;
 
-import org.Snake.UI.Frame;
+import org.Snake.UI.Page;
 import org.Snake.UI.UIComponent;
-import processing.core.PApplet;
-import org.Snake.UI.HomeButton;
+import org.Snake.Window;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 
 import java.util.ArrayList;
@@ -15,9 +14,8 @@ public class InGameUI extends UIComponent {
 
   // list of all UI elements
   public ArrayList<UIComponent> components;
-  Frame testFrame;
+  Page testFrame;
   private ScoreTracker scoreTracker;
-  private HomeButton homeButton;
   private NotInGameUiManager uiManager;
 
   /**
@@ -30,16 +28,16 @@ public class InGameUI extends UIComponent {
    * @param height    the height of the UI
    * @param uiManager
    */
-  public InGameUI(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager) {
+  public InGameUI(Window parent, float x, float y, float width, float height, NotInGameUiManager uiManager) {
     super(parent, x, y, width, height);
     this.uiManager = uiManager;
     scoreTracker = new ScoreTracker(getParent(), 0f,0f, 100f,100f);
     components = new ArrayList<>();
-    testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
+    testFrame = new Page(getParent(), 100,100,100,100);
     testFrame.add(scoreTracker);
     components.add(testFrame);
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", this.uiManager);
-    components.add(homeButton);
+//    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", this.uiManager);
+//    components.add(homeButton);
   }
 
   /**

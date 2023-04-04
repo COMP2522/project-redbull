@@ -1,4 +1,4 @@
-package org.Snake.UI.NotInGame;
+package org.Snake.UI.Buttons;
 
 import org.Snake.UI.UIComponent;
 import org.Snake.Window;
@@ -10,7 +10,7 @@ import processing.core.PApplet;
  * @author
  * @version
  */
-public class LevelButton extends UIComponent {
+public class LevelButton extends Button {
 
   private String label;
   private boolean selected;
@@ -25,9 +25,9 @@ public class LevelButton extends UIComponent {
    * @param label the label of the button
    */
   public LevelButton(Window parent, float x, float y, float width, float height, String label) {
-    super(parent, x, y, width, height);
-    this.label = label;
+    super(parent, x, y, width, height, label);
     this.selected = false;
+    this.label = label;
   }
 
   /**
@@ -46,6 +46,8 @@ public class LevelButton extends UIComponent {
     getParent().rect(x, y, width, height, 3);
     getParent().fill(0);
     getParent().textAlign(PApplet.CENTER, PApplet.CENTER);
+    // make the text size bigger
+    getParent().textSize(40);
     getParent().text(label, x + width / 2, y + height / 2);
   }
 
@@ -56,6 +58,7 @@ public class LevelButton extends UIComponent {
   public void mouseClicked(float mx, float my) {
     if (contains(mx, my)) {
       setSelected(!selected);
+      System.out.println(label + " selected");
     }
   }
 

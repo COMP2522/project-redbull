@@ -172,7 +172,7 @@ public class SpriteManager {
         // collision with food
         if (food[x+player.getDirectionX()][y+player.getDirectionY()-1] != null && !food[x+player.getDirectionX()][y+player.getDirectionY()-1].isEaten()) {
             player.grow();
-            window.incrementScore();
+//            window.incrementScore();
             if (this.level.equals("Classic")){
                 Random rand = new Random();
                 int newX = rand.nextInt(rows-3)+1;

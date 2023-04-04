@@ -1,6 +1,7 @@
 package org.Snake.UI.InGame;
 
 import org.Snake.UI.UIComponent;
+import org.Snake.Window;
 import processing.core.PApplet;
 
 /**
@@ -22,7 +23,7 @@ public class ScoreTracker extends UIComponent {
    * @param width the width of the ScoreTracker
    * @param height the height of the ScoreTracker
    */
-  public ScoreTracker(PApplet parent, float x, float y, float width, float height) {
+  public ScoreTracker(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
     this.parent = parent;
     this.setScore(0);
