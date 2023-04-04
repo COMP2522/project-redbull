@@ -5,7 +5,15 @@ import processing.core.PImage;
 import java.util.HashMap;
 import java.util.Map;
 
-//Sprite class which instantiates basic attributes for on screen components
+/**
+ * A class representing a drawable sprite with basic attributes for on-screen components.
+ * The class includes a constructor taking x, y, and size parameters for the sprite.
+ * It also provides methods for loading and retrieving images for the sprite, and for getting and setting
+ * the sprite's x and y positions, size, and image.
+ * The class includes static methods for loading and retrieving images, and for setting and getting the window
+ * on which the sprite is drawn.
+ *
+ */
 public class Sprite implements Drawable{
   private float xPos;
   private float yPos;
@@ -58,40 +66,74 @@ public class Sprite implements Drawable{
    * @return
    */
   public static Window getWindow(){return Sprite.window;}
+  /**
 
+   Returns the x position of the sprite.
+   @return the x position of the sprite
+   */
   public float getxPos() {
     return xPos;
   }
+  /**
 
+   Returns the y position of the sprite.
+   @return the y position of the sprite
+   */
   public float getyPos() {
     return yPos;
   }
+  /**
 
+   Returns the size of the sprite.
+   @return the size of the sprite
+   */
   public int getSize() {
     return size;
   }
+  /**
 
+   Returns the picture of the sprite.
+   @return the picture of the sprite
+   */
   public PImage getPicture() {
     return picture;
   }
+  /**
 
+   Sets the x position of the sprite.
+   @param xPos the x position to set
+   */
   public void setxPos(float xPos) {
     this.xPos = xPos;
   }
+  /**
 
+   Sets the y position of the sprite.
+   @param yPos the y position to set
+   */
   public void setyPos(float yPos) {
     this.yPos = yPos;
   }
+  /**
 
+   Sets the size of the sprite.
+   @param size the size to set
+   */
   public void setSize(int size) {
     this.size = size;
   }
+  /**
 
+   Sets the picture of the sprite.
+   @param picture the picture to set
+   */
   public void setPicture(PImage picture) {
     this.picture = picture;
   }
+  /**
 
-  //Draw method to instantiate the window with elements.
-  public void draw(){
+   Draws the sprite.
+   */
+  public void draw() {
   }
 }

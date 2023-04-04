@@ -33,7 +33,10 @@ public class SpriteManager {
         return walls;
     }
 
-
+    /**
+     * The method that calls mazemaker to place the tiles, spawns and food
+     * @return
+     */
     public void makeTiles() {
         if (Objects.equals(this.level, "random")) {
             this.walls = MazeMaker3.generateMaze("wall", rows, cols, tileWidth);
@@ -66,6 +69,9 @@ public class SpriteManager {
     }
 
 
+    /**
+     * Method to draw the sprites usin threads
+     */
     public void draw() {
         for(int i = sprites.size()-1; i >= 0; i--){
             if(sprites.get(i) == null){
@@ -104,6 +110,7 @@ public class SpriteManager {
             }
         }
     }
+
     /**
      * Method to animate the player
      */
@@ -117,6 +124,7 @@ public class SpriteManager {
         player.setxPos(nextX);
         player.setyPos(nextY);
     }
+
     /**
      * Method to update all the sprites
      */
@@ -219,6 +227,9 @@ public class SpriteManager {
 
     }
 
+    /**
+     * Method to reset the topography of the level upon the player's death
+     */
     public void reset() {
         sprites.clear();
         makeTiles();
@@ -236,6 +247,10 @@ public class SpriteManager {
         }
     }
 
+    /**
+     * Method to get the level to be loaded
+     * @param level the level to be loaded
+     */
     public void setLevel(String level) {
         this.level = level;
     }

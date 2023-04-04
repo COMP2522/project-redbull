@@ -18,35 +18,84 @@ import javax.swing.JOptionPane;
  */
 public class Window extends PApplet {
 
-
+    /**
+     * The clock that controls the speed of the game
+     */
     Clock clock;
+
+    /**
+     * The size of the screen
+     */
     Dimension screenSize;
+
+    /**
+     * The sprite manager that manages the sprites
+     */
     SpriteManager spriteManager;
+
+    /**
+     * The not in game ui manager that manages the ui in the menu pages
+     */
     NotInGameUiManager notInGameUiManager;
 
+
     int framesPerClock;
+
+    /**
+     * The width of the window
+     */
     private final int width;
+
+    /**
+     * The offset of the window
+     */
     private final int offset;
+
+    /**
+     * The size of the cells for the individual window
+     */
     int cellSize;
+
+    /**
+     * The number of rows in the grid
+     */
     int rows;
+
+    /**
+     * The number of columns in the grid
+     */
     int cols;
 
+    /**
+     * The in game ui that manages the ui in the game
+     */
     InGameUI inGameUI;
 
+    /**
+     * The last key pressed
+     */
     int lastKeyPressed;
+
+    /**
+     * The top offset of the window
+     */
     private final int topOffSet;
 
+    /**
+     * The boolean that determines if the game is active
+     */
     boolean gameActive;
 
+    /**
+     * The database that stores the high scores
+     */
     MongoDb mongoDb;
-
-
 
 
     //////////////////////////////////////////////////////
 
     /**
-     * TYhe constructor for the Window class
+     * The constructor for the Window class
      */
     public Window(){
         gameActive = false;
@@ -67,18 +116,29 @@ public class Window extends PApplet {
         mongoDb = new MongoDb();
     }
 
+    /**
+     * The getter for the width
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * The getter for the height offset
+     */
     public int getOffset() {
         return offset;
     }
+
 
     @Override
     public void settings() {
         fullScreen();
     }
+
+    /**
+     * The method that loads the game
+     */
     @Override
     public void setup(){
         this.init();
@@ -89,6 +149,10 @@ public class Window extends PApplet {
         inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), notInGameUiManager);
 
     }
+
+    /**
+     * The method that starts the game
+     */
     public void init(){
         frameRate(60);
     }
@@ -149,6 +213,9 @@ public class Window extends PApplet {
 
     }
 
+    /**
+     * The method that handles mouse clicks
+     */
     public void mousePressed() {
         if (!gameActive) {
             notInGameUiManager.mouseClicked(this.mouseX, this.mouseY);
@@ -165,6 +232,9 @@ public class Window extends PApplet {
         PApplet.runSketch(appletArgs, MazeSnake);
     }
 
+    /**
+     * Resets the game upon the snake dying
+     */
     public void reset(){
         lastKeyPressed = 0;
         spriteManager.reset();
@@ -186,29 +256,47 @@ public class Window extends PApplet {
         inGameUI.resetScore();
     }
 
+    /**
+     * Cals the methods that make the tiles
+     */
     private void startGame() {
         spriteManager.setLevel(notInGameUiManager.getSelectedLevel());
         spriteManager.makeTiles();
         gameActive = true;
     }
 
+    /**
+     * Checks if a level is selected
+     * @return true if a level is selected
+     */
     private boolean levelSelected() {
         return !Objects.equals(notInGameUiManager.getSelectedLevel(), "none");
     }
 
-
+    /**
+     * The getter for the cell size
+     */
     public float getTopOffset() {
         return topOffSet;
     }
 
+    /**
+     * The method that increments the score upon eating a food
+     */
     public void incrementScore() {
         inGameUI.incrementScore();
     }
 
+    /**
+     * The getter for the database
+     */
     public MongoDb getDB() {
         return mongoDb;
     }
 
+    /**
+     * The setter for the game active
+     */
     public void setGameActive(boolean gameActive) {
         this.gameActive = gameActive;
     }
