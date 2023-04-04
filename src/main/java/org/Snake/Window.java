@@ -23,16 +23,12 @@ public class Window extends PApplet {
     Clock clock;
     Dimension screenSize;
     SpriteManager spriteManager;
-    UiManager uiManager;
-
     int framesPerClock;
     private final int width;
     private final int offset;
     int cellSize;
     int rows;
     int cols;
-
-    InGameUI inGameUI;
 
     int lastKeyPressed;
     private final int topOffSet;
@@ -183,7 +179,7 @@ public class Window extends PApplet {
                 mongoDb.put("Anonymous", score, UiManager.getInstance().getSelectedLevel());
             }
 
-            uiManager.getInstance().reDrawHighScores();
+            UiManager.getInstance().reDrawHighScores();
 
         }
 
@@ -208,10 +204,6 @@ public class Window extends PApplet {
 
     public void incrementScore() {
         UiManager.getInstance().incrementScore();
-    }
-
-    public MongoDb getDB() {
-        return mongoDb;
     }
 
     public void setGameActive(boolean gameActive) {

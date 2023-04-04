@@ -231,7 +231,6 @@ public class SpriteManager {
                     food2.reset();
                 }
                 catch (Exception e){
-                    System.out.println("No food");
                 }
             }
         }

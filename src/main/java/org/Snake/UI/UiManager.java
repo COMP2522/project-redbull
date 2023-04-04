@@ -132,5 +132,6 @@ public class UiManager {
 
   public void reDrawHighScores() {
     ((HighScoreBoard) pages[3]).getScores();
+
   }
 }

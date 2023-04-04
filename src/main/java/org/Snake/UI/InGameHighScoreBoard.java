@@ -17,22 +17,17 @@ public class InGameHighScoreBoard extends Frame {
     this.db = new MongoDb();
   }
 
-  public void getScores() {
+  public void setScores() {
     System.out.println("Getting scores called");
-
     scores = db.get(UiManager.getInstance().getSelectedLevel());
-    for (KVPair score : scores) {
-      System.out.println(score.getKey() + " - " + score.getValue());
-    }
-
-    Text[] scoreTexts = new Text[scores.size()];
-    for (int i = 0; i < scores.size(); i++) {
-      scoreTexts[i] = new Text(parent, x + 100, y + 100 + (i * 50), scores.get(i).getKey() + " - " + scores.get(i).getValue());
-    }
   }
 
   @Override
   public void draw() {
+    // every 500 draws update the scores
+//    if (parent.frameCount % 500 == 0) {
+//      setScores();
+//    }
     // Draw HighScores title
     Text highScoresTitle = new Text(parent, x + width/2, y + height/10, "HighScores");
     highScoresTitle.setTextSize(32);
@@ -54,7 +49,7 @@ public class InGameHighScoreBoard extends Frame {
       scoreItem.draw();
       scoreY += 30;
     }
-
+//    System.out.println(scores);
   }
 
   @Override

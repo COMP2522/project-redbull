@@ -72,6 +72,7 @@ public class InGameUI extends UIComponent {
     for (UIComponent elem : components) {
       elem.draw();
     }
+
   }
 
   @Override
@@ -82,6 +83,6 @@ public class InGameUI extends UIComponent {
   }
 
   public void getScores() {
-    highScoreBoard.getScores();
+    highScoreBoard.setScores();
   }
 }

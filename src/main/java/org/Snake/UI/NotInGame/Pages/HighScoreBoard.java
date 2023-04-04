@@ -39,6 +39,7 @@ public class HighScoreBoard extends Frame {
     for (int i = 0; i < scores.size(); i++) {
       scoreTexts[i] = new Text(parent, x + 100, y + 100 + (i * 50), scores.get(i).getKey() + " - " + scores.get(i).getValue());
     }
+    System.out.println(scores);
   }
 
   @Override
