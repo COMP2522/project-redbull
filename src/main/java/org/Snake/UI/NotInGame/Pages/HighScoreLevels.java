@@ -1,6 +1,6 @@
 package org.Snake.UI.NotInGame.Pages;
 import org.Snake.UI.HomeButton;
-import org.Snake.UI.NotInGame.UiManager;
+import org.Snake.UI.UiManager;
 import org.Snake.UI.Frame;
 import org.Snake.UI.NotInGame.LevelButton;
 import org.Snake.Window;
@@ -10,8 +10,7 @@ public class HighScoreLevels extends Frame {
 
   private final LevelButton[] levelButtons;
   private final int numOfLevels;
-  private final UiManager uiManager;
-  private  HomeButton homeButton;
+  private final HomeButton homeButton;
 
 
   /**
@@ -22,13 +21,11 @@ public class HighScoreLevels extends Frame {
    * @param y         the y position of the frame
    * @param width     the width of the frame
    * @param height    the height of the frame
-   * @param uiManager
    */
-  public HighScoreLevels(Window parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
+  public HighScoreLevels(Window parent, float x, float y, float width, float height, String[] levelNames) {
     super(parent, x, y, width, height, 0,"");
 
     numOfLevels = levelNames.length;
-    this.uiManager = uiManager;
     levelButtons = new LevelButton[numOfLevels];
     float buttonWidth = width / 3;
     float buttonHeight = height / 3;
@@ -68,18 +65,4 @@ public class HighScoreLevels extends Frame {
     }
     homeButton.mouseClicked(mx, my);
   }
-
-  /**
-   * Method to get the selected level
-   * @return the buttons for the level
-   */
-  public String getSelectedLevel() {
-    for (int i = 0; i < numOfLevels; i++) {
-      if (levelButtons[i].isSelected()) {
-        return levelButtons[i].getLabel();
-      }
-    }
-    return "none";
-  }
-
 }

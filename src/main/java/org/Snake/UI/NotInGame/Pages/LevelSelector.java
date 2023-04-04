@@ -3,30 +3,17 @@ package org.Snake.UI.NotInGame.Pages;
 import org.Snake.UI.Frame;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.LevelButton;
-import org.Snake.UI.NotInGame.UiManager;
+import org.Snake.UI.UiManager;
 import org.Snake.Window;
 import processing.core.PApplet;
 
-
-
-
-/**
- * LevelSelector class which is the main level selector
- *
- * @author
- * @version
- */
 public class LevelSelector extends Frame {
 
-  private LevelButton[] levelButtons;
+  private final LevelButton[] levelButtons;
 
-  //the names of the levels
-  private String levelNames[];
+  private final HomeButton homeButton;
 
-  private HomeButton homeButton;
-
-  private int numOfLevels = 9;
-  private UiManager uiManager;
+  private final int numOfLevels = 9;
 
   /**
    * LevelSelector constructor which sets the position and size of the level selector
@@ -36,10 +23,9 @@ public class LevelSelector extends Frame {
    * @param width the width of the level selector
    * @param height the height of the level selector
    */
-  public LevelSelector(Window parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
+  public LevelSelector(Window parent, float x, float y, float width, float height, String[] levelNames) {
     super(parent, x, y, width, height, 0,"");
-    this.uiManager = uiManager;
-    this.levelNames = levelNames;
+    //the names of the levels
     levelButtons = new LevelButton[numOfLevels];
     float buttonWidth = width / 3;
     float buttonHeight = height / 3;
@@ -92,19 +78,5 @@ public class LevelSelector extends Frame {
 
       homeButton.mouseClicked(mx, my);
   }
-
-  /**
-   * Method to get the selected level
-   * @return the buttons for the level
-   */
-  public String getSelectedLevel() {
-    for (int i = 0; i < numOfLevels; i++) {
-      if (levelButtons[i].isSelected()) {
-        return levelButtons[i].getLabel();
-      }
-    }
-    return "none";
-  }
-
 }
 

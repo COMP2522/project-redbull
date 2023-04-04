@@ -1,7 +1,7 @@
 package org.Snake;
 
 import org.Snake.UI.NotInGame.Pages.InGameUI;
-import org.Snake.UI.NotInGame.UiManager;
+import org.Snake.UI.UiManager;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 

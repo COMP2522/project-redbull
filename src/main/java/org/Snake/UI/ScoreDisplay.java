@@ -1,6 +1,5 @@
 package org.Snake.UI;
 
-import org.Snake.UI.NotInGame.UiManager;
 import org.Snake.Window;
 
 public class ScoreDisplay extends UIComponent {

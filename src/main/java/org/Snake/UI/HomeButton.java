@@ -1,6 +1,6 @@
 package org.Snake.UI;
 
-import org.Snake.UI.NotInGame.UiManager;
+import org.Snake.UI.UiManager;
 import org.Snake.Window;
 import processing.core.PImage;
 
@@ -11,8 +11,6 @@ import processing.core.PImage;
 public class HomeButton extends UIComponent {
 
   private final PImage image;
-
-  private UiManager uiManager;
 
   /**
    * Initializes a new instance of the HomeButton class.

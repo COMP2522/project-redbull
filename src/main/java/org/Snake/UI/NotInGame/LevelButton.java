@@ -4,15 +4,9 @@ import org.Snake.UI.UIComponent;
 import org.Snake.Window;
 import processing.core.PApplet;
 
-/**
- * UIComponent class which is meant to be the base class for buttons
- *
- * @author
- * @version
- */
 public class LevelButton extends UIComponent {
 
-  private String label;
+  private final String label;
   private boolean selected;
 
   /**
@@ -57,13 +51,6 @@ public class LevelButton extends UIComponent {
     if (contains(mx, my)) {
       setSelected(!selected);
     }
-  }
-
-  /**
-   * Method to check if the button was clicked
-   */
-  public boolean isSelected() {
-    return selected;
   }
 
   /**

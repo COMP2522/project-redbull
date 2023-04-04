@@ -43,17 +43,17 @@ public class Frame extends UIComponent {
   @Override
   public void draw() {
     if (firstDraw) {
-      for (int i = 0; i < components.size(); i++) {
-        int y = components.get(i).getY();
-        int x = components.get(i).getX();
-        components.get(i).setY(y + this.y);
-        components.get(i).setX(x + this.x);
+      for (UIComponent component : components) {
+        int y = component.getY();
+        int x = component.getX();
+        component.setY(y + this.y);
+        component.setX(x + this.x);
       }
       firstDraw = false;
     }
 
-    for (int i = 0; i < components.size(); i++) {
-      components.get(i).draw();
+    for (UIComponent component : components) {
+      component.draw();
     }
   }
 

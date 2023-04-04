@@ -7,7 +7,7 @@ public class Text extends UIComponent {
 
 
 
-  private String content;
+  private final String content;
   private int textSize;
   private int textColor;
 
@@ -60,8 +60,5 @@ public class Text extends UIComponent {
    */
   public void setTextColor(int textColor) {
     this.textColor = textColor;
-  }
-  public String getContent() {
-    return content;
   }
 }

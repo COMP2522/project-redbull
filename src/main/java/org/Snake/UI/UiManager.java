@@ -1,6 +1,5 @@
-package org.Snake.UI.NotInGame;
+package org.Snake.UI;
 
-import com.mongodb.client.model.IndexOptions;
 import org.Snake.Database.MongoDb;
 import org.Snake.UI.NotInGame.Pages.*;
 import org.Snake.UI.UIComponent;
@@ -36,10 +35,10 @@ public class UiManager {
     this.score = 0; // Set the score to 0
 
     this.pages = new UIComponent[] {
-            new MenuPage(parent, x , y , width , height , 0, "", this),
-            new LevelSelector(parent, x + sideBarWidth, y, width- sideBarWidth, height, levelNames, this),
-            new HighScoreLevels(parent, x + sideBarWidth, y, width - sideBarWidth, height, levelNames, this),
-            new HighScoreBoard(parent, x, y, width, height, this, db),
+            new MenuPage(parent, x , y , width , height , 0, ""),
+            new LevelSelector(parent, x + sideBarWidth, y, width- sideBarWidth, height, levelNames),
+            new HighScoreLevels(parent, x + sideBarWidth, y, width - sideBarWidth, height, levelNames),
+            new HighScoreBoard(parent, x, y, width, height, db),
             new InGameUI(parent, x, y, width, height)
     };
     this.activePageIndex = 0; // Start with the first page active

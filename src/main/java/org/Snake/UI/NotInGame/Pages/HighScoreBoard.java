@@ -1,6 +1,6 @@
 package org.Snake.UI.NotInGame.Pages;
 import org.Snake.UI.HomeButton;
-import org.Snake.UI.NotInGame.UiManager;
+import org.Snake.UI.UiManager;
 import org.Snake.UI.Frame;
 import org.Snake.Window;
 import org.Snake.Database.KVPair;
@@ -13,19 +13,15 @@ import java.util.ArrayList;
 
 public class HighScoreBoard extends Frame {
 
-  private final UiManager uiManager;
 
   private ArrayList<KVPair> scores;
 
-  private MongoDb db;
+  private final MongoDb db;
 
-  private Text[] scoreTexts;
+  private final HomeButton homeButton;
 
-  private HomeButton homeButton;
-
-  public HighScoreBoard(Window parent, float x, float y, float width, float height, UiManager uiManager, MongoDb db) {
+  public HighScoreBoard(Window parent, float x, float y, float width, float height, MongoDb db) {
     super(parent, x, y, width, height, 0, "");
-    this.uiManager = uiManager;
     scores = new ArrayList<>();
     homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
 
@@ -39,7 +35,7 @@ public class HighScoreBoard extends Frame {
       System.out.println(score.getKey() + " - " + score.getValue());
     }
 
-    scoreTexts = new Text[scores.size()];
+    Text[] scoreTexts = new Text[scores.size()];
     for (int i = 0; i < scores.size(); i++) {
       scoreTexts[i] = new Text(parent, x + 100, y + 100 + (i * 50), scores.get(i).getKey() + " - " + scores.get(i).getValue());
     }

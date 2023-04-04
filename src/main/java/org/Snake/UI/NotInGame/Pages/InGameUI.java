@@ -5,7 +5,6 @@ import org.Snake.UI.ScoreDisplay;
 import org.Snake.UI.UIComponent;
 import org.Snake.Window;
 import org.Snake.UI.HomeButton;
-import org.Snake.UI.NotInGame.UiManager;
 
 import java.util.ArrayList;
 
@@ -17,9 +16,6 @@ public class InGameUI extends UIComponent {
   // list of all UI elements
   public ArrayList<UIComponent> components;
   Frame testFrame;
-  private ScoreDisplay scoreDisplay;
-  private HomeButton homeButton;
-  private UiManager uiManager;
 
   /**
    * InGameUI constructor which sets the position and size of the UI
@@ -32,13 +28,12 @@ public class InGameUI extends UIComponent {
    */
   public InGameUI(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
-    this.uiManager = uiManager;
-    scoreDisplay = new ScoreDisplay(getParent(), 0f,0f, 100f,100f);
+    ScoreDisplay scoreDisplay = new ScoreDisplay(getParent(), 0f, 0f, 100f, 100f);
     components = new ArrayList<>();
     testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
     testFrame.add(scoreDisplay);
     components.add(testFrame);
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
+    HomeButton homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
     components.add(homeButton);
   }
 
@@ -58,12 +53,6 @@ public class InGameUI extends UIComponent {
     }
   }
 
-  /**
-   * Method for event handling
-   *
-   * @author
-   * @version
-   */
   @Override
   public void mouseClicked(float mx, float my) {
     for (UIComponent elem : components) {
