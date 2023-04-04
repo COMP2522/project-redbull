@@ -1,6 +1,5 @@
 package org.Snake.UI.InGame;
 
-import org.Snake.UI.Frame;
 import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
 import org.Snake.UI.HomeButton;
@@ -15,7 +14,7 @@ public class InGameUI extends UIComponent {
 
   // list of all UI elements
   public ArrayList<UIComponent> components;
-  Frame testFrame;
+//  Frame testFrame;
   private ScoreTracker scoreTracker;
   private HomeButton homeButton;
   private NotInGameUiManager uiManager;
@@ -35,9 +34,9 @@ public class InGameUI extends UIComponent {
     this.uiManager = uiManager;
     scoreTracker = new ScoreTracker(getParent(), 0f,0f, 100f,100f);
     components = new ArrayList<>();
-    testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
-    testFrame.add(scoreTracker);
-    components.add(testFrame);
+//    testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
+//    testFrame.add(scoreTracker);
+//    components.add(testFrame);
   }
 
   /**

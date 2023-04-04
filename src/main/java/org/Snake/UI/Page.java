@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author
  * @version
  */
-public class Frame extends UIComponent {
+public class Page extends UIComponent {
 
   int padding;
   String direction;
@@ -29,7 +29,7 @@ public class Frame extends UIComponent {
    * @param padding the padding of the frame
    * @param direction the direction of the frame
    */
-  public Frame(PApplet parent, float x, float y, float width, float height, int padding, String direction) {
+  public Page(PApplet parent, float x, float y, float width, float height, int padding, String direction) {
     super(parent, x, y, width, height);
     this.padding = padding;
     this.direction = direction;

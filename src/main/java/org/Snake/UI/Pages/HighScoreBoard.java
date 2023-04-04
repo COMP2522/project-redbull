@@ -1,7 +1,7 @@
 package org.Snake.UI.Pages;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
-import org.Snake.UI.Frame;
+import org.Snake.UI.Page;
 import processing.core.PApplet;
 import org.Snake.Database.KVPair;
 
@@ -11,7 +11,7 @@ import org.Snake.Database.MongoDb;
 
 import java.util.ArrayList;
 
-public class HighScoreBoard extends Frame {
+public class HighScoreBoard extends Page {
 
   private final NotInGameUiManager uiManager;
 

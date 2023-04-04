@@ -1,6 +1,6 @@
 package org.Snake.UI.Pages;
 
-import org.Snake.UI.Frame;
+import org.Snake.UI.Page;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.LevelButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
@@ -15,7 +15,7 @@ import processing.core.PApplet;
  * @author
  * @version
  */
-public class LevelSelector extends Frame {
+public class LevelSelector extends Page {
 
   private LevelButton[] levelButtons;
 

@@ -2,6 +2,7 @@ package org.Snake.UI.InGame;
 
 //The imports for this class
 import org.Snake.Database.MongoDb;
+import org.Snake.UI.Page;
 import org.Snake.Window;
 import processing.core.PApplet;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class UIManager {
   /*
   The array of "screens" we can display
    */
-//  public ArrayList<Pages> Pages;
+  public ArrayList<Page> Pages;
 
   /*
   The currently active page

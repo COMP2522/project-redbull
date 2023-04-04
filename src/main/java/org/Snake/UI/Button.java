@@ -16,24 +16,24 @@ public class Button extends UIComponent {
 
   @Override
   public void draw() {
-    parent.stroke(0);
-    if (pressed) {
-      parent.fill(200, 0, 0);
-    } else {
-      parent.fill(255);
-    }
-    parent.rect(x, y, width, height);
-    parent.fill(0);
-    parent.text(label, x + width/2, y + height/2);
+//    parent.stroke(0);
+//    if (pressed) {
+//      parent.fill(200, 0, 0);
+//    } else {
+//      parent.fill(255);
+//    }
+//    parent.rect(x, y, width, height);
+//    parent.fill(0);
+//    parent.text(label, x + width/2, y + height/2);
   }
 
   @Override
   public void mouseClicked(float mx, float my) {
-    if (contains(mx, my)) {
-      pressed = true;
-    } else {
-      pressed = false;
-    }
+//    if (contains(mx, my)) {
+//      pressed = true;
+//    } else {
+//      pressed = false;
+//    }
   }
 
   public boolean isPressed() {

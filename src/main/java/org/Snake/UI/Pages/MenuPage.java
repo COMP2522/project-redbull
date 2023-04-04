@@ -1,6 +1,6 @@
 package org.Snake.UI.Pages;
 
-import org.Snake.UI.Frame;
+import org.Snake.UI.Page;
 import org.Snake.UI.NotInGame.Button;
 import org.Snake.UI.NotInGame.ImageAnimation;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
@@ -9,7 +9,7 @@ import processing.core.PApplet;
 import org.Snake.UI.HomeButton;
 
 
-public class MenuPage extends Frame {
+public class MenuPage extends Page {
 
   NotInGameUiManager notInGameUiManager;
 

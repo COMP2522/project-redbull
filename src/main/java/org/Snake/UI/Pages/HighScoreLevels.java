@@ -1,11 +1,11 @@
 package org.Snake.UI.Pages;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
-import org.Snake.UI.Frame;
+import org.Snake.UI.Page;
 import org.Snake.UI.NotInGame.LevelButton;
 import processing.core.PApplet;
 
-public class HighScoreLevels extends Frame {
+public class HighScoreLevels extends Page {
 
   private final LevelButton[] levelButtons;
   private final int numOfLevels;
