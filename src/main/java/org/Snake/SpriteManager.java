@@ -14,6 +14,7 @@ public class SpriteManager {
     private final int cols;
     private Wall[][] walls;
     private Food[][] food;
+    private Enemy[][] enemies;
     private final Window window;
     private int[] spawnPoint = {10,10};
     public SpriteManager(Window window, int cellSize, int rows, int cols) {
@@ -31,12 +32,8 @@ public class SpriteManager {
     public Wall[][] getTiles() {
         return walls;
     }
-    /**
-     * Method to update all the sprites
-     */
-    //TODO: Make an intance of the mazemaker and call generate maze on it instead of calling the static method
-    //mazemaker parent class, mazemaker interface that mazemaker classes implement
-    //mazemaker interface that mazemaker classes implement
+
+
     public void makeTiles() {
         if (Objects.equals(this.level, "random")) {
             this.walls = MazeMaker3.generateMaze("wall", rows, cols, tileWidth);
@@ -44,6 +41,7 @@ public class SpriteManager {
             this.walls = MazeMaker.loadMaze("wall", rows, cols, tileWidth, this.level);
             this.spawnPoint = MazeMaker.loadSpawn(this.level);
             this.food = MazeMaker.loadFood(rows, cols, tileWidth, this.level);
+            this.enemies = MazeMaker.loadEnemies(rows, cols, tileWidth, this.level);
             for (Wall[] wall : walls) {
                 for (Wall wall1 : wall) {
                     sprites.add(wall1);
@@ -66,6 +64,8 @@ public class SpriteManager {
             Collections.addAll(sprites, wall);
         }
     }
+
+
     public void draw() {
         for(int i = sprites.size()-1; i >= 0; i--){
             if(sprites.get(i) == null){
