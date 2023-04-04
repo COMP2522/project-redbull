@@ -1,7 +1,7 @@
 package org.Snake.UI.NotInGame.Pages;
 
 import org.Snake.UI.Frame;
-import org.Snake.UI.ScoreTracker;
+import org.Snake.UI.ScoreDisplay;
 import org.Snake.UI.UIComponent;
 import org.Snake.Window;
 import org.Snake.UI.HomeButton;
@@ -17,7 +17,7 @@ public class InGameUI extends UIComponent {
   // list of all UI elements
   public ArrayList<UIComponent> components;
   Frame testFrame;
-  private ScoreTracker scoreTracker;
+  private ScoreDisplay scoreDisplay;
   private HomeButton homeButton;
   private UiManager uiManager;
 
@@ -33,10 +33,10 @@ public class InGameUI extends UIComponent {
   public InGameUI(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
     this.uiManager = uiManager;
-    scoreTracker = new ScoreTracker(getParent(), 0f,0f, 100f,100f);
+    scoreDisplay = new ScoreDisplay(getParent(), 0f,0f, 100f,100f);
     components = new ArrayList<>();
     testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
-    testFrame.add(scoreTracker);
+    testFrame.add(scoreDisplay);
     components.add(testFrame);
     homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
     components.add(homeButton);
@@ -69,23 +69,5 @@ public class InGameUI extends UIComponent {
     for (UIComponent elem : components) {
       elem.mouseClicked(mx, my);
     }
-  }
-
-  /**
-   * Method to increase the score
-   */
-  public void incrementScore() {
-    scoreTracker.setScore(scoreTracker.getScore() + 1);
-  }
-
-  /**
-   * Method to reset the score
-   */
-  public void resetScore() {
-    scoreTracker.setScore(0);
-  }
-
-  public int getScore() {
-    return scoreTracker.getScore();
   }
 }

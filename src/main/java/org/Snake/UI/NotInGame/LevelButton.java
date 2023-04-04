@@ -1,6 +1,7 @@
 package org.Snake.UI.NotInGame;
 
 import org.Snake.UI.UIComponent;
+import org.Snake.Window;
 import processing.core.PApplet;
 
 /**
@@ -23,7 +24,7 @@ public class LevelButton extends UIComponent {
    * @param height the height of the button
    * @param label the label of the button
    */
-  public LevelButton(PApplet parent, float x, float y, float width, float height, String label) {
+  public LevelButton(Window parent, float x, float y, float width, float height, String label) {
     super(parent, x, y, width, height);
     this.label = label;
     this.selected = false;

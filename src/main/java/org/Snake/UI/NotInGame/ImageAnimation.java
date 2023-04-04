@@ -2,7 +2,7 @@ package org.Snake.UI.NotInGame;
 
 import org.Snake.UI.UIComponent;
 
-import processing.core.PApplet;
+import org.Snake.Window;
 import processing.core.PImage;
 
 public class ImageAnimation extends UIComponent {
@@ -12,7 +12,7 @@ public class ImageAnimation extends UIComponent {
   private final int frameInterval;
   private long lastFrameTime;
 
-  public ImageAnimation(PApplet parent, float x, float y, float width, float height, String[] images, int frameInterval) {
+  public ImageAnimation(Window parent, float x, float y, float width, float height, String[] images, int frameInterval) {
     super(parent, x, y, width, height);
     this.images = new PImage[images.length];
     for (int i = 0; i < images.length; i++) {

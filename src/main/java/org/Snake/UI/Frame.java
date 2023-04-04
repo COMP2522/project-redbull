@@ -1,6 +1,6 @@
 package org.Snake.UI;
 
-import processing.core.PApplet;
+import org.Snake.Window;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class Frame extends UIComponent {
    * @param padding the padding of the frame
    * @param direction the direction of the frame
    */
-  public Frame(PApplet parent, float x, float y, float width, float height, int padding, String direction) {
+  public Frame(Window parent, float x, float y, float width, float height, int padding, String direction) {
     super(parent, x, y, width, height);
     this.padding = padding;
     this.direction = direction;
