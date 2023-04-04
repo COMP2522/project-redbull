@@ -5,7 +5,7 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 
 /**
- * Frame class which is meant to be a container for UIComponents
+ * Page class which contains each "screen" that has UI components
  *
  * @author
  * @version
@@ -69,7 +69,30 @@ public class Page extends UIComponent {
    * Method to add a UIComponent to the frame
    * @param scoreTracker the UIComponent to be added
    */
-  public void add(UIComponent scoreTracker) {
-    components.add(scoreTracker);
+  public void add(UIComponent component) {
+    components.add(component);
   }
+
+/////////////////////////////////////////////////////////////////////////////
+  /**
+   * The following are for the in-game UI
+   */
+  /**
+   * Method to increase the score
+   */
+  public void incrementScore() {
+    scoreTracker.setScore(scoreTracker.getScore() + 1);
+  }
+
+  /**
+   * Method to reset the score
+   */
+  public void resetScore() {
+    scoreTracker.setScore(0);
+  }
+
+  public int getScore() {
+    return scoreTracker.getScore();
+  }
+
 }

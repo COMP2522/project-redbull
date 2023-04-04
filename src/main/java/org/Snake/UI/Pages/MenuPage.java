@@ -1,5 +1,6 @@
 package org.Snake.UI.Pages;
 
+import org.Snake.UI.InGame.UIManager;
 import org.Snake.UI.Page;
 import org.Snake.UI.NotInGame.Button;
 import org.Snake.UI.NotInGame.ImageAnimation;
@@ -11,14 +12,15 @@ import org.Snake.UI.HomeButton;
 
 public class MenuPage extends Page {
 
-  NotInGameUiManager notInGameUiManager;
+//  NotInGameUiManager notInGameUiManager;
 
   private Button playButton;
   private Button highScoreButton;
   private HomeButton homeButton;
   private Text title;
 
-  public MenuPage(PApplet parent, float x, float y, float width, float height, int padding, String direction, NotInGameUiManager notInGameUiManager) {
+  //Harrison: removed in NotInGameUiManager notInGameUiManager
+  public MenuPage(PApplet parent, float x, float y, float width, float height, int padding, String direction) {
     super(parent, x, y, width, height, padding, direction);
 
     // create the title
@@ -57,7 +59,6 @@ public class MenuPage extends Page {
     add(wingsAnimationLeft);
     add(wingsAnimationRight);
 
-    this.notInGameUiManager = notInGameUiManager;
   }
 
   @Override
@@ -68,9 +69,9 @@ public class MenuPage extends Page {
   @Override
   public void mouseClicked(float mx, float my) {
     if (playButton.contains(mx, my)) {
-      notInGameUiManager.setPage("game");
+      UIManager.setPage("game");
     } else if (highScoreButton.contains(mx, my)) {
-      notInGameUiManager.setPage("highscore");
+      UIManager.setPage("highscore");
     }
   }
 }
