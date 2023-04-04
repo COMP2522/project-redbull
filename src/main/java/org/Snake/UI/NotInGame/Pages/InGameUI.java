@@ -1,10 +1,11 @@
-package org.Snake.UI.InGame;
+package org.Snake.UI.NotInGame.Pages;
 
 import org.Snake.UI.Frame;
+import org.Snake.UI.ScoreTracker;
 import org.Snake.UI.UIComponent;
-import processing.core.PApplet;
+import org.Snake.Window;
 import org.Snake.UI.HomeButton;
-import org.Snake.UI.NotInGame.NotInGameUiManager;
+import org.Snake.UI.NotInGame.UiManager;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class InGameUI extends UIComponent {
   Frame testFrame;
   private ScoreTracker scoreTracker;
   private HomeButton homeButton;
-  private NotInGameUiManager uiManager;
+  private UiManager uiManager;
 
   /**
    * InGameUI constructor which sets the position and size of the UI
@@ -30,7 +31,7 @@ public class InGameUI extends UIComponent {
    * @param height    the height of the UI
    * @param uiManager
    */
-  public InGameUI(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager) {
+  public InGameUI(Window parent, float x, float y, float width, float height, UiManager uiManager) {
     super(parent, x, y, width, height);
     this.uiManager = uiManager;
     scoreTracker = new ScoreTracker(getParent(), 0f,0f, 100f,100f);

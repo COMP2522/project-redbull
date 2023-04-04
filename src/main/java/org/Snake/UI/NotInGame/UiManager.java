@@ -1,17 +1,14 @@
 package org.Snake.UI.NotInGame;
+
 import org.Snake.Database.MongoDb;
-import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.Pages.HighScoreBoard;
 import org.Snake.UI.NotInGame.Pages.LevelSelector;
 import org.Snake.UI.NotInGame.Pages.MenuPage;
 import org.Snake.UI.UIComponent;
 import org.Snake.Window;
-import processing.core.PApplet;
 import org.Snake.UI.NotInGame.Pages.HighScoreLevels;
 
-
-
-public class NotInGameUiManager extends UIComponent {
+public class UiManager {
 
   // An array of pages that can be displayed by the Menu
   private UIComponent[] pages;
@@ -25,16 +22,20 @@ public class NotInGameUiManager extends UIComponent {
 
   private final Window window;
 
-  public NotInGameUiManager(PApplet parent, float x, float y, float width, float height, MongoDb db, Window window) {
-    super(parent, x, y, width, height);
-    this.window = window;
+  private static UiManager instance;
+
+  private UiManager(Window parent, float width, float height, MongoDb db) {
+
+    this.window = parent;
     start = false;
     int sideBarWidth = 150;
     String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "BatCave", "PI"};
+    int x = 0;
+    int y = 0;
     this.pages = new UIComponent[] {
             new MenuPage(parent, x , y , width , height , 0, "", this),
-            new LevelSelector(parent, x+ sideBarWidth, y, width- sideBarWidth, height, levelNames, this),
-            new HighScoreLevels(parent, x+ sideBarWidth, y, width - sideBarWidth, height, levelNames, this),
+            new LevelSelector(parent, x + sideBarWidth, y, width- sideBarWidth, height, levelNames, this),
+            new HighScoreLevels(parent, x + sideBarWidth, y, width - sideBarWidth, height, levelNames, this),
             new HighScoreBoard(parent, x, y, width, height, this, db)
     };
     this.activePageIndex = 0; // Start with the first page active
@@ -42,13 +43,22 @@ public class NotInGameUiManager extends UIComponent {
     selectedLevel = "none";
   }
 
-  @Override
+  public static UiManager getInstance(Window parent, float width, float height, MongoDb db) {
+    if (instance == null) {
+      instance = new UiManager(parent, width, height, db);
+    }
+    return instance;
+  }
+
+  public static UiManager getInstance() {
+    return instance;
+  }
+
   public void draw() {
     // Draw the active page
     pages[activePageIndex].draw();
   }
 
-  @Override
   public void mouseClicked(float mx, float my) {
     // Check if any of the buttons on the active page were clicked
     pages[activePageIndex].mouseClicked(mx, my);

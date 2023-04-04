@@ -1,6 +1,6 @@
 package org.Snake.UI.NotInGame.Pages;
 import org.Snake.UI.HomeButton;
-import org.Snake.UI.NotInGame.NotInGameUiManager;
+import org.Snake.UI.NotInGame.UiManager;
 import org.Snake.UI.Frame;
 import org.Snake.UI.NotInGame.LevelButton;
 import processing.core.PApplet;
@@ -9,7 +9,7 @@ public class HighScoreLevels extends Frame {
 
   private final LevelButton[] levelButtons;
   private final int numOfLevels;
-  private final NotInGameUiManager uiManager;
+  private final UiManager uiManager;
   private  HomeButton homeButton;
 
 
@@ -23,7 +23,7 @@ public class HighScoreLevels extends Frame {
    * @param height    the height of the frame
    * @param uiManager
    */
-  public HighScoreLevels(PApplet parent, float x, float y, float width, float height, String[] levelNames, NotInGameUiManager uiManager) {
+  public HighScoreLevels(PApplet parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
     super(parent, x, y, width, height, 0,"");
 
     numOfLevels = levelNames.length;

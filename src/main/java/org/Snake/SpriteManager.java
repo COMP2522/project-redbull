@@ -154,6 +154,7 @@ public class SpriteManager {
      * Method to check if the player is colliding with a wall or a tile
      */
     private void collide() {
+
         //check if the player is colliding with a wall
         int x = (int) (player.getxPos() / this.tileWidth);
         int y = (int) (player.getyPos() / this.tileWidth);

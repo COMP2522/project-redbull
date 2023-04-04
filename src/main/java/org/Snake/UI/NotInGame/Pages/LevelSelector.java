@@ -3,7 +3,7 @@ package org.Snake.UI.NotInGame.Pages;
 import org.Snake.UI.Frame;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.LevelButton;
-import org.Snake.UI.NotInGame.NotInGameUiManager;
+import org.Snake.UI.NotInGame.UiManager;
 import processing.core.PApplet;
 
 
@@ -25,7 +25,7 @@ public class LevelSelector extends Frame {
   private HomeButton homeButton;
 
   private int numOfLevels = 9;
-  private NotInGameUiManager uiManager;
+  private UiManager uiManager;
 
   /**
    * LevelSelector constructor which sets the position and size of the level selector
@@ -35,7 +35,7 @@ public class LevelSelector extends Frame {
    * @param width the width of the level selector
    * @param height the height of the level selector
    */
-  public LevelSelector(PApplet parent, float x, float y, float width, float height, String[] levelNames, NotInGameUiManager uiManager) {
+  public LevelSelector(PApplet parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
     super(parent, x, y, width, height, 0,"");
     this.uiManager = uiManager;
     this.levelNames = levelNames;

@@ -1,8 +1,7 @@
 package org.Snake.UI.NotInGame.Pages;
 import org.Snake.UI.HomeButton;
-import org.Snake.UI.NotInGame.NotInGameUiManager;
+import org.Snake.UI.NotInGame.UiManager;
 import org.Snake.UI.Frame;
-import org.Snake.UI.NotInGame.LevelButton;
 import processing.core.PApplet;
 import org.Snake.Database.KVPair;
 
@@ -11,11 +10,10 @@ import org.Snake.UI.Text;
 import org.Snake.Database.MongoDb;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class HighScoreBoard extends Frame {
 
-  private final NotInGameUiManager uiManager;
+  private final UiManager uiManager;
 
   private ArrayList<KVPair> scores;
 
@@ -25,7 +23,7 @@ public class HighScoreBoard extends Frame {
 
   private HomeButton homeButton;
 
-  public HighScoreBoard(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager, MongoDb db) {
+  public HighScoreBoard(PApplet parent, float x, float y, float width, float height, UiManager uiManager, MongoDb db) {
     super(parent, x, y, width, height, 0, "");
     this.uiManager = uiManager;
     scores = new ArrayList<>();

@@ -1,7 +1,7 @@
 package org.Snake;
 
-import org.Snake.UI.InGame.InGameUI;
-import org.Snake.UI.NotInGame.NotInGameUiManager;
+import org.Snake.UI.NotInGame.Pages.InGameUI;
+import org.Snake.UI.NotInGame.UiManager;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 
@@ -22,7 +22,7 @@ public class Window extends PApplet {
     Clock clock;
     Dimension screenSize;
     SpriteManager spriteManager;
-    NotInGameUiManager notInGameUiManager;
+    UiManager uiManager;
 
     int framesPerClock;
     private final int width;
@@ -84,9 +84,11 @@ public class Window extends PApplet {
         this.init();
         this.clock = new Clock();
         this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
-        this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight(), mongoDb, this);
+        UiManager.getInstance(this, (float)screenSize.getWidth(), (float)screenSize.getHeight(), mongoDb);
+
         Sprite.loadImages();
-        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), notInGameUiManager);
+
+        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), uiManager);
 
     }
     public void init(){
@@ -108,8 +110,8 @@ public class Window extends PApplet {
             inGameUI.draw();
         } else {
             background(0);
-            this.notInGameUiManager.draw();
-            if (this.levelSelected() && notInGameUiManager.getStart()) {
+            UiManager.getInstance().draw();
+            if (this.levelSelected() && UiManager.getInstance().getStart()) {
                 this.startGame();
                 background(0);
             }
@@ -151,7 +153,7 @@ public class Window extends PApplet {
 
     public void mousePressed() {
         if (!gameActive) {
-            notInGameUiManager.mouseClicked(this.mouseX, this.mouseY);
+            UiManager.getInstance().mouseClicked(this.mouseX, this.mouseY);
         }
     }
 
@@ -171,14 +173,14 @@ public class Window extends PApplet {
         clock.reset();
 
         int score = inGameUI.getScore();
-        if (mongoDb.isHighScore(score, notInGameUiManager.getSelectedLevel())) {
+        if (mongoDb.isHighScore(score, UiManager.getInstance().getSelectedLevel())) {
             String name = JOptionPane.showInputDialog("You got a High Score! Enter your name:");
             if (name != null && !name.isEmpty()) {
                 // do something with the user's name
-                mongoDb.put(name, score, notInGameUiManager.getSelectedLevel());
+                mongoDb.put(name, score, UiManager.getInstance().getSelectedLevel());
             } else {
                 // user canceled the input or didn't enter a name
-                mongoDb.put("Anonymous", score, notInGameUiManager.getSelectedLevel());
+                mongoDb.put("Anonymous", score, UiManager.getInstance().getSelectedLevel());
             }
         }
 
@@ -187,13 +189,13 @@ public class Window extends PApplet {
     }
 
     private void startGame() {
-        spriteManager.setLevel(notInGameUiManager.getSelectedLevel());
+        spriteManager.setLevel(UiManager.getInstance().getSelectedLevel());
         spriteManager.makeTiles();
         gameActive = true;
     }
 
     private boolean levelSelected() {
-        return !Objects.equals(notInGameUiManager.getSelectedLevel(), "none");
+        return !Objects.equals(UiManager.getInstance().getSelectedLevel(), "none");
     }
 
 

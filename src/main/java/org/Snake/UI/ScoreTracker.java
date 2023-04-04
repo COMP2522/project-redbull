@@ -1,4 +1,4 @@
-package org.Snake.UI.InGame;
+package org.Snake.UI;
 
 import org.Snake.UI.UIComponent;
 import processing.core.PApplet;

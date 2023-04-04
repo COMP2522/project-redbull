@@ -1,6 +1,6 @@
 package org.Snake.UI;
 
-import org.Snake.UI.NotInGame.NotInGameUiManager;
+import org.Snake.UI.NotInGame.UiManager;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -12,7 +12,7 @@ public class HomeButton extends UIComponent {
 
   private final PImage image;
 
-  private NotInGameUiManager nG;
+  private UiManager uiManager;
 
   /**
    * Initializes a new instance of the HomeButton class.
@@ -23,11 +23,11 @@ public class HomeButton extends UIComponent {
    * @param width     The width of the button.
    * @param height    The height of the button.
    * @param imagePath The path to the image used for the button.
-   * @param nG
+   * @param uiManager
    */
-  public HomeButton(PApplet parent, float x, float y, float width, float height, String imagePath, NotInGameUiManager nG) {
+  public HomeButton(PApplet parent, float x, float y, float width, float height, String imagePath, UiManager uiManager) {
     super(parent, x, y, width, height);
-    this.nG = nG;
+    this.uiManager = uiManager;
 
     // Load the image from the file path
     image = parent.loadImage(imagePath);
@@ -54,7 +54,7 @@ public class HomeButton extends UIComponent {
       // Handle the button click here
       // ...
       System.out.print("Home button clicked");
-      nG.setPage("menu");
+      UiManager.getInstance().setPage("menu");
     }
   }
 }
