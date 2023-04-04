@@ -14,6 +14,7 @@ public class SpriteManager {
     private final int cols;
     private Wall[][] walls;
     private Food[][] food;
+    private Enemy[][] enemies;
     private final Window window;
     private int[] spawnPoint = {10,10};
     public SpriteManager(Window window, int cellSize, int rows, int cols) {
@@ -40,6 +41,7 @@ public class SpriteManager {
             this.walls = MazeMaker.loadMaze("wall", rows, cols, tileWidth, this.level);
             this.spawnPoint = MazeMaker.loadSpawn(this.level);
             this.food = MazeMaker.loadFood(rows, cols, tileWidth, this.level);
+            this.enemies = MazeMaker.loadEnemies(rows, cols, tileWidth, this.level);
             for (Wall[] wall : walls) {
                 for (Wall wall1 : wall) {
                     sprites.add(wall1);

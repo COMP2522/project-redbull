@@ -30,7 +30,7 @@ public class NotInGameUiManager extends UIComponent {
     this.window = window;
     start = false;
     int sideBarWidth = 150;
-    String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "BatCave", "Beetles"};
+    String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "BatCave", "PI"};
     this.pages = new UIComponent[] {
             new MenuPage(parent, x , y , width , height , 0, "", this),
             new LevelSelector(parent, x+ sideBarWidth, y, width- sideBarWidth, height, levelNames, this),
