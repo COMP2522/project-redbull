@@ -93,6 +93,8 @@ public class UiManager {
       activePageIndex = 0;
     } else if (game.equals("inGame")) { // ingame
       activePageIndex = 4;
+      ((InGameUI) pages[activePageIndex]).getScores();
+
     }
   }
 
@@ -126,5 +128,9 @@ public class UiManager {
 
   public Window getWindow() {
     return window;
+  }
+
+  public void reDrawHighScores() {
+    ((HighScoreBoard) pages[3]).getScores();
   }
 }

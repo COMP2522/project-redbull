@@ -1,35 +1,25 @@
-package org.Snake.UI.NotInGame.Pages;
-import org.Snake.UI.HomeButton;
-import org.Snake.UI.UiManager;
-import org.Snake.UI.Frame;
-import org.Snake.Window;
+package org.Snake.UI;
+
 import org.Snake.Database.KVPair;
-
-import org.Snake.UI.Text;
-
 import org.Snake.Database.MongoDb;
+import org.Snake.Window;
 
 import java.util.ArrayList;
 
-public class HighScoreBoard extends Frame {
-
+public class InGameHighScoreBoard extends Frame {
 
   private ArrayList<KVPair> scores;
 
   private final MongoDb db;
 
-  private final HomeButton homeButton;
-
-  public HighScoreBoard(Window parent, float x, float y, float width, float height, MongoDb db) {
+  public InGameHighScoreBoard(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
-    scores = new ArrayList<>();
-    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
-
-    this.db = db;
+    this.db = new MongoDb();
   }
 
   public void getScores() {
     System.out.println("Getting scores called");
+
     scores = db.get(UiManager.getInstance().getSelectedLevel());
     for (KVPair score : scores) {
       System.out.println(score.getKey() + " - " + score.getValue());
@@ -54,7 +44,6 @@ public class HighScoreBoard extends Frame {
     levelName.setTextSize(24);
     levelName.setTextColor(parent.color(255));
     levelName.draw();
-
     // Draw scores
     float scoreY = y + height/3;
     for (KVPair score : scores) {
@@ -66,14 +55,10 @@ public class HighScoreBoard extends Frame {
       scoreY += 30;
     }
 
-    //draw the home button
-    homeButton.draw();
   }
 
-
   @Override
-  public void mouseClicked(float mx, float my) {
-    homeButton.mouseClicked(mx, my);
-    System.out.print("mouse clicked in highscoreboard");
+  public void add(UIComponent component) {
+    super.add(component);
   }
 }

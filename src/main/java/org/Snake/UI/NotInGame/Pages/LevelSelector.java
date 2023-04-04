@@ -24,7 +24,7 @@ public class LevelSelector extends Frame {
    * @param height the height of the level selector
    */
   public LevelSelector(Window parent, float x, float y, float width, float height, String[] levelNames) {
-    super(parent, x, y, width, height, 0,"");
+    super(parent, x, y, width, height);
     //the names of the levels
     levelButtons = new LevelButton[numOfLevels];
     float buttonWidth = width / 3;

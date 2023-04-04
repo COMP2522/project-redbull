@@ -15,7 +15,7 @@ public class MenuPage extends Frame {
   private final Button highScoreButton;
 
   public MenuPage(Window parent, float x, float y, float width, float height, int padding, String direction) {
-    super(parent, x, y, width, height, padding, direction);
+    super(parent, x, y, width, height);
 
     // create the title
     Text title = new Text(parent, x + width / 2, y + height / 4, "Project RedBull");

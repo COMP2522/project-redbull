@@ -23,7 +23,7 @@ public class HighScoreLevels extends Frame {
    * @param height    the height of the frame
    */
   public HighScoreLevels(Window parent, float x, float y, float width, float height, String[] levelNames) {
-    super(parent, x, y, width, height, 0,"");
+    super(parent, x, y, width, height);
 
     numOfLevels = levelNames.length;
     levelButtons = new LevelButton[numOfLevels];

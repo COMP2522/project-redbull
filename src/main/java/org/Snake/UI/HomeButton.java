@@ -49,6 +49,7 @@ public class HomeButton extends UIComponent {
     if (contains(mx, my)) {
       // Handle the button click here
       // ...
+      UiManager.getInstance().setSelectedLevel("none");
       System.out.print("Home button clicked");
       UiManager.getInstance().setPage("menu");
     }

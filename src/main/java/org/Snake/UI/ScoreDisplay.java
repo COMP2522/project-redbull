@@ -23,4 +23,9 @@ public class ScoreDisplay extends UIComponent {
   public void mouseClicked(float mx, float my) {
     // do nothing
   }
+
+  public float getWidth() {
+    // get the width of the text
+    return parent.textWidth("Score: " + UiManager.getInstance().getScore());
+  }
 }

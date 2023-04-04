@@ -182,6 +182,9 @@ public class Window extends PApplet {
                 // user canceled the input or didn't enter a name
                 mongoDb.put("Anonymous", score, UiManager.getInstance().getSelectedLevel());
             }
+
+            uiManager.getInstance().reDrawHighScores();
+
         }
 
 
@@ -217,5 +220,9 @@ public class Window extends PApplet {
 
     public boolean isGameActive() {
         return gameActive;
+    }
+
+    public float getScreenWidth() {
+        return (float) screenSize.getWidth();
     }
 }

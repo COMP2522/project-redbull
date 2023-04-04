@@ -11,10 +11,6 @@ import java.util.ArrayList;
  * @version
  */
 public class Frame extends UIComponent {
-
-  int padding;
-  String direction;
-
   boolean firstDraw;
 
   ArrayList<UIComponent> components;
@@ -26,13 +22,10 @@ public class Frame extends UIComponent {
    * @param y the y position of the frame
    * @param width the width of the frame
    * @param height the height of the frame
-   * @param padding the padding of the frame
-   * @param direction the direction of the frame
+
    */
-  public Frame(Window parent, float x, float y, float width, float height, int padding, String direction) {
+  public Frame(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
-    this.padding = padding;
-    this.direction = direction;
     firstDraw = true;
     components = new ArrayList<>();
   }
