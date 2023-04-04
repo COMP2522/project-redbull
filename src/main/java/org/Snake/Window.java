@@ -124,10 +124,10 @@ public class Window extends PApplet {
             for (int j = 1; j < cols; j++) {
                 if(spriteManager.getTiles()[i][j-1] == null) {
                     stroke(100, 100, 100);
-                    fill(100, 100, 100);
+                    fill(225, 237, 238);
                     if ((i % 2 == 0 || j % 2 == 0) && !(i % 2 == 0 && j % 2 == 0)) {
                         //stroke(115,115,115);
-                        fill(115, 115, 115);
+                        fill(199, 222, 225);
                     }
                     rect((i * cellSize + offset), j * cellSize , cellSize, cellSize);
                 }
