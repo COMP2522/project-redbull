@@ -1,7 +1,7 @@
 package org.Snake.UI;
 
 import org.Snake.UI.NotInGame.UiManager;
-import processing.core.PApplet;
+import org.Snake.Window;
 import processing.core.PImage;
 
 
@@ -23,11 +23,9 @@ public class HomeButton extends UIComponent {
    * @param width     The width of the button.
    * @param height    The height of the button.
    * @param imagePath The path to the image used for the button.
-   * @param uiManager
    */
-  public HomeButton(PApplet parent, float x, float y, float width, float height, String imagePath, UiManager uiManager) {
+  public HomeButton(Window parent, float x, float y, float width, float height, String imagePath) {
     super(parent, x, y, width, height);
-    this.uiManager = uiManager;
 
     // Load the image from the file path
     image = parent.loadImage(imagePath);

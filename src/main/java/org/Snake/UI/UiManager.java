@@ -1,12 +1,10 @@
 package org.Snake.UI.NotInGame;
 
+import com.mongodb.client.model.IndexOptions;
 import org.Snake.Database.MongoDb;
-import org.Snake.UI.NotInGame.Pages.HighScoreBoard;
-import org.Snake.UI.NotInGame.Pages.LevelSelector;
-import org.Snake.UI.NotInGame.Pages.MenuPage;
+import org.Snake.UI.NotInGame.Pages.*;
 import org.Snake.UI.UIComponent;
 import org.Snake.Window;
-import org.Snake.UI.NotInGame.Pages.HighScoreLevels;
 
 public class UiManager {
 
@@ -24,6 +22,8 @@ public class UiManager {
 
   private static UiManager instance;
 
+  private int score; // The score of the player
+
   private UiManager(Window parent, float width, float height, MongoDb db) {
 
     this.window = parent;
@@ -32,11 +32,15 @@ public class UiManager {
     String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "BatCave", "PI"};
     int x = 0;
     int y = 0;
+
+    this.score = 0; // Set the score to 0
+
     this.pages = new UIComponent[] {
             new MenuPage(parent, x , y , width , height , 0, "", this),
             new LevelSelector(parent, x + sideBarWidth, y, width- sideBarWidth, height, levelNames, this),
             new HighScoreLevels(parent, x + sideBarWidth, y, width - sideBarWidth, height, levelNames, this),
-            new HighScoreBoard(parent, x, y, width, height, this, db)
+            new HighScoreBoard(parent, x, y, width, height, this, db),
+            new InGameUI(parent, x, y, width, height)
     };
     this.activePageIndex = 0; // Start with the first page active
 
@@ -56,15 +60,29 @@ public class UiManager {
 
   public void draw() {
     // Draw the active page
+    if (!window.isGameActive()) {
+      window.background(0);
+    }
     pages[activePageIndex].draw();
   }
 
   public void mouseClicked(float mx, float my) {
     // Check if any of the buttons on the active page were clicked
+
+    if (!window.isGameActive()) {
+      window.background(0);
+    }
+
     pages[activePageIndex].mouseClicked(mx, my);
   }
 
   public void setPage(String game) {
+
+    if (!game.equals("inGame")) {
+      window.setGameActive(false);
+      window.background(0);
+    }
+
     if (game.equals("game")) {
       activePageIndex = 1;
     } else if (game.equals("highscore")) {
@@ -74,6 +92,8 @@ public class UiManager {
       ((HighScoreBoard) pages[activePageIndex]).getScores();
     } else if (game.equals("menu")){ // home
       activePageIndex = 0;
+    } else if (game.equals("inGame")) { // ingame
+      activePageIndex = 4;
     }
   }
 
@@ -91,5 +111,21 @@ public class UiManager {
 
   public boolean getStart() {
     return start;
+  }
+
+  public void incrementScore() {
+    score++;
+  }
+
+  public int getScore() {
+    return score;
+  }
+
+  public void resetScore() {
+    this.score = 0 ;
+  }
+
+  public Window getWindow() {
+    return window;
   }
 }

@@ -2,7 +2,7 @@ package org.Snake.UI.NotInGame.Pages;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.UiManager;
 import org.Snake.UI.Frame;
-import processing.core.PApplet;
+import org.Snake.Window;
 import org.Snake.Database.KVPair;
 
 import org.Snake.UI.Text;
@@ -23,18 +23,18 @@ public class HighScoreBoard extends Frame {
 
   private HomeButton homeButton;
 
-  public HighScoreBoard(PApplet parent, float x, float y, float width, float height, UiManager uiManager, MongoDb db) {
+  public HighScoreBoard(Window parent, float x, float y, float width, float height, UiManager uiManager, MongoDb db) {
     super(parent, x, y, width, height, 0, "");
     this.uiManager = uiManager;
     scores = new ArrayList<>();
-    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
+    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
 
     this.db = db;
   }
 
   public void getScores() {
     System.out.println("Getting scores called");
-    scores = db.get(uiManager.getSelectedLevel());
+    scores = db.get(UiManager.getInstance().getSelectedLevel());
     for (KVPair score : scores) {
       System.out.println(score.getKey() + " - " + score.getValue());
     }
@@ -54,13 +54,13 @@ public class HighScoreBoard extends Frame {
     highScoresTitle.draw();
 
     // Draw level name
-    Text levelName = new Text(parent, x + width/2, y + height/5, uiManager.getSelectedLevel());
+    Text levelName = new Text(parent, x + width/2, y + height/5, UiManager.getInstance().getSelectedLevel());
     levelName.setTextSize(24);
     levelName.setTextColor(parent.color(255));
     levelName.draw();
 
     // Draw scores
-    float scoreY = y + height/2;
+    float scoreY = y + height/3;
     for (KVPair score : scores) {
       String scoreText = score.getKey() + " - " + score.getValue();
       Text scoreItem = new Text(parent, x + width/2, scoreY, scoreText);

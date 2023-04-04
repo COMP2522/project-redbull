@@ -3,6 +3,7 @@ import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.UiManager;
 import org.Snake.UI.Frame;
 import org.Snake.UI.NotInGame.LevelButton;
+import org.Snake.Window;
 import processing.core.PApplet;
 
 public class HighScoreLevels extends Frame {
@@ -23,7 +24,7 @@ public class HighScoreLevels extends Frame {
    * @param height    the height of the frame
    * @param uiManager
    */
-  public HighScoreLevels(PApplet parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
+  public HighScoreLevels(Window parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
     super(parent, x, y, width, height, 0,"");
 
     numOfLevels = levelNames.length;
@@ -36,7 +37,7 @@ public class HighScoreLevels extends Frame {
       float buttonY = y + buttonHeight * PApplet.floor(i / 3);
       levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, levelNames[i]);
     }
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
 
   }
 
@@ -50,7 +51,6 @@ public class HighScoreLevels extends Frame {
 
   @Override
   public void mouseClicked(float mx, float my) {
-    System.out.print("mouse clicked");
     for (int i = 0; i < numOfLevels; i++) {
       if (levelButtons[i].contains(mx, my)) {
         levelButtons[i].setSelected(true);
@@ -59,9 +59,9 @@ public class HighScoreLevels extends Frame {
             levelButtons[j].setSelected(false);
           }
         }
-        uiManager.setStart(false);
-        uiManager.setSelectedLevel(levelButtons[i].getLabel());
-        uiManager.setPage("highScoreBoard");
+       UiManager.getInstance().setStart(false);
+       UiManager.getInstance().setSelectedLevel(levelButtons[i].getLabel());
+       UiManager.getInstance().setPage("highScoreBoard");
 
         break;
       }

@@ -29,9 +29,8 @@ public class InGameUI extends UIComponent {
    * @param y         the y position of the UI
    * @param width     the width of the UI
    * @param height    the height of the UI
-   * @param uiManager
    */
-  public InGameUI(Window parent, float x, float y, float width, float height, UiManager uiManager) {
+  public InGameUI(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
     this.uiManager = uiManager;
     scoreTracker = new ScoreTracker(getParent(), 0f,0f, 100f,100f);
@@ -39,7 +38,7 @@ public class InGameUI extends UIComponent {
     testFrame = new Frame(getParent(), 100,100,100,100,10,"right");
     testFrame.add(scoreTracker);
     components.add(testFrame);
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", this.uiManager);
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
     components.add(homeButton);
   }
 
@@ -49,7 +48,6 @@ public class InGameUI extends UIComponent {
   @Override
   public void draw() {
     // draw over all elements with a black box
-
     for (UIComponent elem : components) {
       parent.pushStyle();
       parent.fill(0);

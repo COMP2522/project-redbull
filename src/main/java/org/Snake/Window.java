@@ -9,7 +9,8 @@ import org.Snake.Database.MongoDb;
 
 import java.awt.*;
 import java.util.Objects;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+
 /**
  * Window class which is the main class for the Snake game
  *
@@ -88,7 +89,7 @@ public class Window extends PApplet {
 
         Sprite.loadImages();
 
-        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), uiManager);
+//        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), uiManager);
 
     }
     public void init(){
@@ -107,7 +108,8 @@ public class Window extends PApplet {
             drawGrid();
             spriteManager.animate();
             spriteManager.draw();
-            inGameUI.draw();
+            UiManager.getInstance().draw();
+//            inGameUI.draw();
         } else {
             background(0);
             UiManager.getInstance().draw();
@@ -152,9 +154,7 @@ public class Window extends PApplet {
     }
 
     public void mousePressed() {
-        if (!gameActive) {
-            UiManager.getInstance().mouseClicked(this.mouseX, this.mouseY);
-        }
+        UiManager.getInstance().mouseClicked(this.mouseX, this.mouseY);
     }
 
     /**
@@ -172,7 +172,7 @@ public class Window extends PApplet {
         spriteManager.reset();
         clock.reset();
 
-        int score = inGameUI.getScore();
+        int score = UiManager.getInstance().getScore();
         if (mongoDb.isHighScore(score, UiManager.getInstance().getSelectedLevel())) {
             String name = JOptionPane.showInputDialog("You got a High Score! Enter your name:");
             if (name != null && !name.isEmpty()) {
@@ -185,7 +185,7 @@ public class Window extends PApplet {
         }
 
 
-        inGameUI.resetScore();
+        UiManager.getInstance().resetScore();
     }
 
     private void startGame() {
@@ -204,7 +204,7 @@ public class Window extends PApplet {
     }
 
     public void incrementScore() {
-        inGameUI.incrementScore();
+        UiManager.getInstance().incrementScore();
     }
 
     public MongoDb getDB() {
@@ -213,5 +213,9 @@ public class Window extends PApplet {
 
     public void setGameActive(boolean gameActive) {
         this.gameActive = gameActive;
+    }
+
+    public boolean isGameActive() {
+        return gameActive;
     }
 }

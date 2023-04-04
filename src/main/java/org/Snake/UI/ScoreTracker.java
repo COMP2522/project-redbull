@@ -1,7 +1,10 @@
 package org.Snake.UI;
 
+import org.Snake.UI.NotInGame.UiManager;
 import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
+
+import javax.swing.*;
 
 /**
  * ScoreTracker class which is meant to be a UIComponent that tracks the score
@@ -36,7 +39,7 @@ public class ScoreTracker extends UIComponent {
     parent.pushStyle();
     parent.textSize(30);
     parent.fill(255,255,255);
-    parent.text("Score: " + getScore(), getX(), getY());
+    parent.text("Score: " + UiManager.getInstance().getScore(), getX(), getY());
     parent.popStyle();
   }
 

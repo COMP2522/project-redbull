@@ -4,6 +4,7 @@ import org.Snake.UI.Frame;
 import org.Snake.UI.HomeButton;
 import org.Snake.UI.NotInGame.LevelButton;
 import org.Snake.UI.NotInGame.UiManager;
+import org.Snake.Window;
 import processing.core.PApplet;
 
 
@@ -35,7 +36,7 @@ public class LevelSelector extends Frame {
    * @param width the width of the level selector
    * @param height the height of the level selector
    */
-  public LevelSelector(PApplet parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
+  public LevelSelector(Window parent, float x, float y, float width, float height, String[] levelNames, UiManager uiManager) {
     super(parent, x, y, width, height, 0,"");
     this.uiManager = uiManager;
     this.levelNames = levelNames;
@@ -52,7 +53,7 @@ public class LevelSelector extends Frame {
 
     }
 
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
 
   }
 
@@ -82,8 +83,9 @@ public class LevelSelector extends Frame {
             levelButtons[j].setSelected(false);
           }
         }
-        uiManager.setStart(true);
-        uiManager.setSelectedLevel(levelButtons[i].getLabel());
+        UiManager.getInstance().setStart(true);
+        UiManager.getInstance().setSelectedLevel(levelButtons[i].getLabel());
+        UiManager.getInstance().setPage("inGame");
         break;
       }
     }
