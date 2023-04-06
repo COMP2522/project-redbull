@@ -3,14 +3,12 @@
 
 # Project Members:
 - **Cam: Front End**
-- **Kavin: BackEnd, High-Level Design, Designer(Sprites & Levels)**
+- **Kavin: High-Level Design, Designer(Sprites, Levels, Sound)**
 - **Kale: The Game Creation God**
 - **Adam: The Test Giver**
 - **Harrison: Junior Code Monkey**
 
-# Project Description
-This project is a more advanced version of the classic "snake" game.
-The projects has a more complex UI, multiple level, enemies and has nicer animations.
+<b>#Project Description</b>
 
 This project is everything you loved about the original snake but more! We shook up the repetitive gameplay loop of the original snake with 
 innovative new levels, more complex UI, smoother gameplay and animations, and enemies! We hope you enjoy our take on Snake.
@@ -45,7 +43,7 @@ innovative new levels, more complex UI, smoother gameplay and animations, and en
     </ul>
 
 </li>
-</ul>
+
 
 ## Kale
 <ul>
