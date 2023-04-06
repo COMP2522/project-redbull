@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * The Snake class. For snake things :)
- * Using the linkedlist library, makes the snake a singleton linked list
+ * Using the ArrayList library, makes the snake a singleton  ArrayList
  */
 public class Snake extends Sprite {
 
@@ -28,6 +28,19 @@ public class Snake extends Sprite {
   // 1 - down
   // 2 - left
   // 3 - up
+
+
+
+  //Key Pressed Keycodes for switch statements
+  final int left = 37;
+  final int keyBoardA =65;
+  final int right = 39;
+  final int keyBoardD = 68;
+  final int up = 38;
+  final int  keyBoardW = 87;
+
+  final int down = 40;
+  final int keyBoardS = 83;
 
   private static Snake instance;
 
@@ -58,7 +71,7 @@ public class Snake extends Sprite {
     int lastDY = -directionY;
     int lastDX = directionX;
     switch (lastKeyPressed) {
-      case 37, 65 -> {
+      case left, keyBoardA -> {
         //check that the snake is not going right
         if (this.directionX == 1) {
           break;
@@ -74,7 +87,7 @@ public class Snake extends Sprite {
         }
         image = "headLeft";
       }
-      case 39, 68 -> {
+      case right, keyBoardD -> {
         if (this.directionX == -1) {
           break;
         }
@@ -88,7 +101,7 @@ public class Snake extends Sprite {
         }
         image = "headRight";
       }
-      case 38, 87 -> {
+      case up, keyBoardW -> {
         if (this.directionY == 1) {
           break;
         }
@@ -103,7 +116,7 @@ public class Snake extends Sprite {
         }
         image = "headUp";
       }
-      case 40, 83 -> {
+      case down, keyBoardS -> {
         if (this.directionY == -1) {
           break;
         }

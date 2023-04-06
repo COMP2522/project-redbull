@@ -88,7 +88,7 @@ public class MazeMaker2 {
       JSONObject cell = maze.getJSONObject(j);
       int x = cell.getInt("x");
       int y = cell.getInt("y");
-      walls[cols - x - 1][rows - y - offSet] = new Wall((cols - x - 1) * cellSize, (rows - y - offSet) * cellSize, cellSize, wallImage, true);
+      walls[cols - x - 1][rows - y - offSet] = new Wall ((cols - x - 1) * cellSize, (rows - y - offSet) * cellSize, cellSize, wallImage, true);
     }
   }
 
