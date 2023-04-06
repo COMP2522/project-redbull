@@ -4,6 +4,12 @@ import org.Snake.UI.InGame.InGameUI;
 import org.Snake.UI.NotInGame.NotInGameUiManager;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
+
 
 import org.Snake.Database.MongoDb;
 
@@ -260,6 +266,18 @@ public class Window extends PApplet {
      * Cals the methods that make the tiles
      */
     private void startGame() {
+
+        try {
+            // load the sound file
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/SoundTrack/506893__mrthenoronha__upbeat-theme-loop.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // set loop count to infinite
+            clip.start();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error playing sound: " + e.getMessage());
+        }
+
         spriteManager.setLevel(notInGameUiManager.getSelectedLevel());
         spriteManager.makeTiles();
         gameActive = true;

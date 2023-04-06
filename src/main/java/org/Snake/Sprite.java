@@ -17,6 +17,7 @@ import java.util.Map;
 public class Sprite implements Drawable{
   private float xPos;
   private float yPos;
+
   private int size;
   private PImage picture;
   static Map<String, PImage> images = new HashMap<>();
