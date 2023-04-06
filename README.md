@@ -12,6 +12,9 @@
 This project is a more advanced version of the classic "snake" game.
 The projects has a more complex UI, multiple level, enemies and has nicer animations.
 
+This project is everything you loved about the original snake but more! We shook up the repetitive gameplay loop of the original snake with 
+innovative new levels, more complex UI, smoother gameplay and animations, and enemies! We hope you enjoy our take on Snake.
+
 
 #Member Contributions
 
@@ -23,7 +26,7 @@ The projects has a more complex UI, multiple level, enemies and has nicer animat
       <li>Updated the READme</li>
       <li>Pair Programmed Score</li>
          <li> Created Highscore</li>
-          
+  </ul>       
          
 
 
