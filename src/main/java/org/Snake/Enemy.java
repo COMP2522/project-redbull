@@ -7,7 +7,7 @@ import java.util.Random;
  * It is still in production, hence the lack of functionality
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class Enemy extends Sprite {
 

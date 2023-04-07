@@ -13,6 +13,12 @@ import org.Snake.Database.MongoDb;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * LevelSelector class which is the main level selector
+ *
+ * @author
+ * @version 1.0
+ */
 public class HighScoreBoard extends Frame {
 
   private final NotInGameUiManager uiManager;

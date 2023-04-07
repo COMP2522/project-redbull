@@ -4,7 +4,7 @@ package org.Snake;
  * Class for loading and storing the maze tiles
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class MazeMaker3 {
 

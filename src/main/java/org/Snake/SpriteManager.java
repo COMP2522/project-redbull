@@ -5,6 +5,13 @@ import java.util.*;
 import static java.lang.Math.round;
 
 //Sprite manager method to manage all on-screen sprites
+
+/**
+ * LevelSelector class which is the main level selector
+ *
+ * @author
+ * @version 1.0
+ */
 public class SpriteManager {
     private final ArrayList<Sprite> sprites;
     private final Snake player;
@@ -16,7 +23,22 @@ public class SpriteManager {
     private Food[][] food;
     private Enemy[][] enemies;
     private final Window window;
+
+    private final int zero = 0;
     private int[] spawnPoint = {10,10};
+    //Representing processing keycode values with final ints
+    public   final int left = 37;
+    public final int keyBoardA =65;
+    public final int right = 39;
+    public final int keyBoardD = 68;
+    public   final int up = 38;
+    public final int  keyBoardW = 87;
+    public final int down = 40;
+    public  final int keyBoardS = 83;
+
+    private int directionX = 0;
+    private int directionY = 0;
+
     public SpriteManager(Window window, int cellSize, int rows, int cols) {
         this.window = window;
         this.rows = rows;
@@ -26,8 +48,8 @@ public class SpriteManager {
         sprites = new ArrayList<>();
         player = Snake.getInstance(spawnPoint[0]*tileWidth, (int) (spawnPoint[1]*tileWidth+ window.getTopOffset()), tileWidth, "headDown");
         sprites.add(player);
-        window.fill(0, 0, 0);
-        window.rect(0, 0, window.getWidth()*3, window.getWidth()*3);
+        window.fill(zero, zero, zero);
+        window.rect(zero, zero, window.getWidth()*3, window.getWidth()*3);
     }
     public Wall[][] getTiles() {
         return walls;
@@ -131,7 +153,7 @@ public class SpriteManager {
     public void update(int lastKeyPressed){
 
         //if the player direction is 0, then the snake is pointing down, and should not be able to move up
-        if (player.getDirectionX() == 0 && player.getDirectionY() == 0 && (lastKeyPressed == 38 || lastKeyPressed == 87)) {
+        if (player.getDirectionX() == zero && player.getDirectionY() == zero && (lastKeyPressed == up || lastKeyPressed == keyBoardW)) {
 //            return sprites;
             return;
         }
@@ -149,10 +171,12 @@ public class SpriteManager {
 
         //update the sprites to the next frame
        //before updating the sprites , check for collisions and update the sprites accordingly
-        if (lastKeyPressed >= 37 && lastKeyPressed <= 40) {
+
+
+        if (lastKeyPressed >= left && lastKeyPressed <= down) {
             player.move(lastKeyPressed);
         }
-        if(lastKeyPressed == 87 || lastKeyPressed == 83 || lastKeyPressed == 65 || lastKeyPressed == 68){
+        if(lastKeyPressed == keyBoardW || lastKeyPressed == keyBoardS || lastKeyPressed == keyBoardA || lastKeyPressed == keyBoardD){
             player.move(lastKeyPressed);
         }
         this.collide();
@@ -166,11 +190,11 @@ public class SpriteManager {
         int x = (int) (player.getxPos() / this.tileWidth);
         int y = (int) (player.getyPos() / this.tileWidth);
         //LEFT
-        if (x + player.getDirectionX() < 0) {window.reset();}
+        if (x + player.getDirectionX() < zero) {window.reset();}
         //RIGHT
         if (x + player.getDirectionX() >= cols) {window.reset();}
         //TOP
-        if (y + player.getDirectionY() <= 0) {window.reset();}
+        if (y + player.getDirectionY() <= zero) {window.reset();}
         //BOTTOM
         if (y + player.getDirectionY() > rows) {window.reset();}
         //check if the player is colliding with a tile

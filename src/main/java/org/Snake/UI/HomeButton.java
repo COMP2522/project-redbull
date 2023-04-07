@@ -7,6 +7,9 @@ import processing.core.PImage;
 
 /**
  * A home button UI component that extends the UIComponent class
+ *
+ * @author
+ * @version
  */
 public class HomeButton extends UIComponent {
 

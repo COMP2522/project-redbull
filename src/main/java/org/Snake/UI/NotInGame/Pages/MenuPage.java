@@ -8,7 +8,12 @@ import org.Snake.UI.Text;
 import processing.core.PApplet;
 import org.Snake.UI.HomeButton;
 
-
+/**
+ * LevelSelector class which is the main level selector
+ *
+ * @author
+ * @version
+ */
 public class MenuPage extends Frame {
 
   NotInGameUiManager notInGameUiManager;

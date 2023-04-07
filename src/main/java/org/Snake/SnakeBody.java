@@ -6,7 +6,7 @@ import processing.core.PImage;
  * SnakeBody class which represents a body part of the snake
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class SnakeBody extends Sprite {
   private int corner;
@@ -14,6 +14,16 @@ public class SnakeBody extends Sprite {
   private final int sizeY;
 
   private String image;
+
+  public int tailLeft = 1;
+  public int tailRight = -1;
+  public int tailUp = 1;
+  public int tailDown = -1;
+
+  public final int cornerRightDown = 1;
+  public final int cornerLeftUp =  2;
+  public final int cornerRightUp = -1;
+  public final int cornerLeftDown = -2;
 
   /**
    *
@@ -45,24 +55,27 @@ public class SnakeBody extends Sprite {
         this.corner = corner;
     }
 
+
+
   public void draw(float directionX, float directionY, boolean isTail){
     if (isTail) {
-      if (directionX >= 1) {
+      if (directionX >= tailLeft) {
         image = "tailLeft";
-      } else if (directionX <= -1) {
+      } else if (directionX <= tailRight) {
         image = "tailRight";
-      } else if (directionY >= 1) {
+      } else if (directionY >= tailUp) {
         image = "tailUp";
-      } else if (directionY <= -1) {
+      } else if (directionY <= tailDown) {
         image = "tailDown";
       }
     } else if (isCorner() != 0) {
       switch (isCorner()) {
-        case 1 -> image = "cornerRightDown";
-        case 2 -> image = "cornerLeftUp";
-        case -1 -> image = "cornerRightUp";
-        case -2 -> image = "cornerLeftDown";
+        case cornerRightDown -> image = "cornerRightDown";
+        case cornerLeftUp -> image = "cornerLeftUp";
+        case cornerRightUp -> image = "cornerRightUp";
+        case cornerLeftDown -> image = "cornerLeftDown";
       }
+
     } else {
 //      System.out.println("directionX: " + directionX + " directionY: " + directionY);
       if (directionX >= 0.1 || directionX <= -0.1) {

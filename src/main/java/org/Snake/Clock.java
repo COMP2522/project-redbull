@@ -6,7 +6,7 @@ import java.time.Instant;
 /**
  * Clock class which is meant to track passing time
  * @author
- * @version
+ * @version 1.0
  */
 public class Clock {
 
