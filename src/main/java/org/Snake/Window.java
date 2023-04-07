@@ -15,9 +15,9 @@ import org.Snake.Database.MongoDb;
 
 import java.awt.*;
 import java.util.Objects;
-import javax.swing.JOptionPane;
+
 /**
- * Window class which is the main class for the Snake game
+ * Window class which is the main class for the Snake game.
  *
  * @author
  * @version
@@ -25,27 +25,18 @@ import javax.swing.JOptionPane;
 public class Window extends PApplet {
 
     /**
-     * The clock that controls the speed of the game
+     * The clock that controls the speed of the game.
      */
-    Clock clock;
+    private Clock clock;
 
-    /**
-     * The size of the screen
-     */
-    Dimension screenSize;
+    private Dimension screenSize;
 
-    /**
-     * The sprite manager that manages the sprites
-     */
-    SpriteManager spriteManager;
+    private SpriteManager spriteManager;
 
-    /**
-     * The not in game ui manager that manages the ui in the menu pages
-     */
-    NotInGameUiManager notInGameUiManager;
+    private NotInGameUiManager notInGameUiManager;
 
 
-    int framesPerClock;
+    private int framesPerClock;
 
     /**
      * The width of the window
@@ -57,40 +48,22 @@ public class Window extends PApplet {
      */
     private final int offset;
 
-    /**
-     * The size of the cells for the individual window
-     */
-    int cellSize;
+    private int cellSize;
 
-    /**
-     * The number of rows in the grid
-     */
-    int rows;
+    private int rows;
 
-    /**
-     * The number of columns in the grid
-     */
-    int cols;
+    private int cols;
 
-    /**
-     * The in game ui that manages the ui in the game
-     */
-    InGameUI inGameUI;
+    private InGameUI inGameUI;
 
-    /**
-     * The last key pressed
-     */
-    int lastKeyPressed;
+    private int lastKeyPressed;
 
     /**
      * The top offset of the window
      */
     private final int topOffSet;
 
-    /**
-     * The boolean that determines if the game is active
-     */
-    boolean gameActive;
+    private boolean gameActive;
 
     /**
      * The database that stores the high scores
@@ -104,15 +77,15 @@ public class Window extends PApplet {
      * The constructor for the Window class
      */
     public Window(){
-        gameActive = false;
+        setGameActive(false);
         //THESE ARE THE GRID VARIABLES
-        this.screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.width = min((int) (screenSize.getWidth()*0.99), (int) (screenSize.getHeight()*0.99));
-        this.offset = (int) ((screenSize.getWidth()-width)/(2));
-        this.rows = 37;
-        this.cols = 37;
-        this.cellSize = width/cols;
-        topOffSet = cellSize;
+        this.setScreenSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.width = min((int) (getScreenSize().getWidth()*0.99), (int) (getScreenSize().getHeight()*0.99));
+        this.offset = (int) ((getScreenSize().getWidth()-width)/(2));
+        this.setRows(37);
+        this.setCols(37);
+        this.setCellSize(width/ getCols());
+        topOffSet = getCellSize();
 
         // place the levelSelector in the center of the screen
 //        int centerX = (int) (screenSize.getWidth()/2) - 350;
@@ -149,10 +122,10 @@ public class Window extends PApplet {
     public void setup(){
         this.init();
         this.clock = new Clock();
-        this.spriteManager = new SpriteManager(this, this.cellSize, this.rows, this.cols);
-        this.notInGameUiManager = new NotInGameUiManager(this, 0,0, (float)screenSize.getWidth(), (float)screenSize.getHeight(), mongoDb, this);
+        this.setSpriteManager(new SpriteManager(this, this.getCellSize(), this.getRows(), this.getCols()));
+        this.setNotInGameUiManager(new NotInGameUiManager(this, 0,0, (float) getScreenSize().getWidth(), (float) getScreenSize().getHeight(), mongoDb, this));
         Sprite.loadImages();
-        inGameUI = new InGameUI(this, 0 ,0, (float)screenSize.getWidth(),(float) screenSize.getHeight(), notInGameUiManager);
+        setInGameUI(new InGameUI(this, 0 ,0, (float) getScreenSize().getWidth(),(float) getScreenSize().getHeight(), getNotInGameUiManager()));
 
     }
 
@@ -167,19 +140,19 @@ public class Window extends PApplet {
      * The method that draws the grid
      */
     public void draw() {
-        if (gameActive) {
+        if (isGameActive()) {
             if (clock.tick()) {
-                spriteManager.update(lastKeyPressed);
+                getSpriteManager().update(getLastKeyPressed());
 //                System.out.println("sprites size no nulls: " + sprites.size());
             }
             drawGrid();
-            spriteManager.animate();
-            spriteManager.draw();
-            inGameUI.draw();
+            getSpriteManager().animate();
+            getSpriteManager().draw();
+            getInGameUI().draw();
         } else {
             background(0);
-            this.notInGameUiManager.draw();
-            if (this.levelSelected() && notInGameUiManager.getStart()) {
+            this.getNotInGameUiManager().draw();
+            if (this.levelSelected() && getNotInGameUiManager().getStart()) {
                 this.startGame();
                 background(0);
             }
@@ -190,16 +163,16 @@ public class Window extends PApplet {
      * The method that draws the grid
      */
     public void drawGrid() {
-        for (int i = 0; i < rows-1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
-            for (int j = 1; j < cols; j++) {
-                if(spriteManager.getTiles()[i][j-1] == null) {
+        for (int i = 0; i < getRows() -1; i++) {//(screenWidth-gameWidth)/(cellSizeX*2) is to center the grid, it represents the leftmost side of the centered grid
+            for (int j = 1; j < getCols(); j++) {
+                if(getSpriteManager().getTiles()[i][j-1] == null) {
                     stroke(100, 100, 100);
                     fill(225, 237, 238);
                     if ((i % 2 == 0 || j % 2 == 0) && !(i % 2 == 0 && j % 2 == 0)) {
                         //stroke(115,115,115);
                         fill(199, 222, 225);
                     }
-                    rect((i * cellSize + offset), j * cellSize , cellSize, cellSize);
+                    rect((i * getCellSize() + offset), j * getCellSize(), getCellSize(), getCellSize());
                 }
             }
         }
@@ -215,7 +188,7 @@ public class Window extends PApplet {
         // 2 - left
         // 3 - up
 
-        this.lastKeyPressed = event.getKeyCode();
+        this.setLastKeyPressed(event.getKeyCode());
 
     }
 
@@ -223,8 +196,8 @@ public class Window extends PApplet {
      * The method that handles mouse clicks
      */
     public void mousePressed() {
-        if (!gameActive) {
-            notInGameUiManager.mouseClicked(this.mouseX, this.mouseY);
+        if (!isGameActive()) {
+            getNotInGameUiManager().mouseClicked(this.mouseX, this.mouseY);
         }
     }
 
@@ -242,24 +215,24 @@ public class Window extends PApplet {
      * Resets the game upon the snake dying
      */
     public void reset(){
-        lastKeyPressed = 0;
-        spriteManager.reset();
+        setLastKeyPressed(0);
+        getSpriteManager().reset();
         clock.reset();
 
-        int score = inGameUI.getScore();
-        if (mongoDb.isHighScore(score, notInGameUiManager.getSelectedLevel())) {
+        int score = getInGameUI().getScore();
+        if (mongoDb.isHighScore(score, getNotInGameUiManager().getSelectedLevel())) {
             String name = JOptionPane.showInputDialog("You got a High Score! Enter your name:");
             if (name != null && !name.isEmpty()) {
                 // do something with the user's name
-                mongoDb.put(name, score, notInGameUiManager.getSelectedLevel());
+                mongoDb.put(name, score, getNotInGameUiManager().getSelectedLevel());
             } else {
                 // user canceled the input or didn't enter a name
-                mongoDb.put("Anonymous", score, notInGameUiManager.getSelectedLevel());
+                mongoDb.put("Anonymous", score, getNotInGameUiManager().getSelectedLevel());
             }
         }
 
 
-        inGameUI.resetScore();
+        getInGameUI().resetScore();
     }
 
     /**
@@ -278,9 +251,9 @@ public class Window extends PApplet {
             JOptionPane.showMessageDialog(null, "Error playing sound: " + e.getMessage());
         }
 
-        spriteManager.setLevel(notInGameUiManager.getSelectedLevel());
-        spriteManager.makeTiles();
-        gameActive = true;
+        getSpriteManager().setLevel(getNotInGameUiManager().getSelectedLevel());
+        getSpriteManager().makeTiles();
+        setGameActive(true);
     }
 
     /**
@@ -288,7 +261,7 @@ public class Window extends PApplet {
      * @return true if a level is selected
      */
     private boolean levelSelected() {
-        return !Objects.equals(notInGameUiManager.getSelectedLevel(), "none");
+        return !Objects.equals(getNotInGameUiManager().getSelectedLevel(), "none");
     }
 
     /**
@@ -302,7 +275,7 @@ public class Window extends PApplet {
      * The method that increments the score upon eating a food
      */
     public void incrementScore() {
-        inGameUI.incrementScore();
+        getInGameUI().incrementScore();
     }
 
     /**
@@ -317,5 +290,108 @@ public class Window extends PApplet {
      */
     public void setGameActive(boolean gameActive) {
         this.gameActive = gameActive;
+    }
+
+    /**
+     * The size of the screen.
+     */
+    public Dimension getScreenSize() {
+        return screenSize;
+    }
+
+    public void setScreenSize(Dimension screenSize) {
+        this.screenSize = screenSize;
+    }
+
+    /**
+     * The sprite manager that manages the sprites.
+     */
+    public SpriteManager getSpriteManager() {
+        return spriteManager;
+    }
+
+    public void setSpriteManager(SpriteManager spriteManager) {
+        this.spriteManager = spriteManager;
+    }
+
+    /**
+     * The not in game ui manager that manages the ui in the menu pages
+     */
+    public NotInGameUiManager getNotInGameUiManager() {
+        return notInGameUiManager;
+    }
+
+    public void setNotInGameUiManager(NotInGameUiManager notInGameUiManager) {
+        this.notInGameUiManager = notInGameUiManager;
+    }
+
+    public int getFramesPerClock() {
+        return framesPerClock;
+    }
+
+    public void setFramesPerClock(int framesPerClock) {
+        this.framesPerClock = framesPerClock;
+    }
+
+    /**
+     * The size of the cells for the individual window
+     */
+    public int getCellSize() {
+        return cellSize;
+    }
+
+    public void setCellSize(int cellSize) {
+        this.cellSize = cellSize;
+    }
+
+    /**
+     * The number of rows in the grid
+     */
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    /**
+     * The number of columns in the grid
+     */
+    public int getCols() {
+        return cols;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
+    /**
+     * The in game ui that manages the ui in the game
+     */
+    public InGameUI getInGameUI() {
+        return inGameUI;
+    }
+
+    public void setInGameUI(InGameUI inGameUI) {
+        this.inGameUI = inGameUI;
+    }
+
+    /**
+     * The last key pressed
+     */
+    public int getLastKeyPressed() {
+        return lastKeyPressed;
+    }
+
+    public void setLastKeyPressed(int lastKeyPressed) {
+        this.lastKeyPressed = lastKeyPressed;
+    }
+
+    /**
+     * The boolean that determines if the game is active
+     */
+    public boolean isGameActive() {
+        return gameActive;
     }
 }
