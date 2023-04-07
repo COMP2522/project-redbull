@@ -15,11 +15,11 @@ public class Clock {
 
   private int lastFrames;
 
-  Instant prev;
+  private Instant prev;
 
-  Instant current;
+  private Instant current;
 
-  double tickTime;
+  private double tickTime;
   private static float frameRate;
 
 
@@ -28,8 +28,8 @@ public class Clock {
    * Clock constructor which sets the time to the current time
    */
   public Clock() {
-    prev = Instant.now();
-    tickTime = 100;
+    setPrev(Instant.now());
+    setTickTime(100);
   }
 
   /**
@@ -45,13 +45,13 @@ public class Clock {
    */
   public boolean tick() {
     frames++;
-    current = Instant.now();
-    Duration timeElapsed = Duration.between(prev, current);
-    framesPerClockTick = (float) (frames/(timeElapsed.toMillis()/tickTime));
-    frameRate = (float) (framesPerClockTick * 1000 / tickTime);
+    setCurrent(Instant.now());
+    Duration timeElapsed = Duration.between(getPrev(), getCurrent());
+    framesPerClockTick = (float) (frames/(timeElapsed.toMillis()/ getTickTime()));
+    frameRate = (float) (framesPerClockTick * 1000 / getTickTime());
     //System.out.println(abs(timeElapsed.toMillis()));
-    if (timeElapsed.toMillis() > tickTime) {
-      prev = Instant.now();
+    if (timeElapsed.toMillis() > getTickTime()) {
+      setPrev(Instant.now());
       resetFrames();
       return true;
     }
@@ -72,7 +72,31 @@ public class Clock {
    * Resets the clock
    */
   public void reset() {
-    prev = Instant.now();
+    setPrev(Instant.now());
     this.resetFrames();
+  }
+
+  public Instant getPrev() {
+    return prev;
+  }
+
+  public void setPrev(Instant prev) {
+    this.prev = prev;
+  }
+
+  public Instant getCurrent() {
+    return current;
+  }
+
+  public void setCurrent(Instant current) {
+    this.current = current;
+  }
+
+  public double getTickTime() {
+    return tickTime;
+  }
+
+  public void setTickTime(double tickTime) {
+    this.tickTime = tickTime;
   }
 }

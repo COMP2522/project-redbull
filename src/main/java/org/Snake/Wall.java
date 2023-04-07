@@ -7,8 +7,14 @@ package org.Snake;
  * @version
  */
 public class Wall extends Sprite{
+
     private final boolean wall;
     private final String image;
+
+    public String getImage() {
+        return image;
+    }
+
     //Public tile constructor taking in x, y ,size, picture, and isWall
     public Wall(int xPos, int yPos, int size, String picture, boolean wall) {
         super(xPos, yPos, size);
