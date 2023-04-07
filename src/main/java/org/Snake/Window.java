@@ -29,64 +29,92 @@ public class Window extends PApplet {
      */
     private Clock clock;
 
+    /**
+     * The grid that the game is played on.
+     */
     private Dimension screenSize;
 
+    /**
+     * spriteManager that manages all the sprites in the game
+     */
     private SpriteManager spriteManager;
+
 
     private NotInGameUiManager notInGameUiManager;
 
-
+    /**
+     * The number of frames per clock tick.
+     */
     private int framesPerClock;
 
     /**
-     * The width of the window
+     * The width of the window.
      */
     private final int width;
 
     /**
-     * The offset of the window
+     * The offset of the window.
      */
     private final int offset;
 
+    /**
+     * The size of each cell in the grid.
+     */
     private int cellSize;
-
+    /**
+     * The number of rows in the grid.
+     */
     private int rows;
-
+    /**
+     * The number of columns in the grid.
+     */
     private int cols;
-
+    /**
+     * The level selector.
+     */
     private InGameUI inGameUI;
 
+    /**
+     * The last key that was pressed.
+     */
     private int lastKeyPressed;
 
     /**
-     * The top offset of the window
+     * The top offset of the window.
      */
     private final int topOffSet;
-
+    /**
+     * The boolean that determines if the game is active.
+     */
     private boolean gameActive;
 
     /**
-     * The database that stores the high scores
+     * The database that stores the high scores.
      */
-    MongoDb mongoDb;
+    private final MongoDb mongoDb;
+    /**
+     * The game frame rate.
+     */
+    private final int gameFramteRate = 60;
 
 
     //////////////////////////////////////////////////////
 
     /**
-     * The constructor for the Window class
+     * The constructor for the Window class.
      */
     private final int numRows = 37;
     private final int numCols = 37;
-    public Window(){
+    public Window() {
         setGameActive(false);
         //THESE ARE THE GRID VARIABLES
         this.setScreenSize(Toolkit.getDefaultToolkit().getScreenSize());
-        this.width = min((int) (getScreenSize().getWidth()*0.99), (int) (getScreenSize().getHeight()*0.99));
-        this.offset = (int) ((getScreenSize().getWidth()-width)/(2));
+        this.width = min((int) (getScreenSize().getWidth() * 0.99),
+                (int) (getScreenSize().getHeight() * 0.99));
+        this.offset = (int) ((getScreenSize().getWidth() - width) / (2));
         this.setRows(numRows);
         this.setCols(numCols);
-        this.setCellSize(width/ getCols());
+        this.setCellSize(width / getCols());
         topOffSet = getCellSize();
 
         // place the levelSelector in the center of the screen
@@ -98,14 +126,14 @@ public class Window extends PApplet {
     }
 
     /**
-     * The getter for the width
+     * The getter for the width.
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * The getter for the height offset
+     * The getter for the height offset.
      */
     public int getOffset() {
         return offset;
@@ -121,25 +149,31 @@ public class Window extends PApplet {
      * The method that loads the game
      */
     @Override
-    public void setup(){
+    public void setup() {
         this.init();
         this.clock = new Clock();
-        this.setSpriteManager(new SpriteManager(this, this.getCellSize(), this.getRows(), this.getCols()));
-        this.setNotInGameUiManager(new NotInGameUiManager(this, 0,0, (float) getScreenSize().getWidth(), (float) getScreenSize().getHeight(), mongoDb, this));
+        this.setSpriteManager(new SpriteManager(this, this.getCellSize(),
+                this.getRows(), this.getCols()));
+
+        this.setNotInGameUiManager(new NotInGameUiManager(this, 0 ,0,
+                (float) getScreenSize().getWidth(), (float) getScreenSize().getHeight(),
+                mongoDb, this));
+
         Sprite.loadImages();
-        setInGameUI(new InGameUI(this, 0 ,0, (float) getScreenSize().getWidth(),(float) getScreenSize().getHeight(), getNotInGameUiManager()));
+        setInGameUI(new InGameUI(this, 0 , 0, (float) getScreenSize().getWidth(),(float) getScreenSize().getHeight(), getNotInGameUiManager()));
 
     }
 
     /**
-     * The method that starts the game
+     * The method that starts the game.
      */
-    public void init(){
-        frameRate(60);
+
+    public void init() {
+        frameRate(gameFramteRate);
     }
 
     /**
-     * The method that draws the grid
+     * The method that draws the grid.
      */
     public void draw() {
         if (isGameActive()) {
@@ -222,14 +256,18 @@ public class Window extends PApplet {
         clock.reset();
 
         int score = getInGameUI().getScore();
-        if (mongoDb.isHighScore(score, getNotInGameUiManager().getSelectedLevel())) {
-            String name = JOptionPane.showInputDialog("You got a High Score! Enter your name:");
+        if (mongoDb.isHighScore(score,
+                getNotInGameUiManager().getSelectedLevel())) {
+            String name = JOptionPane.showInputDialog
+                    ("You got a High Score! Enter your name:");
             if (name != null && !name.isEmpty()) {
                 // do something with the user's name
-                mongoDb.put(name, score, getNotInGameUiManager().getSelectedLevel());
+                mongoDb.put(name, score,
+                        getNotInGameUiManager().getSelectedLevel());
             } else {
                 // user canceled the input or didn't enter a name
-                mongoDb.put("Anonymous", score, getNotInGameUiManager().getSelectedLevel());
+                mongoDb.put("Anonymous", score,
+                        getNotInGameUiManager().getSelectedLevel());
             }
         }
 
@@ -244,13 +282,15 @@ public class Window extends PApplet {
 
         try {
             // load the sound file
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/SoundTrack/506893__mrthenoronha__upbeat-theme-loop.wav"));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream
+                    (new File("src/main/SoundTrack/506893__mrthenoronha__upbeat-theme-loop.wav"));
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.loop(Clip.LOOP_CONTINUOUSLY); // set loop count to infinite
             clip.start();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error playing sound: " + e.getMessage());
+            JOptionPane.showMessageDialog
+                    (null, "Error playing sound: " + e.getMessage());
         }
 
         getSpriteManager().setLevel(getNotInGameUiManager().getSelectedLevel());

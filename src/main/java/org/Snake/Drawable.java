@@ -7,7 +7,7 @@ package org.Snake;
  */
 public interface Drawable {
     /**
-     * This method draws the object
+     * This method draws the object.
      */
   void draw();
 }

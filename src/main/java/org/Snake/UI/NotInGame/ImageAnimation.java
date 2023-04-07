@@ -5,7 +5,7 @@ import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
 import processing.core.PImage;
 /**
- * LevelSelector class which is the main level selector
+ * LevelSelector class which is the main level selector.
  *
  * @author
  * @version
