@@ -11,20 +11,31 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
- * MazeMaker class which loads the maze from a json file
+ * MazeMaker class which loads the maze from a json file.
  *
  * @author
  * @version 1.0
  */
 public class MazeMaker {
 
-    public static Wall[][] loadMaze(String wallImage, int rows, int cols, int cellSize, String level) {
+    /**
+     *  Loads the maze from a json file.
+     * @param wallImage
+     * @param rows
+     * @param cols
+     * @param cellSize
+     * @param level
+     * @return
+     */
+    public static Wall[][] loadMaze(String wallImage, int rows,
+                                    int cols, int cellSize, String level) {
         Wall[][] walls = new Wall[rows][cols];
 
         //read json file
         FileReader reader = null;
         try {
-            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
+            reader = new FileReader("src" + File.separator
+                    + "main" + File.separator + "levels" + File.separator + level + ".json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -46,13 +57,13 @@ public class MazeMaker {
             JSONObject row = maze.getJSONObject(j);
             int x = row.getInt("y");
             int y = row.getInt("x");
-            walls[x][y] = new Wall(x*cellSize, y*cellSize, cellSize,"wall", true);
+            walls[x][y] = new Wall(x * cellSize, y * cellSize, cellSize ,"wall", true);
         }
         return walls;
     }
 
     /**
-     * Method to load the spawn point from a json file
+     * Method to load the spawn point from a json file.
      * @param level the name of the level
      * @return the spawn point
      */
@@ -126,7 +137,7 @@ public class MazeMaker {
                 JSONObject row = foodArray.getJSONObject(j);
                 int x = row.getInt("y");
                 int y = row.getInt("x");
-                foodTiles[x][y] = new Food(x*cellSize, y*cellSize, cellSize,"food");
+                foodTiles[x][y] = new Food(x * cellSize, y*cellSize, cellSize, "food");
             }
         } catch (JSONException e) {
             // no "food" section in JSON file
@@ -173,7 +184,7 @@ public class MazeMaker {
                 JSONObject row = beetleArray.getJSONObject(j);
                 int x = row.getInt("y");
                 int y = row.getInt("x");
-                enemies[x][y] = new Beetle(x*cellSize, y*cellSize, cellSize,"beetle");
+                enemies[x][y] = new Beetle(x * cellSize, y * cellSize, cellSize, "beetle");
             }
         }
 
@@ -182,7 +193,7 @@ public class MazeMaker {
                 JSONObject row = beetleSpawnerArray.getJSONObject(j);
                 int x = row.getInt("y");
                 int y = row.getInt("x");
-                enemies[x][y] = new BeetleSpawner(x*cellSize, y*cellSize, cellSize,"beetle_spawner");
+                enemies[x][y] = new BeetleSpawner(x * cellSize, y * cellSize, cellSize, "beetle_spawner");
             }
         }
 
