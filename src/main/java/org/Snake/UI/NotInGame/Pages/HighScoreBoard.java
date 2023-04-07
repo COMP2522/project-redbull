@@ -20,22 +20,34 @@ import java.util.Locale;
  * @version 1.0
  */
 public class HighScoreBoard extends Frame {
-
+  /**
+   * notInGameUiManager which is used to switch between pages.
+   */
   private final NotInGameUiManager uiManager;
-
+  /**
+   * ArrayList of all the level buttons.
+   */
   private ArrayList<KVPair> scores;
-
+  /**
+   * Database.
+   */
   private MongoDb db;
-
+  /**
+   * Array of all the score texts.
+   */
   private Text[] scoreTexts;
-
+  /**
+   * Home button.
+   */
   private HomeButton homeButton;
+
+  private String home = "src/main/java/org/Snake/UI/Images/home.png";
 
   public HighScoreBoard(PApplet parent, float x, float y, float width, float height, NotInGameUiManager uiManager, MongoDb db) {
     super(parent, x, y, width, height, 0, "");
     this.uiManager = uiManager;
     scores = new ArrayList<>();
-    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
+    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, home, uiManager);
 
     this.db = db;
   }

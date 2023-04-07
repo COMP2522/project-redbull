@@ -9,17 +9,33 @@ import java.time.Instant;
  * @version 1.0
  */
 public class Clock {
-
+  /**
+   * The number of frames
+   */
   private int frames;
+  /**
+   * The number of frames per clock tick
+   */
   private static float framesPerClockTick;
-
+  /**
+   * The last number of frames
+   */
   private int lastFrames;
-
+  /**
+   * The previous time
+   */
   private Instant prev;
-
+  /**
+   * The current time
+   */
   private Instant current;
-
+  /**
+   * The tick time
+   */
   private double tickTime;
+  /**
+   * The frames per second
+   */
   private static float frameRate;
 
 

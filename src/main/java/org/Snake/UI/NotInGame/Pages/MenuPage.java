@@ -16,12 +16,14 @@ import org.Snake.UI.HomeButton;
  */
 public class MenuPage extends Frame {
 
-  NotInGameUiManager notInGameUiManager;
+  private NotInGameUiManager notInGameUiManager;
 
   private Button playButton;
   private Button highScoreButton;
   private HomeButton homeButton;
   private Text title;
+
+  private String home = "src/main/java/org/Snake/UI/Images/home.png";
 
   public MenuPage(PApplet parent, float x, float y, float width, float height, int padding, String direction, NotInGameUiManager notInGameUiManager) {
     super(parent, x, y, width, height, padding, direction);
@@ -39,7 +41,7 @@ public class MenuPage extends Frame {
     // create the high score button
     highScoreButton = new Button(parent, x + width/2 - highScoreButtonWidth / 2, y + height/2 + 100, highScoreButtonWidth, 75, "HIGH SCORES");
 
-    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", notInGameUiManager);
+    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, home, notInGameUiManager);
 
     // create wings animation
     String[] left = new String[4];

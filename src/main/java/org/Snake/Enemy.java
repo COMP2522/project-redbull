@@ -14,18 +14,18 @@ public class Enemy extends Sprite {
   private int speed;
 
   //Key Pressed Keycodes for switch statements
-  public   final int left = 37;
-  public final int keyBoardA =65;
+  private  final int left = 37;
+  private final int keyBoardA =65;
 
-  public final int right = 39;
+  private final int right = 39;
 
-  public final int keyBoardD = 68;
+  private final int keyBoardD = 68;
 
-  public   final int up = 38;
-  public final int  keyBoardW = 87;
+  private   final int up = 38;
+  private  final int  keyBoardW = 87;
 
 
-  public final int down = 40;
+  private  final int down = 40;
 
   public  final int keyBoardS = 83;
 

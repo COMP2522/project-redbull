@@ -4,18 +4,23 @@ import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
 
 /**
- * ScoreTracker class which is meant to be a UIComponent that tracks the score
+ * ScoreTracker class which is meant to be a UIComponent that tracks the score.
  *
  * @author
  * @version 1.0
  */
 public class ScoreTracker extends UIComponent {
+  /**
+   * The score of the player.
+   */
   private int score;
-
+  /**
+   * The parent PApplet.
+   */
   private final PApplet parent;
 
   /**
-   * ScoreTracker constructor which sets the position and size of the ScoreTracker
+   * ScoreTracker constructor sets position and size of the ScoreTracker.
    * @param parent the parent PApplet
    * @param x the x position of the ScoreTracker
    * @param y the y position of the ScoreTracker
@@ -29,7 +34,7 @@ public class ScoreTracker extends UIComponent {
   }
 
   /**
-   * Method to draw the ScoreTracker
+   * Method to draw the ScoreTracker.
    */
   @Override
   public void draw() {
@@ -41,7 +46,7 @@ public class ScoreTracker extends UIComponent {
   }
 
   /**
-   * Method for event handling
+   * Method for event handling.
    */
   @Override
   public void mouseClicked(float mx, float my) {
