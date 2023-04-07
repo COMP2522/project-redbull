@@ -7,6 +7,9 @@ import java.util.ArrayList;
 /**
  * The Snake class. For snake things :)
  * Using the ArrayList library, makes the snake a singleton  ArrayList
+ *
+ * @author
+ * @version 1.0
  */
 public class Snake extends Sprite {
 

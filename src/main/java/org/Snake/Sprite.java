@@ -13,6 +13,8 @@ import java.util.Map;
  * The class includes static methods for loading and retrieving images, and for setting and getting the window
  * on which the sprite is drawn.
  *
+ * @author
+ * @version 1.0
  */
 public class Sprite implements Drawable{
   private float xPos;

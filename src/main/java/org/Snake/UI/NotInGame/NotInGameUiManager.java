@@ -10,7 +10,12 @@ import processing.core.PApplet;
 import org.Snake.UI.NotInGame.Pages.HighScoreLevels;
 
 
-
+/**
+ * LevelSelector class which is the main level selector
+ *
+ * @author
+ * @version
+ */
 public class NotInGameUiManager extends UIComponent {
 
   // An array of pages that can be displayed by the Menu

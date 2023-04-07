@@ -4,7 +4,7 @@ package org.Snake;
  * Tile class which represents the movable tiles and is a Sprite
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class Wall extends Sprite{
 

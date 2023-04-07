@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 /**
  * InGameUI class which is meant to be the UI for the game
+ *
+ * @author
+ * @version 1.0
  */
 public class InGameUI extends UIComponent {
 

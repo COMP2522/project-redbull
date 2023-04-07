@@ -12,6 +12,8 @@ public class HighScoreLevels extends Frame {
   private final NotInGameUiManager uiManager;
   private  HomeButton homeButton;
 
+  private String homeImage = "src/main/java/org/Snake/UI/Images/home.png";
+
 
   /**
    * Frame constructor which sets the position and size of the frame
@@ -22,6 +24,9 @@ public class HighScoreLevels extends Frame {
    * @param width     the width of the frame
    * @param height    the height of the frame
    * @param uiManager
+   *
+   * @version
+   * @author 1.0
    */
   public HighScoreLevels(PApplet parent, float x, float y, float width, float height, String[] levelNames, NotInGameUiManager uiManager) {
     super(parent, x, y, width, height, 0,"");
@@ -36,7 +41,7 @@ public class HighScoreLevels extends Frame {
       float buttonY = y + buttonHeight * PApplet.floor(i / 3);
       levelButtons[i] = new LevelButton(parent, buttonX, buttonY, buttonWidth, buttonHeight, levelNames[i]);
     }
-    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png", uiManager);
+    homeButton = new HomeButton(parent, x - 90, y + 10, 100, 100, homeImage, uiManager);
 
   }
 

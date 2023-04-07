@@ -12,7 +12,7 @@ import java.util.Random;
  * MazeMaker class which loads the maze from a json file, likely broken at the moment
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class MazeMaker2 {
   public static Wall[][] loadMaze(String wallImage, int rows, int cols, int cellSize, int level) {

@@ -5,7 +5,7 @@ package org.Snake;
  * industry standard
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class Kale_Doesnt_know_how_to_Code_Exception extends Throwable {
   public Kale_Doesnt_know_how_to_Code_Exception(String s) {

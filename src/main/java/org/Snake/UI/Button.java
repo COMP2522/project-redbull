@@ -2,7 +2,12 @@ package org.Snake.UI;
 
 import org.Snake.UI.UIComponent;
 import processing.core.PApplet;
-
+/**
+ * LevelSelector class which is the main level selector
+ *
+ * @author
+ * @version
+ */
 public class Button extends UIComponent {
 
   private String label;

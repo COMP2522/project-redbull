@@ -6,6 +6,7 @@ import processing.core.PApplet;
  * UIComponent class which is meant to be a superclass for all UIComponents
  *
  * @author
+ * @version 1.0
  */
 public abstract class UIComponent {
 

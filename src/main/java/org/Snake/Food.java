@@ -4,7 +4,7 @@ package org.Snake;
  * Food class which is meant to be the food of the snake
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class Food extends Sprite {
     //Public tile constructor taking in x, y ,size, picture, and isWall

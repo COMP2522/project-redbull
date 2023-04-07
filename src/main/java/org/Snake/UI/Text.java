@@ -2,6 +2,12 @@ package org.Snake.UI;
 
 import processing.core.PApplet;
 
+/**
+ * LevelSelector class which is the main level selector
+ *
+ * @author
+ * @version
+ */
 public class Text extends UIComponent {
 
 

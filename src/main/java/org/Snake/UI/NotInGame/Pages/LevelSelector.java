@@ -13,7 +13,7 @@ import processing.core.PApplet;
  * LevelSelector class which is the main level selector
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class LevelSelector extends Frame {
 

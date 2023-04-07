@@ -20,7 +20,7 @@ import java.util.Objects;
  * Window class which is the main class for the Snake game.
  *
  * @author
- * @version
+ * @version 1.0
  */
 public class Window extends PApplet {
 
@@ -76,14 +76,16 @@ public class Window extends PApplet {
     /**
      * The constructor for the Window class
      */
+    private final int numRows = 37;
+    private final int numCols = 37;
     public Window(){
         setGameActive(false);
         //THESE ARE THE GRID VARIABLES
         this.setScreenSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.width = min((int) (getScreenSize().getWidth()*0.99), (int) (getScreenSize().getHeight()*0.99));
         this.offset = (int) ((getScreenSize().getWidth()-width)/(2));
-        this.setRows(37);
-        this.setCols(37);
+        this.setRows(numRows);
+        this.setCols(numCols);
         this.setCellSize(width/ getCols());
         topOffSet = getCellSize();
 
