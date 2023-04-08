@@ -2,7 +2,7 @@
 ##Set C
 
 # Project Members:
-- **Cam: Front End**
+- **Cam: Front End Wizard**
 - **Kavin: High-Level Design, Designer(Sprites, Levels, Sound)**
 - **Kale: The Game Creation God**
 - **Adam: The Test Giver**
