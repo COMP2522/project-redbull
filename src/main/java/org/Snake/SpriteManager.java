@@ -13,18 +13,54 @@ import static java.lang.Math.round;
  * @version 1.0
  */
 public class SpriteManager {
+    /**
+     * The list of sprites
+     */
     private final ArrayList<Sprite> sprites;
+    /**
+     * The player
+     */
     private final Snake player;
+    /**
+     * The width of the tiles
+     */
     private final int tileWidth;
+    /**
+     * The level
+     */
     private String level;
+    /**
+     * The number of rows
+     */
     private final int rows;
+    /**
+     * The number of columns
+     */
     private final int cols;
+    /**
+     * The array of tiles
+     */
     private Wall[][] walls;
+    /**
+     * The array of food
+     */
     private Food[][] food;
+    /**
+     * The array of enemies
+     */
     private Enemy[][] enemies;
+    /**
+     * The window
+     */
     private final Window window;
 
+    /**
+     * variable to represent the number 0
+     */
     private final int zero = 0;
+    /**
+     * spawn point of the snake
+     */
     private int[] spawnPoint = {10,10};
     //Representing processing keycode values with final ints
     public   final int left = 37;
@@ -153,7 +189,8 @@ public class SpriteManager {
     public void update(int lastKeyPressed){
 
         //if the player direction is 0, then the snake is pointing down, and should not be able to move up
-        if (player.getDirectionX() == zero && player.getDirectionY() == zero && (lastKeyPressed == up || lastKeyPressed == keyBoardW)) {
+        if (player.getDirectionX() == zero && player.getDirectionY()
+                == zero && (lastKeyPressed == up || lastKeyPressed == keyBoardW)) {
 //            return sprites;
             return;
         }
@@ -176,7 +213,8 @@ public class SpriteManager {
         if (lastKeyPressed >= left && lastKeyPressed <= down) {
             player.move(lastKeyPressed);
         }
-        if(lastKeyPressed == keyBoardW || lastKeyPressed == keyBoardS || lastKeyPressed == keyBoardA || lastKeyPressed == keyBoardD){
+        if(lastKeyPressed == keyBoardW || lastKeyPressed == keyBoardS
+                || lastKeyPressed == keyBoardA || lastKeyPressed == keyBoardD){
             player.move(lastKeyPressed);
         }
         this.collide();
@@ -202,7 +240,8 @@ public class SpriteManager {
             if (walls[x+player.getDirectionX()][y+player.getDirectionY()-1].isWall()){window.reset();}
         }
         // collision with food
-        if (food[x+player.getDirectionX()][y+player.getDirectionY()-1] != null && !food[x+player.getDirectionX()][y+player.getDirectionY()-1].isEaten()) {
+        if (food[x+player.getDirectionX()][y+player.getDirectionY()-1] != null
+                && !food[x+player.getDirectionX()][y+player.getDirectionY()-1].isEaten()) {
             player.grow();
             window.incrementScore();
             if (this.level.equals("Classic")){
@@ -210,7 +249,9 @@ public class SpriteManager {
                 int newX = rand.nextInt(rows-3)+1;
                 int newY = rand.nextInt(cols-3)+1;
                 food[x+player.getDirectionX()][y+player.getDirectionY()-1].eat();
-                food[newX][newY] = new Food(newX*tileWidth, newY*tileWidth, tileWidth, "food");
+                food[newX][newY] = new Food(newX*tileWidth,
+                        newY*tileWidth, tileWidth, "food");
+
                 sprites.remove(food[x+player.getDirectionX()][y+player.getDirectionY()-1]);
                 food[x+player.getDirectionX()][y+player.getDirectionY()-1] = null;
                 sprites.add(food[newX][newY]);
@@ -219,7 +260,11 @@ public class SpriteManager {
                 Random rand = new Random();
                 int newX = rand.nextInt(rows-3)+1;
                 int newY = rand.nextInt(cols-3)+1;
-                while (walls[newX][newY] != null || (player.getxPos() == newX*tileWidth && player.getyPos() == newY*tileWidth)|| (player.getxPos()+ player.getDirectionX()*tileWidth == newX*tileWidth && player.getyPos()+ player.getDirectionY()*tileWidth == newY*tileWidth)){
+                while (walls[newX][newY] != null ||
+                        (player.getxPos() == newX*tileWidth && player.getyPos() == newY*tileWidth)||
+                        (player.getxPos()+ player.getDirectionX()*tileWidth
+                                == newX*tileWidth && player.getyPos()+ player.getDirectionY()*tileWidth == newY*tileWidth)){
+
                     newX = rand.nextInt(rows-3)+1;
                     newY = rand.nextInt(cols-3)+1;
                 }

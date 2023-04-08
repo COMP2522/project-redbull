@@ -12,12 +12,22 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Snake extends Sprite {
-
+  /**
+   * The direction the snake is moving in the x direction
+   */
   private int directionX = 0;
+  /**
+   * The direction the snake is moving in the y direction
+   */
   private int directionY = 0;
 
+  /**
+   * Initial size of the snake
+   */
   private final int INITIALIZE = 3;
-
+  /**
+   * Image of the snake
+   */
   private String image;
 
 
@@ -35,16 +45,18 @@ public class Snake extends Sprite {
 
 
   //Key Pressed Keycodes for switch statements
-  public final int left = 37;
-  public final int keyBoardA =65;
-  public final int right = 39;
-  public final int keyBoardD = 68;
-  public final int up = 38;
-  public final int  keyBoardW = 87;
+  private final int left = 37;
+  private final int keyBoardA =65;
+  private final int right = 39;
+  private final int keyBoardD = 68;
+  private final int up = 38;
+  private final int  keyBoardW = 87;
 
-  public final int down = 40;
-  public final int keyBoardS = 83;
-
+  private final int down = 40;
+  private final int keyBoardS = 83;
+  /**
+   * Instance of the snake.
+   */
   private static Snake instance;
 
   //Private static constructor to make class singleTon
@@ -54,14 +66,25 @@ public class Snake extends Sprite {
     this.image = picture;
     for (int i = 0; i < INITIALIZE; i++) {
       if (i == 0) {
-        body.add(new SnakeBody(this.getxPos() + 0, this.getyPos() - (INITIALIZE) * this.getSize(), this.getSize(), null));
+        body.add(new SnakeBody(this.getxPos() + 0,
+                this.getyPos() - (INITIALIZE) * this.getSize(), this.getSize(), null));
       } else {
-        body.add(new SnakeBody(this.getxPos(), this.getyPos() - ((INITIALIZE - i) * this.getSize()), this.getSize(), null));
+        body.add(new SnakeBody(this.getxPos(), this.getyPos() - ((INITIALIZE - i)
+                * this.getSize()), this.getSize(), null));
       }
     }
   }
 
-  // Get instance method to instantiate the Snake so only one instance occurs - Singleton
+
+
+  /**
+   * Get instance method to instantiate the Snake so only one instance occurs - Singleton
+   * @param xPos int
+   * @param yPos int
+   * @param size int
+   * @param picture String
+   * @return Snake
+   */
   public static Snake getInstance(int xPos, int yPos, int size, String picture) {
     if (instance == null) {
       instance = new Snake(xPos, yPos, size, picture);
@@ -98,9 +121,9 @@ public class Snake extends Sprite {
         setDirectionX(1);
         setDirectionY(0);
         if (lastDY == 1) {
-          body.get(body.size() - 1).setCorner(-2);
+          body.get(body.size() -1).setCorner(-2);
         } else if (lastDY == -1) {
-          body.get(body.size() - 1).setCorner(2);
+          body.get(body.size() -1).setCorner(2);
         }
         image = "headRight";
       }
@@ -129,7 +152,7 @@ public class Snake extends Sprite {
         if (lastDX == 1) {
           body.get(body.size() - 1).setCorner(1);
         } else if (lastDX == -1) {
-          body.get(body.size() - 1).setCorner(-2);
+          body.get(body.size() - 1).setCorner(- 2);
         }
         image = "headDown";
       }
@@ -186,10 +209,22 @@ public class Snake extends Sprite {
       }
       float dx = (nextX - body.get(i).getxPos());
       float dy = (nextY - body.get(i).getyPos());
-      if (dx >= 1) dx = 1;
-      else if (dx <= -1) dx = -1;
-      if (dy >= 1) dy = 1;
-      else if (dy <= -1) dy = -1;
+
+      if (dx >= 1) {
+        dx = 1;
+      }
+
+      else if (dx <= -1) {
+        dx = -1;
+      }
+
+      if (dy >= 1) {
+        dy = 1;
+      }
+      else if (dy <= -1) {
+        dy = -1;
+      }
+
       body.get(i).setxPos(body.get(i).getxPos());
       body.get(i).setyPos(body.get(i).getyPos());
       body.get(i).draw(dx, dy, isTail);

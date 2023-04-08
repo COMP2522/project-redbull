@@ -11,11 +11,14 @@ import java.util.Random;
  */
 public class Enemy extends Sprite {
 
+  /**
+   * The speed of the enemy
+   */
   private int speed;
 
-  //Key Pressed Keycodes for switch statements
+  //All key pressed codes for processing
   private  final int left = 37;
-  private final int keyBoardA =65;
+  private final int keyBoardA = 65;
 
   private final int right = 39;
 
@@ -27,11 +30,13 @@ public class Enemy extends Sprite {
 
   private  final int down = 40;
 
-  public  final int keyBoardS = 83;
+  private final int keyBoardS = 83;
 
   private int directionX = 0;
   private int directionY = 0;
-
+  /**
+   * The rotation of the enemy
+   */
   private int rotation;
 
   /**
@@ -51,7 +56,7 @@ public class Enemy extends Sprite {
    */
   public void move() {
 
-    int choices[] = {left, keyBoardA, right, keyBoardD,up, keyBoardW,down, keyBoardS};
+    int choices[] = {left, keyBoardA, right, keyBoardD, up, keyBoardW, down, keyBoardS};
     Random random = new Random();
     int randomIndex = random.nextInt(choices.length);
     int direction = choices[randomIndex];

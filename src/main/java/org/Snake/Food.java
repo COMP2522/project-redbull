@@ -1,7 +1,7 @@
 package org.Snake;
 
 /**
- * Food class which is meant to be the food of the snake
+ * Food class which is meant to be the food of the snake.
  *
  * @author
  * @version 1.0
@@ -15,7 +15,7 @@ public class Food extends Sprite {
         image = picture;
     }
     /**
-     * Getter to return if the food has been eaten
+     * Getter to return if the food has been eaten.
      * @return true if the food has been eaten, false otherwise
      */
     public boolean isEaten() {
@@ -23,14 +23,14 @@ public class Food extends Sprite {
     }
 
     /**
-     * Setter to set if the food has been eaten
+     * Setter to set if the food has been eaten.
      */
     public void eat() {
         isEaten = true;
     }
 
     /**
-     * Method to draw the food
+     * Method to draw the food.
      */
     public void draw() {
         if (!isEaten) {
@@ -43,7 +43,7 @@ public class Food extends Sprite {
     }
 
     /**
-     * Method to reset the food
+     * Method to reset the food.
      */
     public void reset() {
         isEaten = false;

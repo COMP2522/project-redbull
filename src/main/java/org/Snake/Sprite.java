@@ -17,12 +17,29 @@ import java.util.Map;
  * @version 1.0
  */
 public class Sprite implements Drawable{
+  /**
+   * The x position of the sprite
+   */
   private float xPos;
+  /**
+   * The y position of the sprite
+   */
   private float yPos;
-
+  /**
+   * The size of the sprite
+   */
   private int size;
+  /**
+   * The image of the sprite
+   */
   private PImage picture;
+  /**
+   * The map of images
+   */
   static Map<String, PImage> images = new HashMap<>();
+  /**
+   * The window on which the sprite is drawn
+   */
   private static Window window;
   //Public sprite constructor taking in x, y , size, and picture
   public Sprite(int xPos, int yPos, int size) {

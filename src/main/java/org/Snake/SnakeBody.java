@@ -9,28 +9,64 @@ import processing.core.PImage;
  * @version 1.0
  */
 public class SnakeBody extends Sprite {
+  /**
+   * The corner of the SnakeBody
+   */
   private int corner;
+  /**
+   * The size of the SnakeBody in the x direction
+   */
   private final int sizeX;
+  /**
+   * The size of the SnakeBody in the y direction
+   */
   private final int sizeY;
+  /**
+   * The image of the SnakeBody
+   */
 
   private String image;
-
+  /**
+   * The image of the SnakeBody
+   */
   public int tailLeft = 1;
+
+  /**
+   * The image of the SnakeBody
+   */
   public int tailRight = -1;
+  /**
+   * The image of the SnakeBody
+   */
   public int tailUp = 1;
+  /**
+   * The image of the SnakeBody
+   */
   public int tailDown = -1;
 
+  /**
+   * Corner of the SnakeBody
+   */
   public final int cornerRightDown = 1;
+  /**
+   * Corner of the SnakeBody
+   */
   public final int cornerLeftUp =  2;
+  /**
+   * Corner of the SnakeBody
+   */
   public final int cornerRightUp = -1;
+  /**
+   * Corner of the SnakeBody
+   */
   public final int cornerLeftDown = -2;
 
   /**
    *
-   * @param xPos
-   * @param yPos
-   * @param size
-   * @param picture
+   * @param xPos float
+   * @param yPos float
+   * @param size int
+   * @param picture String
    */
   public SnakeBody(float xPos, float yPos, int size, String picture) {
     super((int)xPos, (int)yPos, size);
@@ -130,10 +166,18 @@ public class SnakeBody extends Sprite {
         return sizeY;
     }
 
+    /**
+     * The method that gets the image of the SnakeBody
+     * @return the image of the SnakeBody
+     */
   public PImage getPicture(){
     return super.getPicture();
   }
 
+  /**
+   * The method that sets the image of the SnakeBody
+   * @param picture the picture to set
+   */
   @Override
   public void setPicture(PImage picture) {
     super.setPicture(picture);
