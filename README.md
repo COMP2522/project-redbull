@@ -10,26 +10,91 @@
 
 <b>#Project Description</b>
 
-This project is everything you loved about the original snake but more! We shook up the repetitive gameplay loop of the original snake with 
+This project is everything you loved about the original snake but more! We shook up the repetitive gameplay loop of the original snake with
 innovative new levels, more complex UI, smoother gameplay and animations, and enemies! We hope you enjoy our take on Snake.
 
 
 #Member Contributions
 
-## Cam
+## Cameron Fung
+<h3>Front end Designer</h3>
 <ul>
-  <li>March 23, 2022</li>
-        <ul>
-      <li>Made the frame method</li>
-      <li>Updated the READme</li>
-      <li>Pair Programmed Score</li>
-         <li> Created Highscore</li>
-  </ul>       
-         
+        <li> Designed the architecture for the UI.</li>
+        <li> Implemented the UI.</li>
+        <li> Contributed to the high level design of the entire system.</li>
+</ul> 
+<h4> Individual pitch</h4>
+<p>
+I created the design for the archetecture for the UI.
+The main idea that I wanted to implement is the composite pattern. 
+This was done by creating the UIElement abstract class and the Frame class.
+</p>
+
+<p>
+The UIElement class is the base class for all UI elements. It has a draw method that is called every frame.
+The Frame class is a UIElement that contains other UIElements. It is used to create a hierarchy of UIElements.
+</p>
+
+<h4>How to create a new page</h4>
+<p> 
+If you want to create a new page you need to create a new class that extends the Frame class.
+</p>
+
+```aidl
+public class NewCustomPage extends Frame {
+    public NewCustomPage(PApplet parent, float x, float y, float width, float height) {
+        super(parent, x, y, width, height);
+    }
+}
+```
+
+<p>Then you need to add the new class to the UIManager constructor.</p>
+
+```aidl
+    this.pages = new UIComponent[] {
+            new MenuPage(parent, x , y , width , height , 0, ""),
+            new LevelSelector(parent, x + sideBarWidth, y, width- sideBarWidth, height, levelNames),
+            new HighScoreLevels(parent, x + sideBarWidth, y, width - sideBarWidth, height, levelNames),
+            new HighScoreBoard(parent, x, y, width, height, db),
+            new InGameUI(parent, x, y, width, height)
+            new NewCustomPage(parent, x, y, width, height)
+    };
+```
+
+
+<p>You will need to add buttons that navigate to and from the page. You can do this by adding a button in any page.
+In this example I will add it to the menu page.
+</p>
+
+```aidl
+
+  public MenuPage(Window parent, float x, float y, float width, float height, int padding, String direction) {
+    super(parent, x, y, width, height);
+    // Initializing the button in the page
+    float playButtonWidth = 300;
+    Button goToNewPageButton = new Button(parent, x + width/2 - playButtonWidth / 2, y + height/2, playButtonWidth, 75, "PLAY");
+    
+    // adding the button to the components of the page
+    add(goToNewPageButton);
+    }
+```
+
+<p>
+
+You will need to tell the button what to do when it is clicked
+</p>
+
+```aidl
+    goToNewPageButton.setClickAction(() -> {
+      // This is where you tell the button what to do when it is clicked
+      // In this case we want to go to the new page
+      UIManager.getInstance().setPage(5);
+    });
+```
 
 
 
-</ul>
+
 
 ## Kavin
 <ul>
@@ -39,7 +104,7 @@ innovative new levels, more complex UI, smoother gameplay and animations, and en
       <li>Updated the READme</li>
       <li>Pair programmed Highscore</li>
           <li> Refactored package</li>
-          
+
     </ul>
 
 </li>
@@ -110,7 +175,7 @@ Draft due next Lab, final due two labs from now. Submission here, on GitHub. Sug
 
 ## Initial GitHub Issues (group, 1%)
 
-The initial GitHub issues will be the tasks that are assigned to each of your group members at the beginning of the project. Every team member should have at least five issues to start (20-30 total). You will have to decide within your group how granular you want to make these issues. 
+The initial GitHub issues will be the tasks that are assigned to each of your group members at the beginning of the project. Every team member should have at least five issues to start (20-30 total). You will have to decide within your group how granular you want to make these issues.
 
 Issues will be tracked here, on GitHub.
 
@@ -122,7 +187,7 @@ No submission.
 
 ## Final README.md (group, 1%)
 
-The Final README.md must give instructions on how to run your program, a list of contributions by each member, and any references/citations for code you may have used from elsewhere. 
+The Final README.md must give instructions on how to run your program, a list of contributions by each member, and any references/citations for code you may have used from elsewhere.
 
 Submission is here, on GitHub, in the `README.md` file.
 
@@ -153,12 +218,12 @@ Contributions must be for functional, working Java code and must be continuous t
 Your code must be well-documented with fully-formed method signatures, comments, and necessary README or Wiki pages. This is further broken down into the following.
 
 ### Initial individual pitch (1%)
-A description of your individual feature that you plan to implement. 
+A description of your individual feature that you plan to implement.
 
 Due date TBD.
 
 ### Initial individual UML Diagrams (1%)
-Any combination of sequence, communcation, or class diagrams that describe your feature's initial planned abilities. 
+Any combination of sequence, communcation, or class diagrams that describe your feature's initial planned abilities.
 
 Due date TBD.
 
@@ -188,5 +253,3 @@ You must use pull requests to manage your code integration:
 - the other person (NOT YOU) will merge your PR into `main`
 - the other person (NOT YOU) will delete your branch
 
-
-tuna fish 
