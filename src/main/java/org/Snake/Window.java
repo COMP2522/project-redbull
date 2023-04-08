@@ -92,6 +92,8 @@ public class Window extends PApplet {
     private final int gameFramteRate = 60;
 
 
+
+
     //////////////////////////////////////////////////////
 
     /**
@@ -136,6 +138,10 @@ public class Window extends PApplet {
         fullScreen();
     }
 
+
+
+
+
     /**
      * The method that loads the game
      */
@@ -158,6 +164,7 @@ public class Window extends PApplet {
 
     public void init(){
         frameRate(60);
+
     }
 
     /**
@@ -222,6 +229,7 @@ public class Window extends PApplet {
      */
     public void mousePressed() {
         UiManager.getInstance().mouseClicked(this.mouseX, this.mouseY);
+
     }
 
     /**
@@ -232,15 +240,18 @@ public class Window extends PApplet {
         String[] appletArgs = new String[]{"MazeSnake"};
         Window MazeSnake = new Window();
         PApplet.runSketch(appletArgs, MazeSnake);
+
     }
 
     /**
      * Resets the game upon the snake dying
      */
     public void reset(){
+
         lastKeyPressed = 0;
         spriteManager.reset();
         clock.reset();
+
 
         int score = UiManager.getInstance().getScore();
         if (mongoDb.isHighScore(score, UiManager.getInstance().getSelectedLevel())) {
@@ -259,6 +270,8 @@ public class Window extends PApplet {
 
 
         UiManager.getInstance().resetScore();
+
+
     }
 
     /**
@@ -266,18 +279,11 @@ public class Window extends PApplet {
      */
     private void startGame() {
 
-        try {
-            // load the sound file
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream
-                    (new File("src/main/SoundTrack/506893__mrthenoronha__upbeat-theme-loop.wav"));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY); // set loop count to infinite
-            clip.start();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog
-                    (null, "Error playing sound: " + e.getMessage());
-        }
+
+        Sound.playSound();
+
+
+
         spriteManager.setLevel(UiManager.getInstance().getSelectedLevel());
         spriteManager.makeTiles();
         gameActive = true;
@@ -285,6 +291,8 @@ public class Window extends PApplet {
 
     private boolean levelSelected() {
         return !Objects.equals(UiManager.getInstance().getSelectedLevel(), "none");
+
+
     }
 
     /**
@@ -313,6 +321,7 @@ public class Window extends PApplet {
      */
     public void setGameActive(boolean gameActive) {
         this.gameActive = gameActive;
+
     }
 
     public boolean isGameActive() {
