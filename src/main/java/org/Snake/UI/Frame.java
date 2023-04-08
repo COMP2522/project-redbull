@@ -1,6 +1,6 @@
 package org.Snake.UI;
 
-import processing.core.PApplet;
+import org.Snake.Window;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,6 @@ import java.util.ArrayList;
  * @version
  */
 public class Frame extends UIComponent {
-
-  int padding;
-  String direction;
-
   boolean firstDraw;
 
   ArrayList<UIComponent> components;
@@ -26,13 +22,10 @@ public class Frame extends UIComponent {
    * @param y the y position of the frame
    * @param width the width of the frame
    * @param height the height of the frame
-   * @param padding the padding of the frame
-   * @param direction the direction of the frame
+
    */
-  public Frame(PApplet parent, float x, float y, float width, float height, int padding, String direction) {
+  public Frame(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
-    this.padding = padding;
-    this.direction = direction;
     firstDraw = true;
     components = new ArrayList<>();
   }
@@ -43,17 +36,17 @@ public class Frame extends UIComponent {
   @Override
   public void draw() {
     if (firstDraw) {
-      for (int i = 0; i < components.size(); i++) {
-        int y = components.get(i).getY();
-        int x = components.get(i).getX();
-        components.get(i).setY(y + this.y);
-        components.get(i).setX(x + this.x);
+      for (UIComponent component : components) {
+        int y = component.getY();
+        int x = component.getX();
+        component.setY(y + this.y);
+        component.setX(x + this.x);
       }
       firstDraw = false;
     }
 
-    for (int i = 0; i < components.size(); i++) {
-      components.get(i).draw();
+    for (UIComponent component : components) {
+      component.draw();
     }
   }
 

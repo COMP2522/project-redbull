@@ -1,21 +1,16 @@
 package org.Snake.UI.NotInGame;
 
 import org.Snake.UI.UIComponent;
+import org.Snake.Window;
 import processing.core.PApplet;
 
-/**
- * UIComponent class which is meant to be the base class for buttons.
- *
- * @author
- * @version
- */
 public class LevelButton extends UIComponent {
 
-  private String label;
+  private final String label;
   private boolean selected;
 
   /**
-   * Button constructor which sets the position and size of the button.
+   * Button constructor which sets the position and size of the button
    * @param parent the parent PApplet
    * @param x the x position of the button
    * @param y the y position of the button
@@ -23,7 +18,7 @@ public class LevelButton extends UIComponent {
    * @param height the height of the button
    * @param label the label of the button
    */
-  public LevelButton(PApplet parent, float x, float y, float width, float height, String label) {
+  public LevelButton(Window parent, float x, float y, float width, float height, String label) {
     super(parent, x, y, width, height);
     this.label = label;
     this.selected = false;
@@ -56,13 +51,6 @@ public class LevelButton extends UIComponent {
     if (contains(mx, my)) {
       setSelected(!selected);
     }
-  }
-
-  /**
-   * Method to check if the button was clicked
-   */
-  public boolean isSelected() {
-    return selected;
   }
 
   /**

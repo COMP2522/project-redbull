@@ -3,6 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.Snake.UI.UIComponent;
+import org.Snake.Window;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ class UIComponentTest {
     y = 200f;
     width = 50f;
     height = 30f;
-    uiComponent = new UIComponent(parent, x, y, width, height) {
+    uiComponent = new UIComponent((Window) parent, x, y, width, height) {
 
       @Override
       public void draw() {

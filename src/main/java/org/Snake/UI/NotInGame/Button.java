@@ -1,19 +1,14 @@
 package org.Snake.UI.NotInGame;
 
 import org.Snake.UI.UIComponent;
-import processing.core.PApplet;
-/**
- * LevelSelector class which is the main level selector
- *
- * @author
- * @version
- */
+import org.Snake.Window;
+
 public class Button extends UIComponent {
 
   private String label;
   private boolean pressed;
 
-  public Button(PApplet parent, float x, float y, float width, float height, String label) {
+  public Button(Window parent, float x, float y, float width, float height, String label) {
     super(parent, x, y, width, height);
     this.label = label;
     this.pressed = false;

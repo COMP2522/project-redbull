@@ -1,35 +1,24 @@
 package org.Snake.UI.NotInGame.Pages;
-
+import org.Snake.UI.UiManager;
 import org.Snake.UI.Frame;
 import org.Snake.UI.NotInGame.Button;
 import org.Snake.UI.NotInGame.ImageAnimation;
-import org.Snake.UI.NotInGame.NotInGameUiManager;
 import org.Snake.UI.Text;
-import processing.core.PApplet;
+import org.Snake.Window;
 import org.Snake.UI.HomeButton;
 
-/**
- * LevelSelector class which is the main level selector
- *
- * @author
- * @version
- */
+
 public class MenuPage extends Frame {
 
-  private NotInGameUiManager notInGameUiManager;
 
-  private Button playButton;
-  private Button highScoreButton;
-  private HomeButton homeButton;
-  private Text title;
+  private final Button playButton;
+  private final Button highScoreButton;
 
-  private String home = "src/main/java/org/Snake/UI/Images/home.png";
-
-  public MenuPage(PApplet parent, float x, float y, float width, float height, int padding, String direction, NotInGameUiManager notInGameUiManager) {
-    super(parent, x, y, width, height, padding, direction);
+  public MenuPage(Window parent, float x, float y, float width, float height, int padding, String direction) {
+    super(parent, x, y, width, height);
 
     // create the title
-    title = new Text(parent, x + width/2, y + height/4, "Project RedBull");
+    Text title = new Text(parent, x + width / 2, y + height / 4, "Project RedBull");
     title.setTextSize(50);
 
     // create the play button
@@ -41,7 +30,7 @@ public class MenuPage extends Frame {
     // create the high score button
     highScoreButton = new Button(parent, x + width/2 - highScoreButtonWidth / 2, y + height/2 + 100, highScoreButtonWidth, 75, "HIGH SCORES");
 
-    homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, home, notInGameUiManager);
+    HomeButton homeButton = new HomeButton(parent, x + 10, y + 10, 100, 100, "src/main/java/org/Snake/UI/Images/home.png");
 
     // create wings animation
     String[] left = new String[4];
@@ -64,7 +53,6 @@ public class MenuPage extends Frame {
     add(wingsAnimationLeft);
     add(wingsAnimationRight);
 
-    this.notInGameUiManager = notInGameUiManager;
   }
 
   @Override
@@ -75,9 +63,9 @@ public class MenuPage extends Frame {
   @Override
   public void mouseClicked(float mx, float my) {
     if (playButton.contains(mx, my)) {
-      notInGameUiManager.setPage("game");
+      UiManager.getInstance().setPage("game");
     } else if (highScoreButton.contains(mx, my)) {
-      notInGameUiManager.setPage("highscore");
+      UiManager.getInstance().setPage("highscore");
     }
   }
 }

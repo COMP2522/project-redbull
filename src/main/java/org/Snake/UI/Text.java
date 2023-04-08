@@ -1,5 +1,6 @@
 package org.Snake.UI;
 
+import org.Snake.Window;
 import processing.core.PApplet;
 
 /**
@@ -12,7 +13,7 @@ public class Text extends UIComponent {
 
 
 
-  private String content;
+  private final String content;
   private int textSize;
   private int textColor;
 
@@ -23,7 +24,7 @@ public class Text extends UIComponent {
    * @param y the y-coordinate of the text
    * @param content the text content to display
    */
-  public Text(PApplet parent, float x, float y, String content) {
+  public Text(Window parent, float x, float y, String content) {
     super(parent, x, y, 0, 0);
     this.content = content;
     this.textSize = 16;
@@ -65,8 +66,5 @@ public class Text extends UIComponent {
    */
   public void setTextColor(int textColor) {
     this.textColor = textColor;
-  }
-  public String getContent() {
-    return content;
   }
 }

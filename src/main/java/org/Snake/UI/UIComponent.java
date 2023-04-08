@@ -1,6 +1,6 @@
 package org.Snake.UI;
 
-import processing.core.PApplet;
+import org.Snake.Window;
 
 /**
  * UIComponent class which is meant to be a superclass for all UIComponents
@@ -10,7 +10,7 @@ import processing.core.PApplet;
  */
 public abstract class UIComponent {
 
-  protected PApplet parent;
+  protected Window parent;
 
 
   protected float x;
@@ -39,7 +39,7 @@ public abstract class UIComponent {
    * @param width float
    * @param height float
    */
-  public UIComponent(PApplet parent, float x, float y, float width, float height) {
+  public UIComponent(Window parent, float x, float y, float width, float height) {
     this.parent = parent;
     this.x = x;
     this.y = y;
@@ -61,7 +61,7 @@ public abstract class UIComponent {
    * getter for parent PApplet element
    * @return parent
    */
-  protected PApplet getParent() {
+  protected Window getParent() {
     return parent;
   }
 
