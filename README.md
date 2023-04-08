@@ -31,7 +31,8 @@ This was done by creating the UIElement abstract class and the Frame class.
 </p>
 
 <p>
-The UIElement class is the base class for all UI elements. It has a draw method that is called every frame.
+The UIElement class is the base class for everything that shows up in the UI. It has a draw method that is called
+every frame.
 The Frame class is a UIElement that contains other UIElements. It is used to create a hierarchy of UIElements.
 </p>
 
@@ -51,14 +52,14 @@ public class NewCustomPage extends Frame {
 <p>Then you need to add the new class to the UIManager constructor.</p>
 
 ```aidl
-    this.pages = new UIComponent[] {
-            new MenuPage(parent, x , y , width , height , 0, ""),
-            new LevelSelector(parent, x + sideBarWidth, y, width- sideBarWidth, height, levelNames),
-            new HighScoreLevels(parent, x + sideBarWidth, y, width - sideBarWidth, height, levelNames),
-            new HighScoreBoard(parent, x, y, width, height, db),
-            new InGameUI(parent, x, y, width, height)
-            new NewCustomPage(parent, x, y, width, height)
-    };
+this.pages = new UIComponent[] {
+    new MenuPage(parent, x , y , width , height , 0, ""),
+    new LevelSelector(parent, x + sideBarWidth, y, width- sideBarWidth, height, levelNames),
+    new HighScoreLevels(parent, x + sideBarWidth, y, width - sideBarWidth, height, levelNames),
+    new HighScoreBoard(parent, x, y, width, height, db),
+    new InGameUI(parent, x, y, width, height)
+    new NewCustomPage(parent, x, y, width, height)
+};
 ```
 
 
@@ -67,31 +68,120 @@ In this example I will add it to the menu page.
 </p>
 
 ```aidl
+  
+// in the class declaration
+private Button goToNewPageButton;
 
-  public MenuPage(Window parent, float x, float y, float width, float height, int padding, String direction) {
+public MenuPage(Window parent, float x, float y, float width, float height, int padding, String direction) {
     super(parent, x, y, width, height);
     // Initializing the button in the page
     float playButtonWidth = 300;
-    Button goToNewPageButton = new Button(parent, x + width/2 - playButtonWidth / 2, y + height/2, playButtonWidth, 75, "PLAY");
+    goToNewPageButton = new Button(parent, x + width/2 - playButtonWidth / 2, y + height/2, playButtonWidth, 75, "PLAY");
     
     // adding the button to the components of the page
     add(goToNewPageButton);
-    }
+}
 ```
 
-<p>
+<p> Finally add the new button to the even handler </p>
 
-You will need to tell the button what to do when it is clicked
-</p>
 
 ```aidl
-    goToNewPageButton.setClickAction(() -> {
-      // This is where you tell the button what to do when it is clicked
-      // In this case we want to go to the new page
-      UIManager.getInstance().setPage(5);
-    });
+// in the menu page
+@Override
+public void mouseClicked(float mx, float my) {
+    if (playButton.contains(mx, my)) {
+      UiManager.getInstance().setPage("game");
+    } else if (highScoreButton.contains(mx, my)) {
+      UiManager.getInstance().setPage("highscore");
+    }  else if (newPageButton.contains(mx, my)) {
+      UiManager.getInstance().setPage("newPage");
+    }
+}    
 ```
 
+<p> now you can add any text or buttons you want to the new page in the constructor.</p>
+<p> the following is a sample to see what it would look like:</p>
+
+```aidl
+public class MenuPage extends Frame {
+
+
+  private final Button newButton;
+
+  public MenuPage(Window parent, float x, float y, float width, float height, int padding, String direction) {
+    super(parent, x, y, width, height);
+    
+    float newButtonWidth = 300;
+    newButton = new Button(parent, x + width/2 - newButtonWidth / 2, y + height/2, newButtonWidth, 75, "NEW");
+    
+    add(newButton);
+    add(new Text(parent, x + width/2, y + height/2 - 100, "New Page", 50));
+  }
+ 
+  @Override
+  public void draw() {
+      super.draw();
+  }
+    
+  @Override
+  public void mouseClicked(float mx, float my) {
+      if (newButton.contains(mx, my)) {
+        UiManager.getInstance().setPage("nextPage");
+      }
+ } 
+    
+```
+<h3>Reflection on my design decisions and what I would do differently next time.</h3>
+<h4>Overview</h5> 
+<p>
+    Overall I am comtempt with the UI system that I have created here. There are many very obvious things that could be
+made better. But there are some things that I am happy with that I will cover.
+</p>
+
+<h4> The good </h4>
+<p> 
+    I am happy with how I was able to use the composite pattern. I find it very cool to learn something in class and
+then use it in a project.
+</p>
+<p> Although I wasn't able to use the pattern perfectly, the general idea is there and I learned a lot abou 
+making a ui system that has multiple pages and many elements per page.
+</p>
+<h4> the bad</h4>
+<p> 
+    There are a a few little problems that I noticed but didn't have enough time to fix
+</p>
+<ol> 
+    
+<li>
+    <p> The making of the buttons is inconsistent. <p>
+    <p>
+        Sometimes I am just using the button class and sometimes I am creating a new class and extending it 
+        off of button.
+    </p>
+    
+</li> 
+
+<li>
+    <p> Make the event handle for button better. </p>
+    <p> My main idea for the buttons was to have them in the components and not be an attribute of the class
+    I ended up making the buttons attributes because I needed to add them to the even handler.
+    The ideal solution would make this not necessary. 
+    The only thing that the buttons do are change the page. With this in mind I would've given button an 
+attribute that holds the destination and calls the
+```aidl
+UiManager.getInstance().setPage(destination) 
+``` 
+method to change the page so they dont have to be indivually added to the event handle for the page. 
+    </p>
+</li>
+
+</ol>
+
+<h4> Conclusion</h4>
+<p> I learned a lot about how GUI's work and the amount of design that needs to go into a good ui system.
+I'm proud of what I was able to make. In the future I would like to make another with lots of improvments to the design.
+</p>
 
 
 
