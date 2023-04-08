@@ -75,4 +75,13 @@ public class MazeMaker3 {
     divide(wallX+1, y1, x2, wallY-1, walls, wallImage, cellSize);
   }
 
+  public static int[] generateSpawn(Wall[][] walls) {
+    int[] spawn = new int[2];
+    // make the spawn point so that it is not in a wall
+    do {
+      spawn[0] = (int) (Math.random() * 18) + 1;
+      spawn[1] = (int) (Math.random() * 18) + 1;
+    } while (walls[spawn[0]][spawn[1]] != null);
+    return spawn;
+  }
 }

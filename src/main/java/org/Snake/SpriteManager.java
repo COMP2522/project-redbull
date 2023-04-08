@@ -98,6 +98,7 @@ public class SpriteManager {
     public void makeTiles() {
         if (Objects.equals(this.level, "random")) {
             this.walls = MazeMaker3.generateMaze("wall", rows, cols, tileWidth);
+            this.spawnPoint = MazeMaker3.generateSpawn(this.walls);
         } else {
             this.walls = MazeMaker.loadMaze("wall", rows, cols, tileWidth, this.level);
             this.spawnPoint = MazeMaker.loadSpawn(this.level);
