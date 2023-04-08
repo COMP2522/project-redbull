@@ -169,9 +169,9 @@ making a ui system that has multiple pages and many elements per page.
     The ideal solution would make this not necessary. 
     The only thing that the buttons do are change the page. With this in mind I would've given button an 
 attribute that holds the destination and calls the
-```aidl
+
 UiManager.getInstance().setPage(destination) 
-``` 
+
 method to change the page so they dont have to be indivually added to the event handle for the page. 
     </p>
 </li>
@@ -182,6 +182,9 @@ method to change the page so they dont have to be indivually added to the event 
 <p> I learned a lot about how GUI's work and the amount of design that needs to go into a good ui system.
 I'm proud of what I was able to make. In the future I would like to make another with lots of improvments to the design.
 </p>
+
+<h4>My main contribution to the UML</h4>
+![alt text](UIUML.png)
 
 
 
