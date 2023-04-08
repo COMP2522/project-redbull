@@ -88,6 +88,7 @@ public class Clock {
    * Resets the clock
    */
   public void reset() {
+
     setPrev(Instant.now());
     this.resetFrames();
   }

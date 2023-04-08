@@ -30,6 +30,7 @@ public class Button extends UIComponent {
   public void mouseClicked(float mx, float my) {
     if (contains(mx, my)) {
       pressed = true;
+
     } else {
       pressed = false;
     }
