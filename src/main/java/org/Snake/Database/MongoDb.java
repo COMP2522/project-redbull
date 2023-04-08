@@ -31,7 +31,7 @@ public class MongoDb {
     try {
       database.createCollection("players");
     } catch (Exception e) {
-      System.out.println("Collection already in database.");
+//      System.out.println("Collection already in database.");
     }
   }
   public void put(String name, int playerScore, String level) {

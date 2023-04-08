@@ -98,7 +98,8 @@ public class SpriteManager {
     public void makeTiles() {
         if (Objects.equals(this.level, "random")) {
             this.walls = MazeMaker3.generateMaze("wall", rows, cols, tileWidth);
-            this.spawnPoint = MazeMaker3.generateSpawn(this.walls);
+            this.spawnPoint = MazeMaker3.generateSpawn(this.walls, rows, cols);
+            this.food = MazeMaker3.generateFood(rows, cols, tileWidth, this.walls);
         } else {
             this.walls = MazeMaker.loadMaze("wall", rows, cols, tileWidth, this.level);
             this.spawnPoint = MazeMaker.loadSpawn(this.level);
@@ -246,7 +247,7 @@ public class SpriteManager {
                 && !food[x+player.getDirectionX()][y+player.getDirectionY()-1].isEaten()) {
             player.grow();
             window.incrementScore();
-            if (this.level.equals("Classic")){
+            if (this.level.equals("Classic") || this.level.equals("Random")){
                 Random rand = new Random();
                 int newX = rand.nextInt(rows-3)+1;
                 int newY = rand.nextInt(cols-3)+1;

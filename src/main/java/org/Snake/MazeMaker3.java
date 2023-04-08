@@ -1,5 +1,5 @@
 package org.Snake;
-
+import java.util.Random;
 /**
  * Class for loading and storing the maze tiles
  *
@@ -75,13 +75,27 @@ public class MazeMaker3 {
     divide(wallX+1, y1, x2, wallY-1, walls, wallImage, cellSize);
   }
 
-  public static int[] generateSpawn(Wall[][] walls) {
+  public static int[] generateSpawn(Wall[][] walls, int rows, int cols) {
     int[] spawn = new int[2];
     // make the spawn point so that it is not in a wall
+    Random ran = new Random();
     do {
-      spawn[0] = (int) (Math.random() * 18) + 1;
-      spawn[1] = (int) (Math.random() * 18) + 1;
+      spawn[0] = ran.nextInt(10, rows);
+      spawn[1] = ran.nextInt(10, rows);
     } while (walls[spawn[0]][spawn[1]] != null);
     return spawn;
+  }
+
+  public static Food[][] generateFood(int rows, int cols, int tileWidth, Wall[][] walls) {
+    Food[][] food = new Food[rows][cols];
+    int[] spawn = new int[2];
+    // make the spawn point so that it is not in a wall
+    Random ran = new Random();
+    do {
+      spawn[0] = ran.nextInt(10, rows);
+      spawn[1] = ran.nextInt(10, rows);
+    } while (walls[spawn[0]][spawn[1]] != null);
+    food[spawn[0]][spawn[1]] = new Food(spawn[0]*tileWidth, spawn[1]*tileWidth, tileWidth, "food.png");
+    return food;
   }
 }
