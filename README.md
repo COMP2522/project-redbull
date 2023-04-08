@@ -229,7 +229,7 @@ I'm proud of what I was able to make. In the future I would like to make another
 </li>
 </ul>
 
-
+<h2> Our UML for the Project</h2>
 ![alt text](UML.png)
 
 # Project
