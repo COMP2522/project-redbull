@@ -48,9 +48,12 @@ public class SpriteManager {
      */
     private Food[][] food;
     /**
-     * The array of enemie spawn points
+     * The array of beetle spawn points
      */
     private Enemy[][] beetleSpawn;
+
+
+
     /**
      * The window
      */
@@ -141,6 +144,7 @@ public class SpriteManager {
                 if (enemy1 != null) {
                     Beetle beetle = new Beetle((int) enemy1.getxPos(), (int) enemy1.getyPos(), tileWidth, "beetle");
                     sprites.add(beetle);
+
                 }
             }
         }
@@ -215,6 +219,13 @@ public class SpriteManager {
             return;
         }
 
+        //update the beetle positions
+        for (Sprite sprite : sprites) {
+            if (sprite instanceof Beetle beetle) {
+                beetle.move();
+            }
+        }
+
 
         //update the sprites to the next frame
         int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;
@@ -241,7 +252,7 @@ public class SpriteManager {
     }
 
     /**
-     * Method to check if the player is colliding with a wall or a tile
+     * Method to check if the player is colliding with a wall or a tile or a beetle
      */
     private void collide() {
 
@@ -308,11 +319,15 @@ public class SpriteManager {
                 food[x + player.getDirectionX()][y + player.getDirectionY() - 1].eat();
             }
         }
+        //check if the player is colliding with itself
         for (int i = 0; i < player.getBody().size()-1; i++) {
             if (player.getBody().get(i).getxPos() == player.getxPos() && player.getBody().get(i).getyPos() == player.getyPos()) {
                 window.reset();
             }
         }
+
+        //checks if the player is colliding with a beetle
+
 
 
     }

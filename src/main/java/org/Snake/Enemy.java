@@ -16,6 +16,8 @@ public class Enemy extends Sprite {
    */
   private int speed;
 
+  private String image;
+
   //All key pressed codes for processing
   private  final int left = 37;
   private final int keyBoardA = 65;
@@ -47,6 +49,7 @@ public class Enemy extends Sprite {
    */
   public Enemy(int xPos, int yPos, int size, String picture) {
     super(xPos, yPos, size);
+    this.image = picture;
   }
 
   /**
@@ -131,7 +134,7 @@ public class Enemy extends Sprite {
 //    super.getWindow().stroke(0, 0, 0);
     //super.getWindow().pushStyle();
 //    super.getWindow().fill(0, 204, 0);
-    super.getWindow().image(super.getPicture(),
+        getWindow().image(getImage(image),
             super.getxPos() + super.getWindow().getOffset(),
             super.getyPos(),
             super.getSize(),

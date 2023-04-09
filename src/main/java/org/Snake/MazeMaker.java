@@ -1,6 +1,7 @@
 package org.Snake;
 
 import org.Snake.Enemies.Beetle;
+import org.Snake.Enemies.Flower;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -202,65 +203,45 @@ public class MazeMaker {
 
 
 
+/*
+    public class FlowerLoader {
+        public static Flower[][] loadFlowers(int rows, int cols, int cellSize, String level) {
+            Flower[][] flowers = new Flower[rows][cols];
 
-    /**
-     * I've commented out the enemy spawner for now
-     */
-//    public static Enemy[][] loadEnemies(int rows, int cols, int cellSize, String level) {
-//        Enemy[][] enemies = new Enemy[rows][cols];
-//
-//        //read json file
-//        FileReader reader = null;
-//        try {
-//            reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//        StringBuffer buffer = new StringBuffer();
-//        int i;
-//        try {
-//            while ((i = reader.read()) != -1) {
-//                buffer.append((char) i);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        //create enemies
-//        JSONObject obj = new JSONObject(buffer.toString());
-//        JSONArray beetleArray = obj.optJSONArray("Beetle");
-////        JSONArray beetleSpawnerArray = obj.optJSONArray("beetle_spawners");
-//
-//
-//        if (beetleArray != null) {
-//            for (int j = 0; j < beetleArray.length(); j++) {
-//                JSONObject row = beetleArray.getJSONObject(j);
-//                int x = row.getInt("y");
-//                int y = row.getInt("x");
-//                enemies[x][y] = new Beetle(x * cellSize, y * cellSize, cellSize, "beetle");
-//            }
-//        }
-//        //for beetle spawners, we arent doing this yet
-////        if (beetleSpawnerArray != null) {
-////            for (int j = 0; j < beetleSpawnerArray.length(); j++) {
-////                JSONObject row = beetleSpawnerArray.getJSONObject(j);
-////                int x = row.getInt("y");
-////                int y = row.getInt("x");
-////                enemies[x][y] = new BeetleSpawner(x * cellSize, y * cellSize, cellSize, "beetle_spawner");
-////            }
-////        }
-//        //print the number of beetles
-//        int numEnemies = 0;
-//        for (int j = 0; j < enemies.length; j++) {
-//            for (int k = 0; k < enemies[0].length; k++) {
-//                if (enemies[j][k] != null) {
-//                    numEnemies++;
-//                }
-//            }
-//        }
-//
-//        System.out.println("Number of enemies: " + numEnemies);
-//
-//        return enemies;
-//    }
+            //read json file
+            FileReader reader = null;
+            try {
+                reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            StringBuffer buffer = new StringBuffer();
+            int i;
+            try {
+                while ((i = reader.read()) != -1) {
+                    buffer.append((char) i);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //create flowers
+            JSONObject obj = new JSONObject(buffer.toString());
+            JSONArray flowerArray = obj.optJSONArray("Beetle");
+
+            if (flowerArray != null) {
+                for (int j = 0; j < flowerArray.length(); j++) {
+                    JSONObject row = flowerArray.getJSONObject(j);
+                    int x = row.getInt("y");
+                    int y = row.getInt("x");
+                    flowers[x][y] = new Flower(x * cellSize, y * cellSize, cellSize, "flower");
+                }
+            }
+
+            return flowers;
+        }
+    }
+
+ */
+
 }
