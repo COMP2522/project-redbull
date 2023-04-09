@@ -3,7 +3,7 @@
 
 # Project Members:
 - **Cam: Front End Wizard**
-- **Kavin: High-Level Design, Designer(Sprites, Levels, Sound)**
+- **Kavin: Designer
 - **Kale: The Game Creation God**
 - **Adam: The Test Giver**
 - **Harrison: Junior Code Monkey**
