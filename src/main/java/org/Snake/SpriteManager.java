@@ -75,6 +75,13 @@ public class SpriteManager {
     private int directionX = 0;
     private int directionY = 0;
 
+    /**
+     * The constructor for the sprite manager
+     * @param window the window
+     * @param cellSize the size of the tiles
+     * @param rows the number of rows
+     * @param cols the number of columns
+     */
     public SpriteManager(Window window, int cellSize, int rows, int cols) {
         this.window = window;
         this.rows = rows;

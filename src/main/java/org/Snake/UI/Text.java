@@ -11,10 +11,11 @@ import processing.core.PApplet;
  */
 public class Text extends UIComponent {
 
-
-
+// Content of the text
   private final String content;
+  // Text size
   private int textSize;
+    // The Text color
   private int textColor;
 
   /**
