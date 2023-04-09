@@ -11,8 +11,13 @@ import java.util.ArrayList;
  * @version
  */
 public class Frame extends UIComponent {
+  /**
+   * Boolean to check if the frame has been drawn for the first time
+   */
   boolean firstDraw;
-
+  /**
+   * ArrayList of UIComponents
+   */
   ArrayList<UIComponent> components;
 
   /**
@@ -23,6 +28,15 @@ public class Frame extends UIComponent {
    * @param width the width of the frame
    * @param height the height of the frame
 
+   */
+
+  /**
+   * Frame constructor which sets the position and size of the frame
+   * @param parent the parent PApplet
+   * @param x the x position of the frame
+   * @param y the y position of the frame
+   * @param width the width of the frame
+   * @param height the height of the frame
    */
   public Frame(Window parent, float x, float y, float width, float height) {
     super(parent, x, y, width, height);
