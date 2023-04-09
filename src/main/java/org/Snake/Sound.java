@@ -34,7 +34,7 @@ import java.io.File;
 
 
 
-    public void resetSound() {
+    public static void resetSound() {
         if (clip.isRunning()) {
             clip.stop(); // stop the current clip if it is running
         }
