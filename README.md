@@ -190,11 +190,15 @@ I'm proud of what I was able to make. In the future I would like to make another
 
 
 ## Kavin
-<li>
-<p>Kavin<p>
-<ul>Refactoring</ul>
+<ul>
+  <li>Designer (Levels, Sprites, Grid)</li>
+  <li>Background Music</li>
+  <li>Refactoring</li>
+  <li>CheckStyle</li>
+  <li>Helped with UI Manager, UI Component, and Score Systems</li>
         
-</li>
+        
+</ul>
 
 ## Kale
 <ul>
