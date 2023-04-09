@@ -8,6 +8,7 @@ public class Beetle extends Enemy {
 
   private Random random;
 
+  private String image;
 
   /**
    * Enemy constructor which sets the position and size of the enemy
@@ -18,6 +19,8 @@ public class Beetle extends Enemy {
    * @param picture
    */
   public Beetle(int xPos, int yPos, int size, String picture) {
+
     super(xPos, yPos, size, picture);
+    super.setPicture(getWindow().loadImage(picture));
   }
 }

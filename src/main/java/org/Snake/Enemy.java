@@ -47,7 +47,6 @@ public class Enemy extends Sprite {
    */
   public Enemy(int xPos, int yPos, int size, String picture) {
     super(xPos, yPos, size);
-    super.setPicture(getWindow().loadImage("src/main/images/enemy.png"));
   }
 
   /**

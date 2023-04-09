@@ -2,7 +2,7 @@ package org.Snake.Enemies;
 
 import org.Snake.Enemy;
 
-public class BeetleSpawner extends Enemy {
+public class Flower extends Enemy {
   /**
    * Enemy constructor which sets the position and size of the enemy
    *
@@ -11,7 +11,7 @@ public class BeetleSpawner extends Enemy {
    * @param size
    * @param picture
    */
-  public BeetleSpawner(int xPos, int yPos, int size, String picture) {
+  public Flower(int xPos, int yPos, int size, String picture) {
     super(xPos, yPos, size, picture);
   }
 

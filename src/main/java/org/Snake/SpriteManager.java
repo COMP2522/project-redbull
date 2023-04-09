@@ -1,5 +1,7 @@
 package org.Snake;
 
+import org.Snake.Enemies.Beetle;
+
 import java.util.*;
 
 import static java.lang.Math.round;
@@ -46,9 +48,9 @@ public class SpriteManager {
      */
     private Food[][] food;
     /**
-     * The array of enemies
+     * The array of enemie spawn points
      */
-    private Enemy[][] enemies;
+    private Enemy[][] beetleSpawn;
     /**
      * The window
      */
@@ -62,6 +64,9 @@ public class SpriteManager {
      * spawn point of the snake
      */
     private int[] spawnPoint = {10,10};
+
+
+
     //Representing processing keycode values with final ints
     public   final int left = 37;
     public final int keyBoardA =65;
@@ -103,7 +108,7 @@ public class SpriteManager {
             this.walls = MazeMaker.loadMaze("wall", rows, cols, tileWidth, this.level);
             this.spawnPoint = MazeMaker.loadSpawn(this.level);
             this.food = MazeMaker.loadFood(rows, cols, tileWidth, this.level);
-            this.enemies = MazeMaker.loadEnemies(rows, cols, tileWidth, this.level);
+            this.beetleSpawn = MazeMaker.loadBeetleSpawn(rows, cols, tileWidth, this.level);
             for (Wall[] wall : walls) {
                 for (Wall wall1 : wall) {
                     sprites.add(wall1);
@@ -120,16 +125,30 @@ public class SpriteManager {
             catch (Exception e){
                 //System.out.println("No food");
             }
+            generateBeetles();
         }
-
         for (Wall[] wall : walls) {
             Collections.addAll(sprites, wall);
         }
     }
 
+    /**
+     * Method to generate an beetle for each beetle spawn and add the beetle to the sprite list
+     */
+    public void generateBeetles() {
+        for (Enemy[] enemy : beetleSpawn) {
+            for (Enemy enemy1 : enemy) {
+                if (enemy1 != null) {
+                    Beetle beetle = new Beetle((int) enemy1.getxPos(), (int) enemy1.getyPos(), tileWidth, "beetle");
+                    sprites.add(beetle);
+                }
+            }
+        }
+    }
+
 
     /**
-     * Method to draw the sprites usin threads
+     * Method to draw the sprites using threads
      */
     public void draw() {
         for(int i = sprites.size()-1; i >= 0; i--){
