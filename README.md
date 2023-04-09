@@ -190,18 +190,11 @@ I'm proud of what I was able to make. In the future I would like to make another
 
 
 ## Kavin
-<ul>
-  <li>March 23, 2022
-        <ul>
-      <li>Created Score</li>
-      <li>Updated the READme</li>
-      <li>Pair programmed Highscore</li>
-          <li> Refactored package</li>
-
-    </ul>
-
+<li>
+<p>Kavin<p>
+<ul>Refactoring</ul>
+        
 </li>
-
 
 ## Kale
 <ul>
