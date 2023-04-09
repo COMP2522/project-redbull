@@ -3,7 +3,7 @@
 
 # Project Members:
 - **Cam: Front End Wizard**
-- **Kavin: High-Level Design, Designer(Sprites, Levels, Sound)**
+- **Kavin: Designer
 - **Kale: The Game Creation God**
 - **Adam: The Test Giver**
 - **Harrison: Junior Code Monkey**
@@ -191,17 +191,14 @@ I'm proud of what I was able to make. In the future I would like to make another
 
 ## Kavin
 <ul>
-  <li>March 23, 2022
-        <ul>
-      <li>Created Score</li>
-      <li>Updated the READme</li>
-      <li>Pair programmed Highscore</li>
-          <li> Refactored package</li>
-
-    </ul>
-
-</li>
-
+  <li>Designer (Levels, Sprites, Grid)</li>
+  <li>Background Music</li>
+  <li>Refactoring</li>
+  <li>CheckStyle</li>
+  <li>Helped with UI Manager, UI Component, and Score Systems</li>
+        
+        
+</ul>
 
 ## Kale
 <ul>
