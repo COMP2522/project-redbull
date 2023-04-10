@@ -184,7 +184,7 @@ I'm proud of what I was able to make. In the future I would like to make another
 </p>
 
 <h4>My main contribution to the UML</h4>
-![alt text](https://github.com/COMP2522/project-redbull/blob/main/UML.png)
+![alt text](UIUML.png)
 
 
 
