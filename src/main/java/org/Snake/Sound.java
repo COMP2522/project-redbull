@@ -13,8 +13,6 @@ public class Sound {
     public Sound(Clip clip) {
     this.clip = clip;
 
-
-
     }
 
     /**
@@ -50,6 +48,16 @@ public class Sound {
 
             clip.setFramePosition(0);
             clip.start();
+        }
+    }
+
+
+    /**
+     * Stops the sound playback
+     */
+    public static void stopSound() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
         }
     }
 }

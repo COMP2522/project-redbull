@@ -1,5 +1,6 @@
 package org.Snake.UI;
 
+import org.Snake.Sound;
 import org.Snake.UI.UiManager;
 import org.Snake.Window;
 import processing.core.PImage;
@@ -55,6 +56,7 @@ public class HomeButton extends UIComponent {
       UiManager.getInstance().setSelectedLevel("none");
       System.out.print("Home button clicked");
       UiManager.getInstance().setPage("menu");
+      Sound.stopSound();
     }
   }
 }
