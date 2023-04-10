@@ -31,15 +31,11 @@ public class HighScoreBoard extends Frame {
   public void getScores() {
     System.out.println("Getting scores called");
     scores = db.get(UiManager.getInstance().getSelectedLevel());
-    for (KVPair score : scores) {
-      System.out.println(score.getKey() + " - " + score.getValue());
-    }
 
     Text[] scoreTexts = new Text[scores.size()];
     for (int i = 0; i < scores.size(); i++) {
       scoreTexts[i] = new Text(parent, x + 100, y + 100 + (i * 50), scores.get(i).getKey() + " - " + scores.get(i).getValue());
     }
-    System.out.println(scores);
   }
 
   @Override
@@ -75,6 +71,5 @@ public class HighScoreBoard extends Frame {
   @Override
   public void mouseClicked(float mx, float my) {
     homeButton.mouseClicked(mx, my);
-    System.out.print("mouse clicked in highscoreboard");
   }
 }
