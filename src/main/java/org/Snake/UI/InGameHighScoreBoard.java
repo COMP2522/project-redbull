@@ -33,7 +33,6 @@ public class InGameHighScoreBoard extends Frame {
    * Method to get the scores from the database
    */
   public void setScores() {
-    System.out.println("Getting scores called");
     scores = db.get(UiManager.getInstance().getSelectedLevel());
   }
 

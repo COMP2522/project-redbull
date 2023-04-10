@@ -117,8 +117,5 @@ public class MongoDb {
     MongoDb db = new MongoDb();
 
     ArrayList<KVPair> scores = db.get("classic");
-    for (Object score : scores) {
-      System.out.println(score);
-    }
   }
 }
