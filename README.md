@@ -241,11 +241,24 @@ I designed and created the logic to handle in-game logic events, anamation event
 </p>
 
 ## Adam
+<h4> Individual pitch</h4>
+<p>
+I designed and created the all of the test classes created in the project. These were for all significant classes that have been created. I helped in the redesign of any classes that I felt could be made differently due to knowledge found in my tests. I also helped in finding major bugs, one of them would be in the window class when we were trying to load images before the game had even started. 
+</p>
 <ul>
   <li>Created all project tests</li>
   <li>Refactoring</li>
   <li>fixed program wide problems (Window class)</li>
 </ul>
+
+<h4> The good </h4>
+<p>I am happy that all of our tests pass LOL. I would be worried if any tests didn't pass. But largely i'm so happy that I now understand how tests work when tdd is not in place. Knowing that tests have to be constantly changed in agile development was really cool and something I didn't understand before. I am also happy at how some minor bugs were found through the tests like missing getters.</p>
+<h4> The bad </h4>
+<p>I would've liked to use reflection in my tests for some private classes. I am always trying to push my work to the absolute max and being able to understand the hardest concepts in testing would've been nice. I would also say that test classes that used p image could of been made much better.</p>
+
+<h4> Conclusion</h4>
+<p> I increased my understanding of testing and how to create tests in a non test driven development practice. I also learned how to stay calm and use different methods in finding bugs in code on the main branch. 
+</p>
 
 ## Harrison
 <ul>
