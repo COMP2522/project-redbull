@@ -202,9 +202,23 @@ I'm proud of what I was able to make. In the future I would like to make another
 
 ## Kale
 <ul>
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
+  <li>Created methods and logic for Snake</li>
+  <li>Created methods and logic for Food</li>
+  <li>Created methods and logic for SnakeBody</li>
+  <liCreated methods and logic for Wall></li>
+  <li>Implemented clock logic to ensure game logic is time dependent and not frame dependent</li>
+  <li>Implemented user controls</li>
+  <li>Orginized images into hashmap for faster access</li>
+  <li>wrote logic to reset the game</li>
+  <li>wrote logic to get hardware screensize and create game screen based off this</li>
+  <li>created logic for collisions between objects</li>
+  <li>multithreaded draw method for smoother frames on computers with lower single core speed</li>
+  <li>created classic and modern game modes</li>
+  <li>built level editor for standardized level creation</li>
+  <li>wrote methods for reading files produced with level editor</li>
+  <li>Decoupled snake and snake body</li>
+  <li>Decoupled window and sprite manager</li>
+  
 </ul>
 
 ## Adam
