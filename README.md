@@ -201,7 +201,7 @@ I'm proud of what I was able to make. In the future I would like to make another
 </ul>
 
 ## Kale
-<h3>Game Logic Developer</h3>
+<h3>The Game Creation God</h3>
 <h4> Individual pitch</h4>
 <p>
 I designed and created the logic to handle in-game logic events, anamation events, time dependecy for game updates, frame dependency for animations, and contributed to refactoring snake, snake body, window and sprite manager 
