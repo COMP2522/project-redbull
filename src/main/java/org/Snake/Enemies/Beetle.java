@@ -55,7 +55,6 @@ public class Beetle extends Enemy {
     int newX = (int) (super.getxPos() + (moveX ? randomX * super.getSize() : 0));
     int newY = (int) (super.getyPos() + (!moveX ? randomY * super.getSize() : 0));
 
-
     // check if the move is valid (within the window bounds)
     if (isWithinBounds(newX, newY)) {
       // update position
@@ -64,14 +63,6 @@ public class Beetle extends Enemy {
     } else {
       this.inbounds = false;
     }
-
-    // check if the move is valid (within the window bounds)
-//    if (newX >= 0 && newX < getWindow().getWidth() - super.getSize() &&
-//        newY >= 0 && newY < getWindow().getHeight() - super.getSize()) {
-//      // update position
-//      super.setxPos(newX);
-//      super.setyPos(newY);
-//    }
   }
 
 

@@ -1,9 +1,7 @@
 package org.Snake.Enemies;
 
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class BeetleQueue implements Iterable<Beetle> {
   private static class Node {
@@ -77,40 +75,3 @@ public class BeetleQueue implements Iterable<Beetle> {
   }
 }
 
-
-/**
-import org.Snake.Enemies.Beetle;
-import java.util.Iterator;
-import java.util.LinkedList;
-
-public class BeetleQueue implements Iterable<Beetle> {
-  private final LinkedList<Beetle> beetles = new LinkedList<>();
-
-  public void add(Beetle beetle) {
-    beetles.add(beetle);
-  }
-
-  public boolean remove(Beetle beetleToRemove) {
-    for (int i = 0; i < beetles.size(); i++) {
-      if (beetles.get(i) == beetleToRemove) {
-        beetles.remove(i);
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public int size() {
-    return beetles.size();
-  }
-
-  public Beetle get(int index) {
-    return beetles.get(index);
-  }
-
-  @Override
-  public Iterator<Beetle> iterator() {
-    return beetles.iterator();
-  }
-}
-*/

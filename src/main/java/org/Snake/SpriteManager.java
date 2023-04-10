@@ -304,6 +304,9 @@ public class SpriteManager {
             playerMoved = true;
         }
         this.collide();
+
+        //spawn additional beetles if needed
+        spawnAdditionalBeetles();
     }
 
     /**
@@ -399,7 +402,42 @@ public class SpriteManager {
         }
     }
 
+    /**
+     * Method to spawn beetles when there are too few of them on screen
+     */
+    private void spawnAdditionalBeetles() {
+        if (beetles.size() < MIN_BEETLES) {
+            int beetlesToSpawn = ADDITIONAL_BEETLES;
 
+            for (Enemy[] enemy : beetleSpawn) {
+                for (Enemy enemy1 : enemy) {
+                    if (beetlesToSpawn == 0) {
+                        break;
+                    }
+
+                    if (enemy1 != null && !isBeetleAtSpawn(enemy1)) {
+                        Beetle beetle = new Beetle((int) enemy1.getxPos(), (int) enemy1.getyPos(), tileWidth, "beetle");
+                        sprites.add(beetle);
+                        beetles.add(beetle);
+                        beetlesToSpawn--;
+                    }
+                }
+
+                if (beetlesToSpawn == 0) {
+                    break;
+                }
+            }
+        }
+    }
+
+    private boolean isBeetleAtSpawn(Enemy spawn) {
+        for (Beetle beetle : beetles) {
+            if (beetle.getxPos() == spawn.getxPos() && beetle.getyPos() == spawn.getyPos()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Method to reset the topography of the level upon the player's death
