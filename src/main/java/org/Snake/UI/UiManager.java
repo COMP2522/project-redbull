@@ -167,7 +167,7 @@ public class UiManager {
    * Method to redraw the highscore board on update.
    */
   public void reDrawHighScores() {
-    ((HighScoreBoard) pages[3]).getScores();
+    ((InGameUI) pages[4]).getScores();
 
   }
 }

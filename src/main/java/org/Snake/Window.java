@@ -264,12 +264,12 @@ public class Window extends PApplet {
                 mongoDb.put("Anonymous", score, UiManager.getInstance().getSelectedLevel());
             }
 
-            UiManager.getInstance().reDrawHighScores();
 
         }
-
+        UiManager.getInstance().reDrawHighScores();
 
         UiManager.getInstance().resetScore();
+
 
 
     }
