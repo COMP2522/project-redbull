@@ -209,9 +209,9 @@ I'm proud of what I was able to make. In the future I would like to make another
 
 ## Adam
 <ul>
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
+  <li>Created all project tests</li>
+  <li>Refactoring</li>
+  <li>fixed program wide problems (Window class)</li>
 </ul>
 
 ## Harrison
