@@ -1,7 +1,7 @@
 package org.Snake;
 
 import org.Snake.Enemies.Beetle;
-import org.Snake.Enemies.Flower;
+import org.Snake.Enemies.Void;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -203,10 +203,10 @@ public class MazeMaker {
 
 
 
-/*
-    public class FlowerLoader {
-        public static Flower[][] loadFlowers(int rows, int cols, int cellSize, String level) {
-            Flower[][] flowers = new Flower[rows][cols];
+
+
+        public static Void[][] loadVoidSpawn(int rows, int cols, int cellSize, String level) {
+            Void[][] voids = new Void[rows][cols];
 
             //read json file
             FileReader reader = null;
@@ -225,23 +225,19 @@ public class MazeMaker {
                 e.printStackTrace();
             }
 
-            //create flowers
+            //create voids
             JSONObject obj = new JSONObject(buffer.toString());
-            JSONArray flowerArray = obj.optJSONArray("Beetle");
+            JSONArray voidArray = obj.optJSONArray("Void");
 
-            if (flowerArray != null) {
-                for (int j = 0; j < flowerArray.length(); j++) {
-                    JSONObject row = flowerArray.getJSONObject(j);
+            if (voidArray != null) {
+                for (int j = 0; j < voidArray.length(); j++) {
+                    JSONObject row = voidArray.getJSONObject(j);
                     int x = row.getInt("y");
                     int y = row.getInt("x");
-                    flowers[x][y] = new Flower(x * cellSize, y * cellSize, cellSize, "flower");
+                    voids[x][y] = new Void(x * cellSize, y * cellSize, cellSize, "void");
                 }
             }
 
-            return flowers;
+            return voids;
         }
-    }
-
- */
-
 }

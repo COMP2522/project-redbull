@@ -37,7 +37,7 @@ public class UiManager {
     this.window = parent;
     start = false;
     int sideBarWidth = 150;
-    String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "BatCave", "Beetles"};
+    String[] levelNames = {"Cave", "Classic", "Modern", "FreeRoam", "Impossible!", "PacMan", "random", "BatCave", "Lair"};
     int x = 0;
     int y = 0;
 

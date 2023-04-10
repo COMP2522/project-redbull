@@ -1,6 +1,7 @@
 package org.Snake.Enemies;
 
 import org.Snake.Enemy;
+import org.Snake.Wall;
 
 import java.util.Random;
 
@@ -9,6 +10,12 @@ public class Beetle extends Enemy {
   private Random random;
 
   private String image;
+
+  public void setInbounds(boolean inbounds) {
+    this.inbounds = inbounds;
+  }
+
+  private boolean inbounds = true;
 
   /**
    * Enemy constructor which sets the position and size of the enemy
@@ -23,6 +30,12 @@ public class Beetle extends Enemy {
     super(xPos, yPos, size, picture);
     super.setPicture(getWindow().loadImage(picture));
   }
+
+  public boolean isWithinBounds(int x, int y) {
+    return x >= 0 && x < getWindow().getWidth() - super.getSize() &&
+        y >= 0 && y < getWindow().getHeight() - super.getSize();
+  }
+
 
   /**
    * Move method with that moves the beetle randomly, uses position not direction
@@ -42,15 +55,36 @@ public class Beetle extends Enemy {
     int newX = (int) (super.getxPos() + (moveX ? randomX * super.getSize() : 0));
     int newY = (int) (super.getyPos() + (!moveX ? randomY * super.getSize() : 0));
 
+
     // check if the move is valid (within the window bounds)
-    if (newX >= 0 && newX < getWindow().getWidth() - super.getSize() &&
-        newY >= 0 && newY < getWindow().getHeight() - super.getSize()) {
+    if (isWithinBounds(newX, newY)) {
       // update position
       super.setxPos(newX);
       super.setyPos(newY);
+    } else {
+      this.inbounds = false;
     }
+
+    // check if the move is valid (within the window bounds)
+//    if (newX >= 0 && newX < getWindow().getWidth() - super.getSize() &&
+//        newY >= 0 && newY < getWindow().getHeight() - super.getSize()) {
+//      // update position
+//      super.setxPos(newX);
+//      super.setyPos(newY);
+//    }
   }
 
 
+  public boolean isInbounds() {
+    return inbounds;
+  }
 
+  /**
+   * Method to check if beetles are in bounds
+   */
+  public boolean isWithinBounds(Beetle beetle, Wall[][] walls) {
+
+
+    return true;
+  }
 }
