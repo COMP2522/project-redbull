@@ -30,13 +30,17 @@ public class Beetle extends Enemy {
    */
   public void move() {
     Random random = new Random();
+
+    // Choose either X or Y axis for movement
+    boolean moveX = random.nextBoolean();
+
     //randomly choose a direction
     int randomX = random.nextInt(2) == 0 ? -1 : 1;
     int randomY = random.nextInt(2) == 0 ? -1 : 1;
 
     // calculate new positions
-    int newX = (int) (super.getxPos() + randomX * super.getSize());
-    int newY = (int) (super.getyPos() + randomY * super.getSize());
+    int newX = (int) (super.getxPos() + (moveX ? randomX * super.getSize() : 0));
+    int newY = (int) (super.getyPos() + (!moveX ? randomY * super.getSize() : 0));
 
     // check if the move is valid (within the window bounds)
     if (newX >= 0 && newX < getWindow().getWidth() - super.getSize() &&
@@ -46,6 +50,7 @@ public class Beetle extends Enemy {
       super.setyPos(newY);
     }
   }
+
 
 
 }

@@ -53,6 +53,7 @@ public class SpriteManager {
     private Enemy[][] beetleSpawn;
 
 
+    private boolean playerMoved = false;
 
     /**
      * The window
@@ -67,6 +68,10 @@ public class SpriteManager {
      * spawn point of the snake
      */
     private int[] spawnPoint = {10,10};
+
+    private int beetleMoveCounter;
+
+    private static final int BEETLE_MOVE_FREQUENCY = 5;
 
 
 
@@ -211,7 +216,7 @@ public class SpriteManager {
      * Method to update all the sprites
      */
     public void update(int lastKeyPressed){
-
+        beetleMoveCounter++;
         //if the player direction is 0, then the snake is pointing down, and should not be able to move up
         if (player.getDirectionX() == zero && player.getDirectionY()
                 == zero && (lastKeyPressed == up || lastKeyPressed == keyBoardW)) {
@@ -219,10 +224,12 @@ public class SpriteManager {
             return;
         }
 
-        //update the beetle positions
-        for (Sprite sprite : sprites) {
-            if (sprite instanceof Beetle beetle) {
-                beetle.move();
+        //update the beetle positions if the player has begun to move
+        if (playerMoved && beetleMoveCounter % BEETLE_MOVE_FREQUENCY == 0){
+            for (Sprite sprite : sprites) {
+                if (sprite instanceof Beetle beetle) {
+                    beetle.move();
+                }
             }
         }
 
@@ -243,10 +250,12 @@ public class SpriteManager {
 
         if (lastKeyPressed >= left && lastKeyPressed <= down) {
             player.move(lastKeyPressed);
+            playerMoved = true;
         }
         if(lastKeyPressed == keyBoardW || lastKeyPressed == keyBoardS
                 || lastKeyPressed == keyBoardA || lastKeyPressed == keyBoardD){
             player.move(lastKeyPressed);
+            playerMoved = true;
         }
         this.collide();
     }
@@ -337,6 +346,7 @@ public class SpriteManager {
      */
     public void reset() {
         sprites.clear();
+        playerMoved = false;
         makeTiles();
         player.reset(spawnPoint[0], spawnPoint[1]);
         sprites.add(player);
