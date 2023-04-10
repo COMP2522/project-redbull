@@ -3,19 +3,13 @@ package org.Snake;
 import org.Snake.Enemies.Beetle;
 import org.Snake.Enemies.BeetleQueue;
 import org.Snake.Enemies.Void;
-
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import static java.lang.Math.round;
 
-//Sprite manager method to manage all on-screen sprites
-
 /**
- * LevelSelector class which is the main level selector
+ * The main manager for all  the sprites in the game.
  *
- * @author
- * @version 1.0
  */
 public class SpriteManager {
     /**
@@ -54,12 +48,35 @@ public class SpriteManager {
      * The array of beetle spawn points
      */
     private Enemy[][] beetleSpawn;
+
+    /**
+     * The array of void spawn points
+     */
     private Enemy [][] voidSpawn;
+
+    /**
+     * The array of voids
+     */
     private BeetleQueue beetles;
+
+    /**
+     * The array of voids
+     */
     private ArrayList <Void> voids;
+
+    /**
+     * The minimum allowed number of beetles on the screen
+     */
     private static final int MIN_BEETLES = 6;
+
+    /**
+     * The number of beetles to add when the minimum is reached
+     */
     private static final int ADDITIONAL_BEETLES = 3;
 
+    /**
+     * The array of voids
+     */
     private boolean playerMoved = false;
 
     /**
@@ -76,24 +93,25 @@ public class SpriteManager {
      */
     private int[] spawnPoint = {10,10};
 
+    /**
+     * The counter for how many moves the beetles have made
+     */
     private int beetleMoveCounter;
 
+    /**
+     * The frequency of beetle moves
+     */
     private static final int BEETLE_MOVE_FREQUENCY = 2;
-
 
 
     //Representing processing keycode values with final ints
     public   final int left = 37;
     public final int keyBoardA =65;
-    public final int right = 39;
     public final int keyBoardD = 68;
     public   final int up = 38;
     public final int  keyBoardW = 87;
     public final int down = 40;
     public  final int keyBoardS = 83;
-
-    private int directionX = 0;
-    private int directionY = 0;
 
     /**
      * The constructor for the sprite manager
@@ -120,7 +138,6 @@ public class SpriteManager {
 
     /**
      * The method that calls mazemaker to place the tiles, spawns and food
-     * @return
      */
     public void makeTiles() {
         if (Objects.equals(this.level, "random")) {
@@ -156,6 +173,9 @@ public class SpriteManager {
         }
     }
 
+    /**
+     * The method that creates the beetles on the screen
+     */
     public void generateBeetles() {
         beetles = new BeetleQueue();
         for (Enemy[] enemy : beetleSpawn) {
@@ -251,7 +271,6 @@ public class SpriteManager {
         //if the player direction is 0, then the snake is pointing down, and should not be able to move up
         if (player.getDirectionX() == zero && player.getDirectionY()
                 == zero && (lastKeyPressed == up || lastKeyPressed == keyBoardW)) {
-//            return sprites;
             return;
         }
 
@@ -275,10 +294,6 @@ public class SpriteManager {
                 }
             }
         }
-
-
-
-
 
         //update the sprites to the next frame
         int trueX = round(player.getxPos() / this.tileWidth) * this.tileWidth;

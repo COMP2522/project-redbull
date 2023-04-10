@@ -1,15 +1,18 @@
 package org.Snake.Enemies;
 
+import java.util.Random;
 import org.Snake.Enemy;
 import org.Snake.Wall;
 
-import java.util.Random;
 
+/**
+ * Beetle class which is meant to be the enemy of the snake.
+ *
+ * @author the redbull team
+ * @version 1.0
+ */
 public class Beetle extends Enemy {
 
-  private Random random;
-
-  private String image;
 
   public void setInbounds(boolean inbounds) {
     this.inbounds = inbounds;
@@ -18,12 +21,12 @@ public class Beetle extends Enemy {
   private boolean inbounds = true;
 
   /**
-   * Enemy constructor which sets the position and size of the enemy
+   * Beetle constructor which sets the position and size of the enemy.
    *
-   * @param xPos
-   * @param yPos
-   * @param size
-   * @param picture
+   * @param xPos the x position of the beetle
+   * @param yPos the y position of the beetle
+   * @param size the size of the beetle
+   * @param picture the picture of the beetle
    */
   public Beetle(int xPos, int yPos, int size, String picture) {
 
@@ -38,8 +41,7 @@ public class Beetle extends Enemy {
 
 
   /**
-   * Move method with that moves the beetle randomly, uses position not direction
-   * @return int
+   * Move method with that moves the beetle randomly, uses position not direction.
    */
   public void move() {
     Random random = new Random();
