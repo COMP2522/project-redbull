@@ -1,6 +1,11 @@
 package org.Snake;
 
+import org.Snake.Enemies.Beetle;
+import org.Snake.Enemies.BeetleQueue;
+import org.Snake.Enemies.Void;
+
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static java.lang.Math.round;
 
@@ -16,7 +21,7 @@ public class SpriteManager {
     /**
      * The list of sprites
      */
-    private final ArrayList<Sprite> sprites;
+    private final CopyOnWriteArrayList<Sprite> sprites;
     /**
      * The player
      */
@@ -46,9 +51,17 @@ public class SpriteManager {
      */
     private Food[][] food;
     /**
-     * The array of enemies
+     * The array of beetle spawn points
      */
-    private Enemy[][] enemies;
+    private Enemy[][] beetleSpawn;
+    private Enemy [][] voidSpawn;
+    private BeetleQueue beetles;
+    private ArrayList <Void> voids;
+    private static final int MIN_BEETLES = 6;
+    private static final int ADDITIONAL_BEETLES = 3;
+
+    private boolean playerMoved = false;
+
     /**
      * The window
      */
@@ -62,6 +75,13 @@ public class SpriteManager {
      * spawn point of the snake
      */
     private int[] spawnPoint = {10,10};
+
+    private int beetleMoveCounter;
+
+    private static final int BEETLE_MOVE_FREQUENCY = 2;
+
+
+
     //Representing processing keycode values with final ints
     public   final int left = 37;
     public final int keyBoardA =65;
@@ -88,7 +108,7 @@ public class SpriteManager {
         this.cols = cols;
         this.tileWidth = cellSize;
         Sprite.setWindow(window);
-        sprites = new ArrayList<>();
+        sprites = new CopyOnWriteArrayList<>();
         player = Snake.getInstance(spawnPoint[0]*tileWidth, (int) (spawnPoint[1]*tileWidth+ window.getTopOffset()), tileWidth, "headDown");
         sprites.add(player);
         window.fill(zero, zero, zero);
@@ -110,7 +130,8 @@ public class SpriteManager {
             this.walls = MazeMaker.loadMaze("wall", rows, cols, tileWidth, this.level);
             this.spawnPoint = MazeMaker.loadSpawn(this.level);
             this.food = MazeMaker.loadFood(rows, cols, tileWidth, this.level);
-            this.enemies = MazeMaker.loadEnemies(rows, cols, tileWidth, this.level);
+            this.beetleSpawn = MazeMaker.loadBeetleSpawn(rows, cols, tileWidth, this.level);
+            this.voidSpawn = MazeMaker.loadVoidSpawn(rows, cols, tileWidth, this.level);
             for (Wall[] wall : walls) {
                 for (Wall wall1 : wall) {
                     sprites.add(wall1);
@@ -127,16 +148,47 @@ public class SpriteManager {
             catch (Exception e){
                 //System.out.println("No food");
             }
+            generateBeetles();
+            generateVoids();
         }
-
         for (Wall[] wall : walls) {
             Collections.addAll(sprites, wall);
         }
     }
 
+    public void generateBeetles() {
+        beetles = new BeetleQueue();
+        for (Enemy[] enemy : beetleSpawn) {
+            for (Enemy enemy1 : enemy) {
+                if (enemy1 != null) {
+                    Beetle beetle = new Beetle((int) enemy1.getxPos(), (int) enemy1.getyPos(), tileWidth, "beetle");
+                    sprites.add(beetle);
+                    beetles.add(beetle);
+                }
+            }
+        }
+    }
 
     /**
-     * Method to draw the sprites usin threads
+     * Method to generate a void for each void spawn and add the void to the sprite list
+     */
+    public void generateVoids() {
+        voids = new ArrayList<>();
+        for (Enemy[] enemy : voidSpawn) {
+            for (Enemy enemy1 : enemy) {
+                if (enemy1 != null) {
+                    Void void1 = new Void((int) enemy1.getxPos(), (int) enemy1.getyPos(), tileWidth, "void");
+                    sprites.add(void1);
+                    voids.add(void1);
+
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Method to draw the sprites using threads
      */
     public void draw() {
         for(int i = sprites.size()-1; i >= 0; i--){
@@ -195,13 +247,37 @@ public class SpriteManager {
      * Method to update all the sprites
      */
     public void update(int lastKeyPressed){
-
+        beetleMoveCounter++;
         //if the player direction is 0, then the snake is pointing down, and should not be able to move up
         if (player.getDirectionX() == zero && player.getDirectionY()
                 == zero && (lastKeyPressed == up || lastKeyPressed == keyBoardW)) {
 //            return sprites;
             return;
         }
+
+        if (playerMoved && beetleMoveCounter % BEETLE_MOVE_FREQUENCY == 0) {
+            for (Beetle beetle : beetles) {
+                beetle.move();
+                // check if the player is colliding with a wall
+                int x = (int) (beetle.getxPos() / this.tileWidth);
+                int y = (int) (beetle.getyPos() / this.tileWidth);
+                // LEFT
+                if (x < zero || x >= cols || y < zero || y >= rows) {
+                    beetle.setInbounds(false);
+                }
+
+                // check if the beetle is colliding with a tile, if so, remove it from the lists
+                if (walls[x][y] != null) {
+                    if (walls[x][y].isWall()) {
+                        sprites.remove(beetle);
+                        beetles.remove(beetle);
+                    }
+                }
+            }
+        }
+
+
+
 
 
         //update the sprites to the next frame
@@ -220,16 +296,21 @@ public class SpriteManager {
 
         if (lastKeyPressed >= left && lastKeyPressed <= down) {
             player.move(lastKeyPressed);
+            playerMoved = true;
         }
         if(lastKeyPressed == keyBoardW || lastKeyPressed == keyBoardS
                 || lastKeyPressed == keyBoardA || lastKeyPressed == keyBoardD){
             player.move(lastKeyPressed);
+            playerMoved = true;
         }
         this.collide();
+
+        //spawn additional beetles if needed
+        spawnAdditionalBeetles();
     }
 
     /**
-     * Method to check if the player is colliding with a wall or a tile
+     * Method to check if the player is colliding with a wall or a tile or a beetle
      */
     private void collide() {
 
@@ -296,13 +377,66 @@ public class SpriteManager {
                 food[x + player.getDirectionX()][y + player.getDirectionY() - 1].eat();
             }
         }
+        //check if the player is colliding with itself
         for (int i = 0; i < player.getBody().size()-1; i++) {
             if (player.getBody().get(i).getxPos() == player.getxPos() && player.getBody().get(i).getyPos() == player.getyPos()) {
                 window.reset();
             }
+            for (Beetle beetle : beetles) {
+                if (player.getBody().get(i).getxPos() == beetle.getxPos() && player.getBody().get(i).getyPos() == beetle.getyPos()) {
+                    window.reset();
+                }
+            }
         }
 
+        //check if the player is colliding with a beetle or void
+        for (Beetle beetle : beetles) {
+            if (beetle.getxPos() == player.getxPos() && beetle.getyPos() == player.getyPos()) {
+                window.reset();
+            }
+        }
+        for (Void void1 : voids) {
+            if (void1.getxPos() == player.getxPos() && void1.getyPos() == player.getyPos()) {
+                window.reset();
+            }
+        }
+    }
 
+    /**
+     * Method to spawn beetles when there are too few of them on screen
+     */
+    private void spawnAdditionalBeetles() {
+        if (beetles.size() < MIN_BEETLES) {
+            int beetlesToSpawn = ADDITIONAL_BEETLES;
+
+            for (Enemy[] enemy : beetleSpawn) {
+                for (Enemy enemy1 : enemy) {
+                    if (beetlesToSpawn == 0) {
+                        break;
+                    }
+
+                    if (enemy1 != null && !isBeetleAtSpawn(enemy1)) {
+                        Beetle beetle = new Beetle((int) enemy1.getxPos(), (int) enemy1.getyPos(), tileWidth, "beetle");
+                        sprites.add(beetle);
+                        beetles.add(beetle);
+                        beetlesToSpawn--;
+                    }
+                }
+
+                if (beetlesToSpawn == 0) {
+                    break;
+                }
+            }
+        }
+    }
+
+    private boolean isBeetleAtSpawn(Enemy spawn) {
+        for (Beetle beetle : beetles) {
+            if (beetle.getxPos() == spawn.getxPos() && beetle.getyPos() == spawn.getyPos()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -310,6 +444,7 @@ public class SpriteManager {
      */
     public void reset() {
         sprites.clear();
+        playerMoved = false;
         makeTiles();
         player.reset(spawnPoint[0], spawnPoint[1]);
         sprites.add(player);

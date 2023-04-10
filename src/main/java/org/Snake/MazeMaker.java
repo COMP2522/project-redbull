@@ -1,7 +1,7 @@
 package org.Snake;
 
 import org.Snake.Enemies.Beetle;
-import org.Snake.Enemies.BeetleSpawner;
+import org.Snake.Enemies.Void;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -147,15 +147,15 @@ public class MazeMaker {
 
 
     /**
-     * Method to load the enemies from a json file
+     * Method to load the beetles from a json file
      * @param rows the number of rows
      * @param cols the number of columns
      * @param cellSize the size of the cells
      * @param level the name of the level
-     * @return the enemy tiles
+     * @return the beetle tiles
      */
-    public static Enemy[][] loadEnemies(int rows, int cols, int cellSize, String level) {
-        Enemy[][] enemies = new Enemy[rows][cols];
+    public static Beetle[][] loadBeetleSpawn(int rows, int cols, int cellSize, String level) {
+        Beetle[][] beetles = new Beetle[rows][cols];
 
         //read json file
         FileReader reader = null;
@@ -174,32 +174,70 @@ public class MazeMaker {
             e.printStackTrace();
         }
 
-        //create enemies
+        //create beetles
         JSONObject obj = new JSONObject(buffer.toString());
-        JSONArray beetleArray = obj.optJSONArray("beetles");
-        JSONArray beetleSpawnerArray = obj.optJSONArray("beetle_spawners");
+        JSONArray beetleArray = obj.optJSONArray("Beetle");
 
         if (beetleArray != null) {
             for (int j = 0; j < beetleArray.length(); j++) {
                 JSONObject row = beetleArray.getJSONObject(j);
                 int x = row.getInt("y");
                 int y = row.getInt("x");
-                enemies[x][y] = new Beetle(x * cellSize, y * cellSize, cellSize, "beetle");
+                beetles[x][y] = new Beetle(x * cellSize, y * cellSize, cellSize, "beetle");
             }
         }
 
-        if (beetleSpawnerArray != null) {
-            for (int j = 0; j < beetleSpawnerArray.length(); j++) {
-                JSONObject row = beetleSpawnerArray.getJSONObject(j);
-                int x = row.getInt("y");
-                int y = row.getInt("x");
-                enemies[x][y] = new BeetleSpawner(x * cellSize, y * cellSize, cellSize, "beetle_spawner");
+        //print the number of beetles
+        int numBeetles = 0;
+        for (int j = 0; j < beetles.length; j++) {
+            for (int k = 0; k < beetles[0].length; k++) {
+                if (beetles[j][k] != null) {
+                    numBeetles++;
+                }
             }
         }
+        System.out.println("Number of beetles: " + numBeetles);
 
-        return enemies;
+        return beetles;
     }
 
 
 
+
+
+        public static Void[][] loadVoidSpawn(int rows, int cols, int cellSize, String level) {
+            Void[][] voids = new Void[rows][cols];
+
+            //read json file
+            FileReader reader = null;
+            try {
+                reader = new FileReader("src" + File.separator + "main" + File.separator + "levels" + File.separator + level + ".json");
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            StringBuffer buffer = new StringBuffer();
+            int i;
+            try {
+                while ((i = reader.read()) != -1) {
+                    buffer.append((char) i);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //create voids
+            JSONObject obj = new JSONObject(buffer.toString());
+            JSONArray voidArray = obj.optJSONArray("Void");
+
+            if (voidArray != null) {
+                for (int j = 0; j < voidArray.length(); j++) {
+                    JSONObject row = voidArray.getJSONObject(j);
+                    int x = row.getInt("y");
+                    int y = row.getInt("x");
+                    voids[x][y] = new Void(x * cellSize, y * cellSize, cellSize, "void");
+                }
+            }
+
+            return voids;
+        }
 }

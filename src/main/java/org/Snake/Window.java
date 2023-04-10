@@ -303,6 +303,13 @@ public class Window extends PApplet {
     }
 
     /**
+     * The getter for the cell size
+     */
+    public int getHeight() {
+        return topOffSet + (rows * cellSize);
+    }
+
+    /**
      * The method that increments the score upon eating a food
      */
     public void incrementScore() {

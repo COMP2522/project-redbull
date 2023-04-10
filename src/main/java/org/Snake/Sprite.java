@@ -76,6 +76,10 @@ public class Sprite implements Drawable{
     images.put("headDown",window.loadImage("src/main/images/snakeDown.png"));
     images.put("food",window.loadImage("src/main/images/redbull.png"));
     images.put("wall",window.loadImage("src/main/images/wall.png"));
+
+//    enemy images
+    images.put("beetle",window.loadImage("src/main/images/beetle.png"));
+    images.put("void",window.loadImage("src/main/images/void.png"));
   }
     public static PImage getImage(String name){
         return images.get(name);
