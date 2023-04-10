@@ -201,6 +201,11 @@ I'm proud of what I was able to make. In the future I would like to make another
 </ul>
 
 ## Kale
+<h3>Game Logic Developer</h3>
+<h4> Individual pitch</h4>
+<p>
+I designed and created the logic to handle in-game logic events, anamation events, time dependecy for game updates, frame dependency for animations, and contributed to refactoring snake, snake body, window and sprite manager 
+</p>
 <ul>
   <li>Created methods and logic for Snake</li>
   <li>Created methods and logic for Food</li>
@@ -218,8 +223,21 @@ I'm proud of what I was able to make. In the future I would like to make another
   <li>wrote methods for reading files produced with level editor</li>
   <li>Decoupled snake and snake body</li>
   <li>Decoupled window and sprite manager</li>
-  
 </ul>
+<h3>Reflection on my design decisions and what I would do differently next time.</h3>
+<h4>Overview</h5> 
+<p>
+    I am mostly happy with the portion that i worked on but there are a few glaring issue that I would have fixed given more time.
+</p>
+
+<h4> The good </h4>
+<p>I am mostly happy with how the snake turned out and proud of how the body is moving and growing. I am very proud of the multi-threading as it enabled me to be able to actually run the game on my own laptop!</p>
+<h4> The bad </h4>
+<p>Given more time i would have implemented a buffer for the control input to make inputs feel smoother, as some key presses are missed when the game is already executing logic for a keypress. I would ghave liked the solve the issue with the snakes head deteching from the body and the snakes body not appearing in the right location when it first begins moving.</p>
+
+<h4> Conclusion</h4>
+<p> I increased my understanding of object oriented design, learned the issue with over coupling, and gained an understand of how to optimize Java with multi-threading. 
+</p>
 
 ## Adam
 <ul>
