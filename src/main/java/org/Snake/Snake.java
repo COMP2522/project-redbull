@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * The Snake class. For snake things :)
  * Using the ArrayList library, makes the snake a singleton  ArrayList
  *
- * @author
+ * @author The redbull team
  * @version 1.0
  */
 public class Snake extends Sprite {
@@ -43,17 +43,6 @@ public class Snake extends Sprite {
   // 3 - up
 
 
-
-  //Key Pressed Keycodes for switch statements
-  private final int left = 37;
-  private final int keyBoardA =65;
-  private final int right = 39;
-  private final int keyBoardD = 68;
-  private final int up = 38;
-  private final int  keyBoardW = 87;
-
-  private final int down = 40;
-  private final int keyBoardS = 83;
   /**
    * Instance of the snake.
    */
@@ -76,7 +65,6 @@ public class Snake extends Sprite {
   }
 
 
-
   /**
    * Get instance method to instantiate the Snake so only one instance occurs - Singleton
    * @param xPos int
@@ -93,9 +81,22 @@ public class Snake extends Sprite {
     return instance;
   }
 
+  /**
+   * The move method for the snake
+   * @param lastKeyPressed is the last key pressed
+   */
   public void move(int lastKeyPressed) {
     int lastDY = -directionY;
     int lastDX = directionX;
+    //Key Pressed Keycodes for switch statements
+    final int left = 37;
+    final int keyBoardA =65;
+    final int right = 39;
+    final int keyBoardD = 68;
+    final int up = 38;
+    final int  keyBoardW = 87;
+    final int down = 40;
+    final int keyBoardS = 83;
     switch (lastKeyPressed) {
       case left, keyBoardA -> {
         //check that the snake is not going right

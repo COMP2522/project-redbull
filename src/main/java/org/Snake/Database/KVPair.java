@@ -5,7 +5,7 @@ package org.Snake.Database;
  *
  * @author Cameron Fung
  */
-public class KVPair implements Comparable{
+public class KVPair implements Comparable<KVPair>{
 
   // Initializes the key variable.
   String key;
@@ -32,8 +32,8 @@ public class KVPair implements Comparable{
    * @return Value in descending order.
    */
   @Override
-  public int compareTo(Object k) {
-    if (!(k instanceof KVPair)) {
+  public int compareTo(KVPair k) {
+    if (k == null) {
       throw new Error();
     }
     // want to sort by value in descending order

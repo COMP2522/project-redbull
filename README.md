@@ -264,10 +264,15 @@ I designed and created the all of the test classes created in the project. These
 <ul>
   <li>March 23, 2022
         <ul>
-      <li>Made the drawable interface</li>
-      <li>Updated the READme</li>
-      <li>Item 3</li>
-    </ul>
+        <li>Made the drawable interface</li>
+        <li>Updated the READme</li>
+        <li>Made the original snake class and singleton</li>
+        <li>Made the original snakebody and functionality</li>
+        <li>Helped add functionality to the home button UI</li>
+        <li>Made self-managing queue data structure for the beetle enemies that adds enemies when enough die</li>
+        <li>Implemented all the enemy behaviour and code</li>
+        <li>Implemented the enemy spawning system</li>
+        </ul>
 
 </li>
 </ul>
