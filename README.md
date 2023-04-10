@@ -206,6 +206,7 @@ I'm proud of what I was able to make. In the future I would like to make another
 <p>
 I designed and created the logic to handle in-game logic events, anamation events, time dependecy for game updates, frame dependency for animations, and contributed to refactoring snake, snake body, window and sprite manager 
 </p>
+<h4>primary contributions</h4>
 <ul>
   <li>Created methods and logic for Snake</li>
   <li>Created methods and logic for Food</li>
