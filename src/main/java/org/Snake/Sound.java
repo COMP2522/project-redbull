@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.io.File;
 
 
-;public class Sound {
+public class Sound {
     public static Clip clip;
 
     public Sound(Clip clip) {
@@ -17,6 +17,9 @@ import java.io.File;
 
     }
 
+    /**
+     * Plays the sound file
+     */
     public static void playSound() {
         try {
             // load the sound file
@@ -33,7 +36,9 @@ import java.io.File;
     }
 
 
-
+    /**
+     * Stops the sound file
+     */
     public static void resetSound() {
         if (clip.isRunning()) {
             clip.stop(); // stop the current clip if it is running

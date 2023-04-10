@@ -10,6 +10,9 @@ import org.Snake.Window;
  */
 public abstract class UIComponent {
 
+  /**
+   * Parent PApplet
+   */
   protected Window parent;
 
 

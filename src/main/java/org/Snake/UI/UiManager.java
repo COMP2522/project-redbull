@@ -18,11 +18,20 @@ public class UiManager {
   private int activePageIndex;
 
   private final Window window;
-
+  /**
+   * The instance of the UiManager
+   */
   private static UiManager instance;
 
   private int score; // The score of the player
 
+  /**
+   * Method to get the score of the player
+   * @param parent the parent window
+   * @param width the width of the window
+   * @param height the height of the window
+   * @param db the database
+   */
   private UiManager(Window parent, float width, float height, MongoDb db) {
 
     this.window = parent;
@@ -46,6 +55,14 @@ public class UiManager {
     selectedLevel = "none";
   }
 
+  /**
+   * Method to get the instance of the UiManager
+   * @param parent the parent window
+   * @param width  the width of the window
+   * @param height the height of the window
+   * @param db the database
+   * @return the instance of the UiManager
+   */
   public static UiManager getInstance(Window parent, float width, float height, MongoDb db) {
     if (instance == null) {
       instance = new UiManager(parent, width, height, db);
@@ -57,6 +74,9 @@ public class UiManager {
     return instance;
   }
 
+  /**
+   * Method to draw the active page.
+   */
   public void draw() {
     // Draw the active page
     if (!window.isGameActive()) {
@@ -65,6 +85,11 @@ public class UiManager {
     pages[activePageIndex].draw();
   }
 
+  /**
+   * Method to handle mouse click events on the active page.
+   * @param mx the x-coordinate of the mouse
+   * @param my the y-coordinate of the mouse
+   */
   public void mouseClicked(float mx, float my) {
     // Check if any of the buttons on the active page were clicked
 
@@ -75,6 +100,10 @@ public class UiManager {
     pages[activePageIndex].mouseClicked(mx, my);
   }
 
+  /**
+   * Method to handle mouse move events on the active page.
+   * @param game
+   */
   public void setPage(String game) {
 
     if (!game.equals("inGame")) {
@@ -98,6 +127,10 @@ public class UiManager {
     }
   }
 
+  /**
+   * Method to get the selected level
+   * @return the selected level
+   */
   public String getSelectedLevel() {
     return selectedLevel;
   }
@@ -130,6 +163,9 @@ public class UiManager {
     return window;
   }
 
+  /**
+   * Method to redraw the highscore board on update.
+   */
   public void reDrawHighScores() {
     ((HighScoreBoard) pages[3]).getScores();
 
